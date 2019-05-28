@@ -1,0 +1,18 @@
+
+ksquid:S2259œ"G"NullPointerException" will be thrown when invoking method "isAvLen()".(ïÚ­Œşÿÿÿÿ8­­Êš¯-
+Ksquid:S1659u"-Declare "network_enabled" on a separate line.(çË’Ÿ8­­Êš¯-
+psquid:S00117u"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çË’Ÿ8­­Êš¯-
+Jsquid:S1659"'Declare "TYPE_NAME" on a separate line.(¿ñ½²üÿÿÿÿ8­­Êš¯-
+]squid:S1118":Add a private constructor to hide the implicit public one.(¸­»¨øÿÿÿÿ8­­Êš¯-
+Ksquid:S1659"(Declare "TYPE_PHONE" on a separate line.(¿ñ½²üÿÿÿÿ8­­Êš¯-
+fsquid:S2259"G"NullPointerException" will be thrown when invoking method "isAvLen()".(Ì¹Şˆ8­­Êš¯-
+[squid:S1197["8Move the array designator from the variable to the type.(°‰«úûÿÿÿÿ8­­Êš¯-
+Usquid:S2589v"7Remove this expression which always evaluates to "true"(—Ì„8­­Êš¯-
+fsquid:S2259š"G"NullPointerException" will be thrown when invoking method "isAvLen()".(†ôìç8­­Êš¯-
+Msquid:S00108~")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8­­Êš¯-
+Osquid:S1659",Declare "TYPE_LONG_TEXT" on a separate line.(¿ñ½²üÿÿÿÿ8­­Êš¯-
+Nsquid:S1659"+Declare "TYPE_PASSWORD" on a separate line.(¿ñ½²üÿÿÿÿ8­­Êš¯-
+Msquid:S00108z")Either remove or fill this block of code.(±Ÿ—±ÿÿÿÿÿ8­­Êš¯-
+psquid:S00117u"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çË’Ÿ8­­Êš¯-
+ysquid:S2159"VRemove this call to "equals"; comparisons between unrelated types always return false.(ÔÌòÿÿÿÿÿ8­­Êš¯-
+Jsquid:S1659"'Declare "TYPE_TEXT" on a separate line.(¿ñ½²üÿÿÿÿ8­­Êš¯-

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">i96mg</string>
+    <string name="app_name_icon">i96mg</string>
+    <string name="action_close">close</string>
+    <string name="Open">open</string>
+    <string name="Close">close</string>
+    <string name="there_is_no_internet_connection">ther is no internet connection</string>
+    <string name="credit_debit_card">Credit / Debit Card</string>
+    <string name="pay_pal">Pay pal</string>
+    <string name="enter_card_number">Enter Card Number</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiration_date">Expiration Date</string>
+    <string name="security_code_cvv">Security Code (CVV)</string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="pay_with_paypal_n_nwhen_you_hit_place_order_you_will_be_redirected_to_paypal_where_you_can_complete_your_purchase_securely">Pay with PayPal  When you hit Place Order you will be redirected to PayPal where you can complete your purchase securely.</string>
+    <string name="place_order">Place Order</string>
+    <string name="email">Email</string>
+    <string name="for_order_confirmation">*for order confirmation</string>
+    <string name="full_name">Full Name</string>
+    <string name="full_address">Full Address</string>
+    <string name="country">Country</string>
+    <string name="region">Region</string>
+    <string name="zip_postal_code">Zip/Postal Code</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="continue_text">Continue</string>
+    <string name="shop_sells_exclusive_skins_for_the_game_fortnite">Shop sells exclusive skins for the game Fortnite</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="plus_mark">+</string>
+    <string name="quantity">Quantity:</string>
+    <string name="total">Total :</string>
+    <string name="total_only">Total</string>
+    <string name="name_nprice">Name price</string>
+</resources>

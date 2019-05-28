@@ -1,0 +1,8 @@
+
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¶ÐßÜ8†Œ¶›¯-
+jsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(Ä©½ôûÿÿÿÿ
+isquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(Øäš„8„ëµ›¯-
+bsquid:UnusedPrivateMethodY"1Remove this unused private "showSnackbar" method.(šãý„ÿÿÿÿÿ8„ëµ›¯-
+Tsquid:S2696x"6Make the enclosing method "static" or remove this set.(ô½ñ§8ï®¶œ¯-
+Tsquid:S2696{"6Make the enclosing method "static" or remove this set.(ŒÐ¼¯8ï®¶œ¯-
+Ysquid:S2696"6Make the enclosing method "static" or remove this set.(°äÈþþÿÿÿÿ8ï®¶œ¯-

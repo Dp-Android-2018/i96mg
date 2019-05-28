@@ -1,0 +1,4 @@
+
+›"squid:ClassVariableVisibilityCheck"fMake connectionReceiverListener a static final constant or non-public and provide accessors if needed.(šï¬É8ÖÔ«š¯-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(‹§ùÙ8ŠÉÇš¯-
+^squid:S1444"@Make this "public static connectionReceiverListener" field final(šï¬É8ÖÔ«š¯-
