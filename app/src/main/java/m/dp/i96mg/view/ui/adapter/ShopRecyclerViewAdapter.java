@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import m.dp.i96mg.R;
-import m.dp.i96mg.databinding.ItemProductLayoutBinding;
 import m.dp.i96mg.databinding.ItemShopCartBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.view.ui.viewholder.ShopViewHolder;

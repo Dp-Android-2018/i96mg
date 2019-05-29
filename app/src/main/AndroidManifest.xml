@@ -25,7 +25,25 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".view.ui.activity.PayCardActivity"></activity>
+
+
+        <activity android:name=".view.ui.activity.PayCardActivity">
+            <intent-filter>
+                <data android:scheme="your_uri_scheme" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="151.106.52.107:8085"
+                    android:scheme="http" />
+                <data
+                    android:host="151.106.52.107:8085"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".view.ui.activity.InformationActivity" />
         <activity android:name=".view.ui.activity.ShopDetailsActivity" />
         <activity android:name=".view.ui.activity.ProductDetailsActivity" />

@@ -1,13 +1,17 @@
 package m.dp.i96mg.koin
 
 import android.os.Parcel
+import m.dp.i96mg.service.model.request.OrderRequest
 import m.dp.i96mg.service.repository.remotes.MainRepository
+import m.dp.i96mg.service.repository.remotes.PayCardRepository
 import org.koin.dsl.module.module
 
 @JvmField
 val DependencyModule = module {
 
     single { MainRepository() }
+    single { PayCardRepository() }
+    factory { OrderRequest(Parcel.obtain()) }
 
     /* single { Register1Repository() }
      single { Register2Repository() }

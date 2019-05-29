@@ -83,3 +83,7 @@ r
 Bapp/src/main/java/m/dp/i96mg/view/ui/activity/PayCardActivity.java,d\2\d206d9f8ba333d4d8e2a765b9abfc7b649b1edd3
 v
 Fapp/src/main/java/m/dp/i96mg/view/ui/activity/ShopDetailsActivity.java,6\5\65c8c8a7c68f6306358437dea5d41d50fea06b6d
+s
+Capp/src/main/java/m/dp/i96mg/view/ui/viewholder/ShopViewHolder.java,c\2\c22aa0e7ed8df5f80bc64db17f0089a4311a4a2d
+y
+Iapp/src/main/java/m/dp/i96mg/view/ui/adapter/ShopRecyclerViewAdapter.java,f\4\f4e59c23ff3435c965e0cd974064140e70834e1b

@@ -41,14 +41,16 @@ public class ShopDetailsActivity extends AppCompatActivity {
     }
 
     private void getAndSetTotalPrice() {
-        for (int i = 0; i < productModelList.size(); i++) {
-            if (productModelList.get(i).isHasDiscount()) {
-                totalPrice += productModelList.get(i).getDiscountedPrice();
-            } else {
-                totalPrice += productModelList.get(i).getOriginalPrice();
+        if (productModelList != null) {
+            for (int i = 0; i < productModelList.size(); i++) {
+                if (productModelList.get(i).isHasDiscount()) {
+                    totalPrice += productModelList.get(i).getDiscountedPrice();
+                } else {
+                    totalPrice += productModelList.get(i).getOriginalPrice();
+                }
             }
+            binding.tvTotalPrice.setText(String.valueOf(totalPrice));
         }
-        binding.tvTotalPrice.setText(String.valueOf(totalPrice));
     }
 
     private void initializeRecyclerView() {

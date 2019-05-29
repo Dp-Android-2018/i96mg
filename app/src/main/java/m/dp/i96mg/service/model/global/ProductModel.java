@@ -19,9 +19,6 @@ public class ProductModel {
     @SerializedName("quantity")
     private int quantity;
 
-    @SerializedName("is_unlimited")
-    private boolean isUnlimited;
-
     @SerializedName("has_discount")
     private boolean hasDiscount;
 
@@ -72,14 +69,6 @@ public class ProductModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public boolean isUnlimited() {
-        return isUnlimited;
-    }
-
-    public void setUnlimited(boolean unlimited) {
-        isUnlimited = unlimited;
     }
 
     public boolean isHasDiscount() {

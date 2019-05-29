@@ -1,5 +1,7 @@
 
-ssquid:UnusedPrivateMethodR"BRemove this unused private "addItsDataToSharedPreferences" method.(âšÃıÿÿÿÿ8àøØÊ¯-
-isquid:CommentedOutCodeLineK"<This block of commented-out lines of code should be removed.(‰ıà®8àøØÊ¯-
-Nsquid:S1172J"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8¼ÿÚÊ¯-
-esquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(›ã™
+isquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(Šş8»Úšğ¯-
+nsquid:CommentedOutCodeLine\"<This block of commented-out lines of code should be removed.(ôä·¨úÿÿÿÿ8°…Îï¯-
+Nsquid:S1172X"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8°…Îï¯-
+esquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(›ã™
+Gsquid:S1068!")Remove this unused "price" private field.(÷ºùÆ8ƒ›ğ¯-
+isquid:CommentedOutCodeLine7"<This block of commented-out lines of code should be removed.(Šş8ƒ›ğ¯-

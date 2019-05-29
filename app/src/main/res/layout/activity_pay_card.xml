@@ -37,7 +37,7 @@
                 android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="@dimen/dp29h"
                 android:src="@drawable/ic_arrow_back"
                 app:layout_constraintBottom_toBottomOf="@+id/main_title"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,24 +46,26 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/credit_onstraint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonConstrainLayoutClicked"
+            android:layout_marginStart="@dimen/dp28h"
+            android:layout_marginTop="@dimen/dp37h"
+            android:layout_marginEnd="@dimen/dp28h"
             android:background="@drawable/edittext_border_yellow"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginEnd="31dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_toolbar">
 
             <RadioButton
                 android:id="@+id/credit_radioButton"
+                style="@style/RadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
+                android:layout_marginStart="@dimen/dp12h"
                 android:checked="true"
-                style="@style/RadioButtonStyle"
+                android:onClick="onRadioButtonClicked"
                 android:shadowColor="@android:color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +75,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
+                android:layout_marginStart="@dimen/dp8w"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
                 android:text="@string/credit_debit_card"
@@ -84,34 +86,38 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:layout_width="30.4dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="24dp"
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/dp27w"
+                android:layout_height="@dimen/dp18h"
+                android:layout_marginEnd="@dimen/dp21w"
                 android:src="@drawable/credit_card"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+            android:id="@+id/paybal_constraint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonConstrainLayoutClicked"
+            android:layout_marginStart="@dimen/dp28h"
+            android:layout_marginEnd="@dimen/dp28h"
             android:background="@drawable/edittext_border_yellow"
-            android:layout_marginStart="31dp"
-            android:layout_marginEnd="31dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/credit_onstraint">
+
 
             <RadioButton
                 android:id="@+id/paybal_radioButton"
+                style="@style/RadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                style="@style/RadioButtonStyle"
+                android:layout_marginStart="@dimen/dp12h"
+                android:onClick="onRadioButtonClicked"
                 android:shadowColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +127,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
+                android:layout_marginStart="@dimen/dp8w"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
                 android:text="@string/pay_pal"
@@ -132,9 +138,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:layout_width="30.4dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="24dp"
+                android:layout_width="@dimen/dp27w"
+                android:layout_height="@dimen/dp18h"
+                android:layout_marginEnd="@dimen/dp21w"
                 android:src="@drawable/paypal_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -143,13 +149,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cedit_constraintlayout"
+            android:id="@+id/credit_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintTop_toBottomOf="@+id/paybal_constraint">
 
             <TextView
                 android:id="@+id/textView7"
@@ -169,14 +175,14 @@
             <EditText
                 android:id="@+id/et_card_number"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="31dp"
-                android:layout_marginTop="37dp"
-                android:layout_marginEnd="31dp"
+                android:layout_height="@dimen/dp39w"
+                android:layout_marginStart="@dimen/dp28h"
+                android:layout_marginTop="@dimen/dp33h"
+                android:layout_marginEnd="@dimen/dp28h"
                 android:background="@drawable/edittext_border_yellow"
                 android:inputType="numberPassword"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
+                android:paddingStart="@dimen/dp12h"
+                android:paddingEnd="@dimen/dp12h"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -198,13 +204,13 @@
             <EditText
                 android:id="@+id/et_expiration_date"
                 android:layout_width="144dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="37dp"
+                android:layout_height="@dimen/dp39w"
+                android:layout_marginTop="@dimen/dp33h"
                 android:background="@drawable/edittext_border_yellow"
                 android:inputType="date"
                 android:nextFocusDown="@id/et_region"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
+                android:paddingStart="@dimen/dp12h"
+                android:paddingEnd="@dimen/dp12h"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="@+id/et_card_number"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -226,12 +232,12 @@
             <EditText
                 android:id="@+id/et_security_code"
                 android:layout_width="144dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="37dp"
+                android:layout_height="@dimen/dp39w"
+                android:layout_marginTop="@dimen/dp33h"
                 android:background="@drawable/edittext_border_yellow"
                 android:inputType="text"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
+                android:paddingStart="@dimen/dp12h"
+                android:paddingEnd="@dimen/dp12h"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="@+id/et_card_number"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -253,14 +259,14 @@
             <EditText
                 android:id="@+id/et_card_holder_name"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="31dp"
-                android:layout_marginTop="37dp"
-                android:layout_marginEnd="31dp"
-                android:layout_marginBottom="16dp"
+                android:layout_height="@dimen/dp39w"
+                android:layout_marginStart="@dimen/dp28h"
+                android:layout_marginTop="@dimen/dp33h"
+                android:layout_marginEnd="@dimen/dp28h"
+                android:layout_marginBottom="@dimen/dp14w"
                 android:background="@drawable/edittext_border_yellow"
-                android:paddingStart="13dp"
-                android:paddingEnd="13dp"
+                android:paddingStart="@dimen/dp12h"
+                android:paddingEnd="@dimen/dp12h"
                 android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -271,14 +277,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/tv_paybal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:visibility="invisible"
-            android:layout_marginStart="31dp"
-            android:layout_marginEnd="31dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginStart="@dimen/dp28h"
+            android:layout_marginEnd="@dimen/dp28h"
+            android:layout_marginBottom="@dimen/dp16w"
             android:text="@string/pay_with_paypal_n_nwhen_you_hit_place_order_you_will_be_redirected_to_paypal_where_you_can_complete_your_purchase_securely"
             app:layout_constraintBottom_toTopOf="@+id/btn_countinue"
             app:layout_constraintEnd_toEndOf="parent"
@@ -287,9 +294,10 @@
         <Button
             android:id="@+id/btn_countinue"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="@dimen/dp47h"
             android:background="@color/yellow_color"
             android:text="@string/place_order"
+            android:onClick="makeOrder"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="21sp"

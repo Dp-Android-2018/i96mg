@@ -34,21 +34,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/iv_shop_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="@dimen/dp29h"
             android:src="@drawable/ic_shopping_cart"
             app:layout_constraintBottom_toBottomOf="@+id/main_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/main_title" />
+            app:layout_constraintTop_toTopOf="@+id/main_title" />-->
 
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="@dimen/dp29h"
             android:src="@drawable/ic_arrow_back"
             app:layout_constraintBottom_toBottomOf="@+id/main_title"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
     <!--<androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="298dp"
+        android:layout_height="@dimen/dp265w"
         app:cardBackgroundColor="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
     <ImageView
         android:id="@+id/iv_product_image"
         android:layout_width="0dp"
-        android:layout_height="298dp"
+        android:layout_height="@dimen/dp265w"
         android:background="@color/transparent"
         android:scaleType="centerCrop"
         android:src="@drawable/im_pic"
@@ -90,7 +90,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/dp16w"
         tools:text="V-Bucks"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -104,8 +104,8 @@
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="2dp"
+        android:layout_height="@dimen/dp2h"
+        android:layout_marginTop="@dimen/dp2h"
         android:background="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/tv_name"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -115,7 +115,7 @@
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="@dimen/dp2h"
         tools:text="350 SR"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -128,7 +128,7 @@
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/dp29h"
         android:text="@string/quantity"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -140,10 +140,10 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="131dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/dp118h"
+        android:layout_height="@dimen/dp39w"
+        android:layout_marginStart="@dimen/dp14w"
+        android:layout_marginEnd="@dimen/dp14w"
         android:background="@drawable/quantity_background"
         app:layout_constraintBottom_toBottomOf="@+id/text2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,7 +152,7 @@
 
         <TextView
             android:id="@+id/tv_minus"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/dp45h"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:text="-"
@@ -165,7 +165,7 @@
 
         <View
             android:id="@+id/view2"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/dp1h"
             android:layout_height="0dp"
             android:background="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -189,7 +189,7 @@
 
         <View
             android:id="@+id/view3"
-            android:layout_width="1dp"
+            android:layout_width="@dimen/dp1h"
             android:layout_height="0dp"
             android:background="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -200,7 +200,7 @@
 
         <TextView
             android:id="@+id/tv_plus"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/dp45h"
             android:layout_height="wrap_content"
             android:text="+"
             android:textAlignment="center"
@@ -214,7 +214,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="@dimen/dp46w"
         android:text="@string/add_to_cart"
         android:textAllCaps="false"
         android:textSize="21sp"

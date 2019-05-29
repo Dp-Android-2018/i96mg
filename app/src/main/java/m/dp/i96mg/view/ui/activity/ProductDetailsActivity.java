@@ -72,16 +72,18 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void initializeUiWithData() {
-        for (int i = 0; i < productModelList.size(); i++) {
-            if (productModelList.get(i).getId() == productModel.getId()) {
-                binding.tvQuantityNum.setText(String.valueOf(productModelList.get(i).getOrderedQuantity()));
-                quantity=productModelList.get(i).getOrderedQuantity();
+        if (productModelList != null) {
+            for (int i = 0; i < productModelList.size(); i++) {
+                if (productModelList.get(i).getId() == productModel.getId()) {
+                    binding.tvQuantityNum.setText(String.valueOf(productModelList.get(i).getOrderedQuantity()));
+                    quantity = productModelList.get(i).getOrderedQuantity();
+                }
             }
+            ImageView ivGalleryPhoto = binding.ivProductImage;
+            Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
+            binding.tvName.setText(productModel.getName());
+            binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
         }
-        ImageView ivGalleryPhoto = binding.ivProductImage;
-        Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
-        binding.tvName.setText(productModel.getName());
-        binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
     }
 
 
