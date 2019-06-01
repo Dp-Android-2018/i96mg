@@ -16,7 +16,7 @@ public class ConfigurationFile {
         public static final String API_KEY = "49182-7180383-9e24-4b94-27e37ec19c94";
         public static final String CONTENT_TYPE = "application/json";
         public static final String ACCEPT = "application/json";
-        public static String ACCEPT_LANGUAGE = "en";
+        public static String ACCEPT_LANGUAGE = "ar";
         public static String AUTHORIZATION = "token";
         public static final String BEARER_STRING = "Bearer ";
 

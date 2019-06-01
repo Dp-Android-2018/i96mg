@@ -17,9 +17,9 @@
         android:name=".application.MyApplication"
         android:allowBackup="true"
         android:appComponentFactory="settings"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true"
@@ -28,20 +28,7 @@
 
 
         <activity android:name=".view.ui.activity.PayCardActivity">
-            <intent-filter>
-                <data android:scheme="your_uri_scheme" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="151.106.52.107:8085"
-                    android:scheme="http" />
-                <data
-                    android:host="151.106.52.107:8085"
-                    android:scheme="https" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".view.ui.activity.InformationActivity" />
@@ -52,6 +39,20 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="http" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:pathPattern="/Android" />
+                <data
+                    android:host="dp-itc.com"
+                    android:scheme="http" />
+                <data
+                    android:host="dp-itc.com"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".view.ui.activity.NoInternetConnectionActivity" />

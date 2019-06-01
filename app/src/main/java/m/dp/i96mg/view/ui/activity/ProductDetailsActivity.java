@@ -1,11 +1,10 @@
 package m.dp.i96mg.view.ui.activity;
 
-import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.gson.Gson;
@@ -24,7 +23,7 @@ import m.dp.i96mg.utility.utils.CustomUtils;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PRODUCT_DETAIL;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
-public class ProductDetailsActivity extends AppCompatActivity {
+public class ProductDetailsActivity extends BaseActivity {
 
     ActivityProductDetailsBinding binding;
     private ProductModel productModel;
@@ -83,6 +82,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
             Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
             binding.tvName.setText(productModel.getName());
             binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
+            if (productModel.isHasDiscount()) {
+                binding.tvPrice.setPaintFlags(binding.tvPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                binding.tvDiscountedPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
+            }
         }
     }
 
@@ -90,9 +93,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     public void addProductToCart(View view) {
         addItsDataToSharedPreferences();
         onBackPressed();
-
-        /*Intent intent = new Intent(this, InformationActivity.class);
-        startActivity(intent);*/
     }
 
     private void addItsDataToSharedPreferences() {

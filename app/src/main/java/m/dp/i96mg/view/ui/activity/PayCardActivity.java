@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
@@ -30,7 +27,6 @@ import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.request.OrderRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.OrderResponse;
-import m.dp.i96mg.service.model.response.ProductsResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
@@ -39,39 +35,44 @@ import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
-public class PayCardActivity extends AppCompatActivity {
+public class PayCardActivity extends BaseActivity {
 
     ActivityPayCardBinding binding;
     private int type = ConfigurationFile.Constants.CREDIT_ID;
     private Lazy<PayCardActivityViewModel> payCardActivityViewModelLazy = inject(PayCardActivityViewModel.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
-//    private Lazy<OrderRequest> orderRequest = inject(OrderRequest.class);
-    OrderRequest orderRequest=new OrderRequest(Parcel.obtain());
+    OrderRequest orderRequest;
     private List<ProductModel> productModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_card);
-        orderRequest=getIntent().getParcelableExtra(ConfigurationFile.Constants.ORDER_REQUEST);
+        orderRequest = new OrderRequest(Parcel.obtain());
+        orderRequest = getIntent().getParcelableExtra(ConfigurationFile.Constants.ORDER_REQUEST);
         productModelList = new ArrayList<>();
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
         ArrayList<ProductData> productData = new ArrayList<>();
-        for (int i = 0; i < productModelList.size(); i++) {
-            productData.add(new ProductData(productModelList.get(i).getId(), productModelList.get(i).getOrderedQuantity()));
-            System.out.println("products : "+productModelList.get(i).getName());
+        if (productModelList != null) {
+            for (int i = 0; i < productModelList.size(); i++) {
+                productData.add(new ProductData(productModelList.get(i).getId(), productModelList.get(i).getOrderedQuantity()));
+                System.out.println("products : " + productModelList.get(i).getName());
+            }
         }
-        orderRequest.setProductsData(productData);
-        getBrowserResponse();
+        if (productData!=null){
+            orderRequest.setProductsData(productData);
+        }
+//        getBrowserResponse();
     }
 
-    private void getBrowserResponse() {
-        Uri data = this.getIntent().getData();
+   /* private void getBrowserResponse() {
+        Uri data = getIntent().getData();
         if (data != null && data.isHierarchical()) {
-            String uri = this.getIntent().getDataString();
-            Log.i("MyApp", "Deep link clicked " + uri);
+            String uri = getIntent().getDataString();
+            System.out.println("Deep link clicked " + uri);
+            System.out.println("Deep link data " + getIntent().getDataString());
         }
-    }
+    }*/
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
@@ -143,7 +144,7 @@ public class PayCardActivity extends AppCompatActivity {
                 if (orderResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > orderResponseResponse.code()) {
                     if (orderResponseResponse.body() != null) {
-                       redirectToPayBal(orderResponseResponse.body());
+                        redirectToPayBal(orderResponseResponse.body());
                     }
                 } else {
                     showErrors(orderResponseResponse);
@@ -184,6 +185,6 @@ public class PayCardActivity extends AppCompatActivity {
     }
 
     private void showSnackbar(String message) {
-        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
     }
 }

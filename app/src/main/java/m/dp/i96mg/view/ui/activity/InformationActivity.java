@@ -26,7 +26,7 @@ import m.dp.i96mg.viewmodel.PayCardActivityViewModel;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
-public class InformationActivity extends AppCompatActivity {
+public class InformationActivity extends BaseActivity {
 
     ActivityInformationBinding binding;
     private Lazy<OrderRequest> orderRequest = inject(OrderRequest.class);

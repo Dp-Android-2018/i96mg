@@ -4,6 +4,7 @@ import io.reactivex.Observable;
 import m.dp.i96mg.service.model.request.OrderRequest;
 import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
+import m.dp.i96mg.service.model.response.VoucherResponse;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -21,5 +22,8 @@ public interface ApiInterfaces {
     @POST("/api/order")
     Observable<Response<OrderResponse>> createOrder(@Body OrderRequest orderRequest);
 
+    //Get voucher data
+    @GET("/api/voucher")
+    Observable<Response<VoucherResponse>> getVoucherData(@Query("voucher") String voucher);
 
 }

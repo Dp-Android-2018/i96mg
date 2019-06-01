@@ -105,7 +105,7 @@
             android:id="@+id/btn_countinue"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp46w"
-            android:background="@color/yellow_color"
+            android:background="@drawable/border_yellow"
             android:text="@string/continue_text"
             android:onClick="goToPayActivity"
             android:textAllCaps="false"
@@ -134,14 +134,13 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp96w"
-            android:layout_marginBottom="@dimen/dp7w"
+            android:layout_marginStart="109dp"
             android:text="@string/total"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="19sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_countinue"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -156,6 +155,93 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/tv_discount_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="19sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_price"
+            app:layout_constraintTop_toTopOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text=" 1400 SR" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="121dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/voucher"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_voucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="-1400 SR"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_yellow"
+            app:layout_constraintBottom_toTopOf="@+id/btn_countinue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/et_code_number"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edittext_border_black"
+                android:hint="Enter your code"
+                android:inputType="text"
+                android:paddingStart="@dimen/dp12h"
+                android:paddingEnd="@dimen/dp12h"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_voucher_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextFields" />
+
+            <ImageView
+                android:id="@+id/iv_voucher_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="makeVoucherRequest"
+                android:layout_marginEnd="13dp"
+                android:src="@drawable/sign_out_option"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

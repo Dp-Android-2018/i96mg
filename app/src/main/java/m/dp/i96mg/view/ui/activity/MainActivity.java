@@ -1,10 +1,12 @@
 package m.dp.i96mg.view.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +16,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -56,13 +60,57 @@ public class MainActivity extends BaseActivity {
         setupToolbar();
         initializeViewModel();
         initializeRecyclerViewWithData();
+        getBrowserResponse();
+    }
+
+    private void getBrowserResponse() {
+        if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {
+            Uri uri = getIntent().getData();
+            String status = uri.getQueryParameter("success");
+            if (status.equals("true")) {
+                String languageType = customUtils.getValue().getSavedLanguageType();
+                customUtils.getValue().clearSharedPref();
+                customUtils.getValue().saveLanguageTypeToPrefs(languageType);
+            }
+        }
     }
 
     private void setupToolbar() {
         binding.ivShopCart.setOnClickListener(v -> {
-            Intent intent=new Intent(this,ShopDetailsActivity.class);
+            Intent intent = new Intent(this, ShopDetailsActivity.class);
             startActivity(intent);
         });
+
+        binding.ivMoreMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(MainActivity.this, binding.ivMoreMenu);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.popup_menu, popup.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(item -> {
+                    if (customUtils.getValue().getSavedLanguageType().equals(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH)) {
+                        customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC);
+                        openAppAgain();
+                    } else {
+                        customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH);
+                        openAppAgain();
+                    }
+                    return true;
+                });
+
+                popup.show(); //showing popup menu
+            }
+        }); //closing the setOnClickListener method
+    }
+
+    private void openAppAgain() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void initializeViewModel() {

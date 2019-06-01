@@ -116,13 +116,15 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
 
     public String getAppLang() {
         if (customUtils.getValue().getSavedLanguageType().equals(ConfigurationFile.Constants.DEFAULT_LANGUAGE_STRING)) {
-            if (Locale.getDefault().getDisplayLanguage().equals(ConfigurationFile.Constants.ARABIC_LANGUAGE_STRING)) {
+            /*if (Locale.getDefault().getDisplayLanguage().equals(ConfigurationFile.Constants.ARABIC_LANGUAGE_STRING)) {
                 ConfigurationFile.Constants.ACCEPT_LANGUAGE = ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC;
                 customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC);
             } else {
                 ConfigurationFile.Constants.ACCEPT_LANGUAGE = ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH;
                 customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH);
-            }
+            }*/
+            ConfigurationFile.Constants.ACCEPT_LANGUAGE = ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC;
+            customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC);
         } else {
             ConfigurationFile.Constants.ACCEPT_LANGUAGE = customUtils.getValue().getSavedLanguageType();
         }
