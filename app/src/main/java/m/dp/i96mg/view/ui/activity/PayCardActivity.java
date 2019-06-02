@@ -3,13 +3,12 @@ package m.dp.i96mg.view.ui.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcel;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -30,19 +29,25 @@ import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
+import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.viewmodel.PayCardActivityViewModel;
 import retrofit2.Response;
 
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.CREDIT_CARD;
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.CREDIT_ID;
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PAYBAL;
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PAYBAL_ID;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class PayCardActivity extends BaseActivity {
 
     ActivityPayCardBinding binding;
-    private int type = ConfigurationFile.Constants.CREDIT_ID;
+    private int type = CREDIT_ID;
     private Lazy<PayCardActivityViewModel> payCardActivityViewModelLazy = inject(PayCardActivityViewModel.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     OrderRequest orderRequest;
     private List<ProductModel> productModelList;
+    private ArrayList<ProductData> productData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,33 +55,26 @@ public class PayCardActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_card);
         orderRequest = new OrderRequest(Parcel.obtain());
         orderRequest = getIntent().getParcelableExtra(ConfigurationFile.Constants.ORDER_REQUEST);
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
+        setProductList();
+    }
+
+    private void setProductList() {
         productModelList = new ArrayList<>();
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
-        ArrayList<ProductData> productData = new ArrayList<>();
+        productData = new ArrayList<>();
         if (productModelList != null) {
             for (int i = 0; i < productModelList.size(); i++) {
                 productData.add(new ProductData(productModelList.get(i).getId(), productModelList.get(i).getOrderedQuantity()));
-                System.out.println("products : " + productModelList.get(i).getName());
             }
         }
-        if (productData!=null){
+        if (productData != null) {
             orderRequest.setProductsData(productData);
         }
-//        getBrowserResponse();
     }
-
-   /* private void getBrowserResponse() {
-        Uri data = getIntent().getData();
-        if (data != null && data.isHierarchical()) {
-            String uri = getIntent().getDataString();
-            System.out.println("Deep link clicked " + uri);
-            System.out.println("Deep link data " + getIntent().getDataString());
-        }
-    }*/
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-        String str = "";
         // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.credit_radioButton:
@@ -88,7 +86,6 @@ public class PayCardActivity extends BaseActivity {
                     makeActionOnChooseOnPaypal();
                 break;
         }
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
     }
 
     public void onRadioButtonConstrainLayoutClicked(View view) {
@@ -107,8 +104,7 @@ public class PayCardActivity extends BaseActivity {
         binding.tvPaybal.setVisibility(View.INVISIBLE);
         binding.paybalRadioButton.setChecked(false);
         binding.creditRadioButton.setChecked(true);
-        type = ConfigurationFile.Constants.CREDIT_ID;
-        orderRequest.setPaymentMethod("CREDIT_CARD");
+        type = CREDIT_ID;
     }
 
     private void makeActionOnChooseOnPaypal() {
@@ -116,41 +112,117 @@ public class PayCardActivity extends BaseActivity {
         binding.tvPaybal.setVisibility(View.VISIBLE);
         binding.creditRadioButton.setChecked(false);
         binding.paybalRadioButton.setChecked(true);
-        type = ConfigurationFile.Constants.PAYBAL_ID;
-        orderRequest.setPaymentMethod("PAYPAL");
+        type = PAYBAL_ID;
+        orderRequest.setPaymentMethod(PAYBAL);
     }
 
     public void makeOrder(View view) {
         switch (type) {
-            case ConfigurationFile.Constants.CREDIT_ID:
+            case CREDIT_ID:
                 makeOrderOnChooseCredit();
                 break;
-            case ConfigurationFile.Constants.PAYBAL_ID:
-                makeOrderOnChooseOnPaypal();
+            case PAYBAL_ID:
+                makeOrderRequest();
                 break;
         }
     }
 
     private void makeOrderOnChooseCredit() {
+        if (!binding.etCardNumber.getText().toString().isEmpty()
+                && !binding.etExpirationDate.getText().toString().isEmpty()
+                && !binding.etSecurityCode.getText().toString().isEmpty()
+                && !binding.etCardHolderName.getText().toString().isEmpty()
+        ) {
+            setOrderRequestData();
+            makeOrderRequest();
+        } else {
+            showTheirErrors();
+        }
+    }
+
+    private void setOrderRequestData() {
+        orderRequest.setPaymentMethod(CREDIT_CARD);
+        orderRequest.setCardNumber(binding.etCardNumber.getText().toString());
+        orderRequest.setExpirationDate(binding.etExpirationDate.getText().toString());
+        orderRequest.setSecurityCode(binding.etSecurityCode.getText().toString());
+        orderRequest.setCardholderName(binding.etCardHolderName.getText().toString());
+    }
+
+    private void showTheirErrors() {
+        if (binding.etCardNumber.getText().toString().isEmpty()) {
+            showSnackbar(getResources().getString(R.string.please_enter_card_number));
+            return;
+        }
+
+        if (binding.etExpirationDate.getText().toString().isEmpty()) {
+            showSnackbar(getResources().getString(R.string.please_enter_expiration_date));
+            return;
+        }
+
+        if (binding.etSecurityCode.getText().toString().isEmpty()) {
+            showSnackbar(getResources().getString(R.string.please_enter_security_code));
+            return;
+        }
+
+        if (binding.etCardHolderName.getText().toString().isEmpty()) {
+            showSnackbar(getResources().getString(R.string.please_enter_card_holder));
+        }
 
     }
 
-    private void makeOrderOnChooseOnPaypal() {
-        SharedUtils.getInstance().showProgressDialog(this);
-        payCardActivityViewModelLazy.getValue().createOrder(orderRequest);
-        payCardActivityViewModelLazy.getValue().getData().observe(this, new Observer<Response<OrderResponse>>() {
-            @Override
-            public void onChanged(Response<OrderResponse> orderResponseResponse) {
+    private void makeOrderRequest() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            payCardActivityViewModelLazy.getValue().createOrder(orderRequest);
+            payCardActivityViewModelLazy.getValue().getData().observe(this, orderResponseResponse -> {
+                SharedUtils.getInstance().cancelDialog();
                 if (orderResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > orderResponseResponse.code()) {
                     if (orderResponseResponse.body() != null) {
-                        redirectToPayBal(orderResponseResponse.body());
+                        makeActionOnType(orderResponseResponse.body());
                     }
                 } else {
                     showErrors(orderResponseResponse);
                 }
-            }
-        });
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void makeActionOnType(OrderResponse body) {
+        switch (type) {
+            case CREDIT_ID:
+                checkResponse(body);
+                break;
+            case PAYBAL_ID:
+                redirectToPayBal(body);
+                break;
+        }
+    }
+
+    private void checkResponse(OrderResponse body) {
+        if (body.isSuccess()) {
+            showSnackbar(body.getMessage());
+            new Handler().postDelayed(() -> {
+                clearproductsData();
+                openMainActivity();
+            }, 2000);
+        } else {
+            showSnackbar(body.getMessage());
+        }
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void clearproductsData() {
+        String languageType = customUtils.getValue().getSavedLanguageType();
+        customUtils.getValue().clearSharedPref();
+        customUtils.getValue().saveLanguageTypeToPrefs(languageType);
     }
 
     private void redirectToPayBal(OrderResponse body) {

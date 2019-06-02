@@ -1,7 +1,6 @@
 
-isquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(Šþ8»Úšð¯-
-nsquid:CommentedOutCodeLine\"<This block of commented-out lines of code should be removed.(ôä·¨úÿÿÿÿ8°…Îï¯-
-Nsquid:S1172X"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8°…Îï¯-
-esquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(›ãŽ™
-Gsquid:S1068!")Remove this unused "price" private field.(÷ºùÆ8Žƒ›ð¯-
-isquid:CommentedOutCodeLine7"<This block of commented-out lines of code should be removed.(Šþ8Žƒ›ð¯-
+Nsquid:S1172]"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8°…Îï¯-
+fsquid:MaximumInheritanceDepth"=This class has 10 parents which is greater than 5 authorized.(•õ†
+isquid:CommentedOutCodeLine6"<This block of commented-out lines of code should be removed.(Šþ8Žƒ›ð¯-
+isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Šþ8»Úšð¯-
+Gsquid:S1068 ")Remove this unused "price" private field.(÷ºùÆ8Žƒ›ð¯-

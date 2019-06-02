@@ -93,14 +93,16 @@ public class ConfigurationFile {
         public static final String PRODUCT_DETAIL = "product detail";
         public static final String PRODUCTS_LIST = "products list";
         public static final String ORDER_REQUEST = "order request";
-        public static final String TOKN_VALUE = "Token";
+        public static final String VOUCHER_VALUE = "voucher";
         public static final String GOOGLE_MAPS_PACKAGE_NAME = "com.google.android.apps.maps";
         public static final String GOOGLE_MAPS_URI_DATA = "geo:0,0?q=";
 
         public static final int DEFAULT_PAGE_ID = 1;
         public static final int DEFAULT_QUANTITY = 1;
         public static final int CREDIT_ID = 3;
+        public static final String CREDIT_CARD = "CREDIT_CARD";
         public static final int PAYBAL_ID = 5;
+        public static final String PAYBAL = "PAYPAL";
         public static final String DEFAULT_CATEGORY_ID = "";
 
         public static final int SUCCESS_CODE_FROM = 200;

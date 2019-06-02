@@ -1,3 +1,9 @@
 
-jsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(Àô×‹üÿÿÿÿ
-Nsquid:S1172"+Remove this unused method parameter "view".(±²œåøÿÿÿÿ8·¨Óñ¯-
+fsquid:MaximumInheritanceDepth"=This class has 10 parents which is greater than 5 authorized.(åÖè 
+Nsquid:S11720"+Remove this unused method parameter "view".(±²œåøÿÿÿÿ8·¨Óñ¯-
+]squid:UselessImportCheck"2Remove this unused import 'android.os.Parcelable'.(õÃÀ­8¿×ã±-
+zsquid:UselessImportCheck"JRemove this unused import 'm.dp.i96mg.viewmodel.PayCardActivityViewModel'.(‰Ð³ˆýÿÿÿÿ8¿×ã±-
+Rsquid:S1068#"4Remove this unused "productModelList" private field.(š™Þ8¢æ´º±-
+}squid:S1450#"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Þ8¿×ã±-
+ssquid:UselessImportCheck"HRemove this unused import 'm.dp.i96mg.service.model.global.ProductData'.(ð‰Š8¿×ã±-
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8Þû±—±-

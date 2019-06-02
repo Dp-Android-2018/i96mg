@@ -35,7 +35,7 @@ public class OrderRequest implements Parcelable {
     private ArrayList<ProductData> productsData;
 
     @SerializedName("voucher")
-    private String promoCode;
+    private String voucher;
 
     @SerializedName("payment_method")
     private String paymentMethod;
@@ -60,7 +60,7 @@ public class OrderRequest implements Parcelable {
         region = in.readString();
         zipCode = in.readString();
         phoneNumber = in.readString();
-        promoCode = in.readString();
+        voucher = in.readString();
         paymentMethod = in.readString();
         cardNumber = in.readString();
         expirationDate = in.readString();
@@ -144,12 +144,12 @@ public class OrderRequest implements Parcelable {
         this.productsData = productsData;
     }
 
-    public String getPromoCode() {
-        return promoCode;
+    public String getVoucher() {
+        return voucher;
     }
 
-    public void setPromoCode(String promoCode) {
-        this.promoCode = promoCode;
+    public void setVoucher(String voucher) {
+        this.voucher = voucher;
     }
 
     public String getPaymentMethod() {
@@ -206,7 +206,7 @@ public class OrderRequest implements Parcelable {
         dest.writeString(region);
         dest.writeString(zipCode);
         dest.writeString(phoneNumber);
-        dest.writeString(promoCode);
+        dest.writeString(voucher);
         dest.writeString(paymentMethod);
         dest.writeString(cardNumber);
         dest.writeString(expirationDate);

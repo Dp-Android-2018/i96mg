@@ -81,7 +81,17 @@ public class MainActivity extends BaseActivity {
             startActivity(intent);
         });
 
-        binding.ivMoreMenu.setOnClickListener(new View.OnClickListener() {
+        binding.ivMoreMenu.setOnClickListener(v -> {
+            if (customUtils.getValue().getSavedLanguageType().equals(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH)) {
+                customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC);
+                openAppAgain();
+            } else {
+                customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH);
+                openAppAgain();
+            }
+        });
+
+       /* binding.ivMoreMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
@@ -104,7 +114,8 @@ public class MainActivity extends BaseActivity {
 
                 popup.show(); //showing popup menu
             }
-        }); //closing the setOnClickListener method
+        }); //closing the setOnClickListener method*/
+
     }
 
     private void openAppAgain() {

@@ -24,6 +24,7 @@ import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.viewmodel.PayCardActivityViewModel;
 
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.VOUCHER_VALUE;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class InformationActivity extends BaseActivity {
@@ -32,11 +33,13 @@ public class InformationActivity extends BaseActivity {
     private Lazy<OrderRequest> orderRequest = inject(OrderRequest.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     private List<ProductModel> productModelList;
+    private String voucher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_information);
+        voucher = getIntent().getStringExtra(VOUCHER_VALUE);
         productModelList = new ArrayList<>();
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
         binding.ivBack.setOnClickListener(v -> onBackPressed());
@@ -68,6 +71,9 @@ public class InformationActivity extends BaseActivity {
         orderRequest.getValue().setRegion(binding.etRegion.getText().toString());
         orderRequest.getValue().setZipCode(binding.etZipCode.getText().toString());
         orderRequest.getValue().setPhoneNumber(binding.etPhoneNum.getText().toString());
+        if (!voucher.isEmpty()) {
+            orderRequest.getValue().setVoucher(voucher);
+        }
     }
 
     private void gotoNextActivity() {

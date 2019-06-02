@@ -115,7 +115,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.gaurav.cdsrecyclerview.CdsRecyclerView
             android:id="@+id/rvProducts"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -135,12 +135,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="109dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/total"
+            android:visibility="invisible"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="19sp"
             app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -164,6 +168,7 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="19sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintStart_toEndOf="@+id/tv_total_price"
             app:layout_constraintTop_toTopOf="@+id/textView5"
@@ -175,6 +180,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="121dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/voucher"
             android:textAlignment="center"
@@ -183,6 +189,8 @@
             android:textSize="13sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.16"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -198,8 +206,23 @@
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView6" />
 
+        <Button
+            android:id="@+id/btn_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp46w"
+            android:background="@drawable/border_yellow"
+            android:onClick="showCodeConstraintLayout"
+            android:text="@string/voucher_text"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
+            android:visibility="invisible"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_yellow"

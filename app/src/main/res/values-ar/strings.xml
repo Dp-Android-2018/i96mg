@@ -39,6 +39,12 @@
     <string name="enter_zip_code">يرجى إدخال الرمز البريدي الخاص بك!</string>
     <string name="enter_phone_number">يرجى إدخال رقم هاتفك!!</string>
     <string name="enter_valid_phone_number">يرجى إدخال رقم هاتف صالح!!</string>
-    <string name="english">English</string>
+    <string name="english">E</string>
     <string name="voucher">Voucher : -</string>
+    <string name="please_enter_card_number">please enter card number !!</string>
+    <string name="please_enter_code_number">please enter code number !!</string>
+    <string name="please_enter_expiration_date">please enter expiration date !!</string>
+    <string name="please_enter_security_code">please enter security code !!</string>
+    <string name="please_enter_card_holder">please enter card holder name !!</string>
+    <string name="voucher_text">Voucher</string>
 </resources>

@@ -46,7 +46,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:pathPattern="/Android" />
+                <data android:pathPattern="/payment" />
                 <data
                     android:host="dp-itc.com"
                     android:scheme="http" />

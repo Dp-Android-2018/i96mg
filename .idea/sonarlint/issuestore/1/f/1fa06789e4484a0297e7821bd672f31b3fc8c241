@@ -1,16 +1,18 @@
 
-@squid:S1643­"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ò›Õ¡¯-
-^squid:UselessImportCheck".Remove this unused import 'android.view.View'.(Ø½­äşÿÿÿÿ8µ¯–í¯-
-{squid:S2177³"WRename this method; there is a "private" method in the parent class with the same name.(È˜ƒùÿÿÿÿ8¸¿‰Ä¯-
-Nsquid:S1066"/Merge this if statement with the enclosing one.(à—åª8¸¿‰Ä¯-
-Osquid:S1659.",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-
-isquid:CommentedOutCodeLinex"<This block of commented-out lines of code should be removed.(¾¸İ¾8¤‚óÃ¯-
-Gsquid:S1148¨"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¸¿‰Ä¯-
-@squid:S1643¬"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8¸¿‰Ä¯-
-Lsquid:S1185"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8¸¿‰Ä¯-
-Rsquid:S1066T"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8ôçù¡¯-
-Jsquid:S10680",Remove this unused "position" private field.(íñ8£‚¢¯-
-Qsquid:S1659.".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-
-ssquid:S00116-"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8öÌéÂ¯-
-usquid:S14500"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Ş—øÃ¯-
-msquid:MaximumInheritanceDepth%"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8·Ö—Ã¯-
+fsquid:UselessImportCheck";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8²÷Â—±-
+Gsquid:S1148ã"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8±Ú»±-
+{squid:S2177î"WRename this method; there is a "private" method in the parent class with the same name.(È˜ƒùÿÿÿÿ8±Ú»±-
+Qsquid:S16592".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-
+Lsquid:S1185¼"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8±Ú»±-
+@squid:S1643è"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8±Ú»±-
+Ssquid:S1066"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8±Ú»±-
+Nsquid:S1066È"/Merge this if statement with the enclosing one.(à—åª8±Ú»±-
+ssquid:S001161"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8öÌéÂ¯-
+Ysquid:UselessImportCheck")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8²÷Â—±-
+@squid:S1643ç"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8±Ëş“±-
+jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(¾¸İ¾8±Ú»±-
+nsquid:CommentedOutCodeLine^"<This block of commented-out lines of code should be removed.( šîãûÿÿÿÿ8±Ú»±-
+msquid:MaximumInheritanceDepth)"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8Ë€Á—±-
+Jsquid:S10684",Remove this unused "position" private field.(íñ8£‚¢¯-
+usquid:S14504"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Ş—øÃ¯-
+Osquid:S16592",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-

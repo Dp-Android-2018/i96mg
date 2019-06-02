@@ -1,3 +1,18 @@
 
-jsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(ïÄ±Ñûÿÿÿÿ
-Ÿsquid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ãÜ›Ø8Ø™¿ó¯-
+{squid:S2177ƒ"WRename this method; there is a "private" method in the parent class with the same name.(È˜ƒùÿÿÿÿ8¿îž¼±-
+W"squid:SwitchLastCaseIsDefaultCheckx""Add a default case to this switch.(ÜŸ•8¿îž¼±-
+}squid:S14501"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Þ8À×ã±-
+jsquid:S1301Â"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8¿îž¼±-
+isquid:S1301\"KReplace this "switch" statement by "if" statements to increase readability.(ŽºÖ8¿îž¼±-
+fsquid:MaximumInheritanceDepth*"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô
+W"squid:SwitchLastCaseIsDefaultCheck\""Add a default case to this switch.(ŽºÖ8¿îž¼±-
+X"squid:SwitchLastCaseIsDefaultCheckÂ""Add a default case to this switch.(ÜŸ•8¿îž¼±-
+Nsquid:S1172w"+Remove this unused method parameter "view".(Ò‰Øþùÿÿÿÿ8¿îž¼±-
+Gsquid:S1148ø"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¿îž¼±-
+isquid:S1301O"KReplace this "switch" statement by "if" statements to increase readability.(ŽºÖ8À×ã±-
+Zsquid:S2589G"7Remove this expression which always evaluates to "true"(¸ñÂ×ýÿÿÿÿ8áƒ›¼±-
+W"squid:SwitchLastCaseIsDefaultCheckO""Add a default case to this switch.(ŽºÖ8À×ã±-
+@squid:S1643ü"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8¿îž¼±-
+}squid:S14502"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8¸œ™¼±-
+isquid:S1301x"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8¿îž¼±-
+@squid:S1643ý"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8×ìá»±-
