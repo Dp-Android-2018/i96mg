@@ -1,10 +1,15 @@
 package m.dp.i96mg.view.ui.activity;
 
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.gson.Gson;
@@ -83,8 +88,11 @@ public class ProductDetailsActivity extends BaseActivity {
             binding.tvName.setText(productModel.getName());
             binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
             if (productModel.isHasDiscount()) {
-                binding.tvPrice.setPaintFlags(binding.tvPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                binding.tvDiscountedPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
+                binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
+                binding.tvDiscountedPrice.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                binding.tvDiscountedPrice.setTextColor(Color.GRAY);
+                binding.tvDiscountedPrice.setTextSize(15);
+                binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
             }
         }
     }

@@ -2,8 +2,6 @@
     <string name="app_name">i96mg</string>
     <string name="app_name_icon">i96mg</string>
     <string name="action_close">close</string>
-    <string name="Open">open</string>
-    <string name="Close">close</string>
     <string name="there_is_no_internet_connection">there is no internet connection</string>
     <string name="credit_debit_card">Credit / Debit Card</string>
     <string name="pay_pal">Pay pal</string>
@@ -25,7 +23,6 @@
     <string name="continue_text">Continue</string>
     <string name="shop_sells_exclusive_skins_for_the_game_fortnite">Shop sells exclusive skins for the game Fortnite</string>
     <string name="add_to_cart">Add to cart</string>
-    <string name="plus_mark">+</string>
     <string name="quantity">Quantity:</string>
     <string name="total">Total :</string>
     <string name="total_only">Total</string>
@@ -40,11 +37,18 @@
     <string name="enter_phone_number">please enter your phone number !!</string>
     <string name="enter_valid_phone_number">please enter valid phone number !!</string>
     <string name="english">ع</string>
-    <string name="voucher">Voucher : -</string>
+    <string name="voucher">Promo code : -</string>
     <string name="please_enter_card_number">please enter card number !!</string>
     <string name="please_enter_code_number">please enter code number !!</string>
     <string name="please_enter_expiration_date">please enter expiration date !!</string>
     <string name="please_enter_security_code">please enter security code !!</string>
     <string name="please_enter_card_holder">please enter card holder name !!</string>
-    <string name="voucher_text">Voucher</string>
+    <string name="voucher_text">Promo code</string>
+    <string name="xx_xx">xx/xx</string>
+    <string name="minus">-</string>
+    <string name="_1">1</string>
+    <string name="plus">+</string>
+    <string name="enter_your_code">Enter your promo code</string>
+    <string name="please_enter_valid_card_number">please enter valid card number !!</string>
+    <string name="please_add_products">please add products you want to the card !!</string>
 </resources>

@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@android:color/black</item>
@@ -11,11 +11,4 @@
         <item name="android:windowEnterTransition">@transition/explode</item>
         <item name="android:windowExitTransition">@transition/explode</item>
     </style>
-
-    <style name="RadioButtonStyle" parent="AppTheme">
-        <item name="colorControlNormal">@android:color/black</item>
-        <item name="colorAccent">@android:color/black</item>
-        <item name="android:textColorSecondary">@android:color/black</item>
-    </style>
-
 </resources>

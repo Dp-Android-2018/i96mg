@@ -127,3 +127,5 @@ V
 &app/src/main/res/values-ar/strings.xml,c\7\c7ba3699b7973a06fa3747c47d17e0b9b1a0ca07
 i
 9app/src/main/java/m/dp/i96mg/utility/utils/SwipeUtil.java,2\b\2b2dafa64a36b02224ec2d8204b60c50de6407b2
+]
+-app/src/main/res/layout/activity_pay_card.xml,e\e\ee5f732a58a8634c86a3c64aa877e620a35b826e

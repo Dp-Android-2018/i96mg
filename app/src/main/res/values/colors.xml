@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="sky_color">#3FB9B9</color>
-    <color name="sky_color_dark">#349D9D</color>
-    <color name="white_90">#E6ffffff</color>
-    <color name="text_color_black">#4D4D4D</color>
     <color name="toolbar_color_black">#e62a2a2a</color>
     <color name="text_color_no_data">#969a9e</color>
-    <color name="bt_bg_color">#f6f6f6</color>
     <color name="yellow_color">#f5d337</color>
     <color name="transparent">#00000000</color>
-    <color name="green_color">#24AB24</color>
-    <color name="off_white_color">#ECECEC</color>
-    <color name="white_off_color">#F6F6F6</color>
-    <color name="trip_item_shadow_color">#29000000</color>
-    <color name="slide_to_finish_color">#727272</color>
-    <color name="directions_color">#4D4D4D</color>
-    <color name="start_trip_color">#3FB9B9</color>
-    <color name="done_trip_color">#27AE60</color>
-    <color name="financial_border_color">#A3A4A4</color>
 </resources>

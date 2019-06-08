@@ -70,9 +70,11 @@ dependencies {
     //eventbus
     implementation 'org.greenrobot:eventbus:3.1.1'
 
-    //Click-Drag-Swipe (CDS) RecyclerView
+    //Click-Drag-Swipe (CDS) RecyclerView with all options
     implementation 'com.github.GauravChaddha1996:CDSRecyclerView:1.5'
 
+    //credit card validator
+    implementation 'br.com.moip:credit-card-validator:0.0.6'
 
 }
 repositories {

@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.moip.validators.CreditCard;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityPayCardBinding;
@@ -129,6 +130,7 @@ public class PayCardActivity extends BaseActivity {
 
     private void makeOrderOnChooseCredit() {
         if (!binding.etCardNumber.getText().toString().isEmpty()
+                && isCardNumberValid()
                 && !binding.etExpirationDate.getText().toString().isEmpty()
                 && !binding.etSecurityCode.getText().toString().isEmpty()
                 && !binding.etCardHolderName.getText().toString().isEmpty()
@@ -138,6 +140,10 @@ public class PayCardActivity extends BaseActivity {
         } else {
             showTheirErrors();
         }
+    }
+
+    private boolean isCardNumberValid() {
+        return new CreditCard(binding.etCardNumber.getText().toString()).isValid();
     }
 
     private void setOrderRequestData() {
@@ -151,6 +157,11 @@ public class PayCardActivity extends BaseActivity {
     private void showTheirErrors() {
         if (binding.etCardNumber.getText().toString().isEmpty()) {
             showSnackbar(getResources().getString(R.string.please_enter_card_number));
+            return;
+        }
+
+        if (!isCardNumberValid()) {
+            showSnackbar(getResources().getString(R.string.please_enter_valid_card_number));
             return;
         }
 

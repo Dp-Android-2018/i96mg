@@ -26,15 +26,11 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory">
 
-
-        <activity android:name=".view.ui.activity.PayCardActivity">
-
-        </activity>
-
-        <activity android:name=".view.ui.activity.InformationActivity" />
-        <activity android:name=".view.ui.activity.ShopDetailsActivity" />
-        <activity android:name=".view.ui.activity.ProductDetailsActivity" />
-        <activity android:name=".view.ui.activity.MainActivity">
+        <activity
+            android:name=".view.ui.activity.MainActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,8 +40,10 @@
             <intent-filter>
                 <data android:scheme="http" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:pathPattern="/payment" />
                 <data
                     android:host="dp-itc.com"
@@ -55,9 +53,38 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ui.activity.NoInternetConnectionActivity" />
 
-        <activity android:name=".view.ui.activity.SplashScreenActivity" />
+        <activity
+            android:name=".view.ui.activity.PayCardActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".view.ui.activity.InformationActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".view.ui.activity.ShopDetailsActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".view.ui.activity.ProductDetailsActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".view.ui.activity.NoInternetConnectionActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".view.ui.activity.SplashScreenActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

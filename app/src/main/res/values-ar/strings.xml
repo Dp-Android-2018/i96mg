@@ -2,8 +2,6 @@
     <string name="app_name">i96mg</string>
     <string name="app_name_icon">i96mg</string>
     <string name="action_close">close</string>
-    <string name="Open">open</string>
-    <string name="Close">close</string>
     <string name="there_is_no_internet_connection">لا يوجد اتصال بالإنترنت</string>
     <string name="credit_debit_card">Credit / Debit Card</string>
     <string name="pay_pal">Pay pal</string>
@@ -23,9 +21,8 @@
     <string name="zip_postal_code">الرمز البريدي</string>
     <string name="phone_number">رقم الهاتف</string>
     <string name="continue_text">مواصله</string>
-    <string name="shop_sells_exclusive_skins_for_the_game_fortnite">تسوق تبيع الجلود الحصرية للعبه Fortnite</string>
+    <string name="shop_sells_exclusive_skins_for_the_game_fortnite">متجر يبيع الاسكنات الحصرية بلعبة فورتنايت</string>
     <string name="add_to_cart">أضف إلى السلة</string>
-    <string name="plus_mark">+</string>
     <string name="quantity">الكميه:</string>
     <string name="total">المجموع:</string>
     <string name="total_only">المجموع</string>
@@ -40,11 +37,18 @@
     <string name="enter_phone_number">يرجى إدخال رقم هاتفك!!</string>
     <string name="enter_valid_phone_number">يرجى إدخال رقم هاتف صالح!!</string>
     <string name="english">E</string>
-    <string name="voucher">Voucher : -</string>
-    <string name="please_enter_card_number">please enter card number !!</string>
-    <string name="please_enter_code_number">please enter code number !!</string>
-    <string name="please_enter_expiration_date">please enter expiration date !!</string>
-    <string name="please_enter_security_code">please enter security code !!</string>
-    <string name="please_enter_card_holder">please enter card holder name !!</string>
-    <string name="voucher_text">Voucher</string>
+    <string name="voucher">الخصم: - </string>
+    <string name="please_enter_card_number">يرجى إدخال رقم البطاقة!!</string>
+    <string name="please_enter_code_number">يرجى إدخال رقم الرمز!!</string>
+    <string name="please_enter_expiration_date">يرجى إدخال تاريخ انتهاء الصلاحية!!</string>
+    <string name="please_enter_security_code">الرجاء إدخال رمز الأمان!!</string>
+    <string name="please_enter_card_holder">يرجى إدخال اسم حامل البطاقة!!</string>
+    <string name="voucher_text">الرمز الترويجي</string>
+    <string name="xx_xx">xx/xx</string>
+    <string name="minus">-</string>
+    <string name="_1">1</string>
+    <string name="plus">+</string>
+    <string name="enter_your_code">ادخل الرمز الترويجي</string>
+    <string name="please_enter_valid_card_number">يرجى إدخال رقم بطاقة صالح!!</string>
+    <string name="please_add_products">يرجى أضافه المنتجات التي تريدها إلى البطاقة!!</string>
 </resources>

@@ -2,17 +2,13 @@ package m.dp.i96mg.view.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gaurav.cdsrecyclerview.CdsItemTouchCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,11 +22,11 @@ import m.dp.i96mg.databinding.ActivityShopDetailsBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.VoucherResponssData;
 import m.dp.i96mg.service.model.response.ErrorResponse;
-import m.dp.i96mg.service.model.response.ProductsResponse;
 import m.dp.i96mg.service.model.response.VoucherResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
+import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ShopRecyclerViewAdapter;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
 import m.dp.i96mg.viewmodel.ShopDetailsActivityViewModel;
@@ -56,6 +52,13 @@ public class ShopDetailsActivity extends BaseActivity {
         getAndSetTotalPrice();
         initializeOnQuantityChangedListener();
         initializeRecyclerView();
+        checkLanguage();
+    }
+
+    private void checkLanguage() {
+        if (customUtils.getValue().getSavedLanguageType().equals(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC)) {
+            binding.ivVoucherIcon.setRotation(180);
+        }
     }
 
     private void initializeOnQuantityChangedListener() {
@@ -69,7 +72,7 @@ public class ShopDetailsActivity extends BaseActivity {
     private void getAndSetTotalPrice() {
         totalPrice = 0;
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
-        if (productModelList != null && productModelList.size() !=0) {
+        if (productModelList != null && productModelList.size() != 0) {
             for (int i = 0; i < productModelList.size(); i++) {
                 if (productModelList.get(i).isHasDiscount()) {
                     totalPrice += productModelList.get(i).getDiscountedPrice() * productModelList.get(i).getOrderedQuantity();
@@ -93,61 +96,66 @@ public class ShopDetailsActivity extends BaseActivity {
         binding.rvProducts.setAdapter(shopRecyclerViewAdapter);
         binding.rvProducts.setItemAnimator(new DefaultItemAnimator());
         binding.rvProducts.enableItemSwipe();
-        binding.rvProducts.setItemSwipeCompleteListener(new CdsItemTouchCallback.ItemSwipeCompleteListener() {
-            @Override
-            public void onItemSwipeComplete(int i) {
-                showSnackbarHere("Item was deleted");
-                getAndDeleteItem(i);
-            }
-        });
+        binding.rvProducts.setItemSwipeCompleteListener(this::getAndDeleteItem);
     }
 
     private void getAndDeleteItem(int position) {
         ProductModel item = shopRecyclerViewAdapter.getItem(position);
-        showSnackbarHere(item.getName());
         removeThisProductFromSharedPreferences(item);
     }
 
     private void removeThisProductFromSharedPreferences(ProductModel item) {
-        /*for (int i = 0; i < productModelList.size(); i++) {
-            if (productModelList.get(i).getId() == item.getId()) {
-                productModelList.remove(i);
+        List<ProductModel> productModelList2 = customUtilsLazy.getValue().getSavedProductsData();
+        for (int i = 0; i < productModelList2.size(); i++) {
+            if (productModelList2.get(i).getId() == item.getId()) {
+                productModelList2.remove(i);
             }
-        }*/
-        //ToDo : to do remove
-//        productModelList.remove(item);
-        customUtilsLazy.getValue().saveProductToPrefs(productModelList);
+        }
+        customUtilsLazy.getValue().saveProductToPrefs(productModelList2);
         onQuantityChanged.onQuantityChange(true);
     }
 
     public void goToPayActivity(View view) {
-        Intent intent = new Intent(this, InformationActivity.class);
-        intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
-        startActivity(intent);
-        finish();
+        if (productModelList != null && !productModelList.isEmpty()) {
+            Intent intent = new Intent(this, InformationActivity.class);
+            intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
+            startActivity(intent);
+            finish();
+        } else {
+            showSnackbarHere(getResources().getString(R.string.please_add_products));
+        }
     }
 
     public void makeVoucherRequest(View view) {
-        if (!binding.etCodeNumber.getText().toString().isEmpty()) {
-            SharedUtils.getInstance().showProgressDialog(this);
-            shopDetailsActivityViewModelLazy.getValue().getVoucherData(binding.etCodeNumber.getText().toString());
-            shopDetailsActivityViewModelLazy.getValue().getData().observe(this, new Observer<Response<VoucherResponse>>() {
-                @Override
-                public void onChanged(Response<VoucherResponse> voucherResponseResponse) {
-                    SharedUtils.getInstance().cancelDialog();
-                    if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
-                            && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
-                        if (voucherResponseResponse.body() != null) {
-                            setTotalwithDiscount(voucherResponseResponse.body().getData());
-                        }
-                    } else {
-                        showErrors(voucherResponseResponse);
-                    }
+        if (productModelList != null && !productModelList.isEmpty()) {
+            if (!binding.etCodeNumber.getText().toString().isEmpty()) {
+                if (ValidationUtils.isConnectingToInternet(this)) {
+                    makeRequest();
+                } else {
+                    showSnackbarHere(getResources().getString(R.string.there_is_no_internet_connection));
                 }
-            });
+            } else {
+                showSnackbarHere(getResources().getString(R.string.please_enter_code_number));
+            }
         } else {
-            showSnackbarHere(getResources().getString(R.string.please_enter_code_number));
+            showSnackbarHere(getResources().getString(R.string.please_add_products));
         }
+    }
+
+    private void makeRequest() {
+        SharedUtils.getInstance().showProgressDialog(this);
+        shopDetailsActivityViewModelLazy.getValue().getVoucherData(binding.etCodeNumber.getText().toString());
+        shopDetailsActivityViewModelLazy.getValue().getData().observe(this, voucherResponseResponse -> {
+            SharedUtils.getInstance().cancelDialog();
+            if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                    && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
+                if (voucherResponseResponse.body() != null) {
+                    setTotalwithDiscount(voucherResponseResponse.body().getData());
+                }
+            } else {
+                showErrors(voucherResponseResponse);
+            }
+        });
     }
 
     private void setTotalwithDiscount(VoucherResponssData data) {
