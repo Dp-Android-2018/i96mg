@@ -53,8 +53,8 @@ public class InformationActivity extends BaseActivity {
                 && !binding.etCountry.getText().toString().isEmpty()
                 && !binding.etRegion.getText().toString().isEmpty()
                 && !binding.etZipCode.getText().toString().isEmpty()
-                && !binding.etPhoneNum.getText().toString().isEmpty()
-                && ValidationUtils.validateTexts(binding.etPhoneNum.getText().toString(), ValidationUtils.TYPE_PHONE)) {
+                && !binding.etPhoneNum.isValid()
+                && !binding.etPhoneNum.getNumber().isEmpty()) {
 
             setData();
             gotoNextActivity();
@@ -70,7 +70,7 @@ public class InformationActivity extends BaseActivity {
         orderRequest.getValue().setCountry(binding.etCountry.getText().toString());
         orderRequest.getValue().setRegion(binding.etRegion.getText().toString());
         orderRequest.getValue().setZipCode(binding.etZipCode.getText().toString());
-        orderRequest.getValue().setPhoneNumber(binding.etPhoneNum.getText().toString());
+        orderRequest.getValue().setPhoneNumber(binding.etPhoneNum.getNumber());
         if (!voucher.isEmpty()) {
             orderRequest.getValue().setVoucher(voucher);
         }
@@ -111,13 +111,14 @@ public class InformationActivity extends BaseActivity {
             showSnackBar(getResources().getString(R.string.enter_zip_code));
             return;
         }
-        if (binding.etPhoneNum.getText().toString().isEmpty()) {
+        if (binding.etPhoneNum.getNumber().isEmpty()) {
             showSnackBar(getResources().getString(R.string.enter_phone_number));
             return;
         }
-        if (!ValidationUtils.validateTexts(binding.etPhoneNum.getText().toString(), ValidationUtils.TYPE_PHONE)) {
+        if (!binding.etPhoneNum.isValid()) {
             showSnackBar(getResources().getString(R.string.enter_valid_phone_number));
         }
+
 
     }
 

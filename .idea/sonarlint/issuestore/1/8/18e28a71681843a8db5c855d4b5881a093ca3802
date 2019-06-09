@@ -1,3 +1,4 @@
 
-wsquid:UselessImportCheck"GRemove this unused import 'm.dp.i96mg.utility.utils.ConfigurationFile'.(äÏ™æûÿÿÿÿ8ƒßÅ¯-
-^squid:UselessImportCheck".Remove this unused import 'android.view.View'.(Ø½­äşÿÿÿÿ8«¶÷ğ¯-
+wsquid:UselessImportCheck"GRemove this unused import 'm.dp.i96mg.utility.utils.ConfigurationFile'.(äÏ™æûÿÿÿÿ8ŞÇà´³-
+gsquid:UselessImportCheck"7Remove this unused import 'android.transition.Explode'.(–´÷şÿÿÿÿ8Íùô´³-
+isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Ê®©8ñ‹ÿ·³-

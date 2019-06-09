@@ -90,8 +90,12 @@ public class ProductDetailsActivity extends BaseActivity {
             if (productModel.isHasDiscount()) {
                 binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
                 binding.tvDiscountedPrice.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                binding.tvSr.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 binding.tvDiscountedPrice.setTextColor(Color.GRAY);
+                binding.tvSr.setTextColor(Color.GRAY);
                 binding.tvDiscountedPrice.setTextSize(15);
+                binding.tvSr.setTextSize(15);
+                binding.tvSr.setVisibility(View.VISIBLE);
                 binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
             }
         }

@@ -1,18 +1,18 @@
 
-msquid:MaximumInheritanceDepth)"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8Ë€Á—±-
-usquid:S14504"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Ş—øÃ¯-
-ssquid:S001161"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8öÌéÂ¯-
-jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(¾¸İ¾8±Ú»±-
-nsquid:CommentedOutCodeLine^"<This block of commented-out lines of code should be removed.( šîãûÿÿÿÿ8±Ú»±-
-Osquid:S16592",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-
-Qsquid:S16592".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-
-Ssquid:S1066"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8±Ú»±-
-Gsquid:S1148ã"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8±Ú»±-
-@squid:S1643ç"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8±Ëş“±-
 Nsquid:S1066È"/Merge this if statement with the enclosing one.(à—åª8±Ú»±-
-Jsquid:S10684",Remove this unused "position" private field.(íñ8£‚¢¯-
+nsquid:CommentedOutCodeLine^"<This block of commented-out lines of code should be removed.( šîãûÿÿÿÿ8±Ú»±-
+@squid:S1643ç"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8±Ëş“±-
 Lsquid:S1185¼"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8±Ú»±-
-fsquid:UselessImportCheck";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8²÷Â—±-
-{squid:S2177î"WRename this method; there is a "private" method in the parent class with the same name.(È˜ƒùÿÿÿÿ8±Ú»±-
+Qsquid:S16592".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-
 @squid:S1643è"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8±Ú»±-
+{squid:S2177î"WRename this method; there is a "private" method in the parent class with the same name.(È˜ƒùÿÿÿÿ8±Ú»±-
 Ysquid:UselessImportCheck")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8²÷Â—±-
+Ssquid:S1066"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8±Ú»±-
+usquid:S14504"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Ş—øÃ¯-
+jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(¾¸İ¾8±Ú»±-
+Jsquid:S10684",Remove this unused "position" private field.(íñ8£‚¢¯-
+Osquid:S16592",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8£‚¢¯-
+ssquid:S001161"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8öÌéÂ¯-
+msquid:MaximumInheritanceDepth)"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8Ë€Á—±-
+fsquid:UselessImportCheck";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8²÷Â—±-
+Gsquid:S1148ã"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8±Ú»±-

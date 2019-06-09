@@ -2,6 +2,7 @@ package m.dp.i96mg.view.ui.viewholder;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,8 +47,12 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
         if (productModel.isHasDiscount()) {
             binding.tvDiscountPrice.setText(String.valueOf(productModel.getOriginalPrice()));
             binding.tvDiscountPrice.setPaintFlags(binding.tvDiscountPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            binding.tvSr.setPaintFlags(binding.tvDiscountPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             binding.tvDiscountPrice.setTextColor(Color.GRAY);
+            binding.tvSr.setTextColor(Color.GRAY);
             binding.tvDiscountPrice.setTextSize(9);
+            binding.tvSr.setTextSize(9);
+            binding.tvSr.setVisibility(View.VISIBLE);
             binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
         }
         binding.tvQuantityNum.setText(String.valueOf(productModel.getOrderedQuantity()));

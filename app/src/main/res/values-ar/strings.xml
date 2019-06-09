@@ -51,4 +51,5 @@
     <string name="enter_your_code">ادخل الرمز الترويجي</string>
     <string name="please_enter_valid_card_number">يرجى إدخال رقم بطاقة صالح!!</string>
     <string name="please_add_products">يرجى أضافه المنتجات التي تريدها إلى البطاقة!!</string>
+    <string name="sr">ر.س</string>
 </resources>

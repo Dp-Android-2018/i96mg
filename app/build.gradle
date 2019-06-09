@@ -76,6 +76,9 @@ dependencies {
     //credit card validator
     implementation 'br.com.moip:credit-card-validator:0.0.6'
 
+    //phone number library
+    implementation 'net.rimoto:intlphoneinput:1.0.1'
+
 }
 repositories {
     mavenCentral()

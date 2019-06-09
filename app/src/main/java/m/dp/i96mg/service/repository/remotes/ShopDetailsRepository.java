@@ -3,11 +3,15 @@ package m.dp.i96mg.service.repository.remotes;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import kotlin.Lazy;
+import m.dp.i96mg.service.model.global.ProductData;
+import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.response.VoucherResponse;
 import retrofit2.Response;
 
@@ -45,4 +49,34 @@ public class ShopDetailsRepository {
                 });
         return data;
     }
+
+    public LiveData<Response<Void>> checkProducts(CheckRequest checkRequest) {
+        MutableLiveData<Response<Void>> data = new MutableLiveData<>();
+        endPointsLazy.getValue().checkProducts(checkRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<Void>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<Void> voidResponse) {
+                        data.setValue(voidResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return data;
+    }
+
 }

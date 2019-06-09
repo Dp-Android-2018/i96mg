@@ -43,8 +43,12 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         if (productModel.isHasDiscount()) {
             binding.tvPriceDiscount.setText(String.valueOf(productModel.getOriginalPrice()));
             binding.tvPriceDiscount.setPaintFlags(binding.tvPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            binding.tvSr.setPaintFlags(binding.tvPriceDiscount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             binding.tvPriceDiscount.setTextColor(Color.GRAY);
+            binding.tvSr.setTextColor(Color.GRAY);
             binding.tvPriceDiscount.setTextSize(9);
+            binding.tvSr.setTextSize(9);
+            binding.tvSr.setVisibility(View.VISIBLE);
             binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
         }
         makeActionOnClickOnItem();

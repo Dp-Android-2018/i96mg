@@ -14,15 +14,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityShopDetailsBinding;
+import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.VoucherResponssData;
+import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
-import m.dp.i96mg.service.model.response.VoucherResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
@@ -30,7 +32,7 @@ import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ShopRecyclerViewAdapter;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
 import m.dp.i96mg.viewmodel.ShopDetailsActivityViewModel;
-import retrofit2.Response;
+import okhttp3.ResponseBody;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
@@ -43,6 +45,7 @@ public class ShopDetailsActivity extends BaseActivity {
     private float totalPrice;
     private OnQuantityChanged onQuantityChanged;
     private ShopRecyclerViewAdapter shopRecyclerViewAdapter;
+    private ArrayList<ProductData> productData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,13 +120,46 @@ public class ShopDetailsActivity extends BaseActivity {
 
     public void goToPayActivity(View view) {
         if (productModelList != null && !productModelList.isEmpty()) {
-            Intent intent = new Intent(this, InformationActivity.class);
-            intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
-            startActivity(intent);
-            finish();
+            checkProducts();
         } else {
             showSnackbarHere(getResources().getString(R.string.please_add_products));
         }
+    }
+
+    private void checkProducts() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            shopDetailsActivityViewModelLazy.getValue().checkProducts(getCheckRequest()).observe(this, voucherResponseResponse -> {
+                SharedUtils.getInstance().cancelDialog();
+                if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
+                    openNextActivity();
+                } else {
+                    showErrors(voucherResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbarHere(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private CheckRequest getCheckRequest() {
+        productData = new ArrayList<>();
+        if (productModelList != null) {
+            for (int i = 0; i < productModelList.size(); i++) {
+                productData.add(new ProductData(productModelList.get(i).getId(), productModelList.get(i).getOrderedQuantity()));
+            }
+        }
+        CheckRequest checkRequest = new CheckRequest();
+        checkRequest.setProductsData(productData);
+        return checkRequest;
+    }
+
+    private void openNextActivity() {
+        Intent intent = new Intent(this, InformationActivity.class);
+        intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
+        startActivity(intent);
+        finish();
     }
 
     public void makeVoucherRequest(View view) {
@@ -153,7 +189,7 @@ public class ShopDetailsActivity extends BaseActivity {
                     setTotalwithDiscount(voucherResponseResponse.body().getData());
                 }
             } else {
-                showErrors(voucherResponseResponse);
+                showErrors(voucherResponseResponse.errorBody());
             }
         });
     }
@@ -164,9 +200,11 @@ public class ShopDetailsActivity extends BaseActivity {
         if (data.isFlat()) {
             if (data.getDiscountAmount() <= data.getMaxDiscount()) {
                 binding.tvVoucher.setText(String.valueOf(data.getDiscountAmount()));
+                binding.tvSr.setVisibility(View.VISIBLE);
                 totalPrice = totalPrice - data.getDiscountAmount();
             } else {
                 binding.tvVoucher.setText(String.valueOf(data.getMaxDiscount()));
+                binding.tvSr.setVisibility(View.VISIBLE);
                 totalPrice = totalPrice - data.getMaxDiscount();
             }
             binding.tvTotalPrice.setText(String.valueOf(totalPrice));
@@ -174,9 +212,11 @@ public class ShopDetailsActivity extends BaseActivity {
             float discountAmount = (data.getDiscountAmount() / 100) * totalPrice;
             if (discountAmount <= data.getMaxDiscount()) {
                 binding.tvVoucher.setText(String.valueOf(discountAmount));
+                binding.tvSr.setVisibility(View.VISIBLE);
                 totalPrice = totalPrice - discountAmount;
             } else {
                 binding.tvVoucher.setText(String.valueOf(data.getMaxDiscount()));
+                binding.tvSr.setVisibility(View.VISIBLE);
                 totalPrice = totalPrice - data.getMaxDiscount();
             }
             binding.tvTotalPrice.setText(String.valueOf(totalPrice));
@@ -184,13 +224,13 @@ public class ShopDetailsActivity extends BaseActivity {
 
     }
 
-    private void showErrors(Response<VoucherResponse> productsResponseResponse) {
+    private void showErrors(ResponseBody productsResponseResponse) {
 
         Gson gson = new GsonBuilder().create();
         ErrorResponse errorResponse = new ErrorResponse();
 
         try {
-            errorResponse = gson.fromJson(productsResponseResponse.errorBody().string(), ErrorResponse.class);
+            errorResponse = gson.fromJson(productsResponseResponse.string(), ErrorResponse.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -204,7 +244,7 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void showSnackbarHere(String message) {
-        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_LONG).show();
     }
 
     public void showCodeConstraintLayout(View view) {

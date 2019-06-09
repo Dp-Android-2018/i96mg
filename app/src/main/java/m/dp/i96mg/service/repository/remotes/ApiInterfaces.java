@@ -1,6 +1,10 @@
 package m.dp.i96mg.service.repository.remotes;
 
+import java.util.ArrayList;
+
 import io.reactivex.Observable;
+import m.dp.i96mg.service.model.global.ProductData;
+import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.request.OrderRequest;
 import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
@@ -25,5 +29,10 @@ public interface ApiInterfaces {
     //Get voucher data
     @GET("/api/voucher")
     Observable<Response<VoucherResponse>> getVoucherData(@Query("voucher") String voucher);
+
+    //Check cart products quantities
+    @POST("/api/order/check")
+    Observable<Response<Void>> checkProducts(@Body CheckRequest checkRequest );
+
 
 }

@@ -1,18 +1,18 @@
 
-isquid:S1301O"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8À×ã±-
-}squid:S14502"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8¸œ™¼±-
-@squid:S1643ı"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8×ìá»±-
-W"squid:SwitchLastCaseIsDefaultCheck\""Add a default case to this switch.(ºÖ8¿î¼±-
-}squid:S14501"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Ş8À×ã±-
-Nsquid:S1172w"+Remove this unused method parameter "view".(Ò‰Øşùÿÿÿÿ8¿î¼±-
-isquid:S1301\"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8¿î¼±-
-Gsquid:S1148ø"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¿î¼±-
-fsquid:MaximumInheritanceDepth*"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô
-Zsquid:S2589G"7Remove this expression which always evaluates to "true"(¸ñÂ×ıÿÿÿÿ8áƒ›¼±-
-isquid:S1301x"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8¿î¼±-
-W"squid:SwitchLastCaseIsDefaultCheckx""Add a default case to this switch.(ÜŸ•8¿î¼±-
-@squid:S1643ü"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8¿î¼±-
-X"squid:SwitchLastCaseIsDefaultCheckÂ""Add a default case to this switch.(ÜŸ•8¿î¼±-
-{squid:S2177ƒ"WRename this method; there is a "private" method in the parent class with the same name.(È˜ƒùÿÿÿÿ8¿î¼±-
-W"squid:SwitchLastCaseIsDefaultCheckO""Add a default case to this switch.(ºÖ8À×ã±-
-jsquid:S1301Â"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8¿î¼±-
+}squid:S14502"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Ş8À×ã±-
+}squid:S14503"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8¸œ™¼±-
+Zsquid:S2589H"7Remove this expression which always evaluates to "true"(¸ñÂ×ıÿÿÿÿ8áƒ›¼±-
+Gsquid:S1148ƒ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8úÎ£¶³-
+isquid:S1301P"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8À×ã±-
+@squid:S1643ˆ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8úÎ£¶³-
+W"squid:SwitchLastCaseIsDefaultCheck]""Add a default case to this switch.(ºÖ8¿î¼±-
+W"squid:SwitchLastCaseIsDefaultChecky""Add a default case to this switch.(ÜŸ•8¿î¼±-
+W"squid:SwitchLastCaseIsDefaultCheckP""Add a default case to this switch.(ºÖ8À×ã±-
+Nsquid:S1172x"+Remove this unused method parameter "view".(Ò‰Øşùÿÿÿÿ8¿î¼±-
+isquid:S1301]"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8¿î¼±-
+fsquid:MaximumInheritanceDepth+"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô
+@squid:S1643‡"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8¿î¼±-
+isquid:S1301y"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8¿î¼±-
+X"squid:SwitchLastCaseIsDefaultCheckÍ""Add a default case to this switch.(ÜŸ•8úÎ£¶³-
+jsquid:S1301Í"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8úÎ£¶³-
+{squid:S2177"WRename this method; there is a "private" method in the parent class with the same name.(È˜ƒùÿÿÿÿ8úÎ£¶³-

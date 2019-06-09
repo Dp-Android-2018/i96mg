@@ -1,9 +1,9 @@
 
-zsquid:UselessImportCheck"JRemove this unused import 'm.dp.i96mg.viewmodel.PayCardActivityViewModel'.(‰Ğ³ˆıÿÿÿÿ8¿×ã±-
 fsquid:MaximumInheritanceDepth"=This class has 10 parents which is greater than 5 authorized.(åÖè 
-ssquid:UselessImportCheck"HRemove this unused import 'm.dp.i96mg.service.model.global.ProductData'.(ğ‰Š8¿×ã±-
-Rsquid:S1068#"4Remove this unused "productModelList" private field.(š™Ş8¢æ´º±-
-]squid:UselessImportCheck"2Remove this unused import 'android.os.Parcelable'.(õÃÀ­8¿×ã±-
-Nsquid:S11720"+Remove this unused method parameter "view".(±²œåøÿÿÿÿ8·¨Óñ¯-
-psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8Şû±—±-
 }squid:S1450#"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Ş8¿×ã±-
+Nsquid:S11720"+Remove this unused method parameter "view".(±²œåøÿÿÿÿ8·¨Óñ¯-
+]squid:UselessImportCheck"2Remove this unused import 'android.os.Parcelable'.(õÃÀ­8¿×ã±-
+Rsquid:S1068#"4Remove this unused "productModelList" private field.(š™Ş8¢æ´º±-
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8Şû±—±-
+zsquid:UselessImportCheck"JRemove this unused import 'm.dp.i96mg.viewmodel.PayCardActivityViewModel'.(‰Ğ³ˆıÿÿÿÿ8¿×ã±-
+ssquid:UselessImportCheck"HRemove this unused import 'm.dp.i96mg.service.model.global.ProductData'.(ğ‰Š8¿×ã±-
