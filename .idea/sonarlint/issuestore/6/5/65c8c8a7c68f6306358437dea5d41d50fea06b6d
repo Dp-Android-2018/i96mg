@@ -1,10 +1,6 @@
 
-@squid:S1643ï"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8û¡Êâ³-
-}squid:S14500"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8û¡Êâ³-
-\squid:S1155N">Use isEmpty() to check whether the collection is empty or not.(º¡‰8–àÉâ³-
-rsquid:MaximumInheritanceDepth'"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8–àÉâ³-
-Jsquid:S1172¥"+Remove this unused method parameter "view".(ÒÙÖ•8û¡Êâ³-
-Nsquid:S1172y"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8–àÉâ³-
-@squid:S1643ğ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ŒÜçä³-
-Jsquid:S1172ú"+Remove this unused method parameter "view".(İËîÏ8ŒÜçä³-
 Gsquid:S1148ë"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ŒÜçä³-
+\squid:S1155N">Use isEmpty() to check whether the collection is empty or not.(º¡‰8–àÉâ³-
+}squid:S14500"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8û¡Êâ³-
+@squid:S1643ï"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8û¡Êâ³-
+@squid:S1643ğ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ŒÜçä³-

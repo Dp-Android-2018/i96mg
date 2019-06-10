@@ -49,6 +49,16 @@ public class ProductDetailsActivity extends BaseActivity {
         makeActionOnToolbat();
         makeActionOnClickOnQuantityIcons();
         initializeUiWithData();
+        checkQuantityValue();
+    }
+
+    private void checkQuantityValue() {
+        if ( productModel.getQuantity()==0){
+            binding.text2.setVisibility(View.INVISIBLE);
+            binding.quantityConstraint.setVisibility(View.INVISIBLE);
+            binding.btnAddToCart.setText(getResources().getString(R.string.product_is_not_available));
+            binding.btnAddToCart.setClickable(false);
+        }
     }
 
     private void makeActionOnClickOnQuantityIcons() {
@@ -56,8 +66,6 @@ public class ProductDetailsActivity extends BaseActivity {
             if (quantity < productModel.getQuantity()) {
                 quantity++;
                 binding.tvQuantityNum.setText(String.valueOf(quantity));
-//                price = productModel.getOriginalPrice() * quantity;
-//                binding.tvPrice.setText(String.valueOf(price));
             }
         });
 
@@ -65,8 +73,6 @@ public class ProductDetailsActivity extends BaseActivity {
             if (quantity > 1) {
                 quantity--;
                 binding.tvQuantityNum.setText(String.valueOf(quantity));
-//                price = productModel.getOriginalPrice() * quantity;
-//                binding.tvPrice.setText(String.valueOf(price));
             }
         });
     }

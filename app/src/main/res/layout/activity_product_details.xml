@@ -160,6 +160,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearlayout1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/quantityConstraint"
         android:layout_width="@dimen/dp118h"
         android:layout_height="@dimen/dp39w"
         android:layout_marginStart="@dimen/dp14w"
@@ -233,6 +234,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/btn_add_to_cart"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp46w"
         android:text="@string/add_to_cart"

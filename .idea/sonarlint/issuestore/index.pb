@@ -149,3 +149,5 @@ Y
 )app/src/main/res/values-xxxhdpi/dimen.xml,f\7\f71b64ad59539e89b6d953f42f96970a721bc30e
 t
 Dapp/src/main/java/m/dp/i96mg/service/model/request/CheckRequest.java,a\8\a821b9996d2b1c7fcf93db10649d985c16dc160a
+`
+0app/src/main/res/layout/activity_information.xml,5\7\57d91896e5318a5cb2270f4bf9d8bf4b8e2d13ff

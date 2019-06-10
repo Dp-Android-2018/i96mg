@@ -53,8 +53,8 @@ public class InformationActivity extends BaseActivity {
                 && !binding.etCountry.getText().toString().isEmpty()
                 && !binding.etRegion.getText().toString().isEmpty()
                 && !binding.etZipCode.getText().toString().isEmpty()
-                && !binding.etPhoneNum.isValid()
-                && !binding.etPhoneNum.getNumber().isEmpty()) {
+                && binding.etPhoneNum.isValid()
+        ) {
 
             setData();
             gotoNextActivity();
@@ -109,10 +109,6 @@ public class InformationActivity extends BaseActivity {
         }
         if (binding.etZipCode.getText().toString().isEmpty()) {
             showSnackBar(getResources().getString(R.string.enter_zip_code));
-            return;
-        }
-        if (binding.etPhoneNum.getNumber().isEmpty()) {
-            showSnackBar(getResources().getString(R.string.enter_phone_number));
             return;
         }
         if (!binding.etPhoneNum.isValid()) {

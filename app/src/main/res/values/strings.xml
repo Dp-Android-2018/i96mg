@@ -10,7 +10,7 @@
     <string name="expiration_date">Expiration Date</string>
     <string name="security_code_cvv">Security Code (CVV)</string>
     <string name="card_holder_name">Card Holder Name</string>
-    <string name="pay_with_paypal_n_nwhen_you_hit_place_order_you_will_be_redirected_to_paypal_where_you_can_complete_your_purchase_securely">Pay with PayPal  When you hit Place Order you will be redirected to PayPal where you can complete your purchase securely.</string>
+    <string name="pay_with_paypal_n_nwhen_you_hit_place_order_you_will_be_redirected_to_paypal_where_you_can_complete_your_purchase_securely">Pay with PayPal \n When you hit Place Order you will be redirected to PayPal where you can complete your purchase securely.</string>
     <string name="place_order">Place Order</string>
     <string name="email">Email</string>
     <string name="for_order_confirmation">*for order confirmation</string>
@@ -52,4 +52,5 @@
     <string name="please_enter_valid_card_number">please enter valid card number !!</string>
     <string name="please_add_products">please add products you want to the card !!</string>
     <string name="sr">SR</string>
+    <string name="product_is_not_available">Sorry the product is not available now</string>
 </resources>
