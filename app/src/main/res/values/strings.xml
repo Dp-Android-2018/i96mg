@@ -53,4 +53,5 @@
     <string name="please_add_products">please add products you want to the card !!</string>
     <string name="sr">SR</string>
     <string name="product_is_not_available">Sorry the product is not available now</string>
+    <string name="off_percent">Off</string>
 </resources>

@@ -58,38 +58,64 @@
         app:layout_constraintTop_toBottomOf="@+id/product_toolbar"/>
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_discount_ratio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp16w"
-        tools:text="V-Bucks"
-        android:textAlignment="center"
-        android:textAllCaps="false"
+        android:background="@android:color/holo_red_dark"
+        android:paddingStart="@dimen/dp7w"
+        android:paddingEnd="@dimen/dp7w"
         android:textColor="@android:color/white"
-        android:textSize="25sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/iv_product_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_product_image"
+        tools:text="50%off" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tv_name_constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp12h"
+        android:layout_marginTop="@dimen/dp16w"
+        android:layout_marginEnd="@dimen/dp12h"
         app:layout_constraintEnd_toEndOf="@+id/iv_product_image"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="@+id/iv_product_image"
-        app:layout_constraintTop_toBottomOf="@+id/iv_product_image" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_product_image">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp2h"
-        android:layout_marginTop="@dimen/dp2h"
-        android:background="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="V-Bucks" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp2h"
+            android:layout_marginTop="@dimen/dp2h"
+            android:background="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/tv_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <LinearLayout
         android:id="@+id/linearlayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name">
+        app:layout_constraintStart_toStartOf="@+id/tv_name_constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/tv_name_constraintLayout">
 
         <TextView
             android:id="@+id/tv_price"

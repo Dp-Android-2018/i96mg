@@ -53,4 +53,5 @@
     <string name="please_add_products">يرجى أضافه المنتجات التي تريدها إلى البطاقة!!</string>
     <string name="sr">ر.س</string>
     <string name="product_is_not_available">أسف المنتج غير متوفر الآن</string>
+    <string name="off_percent">خصم</string>
 </resources>

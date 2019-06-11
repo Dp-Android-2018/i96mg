@@ -32,6 +32,17 @@
             android:scaleType="centerCrop"
             tools:src="@drawable/im_pic" />
 
+        <TextView
+            android:id="@+id/tv_discount_ratio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="50%off"
+            android:visibility="invisible"
+            android:paddingEnd="@dimen/dp7w"
+            android:paddingStart="@dimen/dp7w"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_dark"/>
+
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -73,7 +84,6 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-
             tools:text="350 SR" />
 
         <TextView

@@ -50,6 +50,10 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
             binding.tvSr.setTextSize(9);
             binding.tvSr.setVisibility(View.VISIBLE);
             binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
+            int discountRatio = (int) ((productModel.getOriginalPrice() - productModel.getDiscountedPrice()) * 100 / productModel.getOriginalPrice());
+            String discountValue = discountRatio + ConfigurationFile.Constants.PERCENT + binding.getRoot().getResources().getString(R.string.off_percent);
+            binding.tvDiscountRatio.setVisibility(View.VISIBLE);
+            binding.tvDiscountRatio.setText(discountValue);
         }
         makeActionOnClickOnItem();
     }

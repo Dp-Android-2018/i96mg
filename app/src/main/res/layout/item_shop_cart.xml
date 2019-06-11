@@ -42,6 +42,7 @@
         android:minWidth="@dimen/dp54h"
         android:textAlignment="center"
         android:textAllCaps="false"
+        android:maxLength="12"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -195,14 +196,14 @@
         android:id="@+id/tv_total_price"
         android:layout_width="@dimen/dp45h"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp17w"
-        tools:text="700 SR"
+        android:layout_marginStart="@dimen/dp12h"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/view3"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="700 SR" />
 
     <View
         android:id="@+id/view3"
