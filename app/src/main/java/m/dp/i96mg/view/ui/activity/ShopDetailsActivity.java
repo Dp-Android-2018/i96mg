@@ -46,6 +46,7 @@ public class ShopDetailsActivity extends BaseActivity {
     private OnQuantityChanged onQuantityChanged;
     private ShopRecyclerViewAdapter shopRecyclerViewAdapter;
     private ArrayList<ProductData> productData;
+    private int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,7 @@ public class ShopDetailsActivity extends BaseActivity {
         totalPrice = 0;
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
         if (productModelList != null && productModelList.size() != 0) {
+            binding.tvNoData.setVisibility(View.INVISIBLE);
             for (int i = 0; i < productModelList.size(); i++) {
                 if (productModelList.get(i).isHasDiscount()) {
                     totalPrice += productModelList.get(i).getDiscountedPrice() * productModelList.get(i).getOrderedQuantity();
@@ -86,8 +88,10 @@ public class ShopDetailsActivity extends BaseActivity {
             if (totalPrice != 0.0) {
                 binding.textView5.setVisibility(View.VISIBLE);
                 binding.tvTotalPrice.setText(String.valueOf(totalPrice));
-
+                binding.tvCurrency.setVisibility(View.VISIBLE);
             }
+        } else {
+            binding.tvNoData.setVisibility(View.VISIBLE);
         }
     }
 
@@ -104,18 +108,31 @@ public class ShopDetailsActivity extends BaseActivity {
 
     private void getAndDeleteItem(int position) {
         ProductModel item = shopRecyclerViewAdapter.getItem(position);
-        removeThisProductFromSharedPreferences(item);
+        removeThisProductFromSharedPreferences(item, position);
     }
 
-    private void removeThisProductFromSharedPreferences(ProductModel item) {
+    private void removeThisProductFromSharedPreferences(ProductModel item, int position) {
         List<ProductModel> productModelList2 = customUtilsLazy.getValue().getSavedProductsData();
         for (int i = 0; i < productModelList2.size(); i++) {
             if (productModelList2.get(i).getId() == item.getId()) {
                 productModelList2.remove(i);
+                index = i;
             }
         }
         customUtilsLazy.getValue().saveProductToPrefs(productModelList2);
         onQuantityChanged.onQuantityChange(true);
+        makeSnakeBar(productModelList2, item, index, position);
+    }
+
+    private void makeSnakeBar(List<ProductModel> productModelList2, ProductModel item, int index, int position) {
+        Snackbar mySnackbar = Snackbar.make(binding.getRoot(), item.getName() + getResources().getString(R.string.deleted_successfully), Snackbar.LENGTH_LONG);
+        mySnackbar.setAction(getResources().getString(R.string.undo_), view -> {
+            shopRecyclerViewAdapter.addItem(item, position);
+            productModelList2.add(index, item);
+            customUtilsLazy.getValue().saveProductToPrefs(productModelList2);
+            onQuantityChanged.onQuantityChange(true);
+        });
+        mySnackbar.show();
     }
 
     public void goToPayActivity(View view) {
@@ -128,9 +145,9 @@ public class ShopDetailsActivity extends BaseActivity {
 
     private void checkProducts() {
         if (ValidationUtils.isConnectingToInternet(this)) {
-            SharedUtils.getInstance().showProgressDialog(this);
+//            SharedUtils.getInstance().showProgressDialog(this);
             shopDetailsActivityViewModelLazy.getValue().checkProducts(getCheckRequest()).observe(this, voucherResponseResponse -> {
-                SharedUtils.getInstance().cancelDialog();
+//                SharedUtils.getInstance().cancelDialog();
                 if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
                     openNextActivity();
@@ -159,7 +176,6 @@ public class ShopDetailsActivity extends BaseActivity {
         Intent intent = new Intent(this, InformationActivity.class);
         intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
         startActivity(intent);
-        finish();
     }
 
     public void makeVoucherRequest(View view) {
@@ -179,14 +195,15 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void makeRequest() {
-        SharedUtils.getInstance().showProgressDialog(this);
+//        SharedUtils.getInstance().showProgressDialog(this);
         shopDetailsActivityViewModelLazy.getValue().getVoucherData(binding.etCodeNumber.getText().toString());
         shopDetailsActivityViewModelLazy.getValue().getData().observe(this, voucherResponseResponse -> {
-            SharedUtils.getInstance().cancelDialog();
+//            SharedUtils.getInstance().cancelDialog();
             if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                     && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
                 if (voucherResponseResponse.body() != null) {
                     setTotalwithDiscount(voucherResponseResponse.body().getData());
+                    binding.ivDone.setVisibility(View.VISIBLE);
                 }
             } else {
                 showErrors(voucherResponseResponse.errorBody());
@@ -208,6 +225,7 @@ public class ShopDetailsActivity extends BaseActivity {
                 totalPrice = totalPrice - data.getMaxDiscount();
             }
             binding.tvTotalPrice.setText(String.valueOf(totalPrice));
+            binding.tvCurrency.setVisibility(View.VISIBLE);
         } else {
             float discountAmount = (data.getDiscountAmount() / 100) * totalPrice;
             if (discountAmount <= data.getMaxDiscount()) {
@@ -220,6 +238,7 @@ public class ShopDetailsActivity extends BaseActivity {
                 totalPrice = totalPrice - data.getMaxDiscount();
             }
             binding.tvTotalPrice.setText(String.valueOf(totalPrice));
+            binding.tvCurrency.setVisibility(View.VISIBLE);
         }
 
     }

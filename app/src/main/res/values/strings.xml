@@ -54,4 +54,7 @@
     <string name="sr">SR</string>
     <string name="product_is_not_available">Sorry the product is not available now</string>
     <string name="off_percent">Off</string>
+    <string name="deleted_successfully">has been deleted successfully.</string>
+    <string name="undo_">Undo</string>
+    <string name="there_is_no_items_added_to_the_card_yet">There is no items added to the card yet</string>
 </resources>

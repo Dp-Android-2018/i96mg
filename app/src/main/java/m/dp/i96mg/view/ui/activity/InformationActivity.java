@@ -2,10 +2,8 @@ package m.dp.i96mg.view.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -16,13 +14,11 @@ import java.util.List;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityInformationBinding;
-import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.request.OrderRequest;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
-import m.dp.i96mg.viewmodel.PayCardActivityViewModel;
 
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.VOUCHER_VALUE;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
@@ -41,7 +37,8 @@ public class InformationActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_information);
         voucher = getIntent().getStringExtra(VOUCHER_VALUE);
         productModelList = new ArrayList<>();
-        productModelList = customUtilsLazy.getValue().getSavedProductsData();
+        if (customUtilsLazy.getValue().getSavedProductsData() != null)
+            productModelList = customUtilsLazy.getValue().getSavedProductsData();
         binding.ivBack.setOnClickListener(v -> onBackPressed());
     }
 
@@ -53,7 +50,9 @@ public class InformationActivity extends BaseActivity {
                 && !binding.etCountry.getText().toString().isEmpty()
                 && !binding.etRegion.getText().toString().isEmpty()
                 && !binding.etZipCode.getText().toString().isEmpty()
-                && binding.etPhoneNum.isValid()
+                && !binding.etPhoneNumEt.getText().toString().isEmpty()
+                && ValidationUtils.validateTexts(binding.etPhoneNumEt.getText().toString(), ValidationUtils.TYPE_PHONE)
+//                && binding.etPhoneNum.isValid()
         ) {
 
             setData();
@@ -70,7 +69,8 @@ public class InformationActivity extends BaseActivity {
         orderRequest.getValue().setCountry(binding.etCountry.getText().toString());
         orderRequest.getValue().setRegion(binding.etRegion.getText().toString());
         orderRequest.getValue().setZipCode(binding.etZipCode.getText().toString());
-        orderRequest.getValue().setPhoneNumber(binding.etPhoneNum.getNumber());
+        orderRequest.getValue().setPhoneNumber(binding.etPhoneNumEt.getText().toString());
+//        orderRequest.getValue().setPhoneNumber(binding.etPhoneNum.getNumber());
         if (!voucher.isEmpty()) {
             orderRequest.getValue().setVoucher(voucher);
         }
@@ -111,7 +111,13 @@ public class InformationActivity extends BaseActivity {
             showSnackBar(getResources().getString(R.string.enter_zip_code));
             return;
         }
-        if (!binding.etPhoneNum.isValid()) {
+//        if (!binding.etPhoneNum.isValid()) {
+        if (binding.etPhoneNumEt.getText().toString().isEmpty()) {
+            showSnackBar(getResources().getString(R.string.enter_phone_number));
+            return;
+        }
+
+        if (!ValidationUtils.validateTexts(binding.etPhoneNumEt.getText().toString(), ValidationUtils.TYPE_PHONE)) {
             showSnackBar(getResources().getString(R.string.enter_valid_phone_number));
         }
 

@@ -44,7 +44,7 @@ public class ConfigurationFile {
         public static final String DATE_FROM = "from";
         public static final String DATE_TO = "DATA";
         public static final String REQUEST_ID = "request id";
-        public static final String REQUEST_Type = "request type";
+        public static final String REQUEST_TYPE = "request type";
         public static final String FROM_REQUESTS_TYPE = "request";
         public static final String TRIPS_TYPE_PAST = "past";
         public static final String TRIPS_TYPE_UPCOMING = "upcoming";
@@ -104,6 +104,8 @@ public class ConfigurationFile {
         public static final int PAYBAL_ID = 5;
         public static final String PAYBAL = "PAYPAL";
         public static final String DEFAULT_CATEGORY_ID = "";
+        public static final String KEY_SUCCESS = "success";
+        public static final String KEY_TRUE = "true";
 
         public static final int SUCCESS_CODE_FROM = 200;
         public static final int SUCCESS_CODE_TO = 300;

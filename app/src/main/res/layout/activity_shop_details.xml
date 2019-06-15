@@ -130,6 +130,21 @@
             app:layout_constraintTop_toBottomOf="@+id/view3"
             tools:listitem="@layout/item_shop_cart" />
 
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/there_is_no_items_added_to_the_card_yet"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rvProducts"
+            app:layout_constraintEnd_toEndOf="@+id/rvProducts"
+            app:layout_constraintStart_toStartOf="@+id/rvProducts"
+            app:layout_constraintTop_toTopOf="@+id/rvProducts" />
+
         <LinearLayout
             android:id="@+id/linearlayout1"
             android:layout_width="wrap_content"
@@ -161,9 +176,11 @@
                 tools:text=" 1400 SR" />
 
             <TextView
+                android:id="@+id/tv_currency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sr"
+                android:visibility="invisible"
                 android:textSize="19sp"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
@@ -234,16 +251,17 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="21sp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:visibility="invisible"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_yellow"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/btn_countinue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -264,6 +282,7 @@
                 android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/darker_gray"
+                android:textDirection="ltr"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_voucher_icon"
                 app:layout_constraintStart_toStartOf="parent"
@@ -274,12 +293,25 @@
                 android:id="@+id/iv_voucher_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="makeVoucherRequest"
                 android:layout_marginEnd="13dp"
+                android:onClick="makeVoucherRequest"
                 android:src="@drawable/sign_out_option"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="ltr"
+                android:src="@drawable/checked"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/et_code_number"
+                app:layout_constraintEnd_toEndOf="@+id/et_code_number"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@+id/et_code_number"
+                app:layout_constraintTop_toTopOf="@+id/et_code_number" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

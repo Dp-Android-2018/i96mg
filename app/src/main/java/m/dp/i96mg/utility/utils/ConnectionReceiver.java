@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import m.dp.i96mg.application.MyApplication;
+
 
 public class ConnectionReceiver extends BroadcastReceiver {
 
@@ -28,14 +30,14 @@ public class ConnectionReceiver extends BroadcastReceiver {
         }
     }
 
-    /*public static boolean isConnected() {
+    public static boolean isConnected() {
         ConnectivityManager
                 cm = (ConnectivityManager) MyApplication.Companion.getInstance().getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null
                 && activeNetwork.isConnected();
-    }*/
+    }
 
 
     public interface ConnectionReceiverListener {

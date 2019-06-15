@@ -7,10 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.Locale;
-import java.util.Objects;
 
 import kotlin.Lazy;
 import m.dp.i96mg.application.MyApplication;
@@ -24,7 +21,6 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 public class BaseActivity extends AppCompatActivity implements ConnectionReceiver.ConnectionReceiverListener {
 
     Lazy<CustomUtils> customUtils = inject(CustomUtils.class);
-//    Lazy<MainActivityViewModel> mainActivityViewModelLazy = inject(MainActivityViewModel.class);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,57 +33,6 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
     protected void onResume() {
         super.onResume();
         MyApplication.Companion.getInstance().setConnectionListener(this);
-    }
-
-    /*public void logout() {
-        if (ValidationUtils.isConnectingToInternet(this)) {
-            SharedUtils.getInstance().showProgressDialog(this);
-            mainActivityViewModelLazy.getValue().logout().observe(this, voidResponse -> {
-                SharedUtils.getInstance().cancelDialog();
-                if (voidResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
-                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > voidResponse.code()) {
-                    goToLoginPage();
-                } else if (voidResponse.code() == ConfigurationFile.Constants.LOGGED_IN_BEFORE_CODE) {
-                    goToLoginPage();
-                } else {
-                    if (voidResponse.errorBody() != null) {
-                        showStartTripErrorMessage(voidResponse.errorBody());
-                    }
-                }
-            });
-        } else {
-            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
-        }
-    }
-
-    private void goToLoginPage() {
-        String languageType = customUtils.getValue().getSavedLanguageType();
-        customUtils.getValue().clearSharedPref();
-        customUtils.getValue().saveLanguageTypeToPrefs(languageType);
-        Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void showStartTripErrorMessage(ResponseBody errorResponseBody) {
-        Gson gson = new GsonBuilder().create();
-        ErrorResponse errorResponse = new ErrorResponse();
-
-        try {
-            errorResponse = gson.fromJson(errorResponseBody.string(), ErrorResponse.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String error = "";
-        for (String string : errorResponse.getErrors()) {
-            error += string;
-            error += "\n";
-        }
-        showSnackbar(error);
-    }*/
-
-    private void showSnackbar(String error) {
-        Snackbar.make(Objects.requireNonNull(getCurrentFocus()), error, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

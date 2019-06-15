@@ -3,10 +3,8 @@ package m.dp.i96mg.view.ui.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +14,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -60,14 +56,26 @@ public class MainActivity extends BaseActivity {
         setupToolbar();
         initializeViewModel();
         initializeRecyclerViewWithData();
+        initializeSwipeRefreshLayout();
         getBrowserResponse();
+    }
+
+    private void initializeSwipeRefreshLayout() {
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> initializeViewModel());
+        // Configure the refreshing colors
+        binding.swipeRefreshLayout.setColorSchemeResources(
+                android.R.color.darker_gray,
+                android.R.color.holo_green_light,
+                android.R.color.background_dark,
+                android.R.color.holo_purple);
+
     }
 
     private void getBrowserResponse() {
         if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {
             Uri uri = getIntent().getData();
-            String status = uri.getQueryParameter("success");
-            if (status.equals("true")) {
+            String status = uri.getQueryParameter(ConfigurationFile.Constants.KEY_SUCCESS);
+            if (status.equals(ConfigurationFile.Constants.KEY_TRUE)) {
                 String languageType = customUtils.getValue().getSavedLanguageType();
                 customUtils.getValue().clearSharedPref();
                 customUtils.getValue().saveLanguageTypeToPrefs(languageType);
@@ -91,31 +99,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-       /* binding.ivMoreMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(MainActivity.this, binding.ivMoreMenu);
-                //Inflating the Popup using xml file
-                popup.getMenuInflater()
-                        .inflate(R.menu.popup_menu, popup.getMenu());
-
-                //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener(item -> {
-                    if (customUtils.getValue().getSavedLanguageType().equals(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH)) {
-                        customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC);
-                        openAppAgain();
-                    } else {
-                        customUtils.getValue().saveLanguageTypeToPrefs(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ENGLISH);
-                        openAppAgain();
-                    }
-                    return true;
-                });
-
-                popup.show(); //showing popup menu
-            }
-        }); //closing the setOnClickListener method*/
-
     }
 
     private void openAppAgain() {
@@ -126,17 +109,19 @@ public class MainActivity extends BaseActivity {
 
     private void initializeViewModel() {
         if (ValidationUtils.isConnectingToInternet(Objects.requireNonNull(this))) {
-            SharedUtils.getInstance().showProgressDialog(this);
+//            SharedUtils.getInstance().showProgressDialog(this);
             mainActivityViewModelLazy.getValue().getProducts(categoryId, pageId);
+            binding.swipeRefreshLayout.setRefreshing(false);
             observeViewmodel();
         } else {
+            binding.swipeRefreshLayout.setRefreshing(false);
             Snackbar.make(binding.getRoot(), R.string.there_is_no_internet_connection, Snackbar.LENGTH_SHORT).show();
         }
     }
 
     private void observeViewmodel() {
         mainActivityViewModelLazy.getValue().getData().observe(this, productsResponseResponse -> {
-            SharedUtils.getInstance().cancelDialog();
+//            SharedUtils.getInstance().cancelDialog();
             if (productsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                     && ConfigurationFile.Constants.SUCCESS_CODE_TO > productsResponseResponse.code()) {
                 if (productsResponseResponse.body() != null) {
@@ -176,7 +161,6 @@ public class MainActivity extends BaseActivity {
         binding.rvProducts.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, false));
         gridLayoutManager = new GridLayoutManager(this, 2);
         binding.rvProducts.setLayoutManager(gridLayoutManager);
-//        binding.rvProducts.addOnScrollListener(onScrollListener());
         productsRecyclerViewAdapter.setPageImages(loadedData);
         binding.rvProducts.setAdapter(productsRecyclerViewAdapter);
         makeOnScrollOnRecyclerView();
@@ -210,7 +194,7 @@ public class MainActivity extends BaseActivity {
         loading = false;
         position = totalItemCount;
         pageId++;
-        SharedUtils.getInstance().showProgressDialog(this);
+//        SharedUtils.getInstance().showProgressDialog(this);
         mainActivityViewModelLazy.getValue().getProducts(categoryId, pageId);
         observeViewmodel();
     }

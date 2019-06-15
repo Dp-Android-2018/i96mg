@@ -183,10 +183,10 @@ public class PayCardActivity extends BaseActivity {
 
     private void makeOrderRequest() {
         if (ValidationUtils.isConnectingToInternet(this)) {
-            SharedUtils.getInstance().showProgressDialog(this);
+//            SharedUtils.getInstance().showProgressDialog(this);
             payCardActivityViewModelLazy.getValue().createOrder(orderRequest);
             payCardActivityViewModelLazy.getValue().getData().observe(this, orderResponseResponse -> {
-                SharedUtils.getInstance().cancelDialog();
+//                SharedUtils.getInstance().cancelDialog();
                 if (orderResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > orderResponseResponse.code()) {
                     if (orderResponseResponse.body() != null) {

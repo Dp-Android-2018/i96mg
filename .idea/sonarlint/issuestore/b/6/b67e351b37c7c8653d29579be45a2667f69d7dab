@@ -1,8 +1,8 @@
 
-]squid:UselessImportCheck"-Remove this unused import 'android.os.Build'.(ãÇ¤Úıÿÿÿÿ8éÑ§·³-
-msquid:MaximumInheritanceDepth"=This class has 10 parents which is greater than 5 authorized.(•õ†8ŒÈª‡´-
 gsquid:UselessImportCheck"7Remove this unused import 'android.transition.Explode'.(–´÷şÿÿÿÿ8û¸§·³-
 Nsquid:S1172s"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8«Ş¶‡´-
-Gsquid:S1068%")Remove this unused "price" private field.(÷ºùÆ8ƒ›ğ¯-
-`squid:UselessImportCheck	"0Remove this unused import 'android.view.Window'.(¿è™÷úÿÿÿÿ8û¸§·³-
 gsquid:UselessImportCheck"<Remove this unused import 'androidx.annotation.RequiresApi'.(å„» 8éÑ§·³-
+]squid:UselessImportCheck"-Remove this unused import 'android.os.Build'.(ãÇ¤Úıÿÿÿÿ8éÑ§·³-
+`squid:UselessImportCheck	"0Remove this unused import 'android.view.Window'.(¿è™÷úÿÿÿÿ8û¸§·³-
+Gsquid:S1068%")Remove this unused "price" private field.(÷ºùÆ8ƒ›ğ¯-
+msquid:MaximumInheritanceDepth"=This class has 10 parents which is greater than 5 authorized.(•õ†8ŒÈª‡´-
