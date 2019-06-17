@@ -1,12 +1,14 @@
 
-Jsquid:S1172·"+Remove this unused method parameter "view".(ÒÙÖ•8µüñÚ´-
- squid:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Œ‰şØ8µüñÚ´-
-\squid:S1155O">Use isEmpty() to check whether the collection is empty or not.(º¡‰8–àÉâ³-
-}squid:S14500"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8û¡Êâ³-
+\squid:S1155O">Use isEmpty() to check whether the collection is empty or not.(º¡‰8Íµ­Öµ-
 rsquid:MaximumInheritanceDepth'"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
-Gsquid:S1148ı"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8µüñÚ´-
-Osquid:S1172‹"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8µüñÚ´-
-^squid:UnusedPrivateMethod‡"1Remove this unused private "addItemAgain" method.(Œ‰şØ8µüñÚ´-
-Jsquid:S1172Œ"+Remove this unused method parameter "view".(İËîÏ8µüñÚ´-
-@squid:S1643"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8µüñÚ´-
-@squid:S1643‚"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8¨ıïÚ´-
+@squid:S1643ƒ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8Íµ­Öµ-
+@squid:S1643‚"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8Íµ­Öµ-
+isquid:CommentedOutCodeLine–"<This block of commented-out lines of code should be removed.(«Ÿ78Îç„Ùµ-
+isquid:CommentedOutCodeLineÉ"<This block of commented-out lines of code should be removed.(«Ÿ78ê—…Ùµ-
+jsquid:CommentedOutCodeLine”"<This block of commented-out lines of code should be removed.(§À8…Ó„Ùµ-
+Osquid:S1172Š"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
+Jsquid:S1172"+Remove this unused method parameter "view".(İËîÏ8Íµ­Öµ-
+Gsquid:S1148ş"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Íµ­Öµ-
+jsquid:CommentedOutCodeLineÆ"<This block of commented-out lines of code should be removed.(§À8ê—…Ùµ-
+}squid:S14500"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8û¡Êâ³-
+Jsquid:S1172µ"+Remove this unused method parameter "view".(ÒÙÖ•8Íµ­Öµ-

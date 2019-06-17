@@ -1,8 +1,5 @@
 
-isquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(Øäš„8„ëµ›¯-
-Zsquid:S2696"6Make the enclosing method "static" or remove this set.(°äÈþþÿÿÿÿ8ï®¶œ¯-
-Tsquid:S2696~"6Make the enclosing method "static" or remove this set.(ô½ñ§8Å´ó“±-
-jsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(Ä©½ôûÿÿÿÿ
-isquid:CommentedOutCodeLinew"<This block of commented-out lines of code should be removed.(ßà„ƒ8±Êó“±-
-bsquid:UnusedPrivateMethodY"1Remove this unused private "showSnackbar" method.(šãý„ÿÿÿÿÿ8„ëµ›¯-
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¶ÐßÜ8†Œ¶›¯-
+isquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(ßà„ƒ8±Êó“±-
+Ysquid:S2696J"6Make the enclosing method "static" or remove this set.(°äÈþþÿÿÿÿ8ï®¶œ¯-
+jsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(Ä©½ôûÿÿÿÿ
+Tsquid:S2696G"6Make the enclosing method "static" or remove this set.(ô½ñ§8Å´ó“±-

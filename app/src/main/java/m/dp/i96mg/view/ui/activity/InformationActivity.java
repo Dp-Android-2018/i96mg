@@ -46,10 +46,7 @@ public class InformationActivity extends BaseActivity {
         if (!binding.etEmail.getText().toString().isEmpty()
                 && ValidationUtils.validateTexts(binding.etEmail.getText().toString(), ValidationUtils.TYPE_EMAIL)
                 && !binding.etFullName.getText().toString().isEmpty()
-                && !binding.etFullAddress.getText().toString().isEmpty()
                 && !binding.etCountry.getText().toString().isEmpty()
-                && !binding.etRegion.getText().toString().isEmpty()
-                && !binding.etZipCode.getText().toString().isEmpty()
                 && !binding.etPhoneNumEt.getText().toString().isEmpty()
                 && ValidationUtils.validateTexts(binding.etPhoneNumEt.getText().toString(), ValidationUtils.TYPE_PHONE)
 //                && binding.etPhoneNum.isValid()
@@ -65,10 +62,7 @@ public class InformationActivity extends BaseActivity {
     private void setData() {
         orderRequest.getValue().setEmail(binding.etEmail.getText().toString());
         orderRequest.getValue().setName(binding.etFullName.getText().toString());
-        orderRequest.getValue().setAddress(binding.etFullAddress.getText().toString());
         orderRequest.getValue().setCountry(binding.etCountry.getText().toString());
-        orderRequest.getValue().setRegion(binding.etRegion.getText().toString());
-        orderRequest.getValue().setZipCode(binding.etZipCode.getText().toString());
         orderRequest.getValue().setPhoneNumber(binding.etPhoneNumEt.getText().toString());
 //        orderRequest.getValue().setPhoneNumber(binding.etPhoneNum.getNumber());
         if (!voucher.isEmpty()) {
@@ -95,20 +89,8 @@ public class InformationActivity extends BaseActivity {
             showSnackBar(getResources().getString(R.string.enter_full_name));
             return;
         }
-        if (binding.etFullAddress.getText().toString().isEmpty()) {
-            showSnackBar(getResources().getString(R.string.enter_full_address));
-            return;
-        }
         if (binding.etCountry.getText().toString().isEmpty()) {
             showSnackBar(getResources().getString(R.string.enter_country));
-            return;
-        }
-        if (binding.etRegion.getText().toString().isEmpty()) {
-            showSnackBar(getResources().getString(R.string.enter_region));
-            return;
-        }
-        if (binding.etZipCode.getText().toString().isEmpty()) {
-            showSnackBar(getResources().getString(R.string.enter_zip_code));
             return;
         }
 //        if (!binding.etPhoneNum.isValid()) {

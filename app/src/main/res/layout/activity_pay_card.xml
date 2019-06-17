@@ -211,7 +211,7 @@
                 android:inputType="date"
                 android:hint="@string/xx_xx"
                 android:maxLength="5"
-                android:nextFocusDown="@id/et_region"
+                android:nextFocusDown="@id/et_security_code"
                 android:paddingStart="@dimen/dp12h"
                 android:paddingEnd="@dimen/dp12h"
                 android:singleLine="true"
