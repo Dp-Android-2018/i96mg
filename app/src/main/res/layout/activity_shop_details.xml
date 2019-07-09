@@ -7,14 +7,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_bg"
+        android:background="@drawable/backgroung_img"
         tools:context=".view.ui.activity.ShopDetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/product_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/toolbar_color_black"
+            android:background="@color/red_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,18 +88,6 @@
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/product_toolbar" />
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp1h"
-            android:layout_marginStart="@dimen/dp28h"
-            android:layout_marginTop="@dimen/dp7w"
-            android:layout_marginEnd="@dimen/dp28h"
-            android:background="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.65"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <Button
             android:id="@+id/btn_countinue"
@@ -121,13 +109,13 @@
             android:layout_height="0dp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/dp10w"
-            android:layout_marginTop="@dimen/dp7w"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="@dimen/dp7w"
             android:numColumns="auto_fit"
             app:layout_constraintBottom_toTopOf="@+id/linearlayout1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
             tools:listitem="@layout/item_shop_cart" />
 
         <TextView

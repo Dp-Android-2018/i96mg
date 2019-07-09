@@ -1,5 +1,6 @@
 
-isquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(ßà„ƒ8±Êó“±-
+Tsquid:S2696D"6Make the enclosing method "static" or remove this set.(ŒÐ¼¯8·¿è½-
+nsquid:CommentedOutCodeLineG"<This block of commented-out lines of code should be removed.(žˆÓ»ûÿÿÿÿ8·¿è½-
 Ysquid:S2696J"6Make the enclosing method "static" or remove this set.(°äÈþþÿÿÿÿ8ï®¶œ¯-
 jsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(Ä©½ôûÿÿÿÿ
-Tsquid:S2696G"6Make the enclosing method "static" or remove this set.(ô½ñ§8Å´ó“±-
+Tsquid:S2696A"6Make the enclosing method "static" or remove this set.(ô½ñ§8·¿è½-

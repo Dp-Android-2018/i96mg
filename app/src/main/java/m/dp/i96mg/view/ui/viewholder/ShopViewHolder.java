@@ -7,15 +7,19 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import kotlin.Lazy;
+import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ItemShopCartBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.utility.utils.CustomUtils;
+import m.dp.i96mg.view.ui.adapter.ShopRecyclerViewAdapter;
+import m.dp.i96mg.view.ui.callback.OnIconCloseClicked;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
@@ -24,21 +28,25 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 public class ShopViewHolder extends RecyclerView.ViewHolder {
     ItemShopCartBinding binding;
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
+    private ShopRecyclerViewAdapter shopRecyclerViewAdapter;
     private ProductModel productModel;
     private List<ProductModel> productModelList;
     private int quantity;
     private float price;
     private float totalprice;
     private OnQuantityChanged onQuantityChanged;
+    private int index;
+    private OnIconCloseClicked onIconCloseClicked;
 
     public ShopViewHolder(ItemShopCartBinding itemProductLayoutBinding) {
         super(itemProductLayoutBinding.getRoot());
         this.binding = itemProductLayoutBinding;
     }
 
-    public void bindClass(ProductModel productModel, OnQuantityChanged onQuantityChanged) {
+    public void bindClass(ProductModel productModel, OnQuantityChanged onQuantityChanged, OnIconCloseClicked onIconCloseClicked) {
         this.productModel = productModel;
         this.onQuantityChanged = onQuantityChanged;
+        this.onIconCloseClicked=onIconCloseClicked;
         productModelList = new ArrayList<>();
         ImageView ivGalleryPhoto = binding.ivProductImage;
         Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
@@ -65,6 +73,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
         quantity = productModel.getOrderedQuantity();
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
         makeActionOnClickOnQuantityIcons();
+//        getAndDeleteItem();
     }
 
     private void makeActionOnClickOnQuantityIcons() {
@@ -109,4 +118,16 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
         customUtilsLazy.getValue().saveProductToPrefs(productModelList);
         onQuantityChanged.onQuantityChange(true);
     }
+
+   /* private void getAndDeleteItem() {
+        binding.ivRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onIconCloseClicked.itemClicked(getAdapterPosition());
+//                removeThisProductFromSharedPreferences(productModel, getAdapterPosition());
+            }
+        });
+
+    }*/
+
 }

@@ -1,7 +1,7 @@
 
 }squid:S1450"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Ş8¿×ã±-
-msquid:MaximumInheritanceDepth"=This class has 10 parents which is greater than 5 authorized.(åÖè 8¥Éö×´-
-nsquid:CommentedOutCodeLineI"<This block of commented-out lines of code should be removed.(¢’±üÿÿÿÿ8õáâ×´-
-isquid:CommentedOutCodeLiner"<This block of commented-out lines of code should be removed.(—¨Ñ–8ìá×´-
 Rsquid:S1068"4Remove this unused "productModelList" private field.(š™Ş8¢æ´º±-
+msquid:MaximumInheritanceDepth"=This class has 10 parents which is greater than 5 authorized.(åÖè 8¥Éö×´-
+nsquid:CommentedOutCodeLineC"<This block of commented-out lines of code should be removed.(¢’±üÿÿÿÿ8õáâ×´-
+isquid:CommentedOutCodeLine`"<This block of commented-out lines of code should be removed.(—¨Ñ–8ìá×´-
 Nsquid:S1172-"+Remove this unused method parameter "view".(±²œåøÿÿÿÿ8¥Éö×´-

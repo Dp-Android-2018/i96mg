@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/empty_menu">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/navigation_view_header_layout"
+                    layout="@layout/nav_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_category"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/navigation_view_header_layout"
+                    tools:listitem="@layout/item_menu_category" />
+
+                <TextView
+                    android:id="@+id/tv_nav_item_sale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="@dimen/dp15w"
+                    android:gravity="start"
+                    android:text="@string/sale"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_category" />
+
+                <TextView
+                    android:id="@+id/tv_nav_item_wish_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="@dimen/dp15w"
+                    android:gravity="start"
+                    android:text="@string/wish_list"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_sale" />
+
+                <TextView
+                    android:id="@+id/tv_nav_item_pending_orders"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="@dimen/dp15w"
+                    android:gravity="start"
+                    android:text="@string/pending_payment_orders"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_wish_list" />
+
+                <TextView
+                    android:id="@+id/tv_nav_item_language"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="@dimen/dp15w"
+                    android:gravity="start"
+                    android:text="@string/arabic"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_order_list" />
+
+                <TextView
+                    android:id="@+id/tv_nav_item_order_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="@dimen/dp15w"
+                    android:gravity="start"
+                    android:text="@string/orders_list"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_pending_orders" />
+
+                <TextView
+                    android:id="@+id/tv_nav_item_logout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="@dimen/dp15w"
+                    android:gravity="start"
+                    android:text="@string/logout"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_language" />
+
+                <include
+                    android:id="@+id/navigation_view_footer_layout"
+                    layout="@layout/nav_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15w"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_logout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </com.google.android.material.navigation.NavigationView>
+</layout>

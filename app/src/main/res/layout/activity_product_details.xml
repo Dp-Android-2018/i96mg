@@ -6,14 +6,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_bg"
+        android:background="@drawable/backgroung_img"
         tools:context=".view.ui.activity.ProductDetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/product_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/toolbar_color_black"
+            android:background="@color/red_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,14 +48,14 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_add_to_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_toolbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/product_toolbar">
@@ -66,7 +66,7 @@
                     android:layout_height="@dimen/dp265w"
                     android:background="@color/transparent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/im_pic"
+                    android:src="@drawable/product_img"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -84,52 +84,35 @@
                     app:layout_constraintTop_toTopOf="@+id/iv_product_image"
                     tools:text="50%off" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/tv_name_constraintLayout"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp12h"
-                    android:layout_marginTop="@dimen/dp16w"
-                    android:layout_marginEnd="@dimen/dp12h"
-                    app:layout_constraintEnd_toEndOf="@+id/iv_product_image"
-                    app:layout_constraintHorizontal_bias="0.15"
-                    app:layout_constraintStart_toStartOf="@+id/iv_product_image"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image">
-
-                    <TextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="25sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="V-Bucks" />
-
-                    <View
-                        android:id="@+id/view"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dp2h"
-                        android:layout_marginTop="@dimen/dp2h"
-                        android:background="@android:color/white"
-                        app:layout_constraintEnd_toEndOf="@+id/tv_name"
-                        app:layout_constraintStart_toStartOf="@+id/tv_name"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.88"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_product_image"
+                    tools:text="V-Bucks" />
 
                 <LinearLayout
                     android:id="@+id/linearlayout1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="8dp"
                     android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_name_constraintLayout"
-                    app:layout_constraintStart_toStartOf="@+id/tv_name_constraintLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name_constraintLayout">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.89"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name">
 
                     <TextView
                         android:id="@+id/tv_price"
@@ -152,64 +135,47 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="@+id/linearlayout1"
-                    app:layout_constraintStart_toStartOf="@+id/linearlayout1"
-                    app:layout_constraintTop_toBottomOf="@+id/linearlayout1">
-
-                    <TextView
-                        android:id="@+id/tv_discounted_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="25sp"
-                        tools:text="350 SR" />
-
-                    <TextView
-                        android:id="@+id/tv_sr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="4dp"
-                        android:paddingEnd="4dp"
-                        android:text="@string/sr"
-                        android:textColor="@android:color/white"
-                        android:textSize="25sp"
-                        android:visibility="invisible" />
-                </LinearLayout>
-
                 <TextView
-                    android:id="@+id/text2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_describtion"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp29h"
-                    android:layout_marginBottom="37dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/quantity"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="25sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.15"
+                    app:layout_constraintEnd_toEndOf="@+id/linearlayout1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearlayout1" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp7w"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp7w"
+                    style="@style/Widget.AppCompat.RatingBar"
+                    android:progressBackgroundTint="@color/yellow_color"
+                    android:progressTint="@color/yellow_color"
+                    android:secondaryProgressTint="@color/yellow_color"
+                    android:numStars="5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_describtion" />
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/quantityConstraint"
                     android:layout_width="@dimen/dp118h"
                     android:layout_height="@dimen/dp39w"
-                    android:layout_marginStart="@dimen/dp14w"
-                    android:layout_marginEnd="@dimen/dp14w"
+                    android:layout_marginTop="19dp"
                     android:background="@drawable/quantity_background"
-                    app:layout_constraintBottom_toBottomOf="@+id/text2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text2"
-                    app:layout_constraintTop_toTopOf="@+id/text2">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ratingBar">
 
                     <TextView
                         android:id="@+id/tv_minus"
@@ -218,7 +184,7 @@
                         android:layout_marginStart="0dp"
                         android:text="@string/minus"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -228,7 +194,7 @@
                         android:id="@+id/view2"
                         android:layout_width="@dimen/dp1h"
                         android:layout_height="0dp"
-                        android:background="@android:color/black"
+                        android:background="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.35"
@@ -241,7 +207,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/_1"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/tv_plus"
@@ -252,7 +218,7 @@
                         android:id="@+id/view3"
                         android:layout_width="@dimen/dp1h"
                         android:layout_height="0dp"
-                        android:background="@android:color/black"
+                        android:background="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.65"
@@ -265,7 +231,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/plus"
                         android:textAlignment="center"
-                        android:textColor="@android:color/black"
+                        android:textColor="@android:color/white"
                         android:textSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -273,25 +239,142 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_add_to_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:onClick="addProductToCart"
+                    android:background="@drawable/btn_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quantityConstraint">
+
+                    <TextView
+                        android:id="@+id/tv_addToCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/add_to_cart"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="21sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <EditText
+                    android:id="@+id/et_question"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp61h"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="9dp"
+                    android:background="@color/background_edittext"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/dp12h"
+                    android:paddingEnd="@dimen/dp12h"
+                    android:singleLine="false"
+                    android:hint="@string/is_there_any_questions"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_user"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_add_to_cart" />
+
+                <com.joooonho.SelectableRoundedImageView
+                    android:id="@+id/iv_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/image_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_question"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_question" />
+
+                <RatingBar
+                    android:id="@+id/comment_ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp7w"
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/second_yellow_color"
+                    android:progressTint="@color/yellow_color"
+                    android:secondaryProgressTint="@color/yellow_color"
+                    android:stepSize="1.0"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_question" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btn_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_background"
+                    android:onClick="sendReview"
+                    app:layout_constraintEnd_toEndOf="@+id/comment_ratingBar"
+                    app:layout_constraintStart_toStartOf="@+id/comment_ratingBar"
+                    app:layout_constraintTop_toBottomOf="@+id/comment_ratingBar">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/send"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="21sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:numColumns="auto_fit"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_send"
+                    tools:listitem="@layout/review_item_layout" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:numColumns="auto_fit"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_comments"
+                    tools:listitem="@layout/item_product_layout" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
-
-
-        <Button
-            android:id="@+id/btn_add_to_cart"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp46w"
-            android:background="@color/yellow_color"
-            android:onClick="addProductToCart"
-            android:text="@string/add_to_cart"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="21sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

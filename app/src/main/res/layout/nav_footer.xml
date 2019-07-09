@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1h"
+            android:background="@color/background_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="35dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view10">
+
+            <ImageView
+                android:id="@+id/facebookImage"
+                android:layout_width="@dimen/dp27h"
+                android:layout_height="@dimen/dp27h"
+                android:layout_weight="1"
+                android:src="@drawable/facebook" />
+
+            <ImageView
+                android:id="@+id/twitterImage"
+                android:layout_width="@dimen/dp27h"
+                android:layout_height="@dimen/dp27h"
+                android:layout_weight="1"
+                android:src="@drawable/twitter" />
+
+            <ImageView
+                android:id="@+id/instagramImage"
+                android:layout_width="@dimen/dp27h"
+                android:layout_height="@dimen/dp27h"
+                android:layout_weight="1"
+                android:src="@drawable/instagram" />
+
+            <ImageView
+                android:id="@+id/youtubeImage"
+                android:layout_width="@dimen/dp27h"
+                android:layout_height="@dimen/dp27h"
+                android:layout_weight="1"
+                android:src="@drawable/youtube" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

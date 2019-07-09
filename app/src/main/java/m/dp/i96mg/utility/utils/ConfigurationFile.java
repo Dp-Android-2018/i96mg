@@ -7,7 +7,8 @@ import java.util.Date;
 public class ConfigurationFile {
 
     public static class UrlConstants {
-        public static final String BASE_URL = "http://www.i96mg.com";
+//        public static final String BASE_URL = "http://www.i96mg.com";
+        public static final String BASE_URL = "http://151.106.52.107:3030";
 
     }
 
@@ -87,13 +88,37 @@ public class ConfigurationFile {
         public static final int VIEW_TYPE_MESSAGE_SENT=1;
         public static final int VIEW_TYPE_MESSAGE_RECEIVED=2;
 
+        //links
+        public static final String FACEBOOK_NAME = "Facebook";
+        public static final String TWITTER_NAME = "Twitter";
+        public static final String INSTAGRAM_NAME = "Instagram";
+        public static final String WATSAPP_NAME = "watsapp";
+        public static final String MAIL_NAME = "Mail";
+        public static final String BROWSER_NAME = "Browser";
+        public static final String FACEBOOK_PACKAGE_NAME = "com.facebook.katana";
+        public static final String FACEBOOK_PACKAGE_NAME_URL = "fb://facewebmodal/f?href=";
+        public static final String TWITTER_PACKAGE_NAME = "com.twitter.android";
+        public static final String WATSAPP_PACKAGE_NAME = "com.whatsapp";
+        public static final String INSTAGRAM_PACKAGE_NAME = "com.instagram.android";
+        public static final String INTENT_MAIL_TYPE = "message/rfc822";
+        public static final String INTENT_TEXT_TYPE = "text/plain";
+
         //intents types
         public static final String ACTIVATION_TYPE = "Activation Type";
         public static final String LANGUAGE_TYPE = "language Type";
         public static final String PRODUCT_DETAIL = "product detail";
+        public static final String PRODUCT_ID = "product id";
+        public static final String Category_ID = "product id";
+        public static final int SALE_ID = -5;
+        public static final String WISHLIST_TYPE = "wish list";
+        public static final String DEFAULT_TYPE = "default";
         public static final String PRODUCTS_LIST = "products list";
+        public static final String FAVORITE_PRODUCTS_LIST = "favorite products";
         public static final String ORDER_REQUEST = "order request";
         public static final String VOUCHER_VALUE = "voucher";
+        public static final String ACTIVITY_NAME = "activity name";
+        public static final String SHOP_DETAILS_ACTIVITY = "shop activity";
+        public static final String MAIN_ACTIVITY = "main activity";
         public static final String GOOGLE_MAPS_PACKAGE_NAME = "com.google.android.apps.maps";
         public static final String GOOGLE_MAPS_URI_DATA = "geo:0,0?q=";
 
@@ -122,7 +147,7 @@ public class ConfigurationFile {
     }
 
     public static class SharedPrefConstants {
-        public static final String SHARED_PREF_NAME = "TADAWAY_SHARED_PREF";
+        public static final String SHARED_PREF_NAME = "I96MG_SHARED_PREF";
         public static final String NewDataToSave = "NewDataToSave";
     }
 

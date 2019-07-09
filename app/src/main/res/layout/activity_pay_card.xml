@@ -6,14 +6,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_bg"
+        android:background="@drawable/backgroung_img"
         tools:context=".view.ui.activity.PayCardActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/product_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/toolbar_color_black"
+            android:background="@color/red_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/credit_onstraint"
+            android:id="@+id/bank_constraint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonConstrainLayoutClicked"
@@ -59,12 +59,63 @@
             app:layout_constraintTop_toBottomOf="@+id/product_toolbar">
 
             <RadioButton
-                android:id="@+id/credit_radioButton"
+                android:id="@+id/bank_radioButton"
                 style="@style/RadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp12h"
                 android:checked="true"
+                android:onClick="onRadioButtonClicked"
+                android:shadowColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp8w"
+                android:layout_marginTop="@dimen/dp12h"
+                android:layout_marginBottom="@dimen/dp12h"
+                android:text="@string/bank_account"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bank_radioButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="@dimen/dp27w"
+                android:layout_height="@dimen/dp18h"
+                android:layout_marginEnd="@dimen/dp21w"
+                android:src="@drawable/bank_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/credit_onstraint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp28h"
+            android:layout_marginEnd="@dimen/dp28h"
+            android:background="@drawable/edittext_border_yellow"
+            android:onClick="onRadioButtonConstrainLayoutClicked"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_constraint">
+
+            <RadioButton
+                android:id="@+id/credit_radioButton"
+                style="@style/RadioButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp12h"
                 android:onClick="onRadioButtonClicked"
                 android:shadowColor="@android:color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -90,11 +141,61 @@
                 android:layout_width="@dimen/dp27w"
                 android:layout_height="@dimen/dp18h"
                 android:layout_marginEnd="@dimen/dp21w"
-                android:src="@drawable/credit_card"
+                android:src="@drawable/credit_card_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mada_constraint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonConstrainLayoutClicked"
+            android:layout_marginStart="@dimen/dp28h"
+            android:layout_marginEnd="@dimen/dp28h"
+            android:background="@drawable/edittext_border_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/credit_onstraint">
+
+
+            <RadioButton
+                android:id="@+id/mada_radioButton"
+                style="@style/RadioButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp12h"
+                android:onClick="onRadioButtonClicked"
+                android:shadowColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp8w"
+                android:layout_marginTop="@dimen/dp12h"
+                android:layout_marginBottom="@dimen/dp12h"
+                android:text="@string/mada"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mada_radioButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="@dimen/dp27w"
+                android:layout_height="@dimen/dp18h"
+                android:layout_marginEnd="@dimen/dp21w"
+                android:src="@drawable/mada_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,7 +209,7 @@
             android:background="@drawable/edittext_border_yellow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/credit_onstraint">
+            app:layout_constraintTop_toBottomOf="@+id/mada_constraint">
 
 
             <RadioButton
@@ -141,7 +242,7 @@
                 android:layout_width="@dimen/dp27w"
                 android:layout_height="@dimen/dp18h"
                 android:layout_marginEnd="@dimen/dp21w"
-                android:src="@drawable/paypal_logo"
+                android:src="@drawable/paypal_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -152,6 +253,7 @@
             android:id="@+id/credit_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -281,6 +383,105 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bank_constraintlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paybal_constraint">
+
+            <TextView
+                android:id="@+id/textView70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_card_number"
+                android:text="@string/choose_account"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/types_constraint"
+                app:layout_constraintEnd_toEndOf="@+id/types_constraint"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/types_constraint" />
+
+
+            <LinearLayout
+                android:id="@+id/types_constraint"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp39w"
+                android:layout_marginStart="@dimen/dp28h"
+                android:layout_marginTop="@dimen/dp33h"
+                android:layout_marginEnd="@dimen/dp28h"
+                android:background="@drawable/edittext_border_yellow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Spinner
+                    android:id="@+id/request_type_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp33w"
+                    android:popupBackground="@drawable/edittext_border_yellow"
+                    android:prompt="@string/banck_account"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/background_black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/full_name"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/et_full_name"
+                app:layout_constraintEnd_toEndOf="@+id/et_full_name"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/et_full_name" />
+
+            <EditText
+                android:id="@+id/et_full_name"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp39w"
+                android:layout_marginStart="@dimen/dp28h"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="@dimen/dp28h"
+                android:background="@drawable/edittext_border_yellow"
+                android:inputType="text"
+                android:paddingStart="@dimen/dp12h"
+                android:paddingEnd="@dimen/dp12h"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/types_constraint" />
+
+            <Button
+                android:id="@+id/btn_attach_receipt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp39w"
+                android:layout_marginStart="@dimen/dp28h"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="@dimen/dp28h"
+                android:background="@color/red_color"
+                android:text="@string/attach_your_payment_receipt"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="21sp"
+                android:drawableStart="@drawable/ic_attach_file_48px"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_full_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/tv_paybal"
             android:layout_width="0dp"
@@ -302,7 +503,7 @@
             android:id="@+id/btn_countinue"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp47h"
-            android:background="@color/yellow_color"
+            android:background="@color/red_color"
             android:text="@string/place_order"
             android:onClick="makeOrder"
             android:textAllCaps="false"

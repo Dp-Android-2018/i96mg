@@ -2,9 +2,7 @@ package m.dp.i96mg.koin
 
 import android.os.Parcel
 import m.dp.i96mg.service.model.request.OrderRequest
-import m.dp.i96mg.service.repository.remotes.MainRepository
-import m.dp.i96mg.service.repository.remotes.PayCardRepository
-import m.dp.i96mg.service.repository.remotes.ShopDetailsRepository
+import m.dp.i96mg.service.repository.remotes.*
 import org.koin.dsl.module.module
 
 @JvmField
@@ -14,6 +12,10 @@ val DependencyModule = module {
     single { PayCardRepository() }
     factory { OrderRequest(Parcel.obtain()) }
     single { ShopDetailsRepository() }
+    single { ProductDetailsRepository() }
+    single { LoginRepository() }
+    single { SignUpRepository() }
+    single { WishListRepository() }
 
     /* single { Register1Repository() }
      single { Register2Repository() }

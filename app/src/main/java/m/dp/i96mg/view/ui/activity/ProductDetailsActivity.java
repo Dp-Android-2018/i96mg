@@ -1,64 +1,76 @@
 package m.dp.i96mg.view.ui.activity;
 
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.os.Build;
 import android.os.Bundle;
-import android.transition.Explode;
+import android.os.Parcel;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 
-import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityProductDetailsBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.global.ReviewResponseData;
+import m.dp.i96mg.service.model.request.ReviewRequest;
+import m.dp.i96mg.service.model.response.ErrorResponse;
+import m.dp.i96mg.service.model.response.ProductDetailsResponse;
+import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
+import m.dp.i96mg.utility.utils.SharedUtils;
+import m.dp.i96mg.utility.utils.ValidationUtils;
+import m.dp.i96mg.view.ui.adapter.ProductsRecyclerViewAdapter;
+import m.dp.i96mg.view.ui.adapter.ReviewsRecyclerViewAdapter;
+import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
-import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PRODUCT_DETAIL;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class ProductDetailsActivity extends BaseActivity {
 
     ActivityProductDetailsBinding binding;
+    private int productId;
     private ProductModel productModel;
     private int quantity = ConfigurationFile.Constants.DEFAULT_QUANTITY;
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
+    private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private float price;
     private List<ProductModel> productModelList;
+    private ArrayList<ProductModel> allProducts;
+    private float ratingValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details);
-        productModel = new Gson().fromJson(getIntent().getStringExtra(PRODUCT_DETAIL), ProductModel.class);
-        productModelList = new ArrayList<>();
-        if (customUtilsLazy.getValue().getSavedProductsData() != null) {
-            productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
-        }
+        initializeVariables();
         makeActionOnToolbat();
         makeActionOnClickOnQuantityIcons();
-        initializeUiWithData();
-        checkQuantityValue();
+        makeActionOnRatingChanged();
     }
 
-    private void checkQuantityValue() {
-        if ( productModel.getQuantity()==0){
-            binding.text2.setVisibility(View.INVISIBLE);
-            binding.quantityConstraint.setVisibility(View.INVISIBLE);
-            binding.btnAddToCart.setText(getResources().getString(R.string.product_is_not_available));
-            binding.btnAddToCart.setClickable(false);
-        }
+    private void makeActionOnRatingChanged() {
+        RatingBar ratingBar = binding.commentRatingBar;
+        ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> ratingValue = rating);
+    }
+
+    private void makeActionOnToolbat() {
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
     }
 
     private void makeActionOnClickOnQuantityIcons() {
@@ -77,11 +89,47 @@ public class ProductDetailsActivity extends BaseActivity {
         });
     }
 
-    private void makeActionOnToolbat() {
-        binding.ivBack.setOnClickListener(v -> onBackPressed());
+    private void initializeVariables() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details);
+        productModel = new ProductModel(Parcel.obtain());
+        allProducts = new ArrayList<>();
+        allProducts = getIntent().getParcelableArrayListExtra(ConfigurationFile.Constants.PRODUCTS_LIST);
+        productId = getIntent().getIntExtra(ConfigurationFile.Constants.PRODUCT_ID, 0);
+        productModelList = new ArrayList<>();
+        if (customUtilsLazy.getValue().getSavedProductsData() != null) {
+            productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
+        }
+        getProductDetail();
+        initializeAllProductsRecyclerView();
+        getReviews();
     }
 
-    private void initializeUiWithData() {
+    private void getProductDetail() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().getProductById(productId).observe(this, new Observer<Response<ProductDetailsResponse>>() {
+                @Override
+                public void onChanged(Response<ProductDetailsResponse> productDetailsResponseResponse) {
+                    SharedUtils.getInstance().cancelDialog();
+                    if (productDetailsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                            && ConfigurationFile.Constants.SUCCESS_CODE_TO > productDetailsResponseResponse.code()) {
+                        if (productDetailsResponseResponse.body() != null) {
+                            initializeUiWithData(productDetailsResponseResponse.body().getData());
+                        }
+                    } else {
+                        showErrors(productDetailsResponseResponse.errorBody());
+                    }
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+
+    }
+
+    private void initializeUiWithData(ProductModel productModel) {
+//        checkQuantityValue();
+        this.productModel = productModel;
         if (productModelList != null) {
             for (int i = 0; i < productModelList.size(); i++) {
                 if (productModelList.get(i).getId() == productModel.getId()) {
@@ -93,21 +141,97 @@ public class ProductDetailsActivity extends BaseActivity {
             Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
             binding.tvName.setText(productModel.getName());
             binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
-            if (productModel.isHasDiscount()) {
-                binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
+            binding.tvDescribtion.setText(String.valueOf(productModel.getDescription()));
+            binding.ratingBar.setRating(productModel.getRating());
+            /*  if (productModel.isHasDiscount()) {
+             *//*  binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
                 binding.tvDiscountedPrice.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 binding.tvSr.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 binding.tvDiscountedPrice.setTextColor(Color.GRAY);
                 binding.tvSr.setTextColor(Color.GRAY);
                 binding.tvDiscountedPrice.setTextSize(15);
                 binding.tvSr.setTextSize(15);
-                binding.tvSr.setVisibility(View.VISIBLE);
+                binding.tvSr.setVisibility(View.VISIBLE);*//*
                 binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
                 int discountRatio = (int) ((productModel.getOriginalPrice() - productModel.getDiscountedPrice()) * 100 / productModel.getOriginalPrice());
                 String discountValue = discountRatio + ConfigurationFile.Constants.PERCENT + binding.getRoot().getResources().getString(R.string.off_percent);
                 binding.tvDiscountRatio.setVisibility(View.VISIBLE);
                 binding.tvDiscountRatio.setText(discountValue);
+            }*/
+        }
+    }
+
+    private void initializeAllProductsRecyclerView() {
+        for (int i = 0; i < allProducts.size(); i++) {
+            if (allProducts.get(i) == productModel) {
+                allProducts.remove(productModel);
+                break;
             }
+        }
+
+        ProductsRecyclerViewAdapter productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(allProducts, ConfigurationFile.Constants.DEFAULT_TYPE);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        binding.rvProducts.setLayoutManager(linearLayoutManager);
+        binding.rvProducts.setAdapter(productsRecyclerViewAdapter);
+    }
+
+    private void getReviews() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().getProductReviews(productId).observe(this, productReviewsResponseResponse -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (productReviewsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > productReviewsResponseResponse.code()) {
+                    if (productReviewsResponseResponse.body() != null) {
+                        initializeReviewsRecyclerView(productReviewsResponseResponse.body().getData());
+                    }
+                } else {
+                    showErrors(productReviewsResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+
+    }
+
+    private void initializeReviewsRecyclerView(ArrayList<ReviewResponseData> reviewResponseData) {
+        ReviewsRecyclerViewAdapter reviewsRecyclerViewAdapter = new ReviewsRecyclerViewAdapter(reviewResponseData);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        binding.rvComments.setLayoutManager(linearLayoutManager);
+        binding.rvComments.setAdapter(reviewsRecyclerViewAdapter);
+    }
+
+    private void showErrors(ResponseBody responseBody) {
+
+        Gson gson = new GsonBuilder().create();
+        ErrorResponse errorResponse = new ErrorResponse();
+
+        try {
+            errorResponse = gson.fromJson(responseBody.string(), ErrorResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String error = "";
+        for (String string : errorResponse.getErrors()) {
+            error += string;
+            error += "\n";
+        }
+        showSnackbar(error);
+
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
+    }
+
+
+    private void checkQuantityValue() {
+        if (productModel.getQuantity() == 0) {
+//            binding.text2.setVisibility(View.INVISIBLE);
+            binding.quantityConstraint.setVisibility(View.INVISIBLE);
+            binding.tvAddToCart.setText(getResources().getString(R.string.product_is_not_available));
+            binding.btnAddToCart.setClickable(false);
         }
     }
 
@@ -126,5 +250,47 @@ public class ProductDetailsActivity extends BaseActivity {
         }
         productModelList.add(productModel);
         customUtilsLazy.getValue().saveProductToPrefs(productModelList);
+    }
+
+    public void sendReview(View view) {
+        if (ValidationUtils.isConnectingToInternet(Objects.requireNonNull(this))) {
+            rateTrip();
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void rateTrip() {
+        if (ratingValue != 0.0) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().postReview(getReviewRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                        clearAllFields();
+                    }
+
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar("Please make rate before send review !!");
+        }
+    }
+
+    private void clearAllFields() {
+        binding.ratingBar.setRating(0);
+        binding.etQuestion.setText("");
+    }
+
+    private ReviewRequest getReviewRequest() {
+        ReviewRequest reviewRequest = new ReviewRequest();
+        reviewRequest.setProductId(productId);
+        reviewRequest.setRating(ratingValue);
+        reviewRequest.setReview(binding.etQuestion.getText().toString());
+        return reviewRequest;
     }
 }

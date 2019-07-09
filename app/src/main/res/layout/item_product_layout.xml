@@ -5,128 +5,113 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/transparent"
-    android:orientation="vertical">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp7w"
-        android:layout_marginTop="@dimen/dp7w"
-        android:layout_marginEnd="@dimen/dp7w"
-        app:cardCornerRadius="@dimen/dp13w"
-        app:cardBackgroundColor="@color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/border_black"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_product_image"
-            android:layout_width="@dimen/dp129w"
-            android:layout_height="@dimen/dp129w"
-            android:background="@color/transparent"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/im_pic" />
-
-        <TextView
-            android:id="@+id/tv_discount_ratio"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="50%off"
-            android:visibility="invisible"
-            android:paddingEnd="@dimen/dp7w"
-            android:paddingStart="@dimen/dp7w"
-            android:textColor="@android:color/white"
-            android:background="@android:color/holo_red_dark"/>
+            android:layout_marginStart="@dimen/dp7w"
+            android:layout_marginTop="@dimen/dp7w"
+            android:layout_marginEnd="@dimen/dp7w"
+            android:background="@drawable/border_black"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="@dimen/dp13w"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/iv_product_image"
+                android:layout_width="@dimen/dp129w"
+                android:layout_height="@dimen/dp129w"
+                android:background="@drawable/border_black"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/product_img" />
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp7w"
-        tools:text="V-Bucks"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            <TextView
+                android:id="@+id/tv_discount_ratio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_dark"
+                android:paddingStart="@dimen/dp7w"
+                android:paddingEnd="@dimen/dp7w"
+                android:textColor="@android:color/white"
+                android:visibility="invisible"
+                tools:text="50%off" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp2h"
-        android:layout_marginTop="@dimen/dp2h"
-        android:background="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/linearlayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/view">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp7w"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:text="V-Bucks" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/background_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
             tools:text="350 SR" />
 
-        <TextView
-            android:id="@+id/textView12"
+        <ImageView
+            android:id="@+id/iv_add_to_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="4dp"
-            android:paddingStart="4dp"
-            android:text="@string/sr"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="4dp"
+            android:padding="8dp"
+            android:src="@drawable/cart_plus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearlayout1"
-        app:layout_constraintStart_toStartOf="@+id/linearlayout1"
-        app:layout_constraintTop_toBottomOf="@+id/linearlayout1">
-
-        <TextView
-            android:id="@+id/tv_price_discount"
+        <ImageView
+            android:id="@+id/iv_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            tools:text="350 SR" />
+            android:layout_marginEnd="4dp"
+            android:padding="8dp"
+            android:src="@drawable/heart_empty"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_add_to_cart"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="0.6" />
 
-        <TextView
-            android:id="@+id/tv_sr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sr"
-            android:paddingEnd="4dp"
-            android:paddingStart="4dp"
-            android:textColor="@android:color/white"
-            android:visibility="invisible"
-            />
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

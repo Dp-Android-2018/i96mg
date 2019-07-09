@@ -79,6 +79,12 @@ dependencies {
     //phone number library
     implementation 'net.rimoto:intlphoneinput:1.0.1'
 
+    //selectableroundedimageview
+    implementation 'com.joooonho:selectableroundedimageview:1.0.1'
+
+    //pin entry text library for digits code
+    implementation 'com.poovam:pin-edittext-field:1.2.1'
+
 }
 repositories {
     mavenCentral()

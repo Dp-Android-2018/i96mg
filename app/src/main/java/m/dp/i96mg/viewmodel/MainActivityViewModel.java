@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import kotlin.Lazy;
+import m.dp.i96mg.service.model.response.CategoriesResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
 import m.dp.i96mg.service.repository.remotes.MainRepository;
 import retrofit2.Response;
@@ -24,6 +25,18 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public void getProducts(String categoryId, int pageNumber) {
         data=mainRepositoryLazy.getValue().getProducts(categoryId,pageNumber);
+    }
+
+    public void getSaleProducts() {
+        data=mainRepositoryLazy.getValue().getSaleProducts();
+    }
+
+    public void getWishListItems() {
+        data=mainRepositoryLazy.getValue().getWishListItems();
+    }
+
+    public LiveData<Response<CategoriesResponse>> getSettings() {
+        return mainRepositoryLazy.getValue().getSettings();
     }
 
     public LiveData<Response<ProductsResponse>> getData() {

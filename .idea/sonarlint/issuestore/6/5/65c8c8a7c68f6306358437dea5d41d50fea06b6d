@@ -1,14 +1,17 @@
 
-\squid:S1155O">Use isEmpty() to check whether the collection is empty or not.(ºž¡‰8Íµ­Öµ-
-rsquid:MaximumInheritanceDepth'"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
-@squid:S1643ƒ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8Íµ­Öµ-
-@squid:S1643‚"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8Íµ­Öµ-
-isquid:CommentedOutCodeLine–"<This block of commented-out lines of code should be removed.(«Ÿ78Îç„Ùµ-
-isquid:CommentedOutCodeLineÉ"<This block of commented-out lines of code should be removed.(«Ÿ78ê—…Ùµ-
-jsquid:CommentedOutCodeLine”"<This block of commented-out lines of code should be removed.(§À8…Ó„Ùµ-
-Osquid:S1172Š"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
-Jsquid:S1172"+Remove this unused method parameter "view".(ÝËîÏ8Íµ­Öµ-
-Gsquid:S1148þ"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Íµ­Öµ-
-jsquid:CommentedOutCodeLineÆ"<This block of commented-out lines of code should be removed.(§À8ê—…Ùµ-
-}squid:S14500"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8û¡Êâ³-
-Jsquid:S1172µ"+Remove this unused method parameter "view".(ÒÙÖ•8Íµ­Öµ-
+Psquid:S1602Ý",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8”‘ï¼¼-
+wsquid:UselessImportCheck"LRemove this unused import 'com.gaurav.cdsrecyclerview.CdsItemTouchCallback'.(Žî¯§8‹šŽ¾¼-
+@squid:S1643»"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8õôó¼¼-
+rsquid:MaximumInheritanceDepth."=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
+Jsquid:S1612t",Replace this lambda with a method reference.(˜Ï·ü8‹šŽ¾¼-
+\squid:S1155Y">Use isEmpty() to check whether the collection is empty or not.(ºž¡‰8Íµ­Öµ-
+Gsquid:S1148¶"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8õôó¼¼-
+}squid:S14507"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8û¡Êâ³-
+nsquid:CommentedOutCodeLinew"<This block of commented-out lines of code should be removed.(ó…Èøÿÿÿÿ8—ß¼-
+jsquid:CommentedOutCodeLineþ"<This block of commented-out lines of code should be removed.(§À8õôó¼¼-
+@squid:S1643º"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8”‘ï¼¼-
+Jsquid:S1172Å"+Remove this unused method parameter "view".(ÝËîÏ8õôó¼¼-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(«Ÿ78õôó¼¼-
+Jsquid:S1172í"+Remove this unused method parameter "view".(ÒÙÖ•8õôó¼¼-
+Osquid:S1172"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
+isquid:CommentedOutCodeLineC"<This block of commented-out lines of code should be removed.(îñÇ8Ô›—ß¼-

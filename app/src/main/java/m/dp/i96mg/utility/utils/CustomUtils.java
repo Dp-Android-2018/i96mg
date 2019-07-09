@@ -1,27 +1,26 @@
 package m.dp.i96mg.utility.utils;
 
 
-import com.google.gson.Gson;
-
-import java.util.Arrays;
 import java.util.List;
 
 import kotlin.Lazy;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.global.LoginResponseModel;
 
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.FAVORITE_PRODUCTS_LIST;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PRODUCTS_LIST;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class CustomUtils {
     private Lazy<SharedPreferenceHandler> prefrenceUtils = inject(SharedPreferenceHandler.class);
 
-   /* public LoginResponseModel getSavedMemberData() {
+    public LoginResponseModel getSavedMemberData() {
         return (LoginResponseModel) prefrenceUtils.getValue().getSavedObject(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, LoginResponseModel.class);
     }
 
     public void saveMemberDataToPrefs(LoginResponseModel data) {
         prefrenceUtils.getValue().saveObjectToSharedPreferences(ConfigurationFile.SharedPrefConstants.SHARED_PREF_NAME, data);
-    }*/
+    }
 
     /*public void saveProductIdToPrefs(int id) {
         prefrenceUtils.getValue().saveProductIdsToSharedPreferences(ConfigurationFile.Constants.PRODUCT_IDS, id);
@@ -37,6 +36,14 @@ public class CustomUtils {
 
     public List<ProductModel> getSavedProductsData() {
         return prefrenceUtils.getValue().getSavedProducts(PRODUCTS_LIST);
+    }
+
+    public void saveFavoriteProductToPrefs(List<ProductModel> productModels) {
+        prefrenceUtils.getValue().saveObjectToSharedPreferences(FAVORITE_PRODUCTS_LIST, productModels);
+    }
+
+    public List<ProductModel> getFavoriteSavedProductsData() {
+        return prefrenceUtils.getValue().getSavedProducts(FAVORITE_PRODUCTS_LIST);
     }
 
     public void saveActivationTypeToPrefs(String objName, boolean objValue) {

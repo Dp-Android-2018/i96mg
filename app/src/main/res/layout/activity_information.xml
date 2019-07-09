@@ -6,14 +6,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_bg"
+        android:background="@drawable/backgroung_img"
         tools:context=".view.ui.activity.InformationActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/product_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/toolbar_color_black"
+            android:background="@color/red_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -211,7 +211,7 @@
             android:id="@+id/btn_countinue"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp46w"
-            android:background="@color/yellow_color"
+            android:background="@color/red_color"
             android:onClick="continueToPayActivity"
             android:text="@string/continue_text"
             android:textAllCaps="false"

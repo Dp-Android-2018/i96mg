@@ -57,7 +57,7 @@ public class PayCardActivity extends BaseActivity {
         orderRequest = new OrderRequest(Parcel.obtain());
         orderRequest = getIntent().getParcelableExtra(ConfigurationFile.Constants.ORDER_REQUEST);
         binding.ivBack.setOnClickListener(v -> onBackPressed());
-        setProductList();
+//        setProductList();
     }
 
     private void setProductList() {
@@ -78,9 +78,17 @@ public class PayCardActivity extends BaseActivity {
         boolean checked = ((RadioButton) view).isChecked();
         // Check which radio button was clicked
         switch (view.getId()) {
+            case R.id.bank_radioButton:
+                if (checked)
+                    makeActionOnBankCredit();
+                break;
             case R.id.credit_radioButton:
                 if (checked)
                     makeActionOnChooseCredit();
+                break;
+            case R.id.mada_radioButton:
+                if (checked)
+                    makeActionOnMadaCredit();
                 break;
             case R.id.paybal_radioButton:
                 if (checked)
@@ -91,8 +99,14 @@ public class PayCardActivity extends BaseActivity {
 
     public void onRadioButtonConstrainLayoutClicked(View view) {
         switch (view.getId()) {
+            case R.id.bank_constraint:
+                    makeActionOnBankCredit();
+                break;
             case R.id.credit_onstraint:
                 makeActionOnChooseCredit();
+                break;
+            case R.id.mada_constraint:
+                makeActionOnMadaCredit();
                 break;
             case R.id.paybal_constraint:
                 makeActionOnChooseOnPaypal();
@@ -100,32 +114,62 @@ public class PayCardActivity extends BaseActivity {
         }
     }
 
-    private void makeActionOnChooseCredit() {
+    private void makeActionOnMadaCredit() {
         binding.creditConstraintlayout.setVisibility(View.VISIBLE);
+        binding.madaRadioButton.setChecked(true);
+        binding.bankConstraintlayout.setVisibility(View.GONE);
+        binding.bankRadioButton.setChecked(false);
         binding.tvPaybal.setVisibility(View.INVISIBLE);
         binding.paybalRadioButton.setChecked(false);
+        binding.creditRadioButton.setChecked(false);
+        type = CREDIT_ID;
+    }
+
+    private void makeActionOnBankCredit() {
+        binding.bankConstraintlayout.setVisibility(View.VISIBLE);
+        binding.bankRadioButton.setChecked(true);
+        binding.madaRadioButton.setChecked(false);
+        binding.tvPaybal.setVisibility(View.GONE);
+        binding.paybalRadioButton.setChecked(false);
+        binding.creditConstraintlayout.setVisibility(View.GONE);
+        binding.creditRadioButton.setChecked(false);
+        type = CREDIT_ID;
+    }
+
+    private void makeActionOnChooseCredit() {
+        binding.creditConstraintlayout.setVisibility(View.VISIBLE);
         binding.creditRadioButton.setChecked(true);
+        binding.bankConstraintlayout.setVisibility(View.GONE);
+        binding.bankRadioButton.setChecked(false);
+        binding.tvPaybal.setVisibility(View.GONE);
+        binding.paybalRadioButton.setChecked(false);
+        binding.madaRadioButton.setChecked(false);
+
         type = CREDIT_ID;
     }
 
     private void makeActionOnChooseOnPaypal() {
-        binding.creditConstraintlayout.setVisibility(View.GONE);
         binding.tvPaybal.setVisibility(View.VISIBLE);
-        binding.creditRadioButton.setChecked(false);
         binding.paybalRadioButton.setChecked(true);
+        binding.bankConstraintlayout.setVisibility(View.GONE);
+        binding.bankRadioButton.setChecked(false);
+        binding.creditConstraintlayout.setVisibility(View.GONE);
+        binding.creditRadioButton.setChecked(false);
+        binding.madaRadioButton.setChecked(false);
+
         type = PAYBAL_ID;
-        orderRequest.setPaymentMethod(PAYBAL);
+//        orderRequest.setPaymentMethod(PAYBAL);
     }
 
     public void makeOrder(View view) {
-        switch (type) {
+     /*   switch (type) {
             case CREDIT_ID:
                 makeOrderOnChooseCredit();
                 break;
             case PAYBAL_ID:
                 makeOrderRequest();
                 break;
-        }
+        }*/
     }
 
     private void makeOrderOnChooseCredit() {

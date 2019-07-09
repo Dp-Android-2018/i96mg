@@ -1,14 +1,20 @@
 package m.dp.i96mg.view.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gaurav.cdsrecyclerview.CdsItemTouchCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,6 +36,7 @@ import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ShopRecyclerViewAdapter;
+import m.dp.i96mg.view.ui.callback.OnIconCloseClicked;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
 import m.dp.i96mg.viewmodel.ShopDetailsActivityViewModel;
 import okhttp3.ResponseBody;
@@ -47,6 +54,8 @@ public class ShopDetailsActivity extends BaseActivity {
     private ShopRecyclerViewAdapter shopRecyclerViewAdapter;
     private ArrayList<ProductData> productData;
     private int index;
+    private AlertDialog dialog;
+    private OnIconCloseClicked onIconCloseClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,7 @@ public class ShopDetailsActivity extends BaseActivity {
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         getAndSetTotalPrice();
         initializeOnQuantityChangedListener();
+//        initializeOnItemClicked();
         initializeRecyclerView();
         checkLanguage();
     }
@@ -96,15 +106,24 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void initializeRecyclerView() {
-        shopRecyclerViewAdapter = new ShopRecyclerViewAdapter(this, productModelList, onQuantityChanged);
+        shopRecyclerViewAdapter = new ShopRecyclerViewAdapter(this, productModelList, onQuantityChanged, onIconCloseClicked);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rvProducts.setHasFixedSize(true);
         binding.rvProducts.setLayoutManager(linearLayoutManager);
         binding.rvProducts.setAdapter(shopRecyclerViewAdapter);
         binding.rvProducts.setItemAnimator(new DefaultItemAnimator());
         binding.rvProducts.enableItemSwipe();
-        binding.rvProducts.setItemSwipeCompleteListener(this::getAndDeleteItem);
+        binding.rvProducts.setItemSwipeCompleteListener(position -> getAndDeleteItem(position));
     }
+
+   /* private void initializeOnItemClicked() {
+        onIconCloseClicked = position -> {
+            getAndDeleteItem(position);
+            shopRecyclerViewAdapter.notifyItemRemoved(position);
+            shopRecyclerViewAdapter.notifyDataSetChanged();
+        };
+
+    }*/
 
     private void getAndDeleteItem(int position) {
         ProductModel item = shopRecyclerViewAdapter.getItem(position);
@@ -145,12 +164,12 @@ public class ShopDetailsActivity extends BaseActivity {
 
     private void checkProducts() {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             shopDetailsActivityViewModelLazy.getValue().checkProducts(getCheckRequest()).observe(this, voucherResponseResponse -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
-                    openNextActivity();
+                    checkIfLoggedInOrNot();
                 } else {
                     showErrors(voucherResponseResponse.errorBody());
                 }
@@ -170,6 +189,44 @@ public class ShopDetailsActivity extends BaseActivity {
         CheckRequest checkRequest = new CheckRequest();
         checkRequest.setProductsData(productData);
         return checkRequest;
+    }
+
+    private void checkIfLoggedInOrNot() {
+        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+            openNextActivity();
+        } else {
+            showLoginDialog();
+        }
+    }
+
+    private void showLoginDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(binding.getRoot().getContext());
+        LayoutInflater factory = LayoutInflater.from(binding.getRoot().getContext());
+        final View view = factory.inflate(R.layout.choose_order_type, null);
+        alertDialog.setView(view);
+        alertDialog.setCancelable(true);
+        dialog = alertDialog.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        makeActionOnChoose(view);
+    }
+
+    private void makeActionOnChoose(View view) {
+        ConstraintLayout loginConstraintLayout = view.findViewById(R.id.loginConstraintLayout);
+        loginConstraintLayout.setOnClickListener(v -> {
+            dialog.cancel();
+            openLoginActivity();
+        });
+        ConstraintLayout notNowConstraintLayout = view.findViewById(R.id.notNowConstraintLayout);
+        notNowConstraintLayout.setOnClickListener(v -> {
+            dialog.cancel();
+        });
+    }
+
+    private void openLoginActivity() {
+        Intent intent = new Intent(ShopDetailsActivity.this, LoginActivity.class);
+        intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
+        startActivity(intent);
     }
 
     private void openNextActivity() {

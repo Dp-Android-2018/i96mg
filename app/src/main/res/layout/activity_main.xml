@@ -3,18 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_bg"
-        tools:context=".view.ui.activity.MainActivity">
+        tools:context=".view.ui.activity.MainActivity"
+        tools:openDrawer="left">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroung_img"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chat_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/toolbar_color_black"
+            android:background="@color/red_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +36,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="17.7sp"
                 android:textStyle="bold"
+                android:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,26 +46,36 @@
                 android:id="@+id/iv_shop_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp29h"
+                android:layout_marginEnd="20dp"
                 android:padding="@dimen/dp9h"
-                android:src="@drawable/ic_shopping_cart"
+                android:src="@drawable/cart"
                 app:layout_constraintBottom_toBottomOf="@+id/main_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/main_title" />
 
-            <TextView
-                android:id="@+id/iv_more_menu"
+            <ImageView
+                android:id="@+id/iv_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp29h"
-                android:text="@string/english"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                android:layout_marginStart="15dp"
                 android:padding="@dimen/dp9h"
-                android:textColor="@android:color/white"
+                android:src="@drawable/ic_menu_24px"
                 app:layout_constraintBottom_toBottomOf="@+id/main_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/main_title" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:padding="@dimen/dp9h"
+                android:src="@drawable/search"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_shop_cart"
+                app:layout_constraintEnd_toStartOf="@+id/iv_shop_cart"
+                app:layout_constraintTop_toTopOf="@+id/iv_shop_cart" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,4 +117,10 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/navigation_view"
+            layout="@layout/navigation_view_layout" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

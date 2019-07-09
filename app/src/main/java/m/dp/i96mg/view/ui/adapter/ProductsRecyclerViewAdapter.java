@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import m.dp.i96mg.R;
@@ -16,10 +17,12 @@ import m.dp.i96mg.view.ui.viewholder.ProductsViewHolder;
 
 
 public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
-    private List<ProductModel> pageImages;
+    private ArrayList<ProductModel> pageImages;
+    private String listType;
 
-    public ProductsRecyclerViewAdapter(List<ProductModel> pageImages) {
+    public ProductsRecyclerViewAdapter(ArrayList<ProductModel> pageImages,String listType) {
         this.pageImages=pageImages;
+        this.listType=listType;
     }
 
 
@@ -32,7 +35,7 @@ public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsVi
 
     @Override
     public void onBindViewHolder(@NonNull ProductsViewHolder holder, int position) {
-        holder.bindClass(pageImages.get(position));
+        holder.bindClass(pageImages.get(position),pageImages,listType);
     }
 
     @Override
@@ -44,7 +47,7 @@ public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsVi
         }
     }
 
-    public void setPageImages(List<ProductModel> pageImages) {
+    public void setPageImages(ArrayList<ProductModel> pageImages) {
         this.pageImages = pageImages;
     }
 }

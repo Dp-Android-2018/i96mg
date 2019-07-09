@@ -1,0 +1,9 @@
+
+Vsquid:S1068"3Remove this unused "customUtilsLazy" private field.(ß™üÝúÿÿÿÿ8­íª»»-
+Gsquid:S1068")Remove this unused "price" private field.(÷ºùÆ8­íª»»-
+Nsquid:S1068"0Remove this unused "productModel" private field.(î¢àë8­íª»»-
+ysquid:S1450"[Remove the "productModel" field and declare it as a local variable in the relevant methods.(î¢àë8­íª»»-
+Qsquid:S1068".Remove this unused "totalprice" private field.(•ýŠ¬ùÿÿÿÿ8Æ°ª»»-
+Osquid:S1068",Remove this unused "quantity" private field.(­ÞÐòþÿÿÿÿ8­íª»»-
+isquid:CommentedOutCodeLine#"<This block of commented-out lines of code should be removed.(ñ¼ž8¹‘Øº¼-
+Rsquid:S1068"4Remove this unused "productModelList" private field.(š™Þ8­íª»»-
