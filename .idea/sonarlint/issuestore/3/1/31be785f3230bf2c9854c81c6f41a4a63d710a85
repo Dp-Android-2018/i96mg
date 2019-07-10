@@ -1,4 +1,4 @@
 
+˜squid:S13192"uThe type of the "pageImages" object should be an interface such as "List" rather than the implementation "ArrayList".(²ÃÆÊúÿÿÿÿ8Òâ‡º»-
 [squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Òâ‡º»-
 “squid:S1319"uThe type of the "pageImages" object should be an interface such as "List" rather than the implementation "ArrayList".(‹–âö8œ›‡º»-
-˜squid:S13192"uThe type of the "pageImages" object should be an interface such as "List" rather than the implementation "ArrayList".(²ÃÆÊúÿÿÿÿ8Òâ‡º»-

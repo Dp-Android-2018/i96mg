@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import kotlin.Lazy;
 import m.dp.i96mg.service.model.request.CheckRequest;
+import m.dp.i96mg.service.model.response.CartResponse;
 import m.dp.i96mg.service.model.response.DataResponse;
 import m.dp.i96mg.service.repository.remotes.ShopDetailsRepository;
 import retrofit2.Response;
@@ -31,6 +32,9 @@ public class ShopDetailsActivityViewModel extends AndroidViewModel {
         return shopDetailsRepositoryLazy.getValue().checkProducts(checkRequest);
     }
 
+    public LiveData<Response<CartResponse>> getCartItems() {
+        return shopDetailsRepositoryLazy.getValue().getCartItems();
+    }
 
     public LiveData<Response<DataResponse>> getData() {
         return data;

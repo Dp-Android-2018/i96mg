@@ -88,6 +88,8 @@ public class SignUpActivity extends BaseActivity {
             gotoThisActivity(MainActivity.class);
         } else if (activityName.equals(ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY)) {
             gotoThisActivity(ShopDetailsActivity.class);
+        }else if (activityName.equals(ConfigurationFile.Constants.PRODUCT_DETAILS_ACTIVITY)) {
+            gotoThisActivity(ProductDetailsActivity.class);
         }
     }
 

@@ -35,22 +35,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- <ImageView
-                 android:id="@+id/iv_shop_cart"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginEnd="20dp"
-                 android:padding="@dimen/dp9h"
-                 android:src="@drawable/cart"
-                 app:layout_constraintBottom_toBottomOf="@+id/main_title"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintTop_toTopOf="@+id/main_title" />-->
-
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="@dimen/dp13w"
                 android:padding="@dimen/dp9h"
                 android:src="@drawable/ic_arrow_back"
                 app:layout_constraintBottom_toBottomOf="@+id/main_title"

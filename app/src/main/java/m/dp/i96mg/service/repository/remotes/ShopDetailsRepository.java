@@ -9,6 +9,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import kotlin.Lazy;
 import m.dp.i96mg.service.model.request.CheckRequest;
+import m.dp.i96mg.service.model.response.CartResponse;
 import m.dp.i96mg.service.model.response.DataResponse;
 import retrofit2.Response;
 
@@ -61,6 +62,35 @@ public class ShopDetailsRepository {
                     @Override
                     public void onNext(Response<Void> voidResponse) {
                         data.setValue(voidResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return data;
+    }
+
+    public LiveData<Response<CartResponse>> getCartItems() {
+        MutableLiveData<Response<CartResponse>> data = new MutableLiveData<>();
+        endPointsLazy.getValue().getCartItems()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<CartResponse>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<CartResponse> cartResponseResponse) {
+                        data.setValue(cartResponseResponse);
                     }
 
                     @Override

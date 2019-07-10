@@ -1,11 +1,17 @@
 package m.dp.i96mg.view.ui.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,8 +30,10 @@ import java.util.Objects;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityProductDetailsBinding;
+import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.ReviewResponseData;
+import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.ProductDetailsResponse;
@@ -54,6 +62,7 @@ public class ProductDetailsActivity extends BaseActivity {
     private List<ProductModel> productModelList;
     private ArrayList<ProductModel> allProducts;
     private float ratingValue;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,17 +171,19 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void initializeAllProductsRecyclerView() {
-        for (int i = 0; i < allProducts.size(); i++) {
-            if (allProducts.get(i) == productModel) {
-                allProducts.remove(productModel);
-                break;
+        if (allProducts != null) {
+            for (int i = 0; i < allProducts.size(); i++) {
+                if (allProducts.get(i) == productModel) {
+                    allProducts.remove(productModel);
+                    break;
+                }
             }
-        }
 
-        ProductsRecyclerViewAdapter productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(allProducts, ConfigurationFile.Constants.DEFAULT_TYPE);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-        binding.rvProducts.setLayoutManager(linearLayoutManager);
-        binding.rvProducts.setAdapter(productsRecyclerViewAdapter);
+            ProductsRecyclerViewAdapter productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(allProducts, ConfigurationFile.Constants.DEFAULT_TYPE);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+            binding.rvProducts.setLayoutManager(linearLayoutManager);
+            binding.rvProducts.setAdapter(productsRecyclerViewAdapter);
+        }
     }
 
     private void getReviews() {
@@ -237,8 +248,48 @@ public class ProductDetailsActivity extends BaseActivity {
 
 
     public void addProductToCart(View view) {
-        addItsDataToSharedPreferences();
-        onBackPressed();
+        if (customUtilsLazy.getValue().getSavedMemberData() == null) {
+            addItsDataToSharedPreferences();
+            showSnackbar("product added to cart successfully");
+//            onBackPressed();
+        } else {
+            addItsDataToSharedPreferences();
+            sendItemToDb();
+//            onBackPressed();
+        }
+
+    }
+
+    private void sendItemToDb() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private CartRequest getCartRequest() {
+        CartRequest cartRequest = new CartRequest();
+        ArrayList<ProductData> items = new ArrayList<>();
+        for (int i = 0; i < customUtilsLazy.getValue().getSavedProductsData().size(); i++) {
+            items.add(new ProductData(customUtilsLazy.getValue().getSavedProductsData().get(i).getId()
+                    , customUtilsLazy.getValue().getSavedProductsData().get(i).getQuantity()));
+
+        }
+        cartRequest.setItems(items);
+        return cartRequest;
     }
 
     private void addItsDataToSharedPreferences() {
@@ -254,11 +305,47 @@ public class ProductDetailsActivity extends BaseActivity {
 
     public void sendReview(View view) {
         if (ValidationUtils.isConnectingToInternet(Objects.requireNonNull(this))) {
-            rateTrip();
+            if (customUtilsLazy.getValue().getSavedMemberData() == null) {
+                showLoginDialog();
+            } else {
+                rateTrip();
+            }
         } else {
             showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
         }
     }
+
+    private void showLoginDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(binding.getRoot().getContext());
+        LayoutInflater factory = LayoutInflater.from(binding.getRoot().getContext());
+        final View view = factory.inflate(R.layout.choose_order_type, null);
+        alertDialog.setView(view);
+        alertDialog.setCancelable(true);
+        dialog = alertDialog.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        makeActionOnChoose(view);
+    }
+
+    private void makeActionOnChoose(View view) {
+        ConstraintLayout loginConstraintLayout = view.findViewById(R.id.loginConstraintLayout);
+        loginConstraintLayout.setOnClickListener(v -> {
+            dialog.cancel();
+            openLoginActivity();
+        });
+        ConstraintLayout notNowConstraintLayout = view.findViewById(R.id.notNowConstraintLayout);
+        notNowConstraintLayout.setOnClickListener(v -> {
+            dialog.cancel();
+        });
+    }
+
+    private void openLoginActivity() {
+        Intent intent = new Intent(ProductDetailsActivity.this, LoginActivity.class);
+        intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, ConfigurationFile.Constants.PRODUCT_DETAILS_ACTIVITY);
+        startActivity(intent);
+        finish();
+    }
+
 
     private void rateTrip() {
         if (ratingValue != 0.0) {

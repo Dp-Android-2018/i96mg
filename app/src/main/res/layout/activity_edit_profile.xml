@@ -46,9 +46,9 @@
 
     <com.joooonho.SelectableRoundedImageView
         android:id="@+id/iv_user"
-        android:layout_width="131dp"
-        android:layout_height="131dp"
-        android:layout_marginTop="17dp"
+        android:layout_width="@dimen/dp118h"
+        android:layout_height="@dimen/dp118h"
+        android:layout_marginTop="@dimen/dp15w"
         android:src="@drawable/image_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/dp39h"
         android:layout_marginStart="@dimen/dp28h"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/dp54h"
         android:layout_marginEnd="@dimen/dp28h"
         android:background="@drawable/edittext_border_yellow"
         android:inputType="text"

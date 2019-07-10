@@ -1,10 +1,10 @@
 
-Ysquid:S1068'"6Remove this unused "onIconCloseClicked" private field.(ïèâ‘ÿÿÿÿÿ8–½•ß¼-
-nsquid:CommentedOutCodeLinez"<This block of commented-out lines of code should be removed.(šëÛóþÿÿÿÿ8–½•ß¼-
-Gsquid:S1068&")Remove this unused "index" private field.(ÕÖó8ªŠÆ½¼-
-isquid:CommentedOutCodeLineL"<This block of commented-out lines of code should be removed.(ÏÅ²¤8ƒç•ß¼-
 usquid:UselessImportCheck
 "JRemove this unused import 'com.google.android.material.snackbar.Snackbar'.(ë„ƒŠ8ªŠÆ½¼-
+Gsquid:S1068&")Remove this unused "index" private field.(ÕÖó8ªŠÆ½¼-
 Ysquid:S1068";Remove this unused "shopRecyclerViewAdapter" private field.(…þ¡¹8ªŠÆ½¼-
 |squid:S1450$"YRemove the "totalprice" field and declare it as a local variable in the relevant methods.(•ýŠ¬ùÿÿÿÿ8Ê·¥’±-
+Ysquid:S1068'"6Remove this unused "onIconCloseClicked" private field.(ïèâ‘ÿÿÿÿÿ8–½•ß¼-
+isquid:CommentedOutCodeLineL"<This block of commented-out lines of code should be removed.(ÏÅ²¤8ƒç•ß¼-
 „squid:S1450'"aRemove the "onIconCloseClicked" field and declare it as a local variable in the relevant methods.(ïèâ‘ÿÿÿÿÿ8–½•ß¼-
+nsquid:CommentedOutCodeLinez"<This block of commented-out lines of code should be removed.(šëÛóþÿÿÿÿ8–½•ß¼-

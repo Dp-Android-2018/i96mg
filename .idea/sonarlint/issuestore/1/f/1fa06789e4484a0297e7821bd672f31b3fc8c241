@@ -1,32 +1,34 @@
 
-\squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8ª¥±°½-
-ssquid:S00116<"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8¦®¹°½-
-Jsquid:S1444A",Make this "public static drawer" field final(Œ÷›á8¦®¹°½-
-Rsquid:S1068p"/Remove this unused "scaleFactor" private field.(åøØ‘ÿÿÿÿÿ8¦®¹°½-
-Jsquid:S1481n",Remove this unused "content" local variable.(§«â±8¦®¹°½-
-Jsquid:S1068?",Remove this unused "position" private field.(íñ8¦®¹°½-
-isquid:CommentedOutCodeLine`"<This block of commented-out lines of code should be removed.(±º‡þ8¦®¹°½-
-Ksquid:S1612Ç",Replace this lambda with a method reference.(µ×çò8¦®¹°½-
-Vsquid:S10683"3Remove this unused "customUtilsLazy" private field.(ß™üÝúÿÿÿÿ8½ë¯½-
-msquid:MaximumInheritanceDepth1"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8Ë€Á—±-
-Tsquid:S2696m"6Make the enclosing method "static" or remove this set.(Ú£Œû8¦®¹°½-
-Ssquid:S1066ð"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8¦®¹°½-
-Lsquid:S1185›"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8¦®¹°½-
-isquid:CommentedOutCodeLineì"<This block of commented-out lines of code should be removed.(«Ÿ78¦®¹°½-
-@squid:S1643Æ"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8´ÈÄ®½-
-‡squid:S1450B"dRemove the "actionBarDrawerToggle" field and declare it as a local variable in the relevant methods.(õ¸Ššûÿÿÿÿ8¦®¹°½-
-jsquid:CommentedOutCodeLine´"<This block of commented-out lines of code should be removed.(§À8¦®¹°½-
-jsquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(§À8¦®¹°½-
-‡"squid:ClassVariableVisibilityCheckA"RMake drawer a static final constant or non-public and provide accessors if needed.(Œ÷›á8¦®¹°½-
-Ksquid:S1185s"(Remove this method to simply inherit it.(‰ëŽßøÿÿÿÿ8¦®¹°½-
-usquid:S1450?"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8¦®¹°½-
-Qsquid:S1659=".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8¦®¹°½-
-Ysquid:S1854n";Remove this useless assignment to local variable "content".(§«â±8¦®¹°½-
-hsquid:CommentedOutCodeLineu"<This block of commented-out lines of code should be removed.(öäµ>8¦®¹°½-
-ysquid:S1450;"[Remove the "rvCategoryId" field and declare it as a local variable in the relevant methods.(¶Ûïû8¦®¹°½-
-Osquid:S1659=",Declare "totalItemCount" on a separate line.(üÆö›ýÿÿÿÿ8¦®¹°½-
-csquid:UnusedPrivateMethodä"1Remove this unused private "openAppAgain" method.(…èòÿÿÿÿÿÿ8¦®¹°½-
-Gsquid:S1148Â"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¦®¹°½-
-jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(§À8¦®¹°½-
-Nsquid:S1066§"/Merge this if statement with the enclosing one.(à—åª8¦®¹°½-
-@squid:S1643Ç"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8¦®¹°½-
+Qsquid:S1659C".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8¦®¹°½-
+Gsquid:S1148º"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8£•ã¸½-
+‡"squid:ClassVariableVisibilityCheckG"RMake drawer a static final constant or non-public and provide accessors if needed.(Œ÷›á8¦®¹°½-
+Nsquid:S1066½"/Merge this if statement with the enclosing one.(à—åª8£•ã¸½-
+|squid:UselessImportCheck("QRemove this unused import 'm.dp.i96mg.service.model.response.CategoriesResponse'.(…—ÙÌ8‰Á±³½-
+qsquid:S00117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½îÙÔ8£•ã¸½-
+hsquid:UselessImportCheck"8Remove this unused import 'androidx.lifecycle.Observer'.(ÒÁˆÉþÿÿÿÿ8‰Á±³½-
+@squid:S1643¿"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8£•ã¸½-
+usquid:S1450E"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8¦®¹°½-
+Ksquid:S1185z"(Remove this method to simply inherit it.(‰ëŽßøÿÿÿÿ8â¿Å²½-
+Ysquid:S1854u";Remove this useless assignment to local variable "content".(§«â±8â¿Å²½-
+isquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(«Ÿ78£•ã¸½-
+ysquid:S1450A"[Remove the "rvCategoryId" field and declare it as a local variable in the relevant methods.(¶Ûïû8¦®¹°½-
+jsquid:CommentedOutCodeLineÑ"<This block of commented-out lines of code should be removed.(§À8£•ã¸½-
+Jsquid:S1481u",Remove this unused "content" local variable.(§«â±8â¿Å²½-
+hsquid:CommentedOutCodeLine|"<This block of commented-out lines of code should be removed.(öäµ>8â¿Å²½-
+Tsquid:S2696t"6Make the enclosing method "static" or remove this set.(Ú£Œû8â¿Å²½-
+Ssquid:S1066†"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8£•ã¸½-
+Jsquid:S1444G",Make this "public static drawer" field final(Œ÷›á8¦®¹°½-
+ssquid:S00116B"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8¦®¹°½-
+jsquid:CommentedOutCodeLineû"<This block of commented-out lines of code should be removed.(µ÷ƒ‘8£•ã¸½-
+jsquid:CommentedOutCodeLineÊ"<This block of commented-out lines of code should be removed.(§À8£•ã¸½-
+Ksquid:S1612ã",Replace this lambda with a method reference.(µ×çò8£•ã¸½-
+Lsquid:S1185±"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8£•ã¸½-
+msquid:MaximumInheritanceDepth7"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8üì…¹½-
+@squid:S1643¾"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ªß¸½-
+Zsquid:UselessImportCheck3"/Remove this unused import 'retrofit2.Response'.(¾éçï8Áêõ·½-
+Osquid:S1659C",Declare "totalItemCount" on a separate line.(üÆö›ýÿÿÿÿ8¦®¹°½-
+Jsquid:S1068E",Remove this unused "position" private field.(íñ8¦®¹°½-
+Rsquid:S1068w"/Remove this unused "scaleFactor" private field.(åøØ‘ÿÿÿÿÿ8â¿Å²½-
+osquid:CommentedOutCodeLineˆ"<This block of commented-out lines of code should be removed.(õ€©Áþÿÿÿÿ8£•ã¸½-
+‡squid:S1450H"dRemove the "actionBarDrawerToggle" field and declare it as a local variable in the relevant methods.(õ¸Ššûÿÿÿÿ8¦®¹°½-
+jsquid:CommentedOutCodeLineÏ"<This block of commented-out lines of code should be removed.(§À8£•ã¸½-

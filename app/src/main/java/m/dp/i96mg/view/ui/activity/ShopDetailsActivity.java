@@ -6,9 +6,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +20,7 @@ import com.gaurav.cdsrecyclerview.CdsItemTouchCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -150,7 +153,7 @@ public class ShopDetailsActivity extends BaseActivity {
             productModelList2.add(index, item);
             customUtilsLazy.getValue().saveProductToPrefs(productModelList2);
             onQuantityChanged.onQuantityChange(true);
-        });
+        }).setActionTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
         mySnackbar.show();
     }
 
@@ -227,6 +230,7 @@ public class ShopDetailsActivity extends BaseActivity {
         Intent intent = new Intent(ShopDetailsActivity.this, LoginActivity.class);
         intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
         startActivity(intent);
+        finish();
     }
 
     private void openNextActivity() {
@@ -324,7 +328,12 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     public void showCodeConstraintLayout(View view) {
-        binding.btnVoucher.setVisibility(View.GONE);
-        binding.constraintLayout2.setVisibility(View.VISIBLE);
+        if (customUtilsLazy.getValue().getSavedMemberData() == null) {
+            showLoginDialog();
+        } else {
+            binding.btnVoucher.setVisibility(View.GONE);
+            binding.constraintLayout2.setVisibility(View.VISIBLE);
+        }
     }
+
 }

@@ -1,17 +1,19 @@
 
-Psquid:S1602Ý",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8”‘ï¼¼-
-wsquid:UselessImportCheck"LRemove this unused import 'com.gaurav.cdsrecyclerview.CdsItemTouchCallback'.(Žî¯§8‹šŽ¾¼-
-@squid:S1643»"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8õôó¼¼-
-rsquid:MaximumInheritanceDepth."=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
-Jsquid:S1612t",Replace this lambda with a method reference.(˜Ï·ü8‹šŽ¾¼-
-\squid:S1155Y">Use isEmpty() to check whether the collection is empty or not.(ºž¡‰8Íµ­Öµ-
-Gsquid:S1148¶"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8õôó¼¼-
-}squid:S14507"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8û¡Êâ³-
-nsquid:CommentedOutCodeLinew"<This block of commented-out lines of code should be removed.(ó…Èøÿÿÿÿ8—ß¼-
-jsquid:CommentedOutCodeLineþ"<This block of commented-out lines of code should be removed.(§À8õôó¼¼-
-@squid:S1643º"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8”‘ï¼¼-
-Jsquid:S1172Å"+Remove this unused method parameter "view".(ÝËîÏ8õôó¼¼-
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(«Ÿ78õôó¼¼-
-Jsquid:S1172í"+Remove this unused method parameter "view".(ÒÙÖ•8õôó¼¼-
-Osquid:S1172"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
-isquid:CommentedOutCodeLineC"<This block of commented-out lines of code should be removed.(îñÇ8Ô›—ß¼-
+wsquid:UselessImportCheck"LRemove this unused import 'com.gaurav.cdsrecyclerview.CdsItemTouchCallback'.(Žî¯§8‹šŽ¾¼-
+Jsquid:S1172ñ"+Remove this unused method parameter "view".(ÒÙÖ•8õôó¼¼-
+nsquid:CommentedOutCodeLiney"<This block of commented-out lines of code should be removed.(ó…Èøÿÿÿÿ8—ß¼-
+Psquid:S1602ß",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8”‘ï¼¼-
+esquid:UselessImportCheck	"5Remove this unused import 'android.widget.ImageView'.(ú¯ëàüÿÿÿÿ8÷“Ö½-
+@squid:S1643¿"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8õôó¼¼-
+}squid:S14509"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8û¡Êâ³-
+jsquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(§À8õôó¼¼-
+dsquid:UselessImportCheck"9Remove this unused import 'com.squareup.picasso.Picasso'.(£œ¿×8÷“Ö½-
+rsquid:MaximumInheritanceDepth0"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
+Jsquid:S1172É"+Remove this unused method parameter "view".(ÝËîÏ8õôó¼¼-
+isquid:CommentedOutCodeLineE"<This block of commented-out lines of code should be removed.(îñÇ8Ô›—ß¼-
+isquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(«Ÿ78õôó¼¼-
+Jsquid:S1612v",Replace this lambda with a method reference.(˜Ï·ü8‹šŽ¾¼-
+Gsquid:S1148º"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8õôó¼¼-
+Osquid:S1172Ÿ"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
+@squid:S1643¾"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8”‘ï¼¼-
+\squid:S1155[">Use isEmpty() to check whether the collection is empty or not.(ºž¡‰8Íµ­Öµ-

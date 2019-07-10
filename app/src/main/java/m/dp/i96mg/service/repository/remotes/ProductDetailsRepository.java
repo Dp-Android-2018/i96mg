@@ -8,6 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import kotlin.Lazy;
+import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
 import m.dp.i96mg.service.model.response.ProductDetailsResponse;
 import m.dp.i96mg.service.model.response.ProductReviewsResponse;
@@ -81,6 +82,35 @@ public class ProductDetailsRepository {
     public LiveData<Response<MessageResponse>> postReview(ReviewRequest reviewRequest) {
         MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
         endPointsLazy.getValue().postReview(reviewRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<MessageResponse>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<MessageResponse> dataResponseResponse) {
+                        data.setValue(dataResponseResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return data;
+    }
+
+    public LiveData<Response<MessageResponse>> addItemsToCart(CartRequest cartRequest) {
+        MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
+        endPointsLazy.getValue().addItemsToCart(cartRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Response<MessageResponse>>() {

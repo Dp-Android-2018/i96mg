@@ -1,3 +1,3 @@
 
-“squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ƒ°šàøÿÿÿÿ8ÆØ®½-
-squid:S1319"oThe type of the "data" object should be an interface such as "List" rather than the implementation "ArrayList".(‰€õ8ÆØ®½-
+˜squid:S1319"uThe type of the "categories" object should be an interface such as "List" rather than the implementation "ArrayList".(“Äïßıÿÿÿÿ8Š“Â·½-
+squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ôûÁ—8Š“Â·½-

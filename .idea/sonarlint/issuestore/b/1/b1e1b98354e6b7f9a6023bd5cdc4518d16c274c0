@@ -1,4 +1,4 @@
 
-Žsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¹Ñ€¬8¯Á–»»-
 €squid:UselessImportCheck"PRemove this unused import 'm.dp.i96mg.service.model.global.VoucherResponssData'.(ó…Í“ýÿÿÿÿ8Ì¼±¹»-
+Žsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¹Ñ€¬8¯Á–»»-
 ’squid:S1319"oThe type of the "data" object should be an interface such as "List" rather than the implementation "ArrayList".(ÀÓ°€ûÿÿÿÿ8³Œ—»»-

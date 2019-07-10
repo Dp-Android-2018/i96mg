@@ -1,12 +1,12 @@
 
-zsquid:UselessImportCheck"JRemove this unused import 'm.dp.i96mg.view.ui.callback.OnQuantityChanged'.(ì…ÝŒøÿÿÿÿ8†®¯»»-
+xsquid:UselessImportCheck"NRemove this unused import 'com.gaurav.cdsrecyclerview.CdsRecyclerViewAdapter'.(ºƒŒW8Ëß´»»-
 ›squid:S1319"}The type of the "reviewResponseData" object should be an interface such as "List" rather than the implementation "ArrayList".(­íœþ8Ù¾¿»»-
 [squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ù¾¿»»-
-|squid:UselessImportCheck"LRemove this unused import 'm.dp.i96mg.databinding.ItemProductLayoutBinding'.(‰Ž´¯ûÿÿÿÿ8ÚÊù¾»-
 xsquid:UselessImportCheck"MRemove this unused import 'm.dp.i96mg.view.ui.viewholder.ProductsViewHolder'.(ýŒÕÑ8Ù¾¿»»-
-tsquid:UselessImportCheck"IRemove this unused import 'm.dp.i96mg.view.ui.viewholder.ShopViewHolder'.(©Äî—8–á£»»-
 rsquid:UselessImportCheck"GRemove this unused import 'm.dp.i96mg.databinding.ItemShopCartBinding'.(ùˆ™Ð8Ù¾¿»»-
+tsquid:UselessImportCheck"IRemove this unused import 'm.dp.i96mg.view.ui.viewholder.ShopViewHolder'.(©Äî—8–á£»»-
 _squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8Ù¾¿»»-
-šsquid:S13199"}The type of the "reviewResponseData" object should be an interface such as "List" rather than the implementation "ArrayList".(°™É&8Ù¾¿»»-
+|squid:UselessImportCheck"LRemove this unused import 'm.dp.i96mg.databinding.ItemProductLayoutBinding'.(‰Ž´¯ûÿÿÿÿ8ÚÊù¾»-
 tsquid:UselessImportCheck"IRemove this unused import 'm.dp.i96mg.service.model.global.ProductModel'.(º€é°8û™Ã»»-
-xsquid:UselessImportCheck"NRemove this unused import 'com.gaurav.cdsrecyclerview.CdsRecyclerViewAdapter'.(ºƒŒW8Ëß´»»-
+zsquid:UselessImportCheck"JRemove this unused import 'm.dp.i96mg.view.ui.callback.OnQuantityChanged'.(ì…ÝŒøÿÿÿÿ8†®¯»»-
+šsquid:S13199"}The type of the "reviewResponseData" object should be an interface such as "List" rather than the implementation "ArrayList".(°™É&8Ù¾¿»»-

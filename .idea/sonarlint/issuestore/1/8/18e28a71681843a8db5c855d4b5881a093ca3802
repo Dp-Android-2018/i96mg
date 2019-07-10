@@ -1,8 +1,8 @@
 
+Jsquid:S1068"",Remove this unused "listType" private field.(Žö¡Ú8†ÉÚ±½-
+isquid:CommentedOutCodeLineO"<This block of commented-out lines of code should be removed.(Ö°æš8ùÜ±½-
 isquid:CommentedOutCodeLine9"<This block of commented-out lines of code should be removed.(Íƒ¶þ8ùÜ±½-
+Xsquid:S1068"5Remove this unused "savedCartProducts" private field.(€ó¶åøÿÿÿÿ8û®€»¼-
+nsquid:CommentedOutCodeLinec"<This block of commented-out lines of code should be removed.(¨£Ð¨ûÿÿÿÿ8ùÜ±½-
 žsquid:S1319-"{The type of the "productModelList" object should be an interface such as "List" rather than the implementation "ArrayList".(ëÍþ½üÿÿÿÿ8ÒÞ†º»-
 usquid:S1450""WRemove the "listType" field and declare it as a local variable in the relevant methods.(Žö¡Ú8ùÜ±½-
-isquid:CommentedOutCodeLineO"<This block of commented-out lines of code should be removed.(Ö°æš8ùÜ±½-
-nsquid:CommentedOutCodeLinec"<This block of commented-out lines of code should be removed.(¨£Ð¨ûÿÿÿÿ8ùÜ±½-
-Xsquid:S1068"5Remove this unused "savedCartProducts" private field.(€ó¶åøÿÿÿÿ8û®€»¼-
-Jsquid:S1068"",Remove this unused "listType" private field.(Žö¡Ú8†ÉÚ±½-

@@ -1,6 +1,5 @@
 package m.dp.i96mg.view.ui.activity;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +16,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,18 +33,22 @@ import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityMainBinding;
 import m.dp.i96mg.service.model.global.CategoriesResponeModel;
+import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.SocialNetworksModel;
-import m.dp.i96mg.service.model.response.CategoriesResponse;
+import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
+import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.GridSpacingItemDecoration;
+import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.CategoriesRecyclerViewAdapter;
 import m.dp.i96mg.view.ui.adapter.ProductsRecyclerViewAdapter;
 import m.dp.i96mg.viewmodel.MainActivityViewModel;
+import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 
@@ -56,6 +58,7 @@ public class MainActivity extends BaseActivity {
 
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     private Lazy<MainActivityViewModel> mainActivityViewModelLazy = inject(MainActivityViewModel.class);
+    private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     ActivityMainBinding binding;
     ProductsRecyclerViewAdapter productsRecyclerViewAdapter;
     private ArrayList<ProductModel> loadedData;
@@ -97,11 +100,48 @@ public class MainActivity extends BaseActivity {
         if (customUtilsLazy.getValue().getSavedMemberData() == null) {
             binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.login));
         } else {
+            ConfigurationFile.Constants.AUTHORIZATION = customUtilsLazy.getValue().getSavedMemberData().getToken();
             binding.navigationView.navigationViewHeaderLayout.tvName.setText(customUtilsLazy.getValue().getSavedMemberData().getFirstName());
             ImageView ivGalleryPhoto = binding.navigationView.navigationViewHeaderLayout.ivUser;
             Picasso.get().load(customUtilsLazy.getValue().getSavedMemberData().getProfilePictureUrl()).into(ivGalleryPhoto);
             binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.logout));
+            if (customUtilsLazy.getValue().getSavedProductsData() != null) {
+                if (!customUtilsLazy.getValue().getSavedProductsData().isEmpty()) {
+                    sendItemToDb();
+                }
+            }
         }
+    }
+
+    private void sendItemToDb() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+//                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private CartRequest getCartRequest() {
+        CartRequest cartRequest = new CartRequest();
+        ArrayList<ProductData> items = new ArrayList<>();
+        for (int i = 0; i < customUtilsLazy.getValue().getSavedProductsData().size(); i++) {
+            items.add(new ProductData(customUtilsLazy.getValue().getSavedProductsData().get(i).getId()
+                    , customUtilsLazy.getValue().getSavedProductsData().get(i).getQuantity()));
+
+        }
+        cartRequest.setItems(items);
+        return cartRequest;
     }
 
     private void setupToolbar() {
@@ -191,7 +231,6 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, ConfigurationFile.Constants.MAIN_ACTIVITY);
         startActivity(intent);
-
     }
 
     private void logout() {
@@ -199,6 +238,8 @@ public class MainActivity extends BaseActivity {
         String languageType = customUtils.getValue().getSavedLanguageType();
         customUtils.getValue().clearSharedPref();
         customUtils.getValue().saveLanguageTypeToPrefs(languageType);
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void initializeViewModel() {

@@ -1,11 +1,14 @@
 package m.dp.i96mg.service.repository.remotes;
 
 import io.reactivex.Observable;
+import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.request.LoginRequest;
 import m.dp.i96mg.service.model.request.OrderRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
 import m.dp.i96mg.service.model.request.SignUpRequest;
+import m.dp.i96mg.service.model.response.CartResponse;
 import m.dp.i96mg.service.model.response.CategoriesResponse;
 import m.dp.i96mg.service.model.response.LoginResponse;
 import m.dp.i96mg.service.model.response.OrderResponse;
@@ -16,6 +19,7 @@ import m.dp.i96mg.service.model.response.DataResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -31,10 +35,6 @@ public interface ApiInterfaces {
     //Products on sale
     @GET("/api/search/sale")
     Observable<Response<ProductsResponse>> getSaleProducts();
-
-    //Get wishlist items
-    @GET("/api/wishlist")
-    Observable<Response<ProductsResponse>> getWishListItems();
 
     //Get a product by its id
     @GET("/api/product/{id}")
@@ -75,5 +75,31 @@ public interface ApiInterfaces {
     //Get settings
     @GET("/api/settings")
     Observable<Response<CategoriesResponse>> getSettings();
+
+    //Add items to the cart
+    @POST("/api/cart")
+    Observable<Response<MessageResponse>> addItemsToCart(@Body CartRequest cartRequest);
+
+    //TODO :: it's body must be changed and be as add items to cart
+    //Add items to the wishlist
+    @POST("/api/wishlist")
+    Observable<Response<MessageResponse>> addItemsToWishList(@Body CartRequest cartRequest);
+
+    //Get cart items
+    @GET("/api/cart")
+    Observable<Response<CartResponse>> getCartItems();
+
+    //Get wishlist items
+    @GET("/api/wishlist")
+    Observable<Response<ProductsResponse>> getWishListItems();
+
+    //Remove an item from the cart
+    @DELETE("/api/cart/{id}")
+    Observable<Response<MessageResponse>> deleteItemFromCart(@Path("id") int productId);
+
+    //Remove an item from the wishlist
+    @DELETE("/api/wishlist/{id}")
+    Observable<Response<MessageResponse>> deleteItemFromWishlist(@Path("id") int productId);
+
 
 }

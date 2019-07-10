@@ -53,8 +53,13 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        setupToolbar();
         activityName = getIntent().getStringExtra(ConfigurationFile.Constants.ACTIVITY_NAME);
         makeActionOnPinText();
+    }
+
+    private void setupToolbar() {
+        binding.ivBack.setOnClickListener(view -> onBackPressed());
     }
 
     public void sendCode(View view) {
@@ -147,6 +152,8 @@ public class LoginActivity extends BaseActivity {
             gotoThisActivity(MainActivity.class);
         } else if (activityName.equals(ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY)) {
             gotoThisActivity(ShopDetailsActivity.class);
+        } else if (activityName.equals(ConfigurationFile.Constants.PRODUCT_DETAILS_ACTIVITY)) {
+            gotoThisActivity(ProductDetailsActivity.class);
         }
     }
 
@@ -158,8 +165,9 @@ public class LoginActivity extends BaseActivity {
 
     private void goToSignUpActivity() {
         Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-        intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, ConfigurationFile.Constants.MAIN_ACTIVITY);
+        intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, activityName);
         startActivity(intent);
+        finish();
     }
 
     private void saveDataToSharedPreferences(LoginResponseModel loginResponseModel) {

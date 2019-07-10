@@ -118,6 +118,7 @@ public class ConfigurationFile {
         public static final String VOUCHER_VALUE = "voucher";
         public static final String ACTIVITY_NAME = "activity name";
         public static final String SHOP_DETAILS_ACTIVITY = "shop activity";
+        public static final String PRODUCT_DETAILS_ACTIVITY = "product activity";
         public static final String MAIN_ACTIVITY = "main activity";
         public static final String GOOGLE_MAPS_PACKAGE_NAME = "com.google.android.apps.maps";
         public static final String GOOGLE_MAPS_URI_DATA = "geo:0,0?q=";
