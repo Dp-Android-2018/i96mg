@@ -30,11 +30,13 @@ import java.util.Objects;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityProductDetailsBinding;
+import m.dp.i96mg.databinding.ItemProductLayoutBinding;
 import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.ReviewResponseData;
 import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
+import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.ProductDetailsResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
@@ -44,6 +46,7 @@ import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ProductsRecyclerViewAdapter;
 import m.dp.i96mg.view.ui.adapter.ReviewsRecyclerViewAdapter;
+import m.dp.i96mg.view.ui.callback.OnItemClickListener;
 import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -63,14 +66,125 @@ public class ProductDetailsActivity extends BaseActivity {
     private ArrayList<ProductModel> allProducts;
     private float ratingValue;
     private AlertDialog dialog;
+    private OnItemClickListener onItemClickListener;
+    private ProductsRecyclerViewAdapter productsRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initializeOnItemClickListener();
         initializeVariables();
         makeActionOnToolbat();
         makeActionOnClickOnQuantityIcons();
         makeActionOnRatingChanged();
+    }
+
+    private void initializeOnItemClickListener() {
+        onItemClickListener = new OnItemClickListener() {
+
+            @Override
+            public void addItemToWishList(int id, ItemProductLayoutBinding binding) {
+                if (isLoggedIn()) {
+                    addItemToWishListDp(id, binding);
+                } else {
+                    showSnackbar(getResources().getString(R.string.please_login));
+                }
+            }
+
+            @Override
+            public void removeItemFromWishList(int id, ItemProductLayoutBinding binding) {
+                if (isLoggedIn()) {
+                    removeItemFromWishListDp(id, binding);
+                } else {
+                    showSnackbar(getResources().getString(R.string.please_login));
+                }
+            }
+
+            @Override
+            public void onDeleteClick(int id) {
+
+            }
+        };
+    }
+
+    private boolean isLoggedIn() {
+        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void removeItemFromWishListDp(int id, ItemProductLayoutBinding binding) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().removeItemFromWishlist(id).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        removeAndShowMessage(id,binding);
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void removeAndShowMessage(int id, ItemProductLayoutBinding binding) {
+        binding.ivFavorite.setImageDrawable(this.binding.getRoot().getResources().getDrawable(R.drawable.heart_empty));
+        for (int i = 0; i < allProducts.size(); i++) {
+            if (allProducts.get(i).getId() == id) {
+                ProductModel productModel = allProducts.get(i);
+                productModel.setInWishlist(false);
+                allProducts.set(i, productModel);
+                break;
+            }
+        }
+        productsRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private void addItemToWishListDp(int id,ItemProductLayoutBinding binding) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().addItemsToWishList(getWishListRequest(id)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        addAndShowMessage(id,binding);
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void addAndShowMessage(int id, ItemProductLayoutBinding binding) {
+        binding.ivFavorite.setImageDrawable(this.binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
+        for (int i = 0; i < allProducts.size(); i++) {
+            if (allProducts.get(i).getId() == id) {
+                ProductModel productModel = allProducts.get(i);
+                productModel.setInWishlist(true);
+                allProducts.set(i, productModel);
+                break;
+            }
+        }
+        productsRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private WishListRequest getWishListRequest(int id) {
+        WishListRequest wishListRequest=new WishListRequest();
+        wishListRequest.setProductId(id);
+        return wishListRequest;
     }
 
     private void makeActionOnRatingChanged() {
@@ -179,7 +293,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 }
             }
 
-            ProductsRecyclerViewAdapter productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(allProducts, ConfigurationFile.Constants.DEFAULT_TYPE);
+            productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(allProducts, ConfigurationFile.Constants.DEFAULT_TYPE, onItemClickListener);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
             binding.rvProducts.setLayoutManager(linearLayoutManager);
             binding.rvProducts.setAdapter(productsRecyclerViewAdapter);

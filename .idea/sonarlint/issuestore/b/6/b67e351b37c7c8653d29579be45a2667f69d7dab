@@ -1,15 +1,17 @@
 
-@squid:S1643ã"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8Éœä¸¼-
-@squid:S1643â"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8²À³¼-
-isquid:CommentedOutCodeLine¿"<This block of commented-out lines of code should be removed.(«Ÿ78Éœä¸¼-
-Gsquid:S1068;")Remove this unused "price" private field.(÷ºùÆ8‘è°³¼-
-dsquid:UnusedPrivateMethodî"7Remove this unused private "checkQuantityValue" method.(ß²Ä­8Éœä¸¼-
-osquid:CommentedOutCodeLineŠ"<This block of commented-out lines of code should be removed.(šÄ¼÷úÿÿÿÿ8Éœä¸¼-
-Psquid:S1602§",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8ŞÁ±Ö½-
-Gsquid:S1148Ş"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Éœä¸¼-
-jsquid:CommentedOutCodeLine™"<This block of commented-out lines of code should be removed.(İ‘×»8Éœä¸¼-
-jsquid:CommentedOutCodeLine½"<This block of commented-out lines of code should be removed.(§À8Éœä¸¼-
-msquid:MaximumInheritanceDepth3"=This class has 10 parents which is greater than 5 authorized.(•õ†8‘è°³¼-
-osquid:CommentedOutCodeLineğ"<This block of commented-out lines of code should be removed.(ş £Úûÿÿÿÿ8Éœä¸¼-
-Osquid:S1172ˆ"+Remove this unused method parameter "view".(îšğÿÿÿÿÿ8Éœä¸¼-
-Osquid:S1172ø"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8Éœä¸¼-
+¤squid:S1186^"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£»‰ˆûÿÿÿÿ8ëÖê¨¿-
+¤squid:S1186T"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¨Ô¸şÿÿÿÿ8ëÖê¨¿-
+Psquid:S1602é",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8û—¦¿-
+@squid:S1643ı"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8û—¦¿-
+jsquid:CommentedOutCodeLine×"<This block of commented-out lines of code should be removed.(§À8û—¦¿-
+dsquid:UnusedPrivateMethodˆ"7Remove this unused private "checkQuantityValue" method.(ß²Ä­8û—¦¿-
+Gsquid:S1148ø"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8û—¦¿-
+@squid:S1643ü"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8û—¦¿-
+Gsquid:S1068?")Remove this unused "price" private field.(÷ºùÆ8‘è°³¼-
+jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(İ‘×»8û—¦¿-
+osquid:CommentedOutCodeLineŠ"<This block of commented-out lines of code should be removed.(ş £Úûÿÿÿÿ8û—¦¿-
+jsquid:CommentedOutCodeLine–"<This block of commented-out lines of code should be removed.(©í²Ë8—áœŞ½-
+jsquid:CommentedOutCodeLineš"<This block of commented-out lines of code should be removed.(©í²Ë8û—¦¿-
+Ÿsquid:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡û â8ë´ì¨¿-
+osquid:CommentedOutCodeLine¤"<This block of commented-out lines of code should be removed.(šÄ¼÷úÿÿÿÿ8û—¦¿-
+isquid:CommentedOutCodeLineÙ"<This block of commented-out lines of code should be removed.(«Ÿ78û—¦¿-

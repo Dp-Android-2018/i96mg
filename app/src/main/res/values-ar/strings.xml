@@ -61,7 +61,7 @@
     <string name="banck_account">bank account</string>
     <string name="there_is_no_items_added_to_the_card_yet">لا توجد عناصر مضافة إلى البطاقة حتى الآن</string>
     <string name="sale">العروض</string>
-    <string name="wish_list">قائمة الأمنيات</string>
+    <string name="wish_list">المفضلة</string>
     <string name="pending_payment_orders">قائمة قيد انتظار الدفع</string>
     <string name="arabic">English</string>
     <string name="orders_list">قائمة الطلبات</string>
@@ -86,4 +86,5 @@
     <string name="password">الرقم السرى</string>
     <string name="whatsapp_number">رقم الواتس اب الخاص بك</string>
     <string name="registration_code">رمز التسجيل</string>
+    <string name="please_login">please login first !</string>
 </resources>

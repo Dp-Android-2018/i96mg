@@ -32,21 +32,23 @@ import java.util.Objects;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityMainBinding;
+import m.dp.i96mg.databinding.ItemProductLayoutBinding;
 import m.dp.i96mg.service.model.global.CategoriesResponeModel;
 import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.SocialNetworksModel;
 import m.dp.i96mg.service.model.request.CartRequest;
+import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.GridSpacingItemDecoration;
-import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.CategoriesRecyclerViewAdapter;
 import m.dp.i96mg.view.ui.adapter.ProductsRecyclerViewAdapter;
+import m.dp.i96mg.view.ui.callback.OnItemClickListener;
 import m.dp.i96mg.viewmodel.MainActivityViewModel;
 import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 import okhttp3.ResponseBody;
@@ -73,6 +75,7 @@ public class MainActivity extends BaseActivity {
     private GridLayoutManager gridLayoutManager;
     public static DrawerLayout drawer;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    OnItemClickListener onItemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,7 @@ public class MainActivity extends BaseActivity {
             categoryId = String.valueOf(rvCategoryId);
         }
         setupToolbar();
+        initializeWishListOnItemClicked();
         initializeDrawerandNavigationView();
         checkIfLoginOrNot();
         makeActionOnMenuItems();
@@ -96,8 +100,109 @@ public class MainActivity extends BaseActivity {
         makeSearch();
     }
 
+    private void initializeWishListOnItemClicked() {
+        onItemClickListener = new OnItemClickListener() {
+
+            @Override
+            public void addItemToWishList(int id, ItemProductLayoutBinding binding) {
+                if (isLoggedIn()) {
+                    addItemToWishListDp(id, binding);
+                } else {
+                    showSnackbar(getResources().getString(R.string.please_login));
+                }
+            }
+
+            @Override
+            public void removeItemFromWishList(int id, ItemProductLayoutBinding binding) {
+                if (isLoggedIn()) {
+                    removeItemFromWishListDp(id, binding);
+                } else {
+                    showSnackbar(getResources().getString(R.string.please_login));
+                }
+            }
+
+            @Override
+            public void onDeleteClick(int id) {
+
+            }
+        };
+    }
+
+    private void removeItemFromWishListDp(int id, ItemProductLayoutBinding binding) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().removeItemFromWishlist(id).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        removeAndShowMessage(id, binding);
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void removeAndShowMessage(int id, ItemProductLayoutBinding binding) {
+        binding.ivFavorite.setImageDrawable(this.binding.getRoot().getResources().getDrawable(R.drawable.heart_empty));
+        for (int i = 0; i < loadedData.size(); i++) {
+            if (loadedData.get(i).getId() == id) {
+                ProductModel productModel = loadedData.get(i);
+                productModel.setInWishlist(false);
+                loadedData.set(i, productModel);
+                break;
+            }
+        }
+        productsRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private void addItemToWishListDp(int id, ItemProductLayoutBinding binding) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().addItemsToWishList(getWishListRequest(id)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+//                    productsRecyclerViewAdapter.notifyDataSetChanged();
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                        addAndShowMessage(id, binding);
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void addAndShowMessage(int id, ItemProductLayoutBinding binding) {
+        binding.ivFavorite.setImageDrawable(this.binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
+        for (int i = 0; i < loadedData.size(); i++) {
+            if (loadedData.get(i).getId() == id) {
+                ProductModel productModel = loadedData.get(i);
+                productModel.setInWishlist(true);
+                loadedData.set(i, productModel);
+                break;
+            }
+        }
+        productsRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private WishListRequest getWishListRequest(int id) {
+        WishListRequest wishListRequest = new WishListRequest();
+        wishListRequest.setProductId(id);
+        return wishListRequest;
+    }
+
     private void checkIfLoginOrNot() {
-        if (customUtilsLazy.getValue().getSavedMemberData() == null) {
+        if (!isLoggedIn()) {
             binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.login));
         } else {
             ConfigurationFile.Constants.AUTHORIZATION = customUtilsLazy.getValue().getSavedMemberData().getToken();
@@ -161,13 +266,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-              /*  float slideX = drawerView.getWidth() * slideOffset;
+                float slideX = drawerView.getWidth() * slideOffset;
                 if (customUtilsLazy.getValue().getSavedLanguageType().equals(ConfigurationFile.Constants.ACCEPT_LANGUAGE_ARABIC)) {
                     content.setTranslationX(-slideX);
                 } else {
                     content.setTranslationX(slideX);
                 }
-                content.setScaleX(1 - (slideOffset / scaleFactor));*/
+//                content.setScaleX(1 - (slideOffset / scaleFactor));
             }
         };
         drawer.setScrimColor(Color.TRANSPARENT);
@@ -185,7 +290,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void openEditProfile() {
-        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+        if (isLoggedIn()) {
             Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
             startActivity(intent);
         }
@@ -220,10 +325,18 @@ public class MainActivity extends BaseActivity {
     }
 
     private void makeLogAction() {
-        if (customUtilsLazy.getValue().getSavedMemberData() == null) {
-            login();
-        } else {
+        if (isLoggedIn()) {
             logout();
+        } else {
+            login();
+        }
+    }
+
+    private boolean isLoggedIn() {
+        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -234,12 +347,13 @@ public class MainActivity extends BaseActivity {
     }
 
     private void logout() {
-        binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.login));
         String languageType = customUtils.getValue().getSavedLanguageType();
         customUtils.getValue().clearSharedPref();
         customUtils.getValue().saveLanguageTypeToPrefs(languageType);
+        ConfigurationFile.Constants.AUTHORIZATION = null;
         Intent intent = new Intent(MainActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void initializeViewModel() {
@@ -264,7 +378,10 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initializeSwipeRefreshLayout() {
-        binding.swipeRefreshLayout.setOnRefreshListener(() -> initializeViewModel());
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            loadedData.clear();
+            initializeViewModel();
+        });
         // Configure the refreshing colors
         binding.swipeRefreshLayout.setColorSchemeResources(
                 android.R.color.darker_gray,
@@ -328,7 +445,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initializeRecyclerViewWithData() {
-        productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(loadedData, ConfigurationFile.Constants.DEFAULT_TYPE);
+        productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(loadedData, ConfigurationFile.Constants.DEFAULT_TYPE, onItemClickListener);
         int spanCount = 2;
         int spacing = 32;
         binding.rvProducts.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, false));

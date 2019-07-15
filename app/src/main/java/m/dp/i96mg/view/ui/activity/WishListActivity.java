@@ -18,16 +18,22 @@ import java.util.Objects;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityWishListBinding;
+import m.dp.i96mg.databinding.ItemProductLayoutBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
+import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.GridSpacingItemDecoration;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ProductsRecyclerViewAdapter;
+import m.dp.i96mg.view.ui.callback.OnItemClickListener;
+import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 import m.dp.i96mg.viewmodel.WishListViewModel;
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
@@ -35,6 +41,7 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 public class WishListActivity extends BaseActivity {
 
     private Lazy<WishListViewModel> wishListViewModelLazy = inject(WishListViewModel.class);
+    private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     ActivityWishListBinding binding;
     private int pageId = ConfigurationFile.Constants.DEFAULT_PAGE_ID;
@@ -45,15 +52,100 @@ public class WishListActivity extends BaseActivity {
     ProductsRecyclerViewAdapter productsRecyclerViewAdapter;
     private ArrayList<ProductModel> loadedData;
     private GridLayoutManager gridLayoutManager;
+    private OnItemClickListener onItemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_wish_list);
+        loadedData = new ArrayList<>();
         setUpToolbar();
+        initializeOnItemClickListener();
         initializeViewModel();
         initializeRecyclerViewWithData();
         initializeSwipeRefreshLayout();
+    }
+
+    private void initializeOnItemClickListener() {
+        onItemClickListener = new OnItemClickListener() {
+
+            @Override
+            public void addItemToWishList(int id, ItemProductLayoutBinding binding) {
+                if (isLoggedIn()) {
+                    addItemToWishListDp(id, binding);
+                } else {
+                    showSnackbar(getResources().getString(R.string.please_login));
+                }
+            }
+
+            @Override
+            public void removeItemFromWishList(int id, ItemProductLayoutBinding binding) {
+                if (isLoggedIn()) {
+                    removeItemFromWishListDp(id, binding);
+                } else {
+                    showSnackbar(getResources().getString(R.string.please_login));
+                }
+            }
+
+            @Override
+            public void onDeleteClick(int id) {
+
+            }
+        };
+    }
+
+    private boolean isLoggedIn() {
+        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void removeItemFromWishListDp(int id, ItemProductLayoutBinding binding) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().removeItemFromWishlist(id).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_empty));
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void addItemToWishListDp(int id, ItemProductLayoutBinding binding) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().addItemsToWishList(getWishListRequest(id)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private WishListRequest getWishListRequest(int id) {
+        WishListRequest wishListRequest = new WishListRequest();
+        wishListRequest.setProductId(id);
+        return wishListRequest;
     }
 
     private void initializeViewModel() {
@@ -73,7 +165,10 @@ public class WishListActivity extends BaseActivity {
     }
 
     private void initializeSwipeRefreshLayout() {
-        binding.swipeRefreshLayout.setOnRefreshListener(() -> initializeViewModel());
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            loadedData.clear();
+            initializeViewModel();
+        });
         // Configure the refreshing colors
         binding.swipeRefreshLayout.setColorSchemeResources(
                 android.R.color.darker_gray,
@@ -105,7 +200,7 @@ public class WishListActivity extends BaseActivity {
             loadedData.add(body.getData().get(i));
         }
         loading = true;
-        if (body.getPageLinks().getNextPageLink() != null) {
+        /*if (body.getPageLinks().getNextPageLink() != null) {
             next_page = body.getPageLinks().getNextPageLink();
         } else {
             next_page = null;
@@ -113,12 +208,12 @@ public class WishListActivity extends BaseActivity {
         if (loadedData.isEmpty() && (next_page != null)) {
             makeRequest();
             observeViewmodel();
-        }
+        }*/
         productsRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     private void initializeRecyclerViewWithData() {
-        productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(loadedData, ConfigurationFile.Constants.WISHLIST_TYPE);
+        productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(loadedData, ConfigurationFile.Constants.WISHLIST_TYPE, onItemClickListener);
         int spanCount = 2;
         int spacing = 32;
         binding.rvProducts.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, false));
@@ -126,7 +221,7 @@ public class WishListActivity extends BaseActivity {
         binding.rvProducts.setLayoutManager(gridLayoutManager);
         productsRecyclerViewAdapter.setPageImages(loadedData);
         binding.rvProducts.setAdapter(productsRecyclerViewAdapter);
-        makeOnScrollOnRecyclerView();
+//        makeOnScrollOnRecyclerView();
     }
 
     private void makeOnScrollOnRecyclerView() {

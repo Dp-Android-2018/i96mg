@@ -9,6 +9,7 @@ public class ConfigurationFile {
     public static class UrlConstants {
 //        public static final String BASE_URL = "http://www.i96mg.com";
         public static final String BASE_URL = "http://151.106.52.107:3030";
+//        public static final String BASE_URL = "http://151.106.13.61:80";
 
     }
 

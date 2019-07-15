@@ -1,19 +1,19 @@
 
-wsquid:UselessImportCheck"LRemove this unused import 'com.gaurav.cdsrecyclerview.CdsItemTouchCallback'.(î¯§8‹š¾¼-
-Jsquid:S1172ñ"+Remove this unused method parameter "view".(ÒÙÖ•8õôó¼¼-
-nsquid:CommentedOutCodeLiney"<This block of commented-out lines of code should be removed.(ó…Èøÿÿÿÿ8—ß¼-
-Psquid:S1602ß",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8”‘ï¼¼-
+isquid:CommentedOutCodeLineF"<This block of commented-out lines of code should be removed.(îñÇ8Ô›—ß¼-
+isquid:CommentedOutCodeLine†"<This block of commented-out lines of code should be removed.(«Ÿ78õôó¼¼-
+Psquid:S1602à",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8”‘ï¼¼-
+rsquid:MaximumInheritanceDepth1"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
+\squid:S1155\">Use isEmpty() to check whether the collection is empty or not.(º¡‰8Íµ­Öµ-
+wsquid:UselessImportCheck"LRemove this unused import 'com.gaurav.cdsrecyclerview.CdsItemTouchCallback'.(î¯§8‹š¾¼-
+}squid:S1450:"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8û¡Êâ³-
+nsquid:CommentedOutCodeLinez"<This block of commented-out lines of code should be removed.(ó…Èøÿÿÿÿ8—ß¼-
+dsquid:UselessImportCheck"9Remove this unused import 'com.squareup.picasso.Picasso'.(£œ¿×8÷“Ö½-
+jsquid:CommentedOutCodeLineƒ"<This block of commented-out lines of code should be removed.(§À8õôó¼¼-
+Jsquid:S1172Ê"+Remove this unused method parameter "view".(İËîÏ8õôó¼¼-
 esquid:UselessImportCheck	"5Remove this unused import 'android.widget.ImageView'.(ú¯ëàüÿÿÿÿ8÷“Ö½-
-@squid:S1643¿"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8õôó¼¼-
-}squid:S14509"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8û¡Êâ³-
-jsquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(§À8õôó¼¼-
-dsquid:UselessImportCheck"9Remove this unused import 'com.squareup.picasso.Picasso'.(£œ¿×8÷“Ö½-
-rsquid:MaximumInheritanceDepth0"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
-Jsquid:S1172É"+Remove this unused method parameter "view".(İËîÏ8õôó¼¼-
-isquid:CommentedOutCodeLineE"<This block of commented-out lines of code should be removed.(îñÇ8Ô›—ß¼-
-isquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(«Ÿ78õôó¼¼-
-Jsquid:S1612v",Replace this lambda with a method reference.(˜Ï·ü8‹š¾¼-
-Gsquid:S1148º"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8õôó¼¼-
-Osquid:S1172Ÿ"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
-@squid:S1643¾"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8”‘ï¼¼-
-\squid:S1155[">Use isEmpty() to check whether the collection is empty or not.(º¡‰8Íµ­Öµ-
+@squid:S1643¿"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8”‘ï¼¼-
+Gsquid:S1148»"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8õôó¼¼-
+Osquid:S1172 "+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
+@squid:S1643À"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8õôó¼¼-
+Jsquid:S1612w",Replace this lambda with a method reference.(˜Ï·ü8‹š¾¼-
+Jsquid:S1172ò"+Remove this unused method parameter "view".(ÒÙÖ•8õôó¼¼-

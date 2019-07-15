@@ -13,16 +13,19 @@ import java.util.List;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ItemProductLayoutBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.view.ui.callback.OnItemClickListener;
 import m.dp.i96mg.view.ui.viewholder.ProductsViewHolder;
 
 
 public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
     private ArrayList<ProductModel> pageImages;
     private String listType;
+    private OnItemClickListener onItemClickListener;
 
-    public ProductsRecyclerViewAdapter(ArrayList<ProductModel> pageImages,String listType) {
+    public ProductsRecyclerViewAdapter(ArrayList<ProductModel> pageImages, String listType, OnItemClickListener onItemClickListener) {
         this.pageImages=pageImages;
         this.listType=listType;
+        this.onItemClickListener=onItemClickListener;
     }
 
 
@@ -35,7 +38,7 @@ public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsVi
 
     @Override
     public void onBindViewHolder(@NonNull ProductsViewHolder holder, int position) {
-        holder.bindClass(pageImages.get(position),pageImages,listType);
+        holder.bindClass(pageImages.get(position),pageImages,listType,onItemClickListener);
     }
 
     @Override

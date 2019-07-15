@@ -15,9 +15,12 @@ import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ItemProductLayoutBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.view.ui.activity.ProductDetailsActivity;
+import m.dp.i96mg.view.ui.callback.OnItemClickListener;
+import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PRODUCTS_LIST;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PRODUCT_ID;
@@ -27,11 +30,13 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 public class ProductsViewHolder extends RecyclerView.ViewHolder {
     ItemProductLayoutBinding binding;
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
+    private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private ArrayList<ProductModel> productModelList;
     private List<ProductModel> savedCartProducts;
     private List<ProductModel> savedFavoriteProducts;
     private ProductModel productModel;
     private String listType;
+    private OnItemClickListener onItemClickListener;
 
     public ProductsViewHolder(ItemProductLayoutBinding itemProductLayoutBinding) {
         super(itemProductLayoutBinding.getRoot());
@@ -42,11 +47,12 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         savedFavoriteProducts = customUtilsLazy.getValue().getFavoriteSavedProductsData();
     }
 
-    public void bindClass(ProductModel productModel, ArrayList<ProductModel> productModelList, String listType) {
+    public void bindClass(ProductModel productModel, ArrayList<ProductModel> productModelList, String listType, OnItemClickListener onItemClickListener) {
         this.productModelList = productModelList;
         this.productModel = productModel;
-        this.listType=listType;
-        if (listType.equals(ConfigurationFile.Constants.WISHLIST_TYPE)){
+        this.onItemClickListener = onItemClickListener;
+        this.listType = listType;
+        if (listType.equals(ConfigurationFile.Constants.WISHLIST_TYPE)) {
             binding.ivFavorite.setVisibility(View.GONE);
         }
         ImageView ivGalleryPhoto = binding.ivProductImage;
@@ -68,23 +74,59 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
             binding.tvDiscountRatio.setVisibility(View.VISIBLE);
             binding.tvDiscountRatio.setText(discountValue);
         }
-        makeFavorite();
+        if (productModel.isInWishlist()) {
+            binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
+        } else {
+            binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_empty));
+        }
+        makeFavorite(productModel);
         makeActionOnClickOnItem();
 
     }
 
-    private void makeFavorite() {
+    private void makeFavorite(ProductModel productModel) {
         binding.ivFavorite.setOnClickListener(view -> {
-            binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
+//            binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
 //                if (binding.ivFavorite.getDrawable() == view.getResources().getDrawable(R.drawable.heart_empty)) {
 //                } else {
 //                    binding.ivFavorite.setImageDrawable(view.getResources().getDrawable(R.drawable.heart_empty));
 //                }
-            addProductToFavoriteList();
+            if (productModel.isInWishlist()) {
+                onItemClickListener.removeItemFromWishList(productModel.getId(), binding);
+            } else {
+                onItemClickListener.addItemToWishList(productModel.getId(), binding);
+            }
         });
     }
 
-    private void addProductToFavoriteList() {
+    /*private void addProductToFavoriteList() {
+        if (ValidationUtils.isConnectingToInternet(binding.getRoot().getContext())) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().addItemsToWishList(getWishListRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }*/
+
+    private WishListRequest getWishListRequest() {
+        WishListRequest wishListRequest = new WishListRequest();
+        wishListRequest.setProductId(productModel.getId());
+        return wishListRequest;
+    }
+
+
+
+    /*private void addProductToFavoriteList() {
         if (savedFavoriteProducts != null) {
             for (int i = 0; i < savedFavoriteProducts.size(); i++) {
                 if (savedFavoriteProducts.get(i).getId() == productModel.getId()) {
@@ -94,7 +136,7 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
             savedFavoriteProducts.add(productModel);
             customUtilsLazy.getValue().saveFavoriteProductToPrefs(savedFavoriteProducts);
         }
-    }
+    }*/
 
     /*private void addToCart() {
         binding.ivAddToCart.setOnClickListener(new View.OnClickListener() {

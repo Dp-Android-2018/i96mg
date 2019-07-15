@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import kotlin.Lazy;
 import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
+import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.ProductDetailsResponse;
 import m.dp.i96mg.service.model.response.ProductReviewsResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
@@ -40,6 +41,14 @@ public class ProductDetailsViewModel extends AndroidViewModel {
 
     public LiveData<Response<MessageResponse>> addItemsToCart(CartRequest cartRequest) {
         return productDetailsRepositoryLazy.getValue().addItemsToCart(cartRequest);
+    }
+
+    public LiveData<Response<MessageResponse>> addItemsToWishList(WishListRequest wishListRequest) {
+        return productDetailsRepositoryLazy.getValue().addItemsToWishList(wishListRequest);
+    }
+
+    public LiveData<Response<MessageResponse>> removeItemFromWishlist(int productId) {
+        return productDetailsRepositoryLazy.getValue().removeItemFromWishlist(productId);
     }
 
 }

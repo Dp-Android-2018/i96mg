@@ -41,9 +41,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     //appCompat dependencies
-    implementation 'com.google.android.material:material:1.1.0-alpha07'
-    implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha06'
+    implementation 'com.google.android.material:material:1.1.0-alpha08'
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta01'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //rxJava dependencies
@@ -52,8 +52,8 @@ dependencies {
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
     implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
     //architecture component dependencies
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha01'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha01'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-alpha02'
 
     //lottie dependency
     implementation 'com.airbnb.android:lottie:2.7.0'

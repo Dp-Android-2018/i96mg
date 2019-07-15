@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers;
 import kotlin.Lazy;
 import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
+import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.ProductDetailsResponse;
 import m.dp.i96mg.service.model.response.ProductReviewsResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
@@ -137,5 +138,61 @@ public class ProductDetailsRepository {
         return data;
     }
 
+    public LiveData<Response<MessageResponse>> addItemsToWishList(WishListRequest wishListRequest) {
+        MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
+        endPointsLazy.getValue().addItemsToWishList(wishListRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<MessageResponse>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(Response<MessageResponse> dataResponseResponse) {
+                        data.setValue(dataResponseResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return data;
+    }
+
+    public LiveData<Response<MessageResponse>> removeItemFromWishlist(int productId) {
+        MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
+        endPointsLazy.getValue().removeItemFromWishlist(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<MessageResponse>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<MessageResponse> dataResponseResponse) {
+                        data.setValue(dataResponseResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return data;
+    }
 }

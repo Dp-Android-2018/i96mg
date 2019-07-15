@@ -1,34 +1,42 @@
 
-Qsquid:S1659C".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8¦®¹°½-
-Gsquid:S1148º"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8£•ã¸½-
-‡"squid:ClassVariableVisibilityCheckG"RMake drawer a static final constant or non-public and provide accessors if needed.(Œ÷›á8¦®¹°½-
-Nsquid:S1066½"/Merge this if statement with the enclosing one.(à—åª8£•ã¸½-
-|squid:UselessImportCheck("QRemove this unused import 'm.dp.i96mg.service.model.response.CategoriesResponse'.(…—ÙÌ8‰Á±³½-
-qsquid:S00117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½îÙÔ8£•ã¸½-
-hsquid:UselessImportCheck"8Remove this unused import 'androidx.lifecycle.Observer'.(ÒÁˆÉşÿÿÿÿ8‰Á±³½-
-@squid:S1643¿"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8£•ã¸½-
-usquid:S1450E"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8¦®¹°½-
-Ksquid:S1185z"(Remove this method to simply inherit it.(‰ëßøÿÿÿÿ8â¿Å²½-
-Ysquid:S1854u";Remove this useless assignment to local variable "content".(§«â±8â¿Å²½-
-isquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(«Ÿ78£•ã¸½-
-ysquid:S1450A"[Remove the "rvCategoryId" field and declare it as a local variable in the relevant methods.(¶Ûïû8¦®¹°½-
-jsquid:CommentedOutCodeLineÑ"<This block of commented-out lines of code should be removed.(§À8£•ã¸½-
-Jsquid:S1481u",Remove this unused "content" local variable.(§«â±8â¿Å²½-
-hsquid:CommentedOutCodeLine|"<This block of commented-out lines of code should be removed.(öäµ>8â¿Å²½-
-Tsquid:S2696t"6Make the enclosing method "static" or remove this set.(Ú£Œû8â¿Å²½-
-Ssquid:S1066†"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8£•ã¸½-
-Jsquid:S1444G",Make this "public static drawer" field final(Œ÷›á8¦®¹°½-
-ssquid:S00116B"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8¦®¹°½-
-jsquid:CommentedOutCodeLineû"<This block of commented-out lines of code should be removed.(µ÷ƒ‘8£•ã¸½-
-jsquid:CommentedOutCodeLineÊ"<This block of commented-out lines of code should be removed.(§À8£•ã¸½-
-Ksquid:S1612ã",Replace this lambda with a method reference.(µ×çò8£•ã¸½-
-Lsquid:S1185±"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8£•ã¸½-
-msquid:MaximumInheritanceDepth7"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8üì…¹½-
-@squid:S1643¾"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8ªß¸½-
-Zsquid:UselessImportCheck3"/Remove this unused import 'retrofit2.Response'.(¾éçï8Áêõ·½-
-Osquid:S1659C",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8¦®¹°½-
-Jsquid:S1068E",Remove this unused "position" private field.(íñ8¦®¹°½-
-Rsquid:S1068w"/Remove this unused "scaleFactor" private field.(åøØ‘ÿÿÿÿÿ8â¿Å²½-
-osquid:CommentedOutCodeLineˆ"<This block of commented-out lines of code should be removed.(õ€©Áşÿÿÿÿ8£•ã¸½-
-‡squid:S1450H"dRemove the "actionBarDrawerToggle" field and declare it as a local variable in the relevant methods.(õ¸Ššûÿÿÿÿ8¦®¹°½-
-jsquid:CommentedOutCodeLineÏ"<This block of commented-out lines of code should be removed.(§À8£•ã¸½-
+Zsquid:S1854é";Remove this useless assignment to local variable "content".(§«â±8¿ÜÆ¨¿-
+isquid:CommentedOutCodeLine™"<This block of commented-out lines of code should be removed.(«Ÿ78¢Ò·¨¿-
+isquid:CommentedOutCodeLineÿ"<This block of commented-out lines of code should be removed.(«Ÿ78¿ÜÆ¨¿-
+ysquid:S1450D"[Remove the "rvCategoryId" field and declare it as a local variable in the relevant methods.(¶Ûïû8¦®¹°½-
+usquid:S1450H"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Ä‹½¨¿-
+Nsquid:S1066º"/Merge this if statement with the enclosing one.(à—åª8¿ÜÆ¨¿-
+jsquid:CommentedOutCodeLineÂ"<This block of commented-out lines of code should be removed.(§À8¿ÜÆ¨¿-
+Ksquid:S1481é",Remove this unused "content" local variable.(§«â±8¿ÜÆ¨¿-
+ssquid:S00116E"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8¦®¹°½-
+jsquid:CommentedOutCodeLineÌ"<This block of commented-out lines of code should be removed.(§À8¿ÜÆ¨¿-
+isquid:CommentedOutCodeLineÄ"<This block of commented-out lines of code should be removed.(«Ÿ78¿ÜÆ¨¿-
+qsquid:S00117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½îÙÔ8¿ÜÆ¨¿-
+msquid:MaximumInheritanceDepth9"=This class has 10 parents which is greater than 5 authorized.(‘Ù±8üì…¹½-
+_squid:S1126´"AReplace this if-then-else statement by a single return statement.( Í¸8¿ÜÆ¨¿-
+jsquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(§À8¢Ò·¨¿-
+Lsquid:S1185®"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8¿ÜÆ¨¿-
+isquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(«Ÿ78èıÓ¨¿-
+Qsquid:S1659F".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8¦®¹°½-
+Ssquid:S1068ë"/Remove this unused "scaleFactor" private field.(åøØ‘ÿÿÿÿÿ8¿ÜÆ¨¿-
+@squid:S1643»"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8¢Ò·¨¿-
+isquid:CommentedOutCodeLineğ"<This block of commented-out lines of code should be removed.(öäµ>8¿ÜÆ¨¿-
+‡"squid:ClassVariableVisibilityCheckJ"RMake drawer a static final constant or non-public and provide accessors if needed.(Œ÷›á8¦®¹°½-
+jsquid:CommentedOutCodeLineÈ"<This block of commented-out lines of code should be removed.(®¸ËÄ8¿ÜÆ¨¿-
+jsquid:CommentedOutCodeLineÎ"<This block of commented-out lines of code should be removed.(§À8¿ÜÆ¨¿-
+Gsquid:S1148·"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¿ÜÆ¨¿-
+osquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(õ€©Áşÿÿÿÿ8¿ÜÆ¨¿-
+jsquid:CommentedOutCodeLineø"<This block of commented-out lines of code should be removed.(µ÷ƒ‘8¿ÜÆ¨¿-
+@squid:S1643¼"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8¿ÜÆ¨¿-
+jsquid:CommentedOutCodeLineÇ"<This block of commented-out lines of code should be removed.(§À8¿ÜÆ¨¿-
+Jsquid:S1068H",Remove this unused "position" private field.(íñ8Ä‹½¨¿-
+Lsquid:S1185î"(Remove this method to simply inherit it.(‰ëßøÿÿÿÿ8¿ÜÆ¨¿-
+Osquid:S1659F",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8¦®¹°½-
+osquid:CommentedOutCodeLine°"<This block of commented-out lines of code should be removed.(˜ò™‚ùÿÿÿÿ8¿ÜÆ¨¿-
+jsquid:CommentedOutCodeLineƒ"<This block of commented-out lines of code should be removed.(§À8èıÓ¨¿-
+Ksquid:S1612à",Replace this lambda with a method reference.(µ×çò8¿ÜÆ¨¿-
+Jsquid:S1444J",Make this "public static drawer" field final(Œ÷›á8¦®¹°½-
+^squid:UnusedPrivateMethodÀ"1Remove this unused private "sendItemToDb" method.(¶•­€8¿ÜÆ¨¿-
+Usquid:S2696è"6Make the enclosing method "static" or remove this set.(Ú£Œû8¿ÜÆ¨¿-
+Ssquid:S1066ƒ"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8¿ÜÆ¨¿-
+¤squid:S1186{"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£»‰ˆûÿÿÿÿ8ïˆ¸¨¿-
+‡squid:S1450K"dRemove the "actionBarDrawerToggle" field and declare it as a local variable in the relevant methods.(õ¸Ššûÿÿÿÿ8¦®¹°½-
