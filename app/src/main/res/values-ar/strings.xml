@@ -87,4 +87,6 @@
     <string name="whatsapp_number">رقم الواتس اب الخاص بك</string>
     <string name="registration_code">رمز التسجيل</string>
     <string name="please_login">please login first !</string>
+    <string name="remove_from_cart">Remove from Cart</string>
+    <string name="swipe_to_remove_items">Swipe to remove items</string>
 </resources>

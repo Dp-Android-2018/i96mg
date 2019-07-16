@@ -29,17 +29,22 @@ import m.dp.i96mg.databinding.ActivityShopDetailsBinding;
 import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.VoucherResponssData;
+import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
+import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ShopRecyclerViewAdapter;
-import m.dp.i96mg.view.ui.callback.OnIconCloseClicked;
+import m.dp.i96mg.view.ui.callback.OnOperationClicked;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
+import m.dp.i96mg.viewmodel.PayCardActivityViewModel;
+import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 import m.dp.i96mg.viewmodel.ShopDetailsActivityViewModel;
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
@@ -49,24 +54,104 @@ public class ShopDetailsActivity extends BaseActivity {
     private List<ProductModel> productModelList;
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     private Lazy<ShopDetailsActivityViewModel> shopDetailsActivityViewModelLazy = inject(ShopDetailsActivityViewModel.class);
+    private Lazy<PayCardActivityViewModel> payCardActivityViewModelLazy = inject(PayCardActivityViewModel.class);
+    private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private float totalPrice;
     private OnQuantityChanged onQuantityChanged;
     private ShopRecyclerViewAdapter shopRecyclerViewAdapter;
-    private ArrayList<ProductData> productData;
     private int index;
     private AlertDialog dialog;
-    private OnIconCloseClicked onIconCloseClicked;
+    private ArrayList<ProductData> productData;
+    private float totalPriceDb;
+    private OnOperationClicked onOperationClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shop_details);
         binding.ivBack.setOnClickListener(v -> onBackPressed());
-        getAndSetTotalPrice();
+        checkToGetandSetProducts();
         initializeOnQuantityChangedListener();
-//        initializeOnItemClicked();
-        initializeRecyclerView();
+        initializeOnOperationClicked();
+//        initializeRecyclerView();
         checkLanguage();
+    }
+
+    private void initializeOnOperationClicked() {
+        onOperationClicked=new OnOperationClicked() {
+            @Override
+            public void plusIconClicked(int position, ProductModel productModel) {
+                sendItemToDb(productModel);
+            }
+
+            @Override
+            public void minusIconClicked(int position, ProductModel productModel) {
+                sendItemToDb(productModel);
+            }
+        };
+    }
+
+    private void sendItemToDb(ProductModel productModel) {
+        if (ValidationUtils.isConnectingToInternet(binding.getRoot().getContext())) {
+            SharedUtils.getInstance().showProgressDialog(binding.getRoot().getContext());
+            productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest(productModel)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    }
+
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private CartRequest getCartRequest(ProductModel productModel) {
+        CartRequest cartRequest = new CartRequest();
+        ArrayList<ProductData> items = new ArrayList<>();
+        items.add(new ProductData(productModel.getId()
+                , productModel.getOrderedQuantity()));
+        cartRequest.setItems(items);
+        return cartRequest;
+    }
+
+    private void checkToGetandSetProducts() {
+        if (isLoggedIn()) {
+            getProductsFromDb();
+        } else {
+            getAndSetTotalPrice();
+            initializeRecyclerView();
+        }
+    }
+
+    private void getProductsFromDb() {
+        SharedUtils.getInstance().showProgressDialog(this);
+        shopDetailsActivityViewModelLazy.getValue().getCartItems().observe(this, cartResponseResponse -> {
+            SharedUtils.getInstance().cancelDialog();
+            if (cartResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                    && ConfigurationFile.Constants.SUCCESS_CODE_TO > cartResponseResponse.code()) {
+                if (cartResponseResponse.body() != null) {
+                    if (!cartResponseResponse.body().getData().isEmpty()) {
+                        productModelList = cartResponseResponse.body().getData();
+                        initializeRecyclerView();
+                        binding.tvTotalPrice.setText(String.valueOf(cartResponseResponse.body().getTotal()));
+                        binding.tvNoData.setVisibility(View.INVISIBLE);
+                        binding.tvSwipe.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.tvNoData.setVisibility(View.VISIBLE);
+                        binding.tvSwipe.setVisibility(View.GONE);
+                        binding.tvTotalPrice.setText(ConfigurationFile.Constants.SPACE);
+                    }
+                }
+            } else {
+                showErrors(cartResponseResponse.errorBody());
+            }
+        });
     }
 
     private void checkLanguage() {
@@ -78,7 +163,13 @@ public class ShopDetailsActivity extends BaseActivity {
     private void initializeOnQuantityChangedListener() {
         onQuantityChanged = b -> {
             if (b) {
-                getAndSetTotalPrice();
+                if (isLoggedIn()) {
+                    getProductsFromDb();
+                } else {
+                    getAndSetTotalPrice();
+                    initializeRecyclerView();
+                }
+//                getAndSetTotalPrice();
             }
         };
     }
@@ -88,6 +179,7 @@ public class ShopDetailsActivity extends BaseActivity {
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
         if (productModelList != null && productModelList.size() != 0) {
             binding.tvNoData.setVisibility(View.INVISIBLE);
+            binding.tvSwipe.setVisibility(View.VISIBLE);
             for (int i = 0; i < productModelList.size(); i++) {
                 if (productModelList.get(i).isHasDiscount()) {
                     totalPrice += productModelList.get(i).getDiscountedPrice() * productModelList.get(i).getOrderedQuantity();
@@ -102,11 +194,12 @@ public class ShopDetailsActivity extends BaseActivity {
             }
         } else {
             binding.tvNoData.setVisibility(View.VISIBLE);
+            binding.tvSwipe.setVisibility(View.GONE);
         }
     }
 
     private void initializeRecyclerView() {
-        shopRecyclerViewAdapter = new ShopRecyclerViewAdapter(this, productModelList, onQuantityChanged, onIconCloseClicked);
+        shopRecyclerViewAdapter = new ShopRecyclerViewAdapter(this, productModelList, onQuantityChanged, onOperationClicked);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rvProducts.setHasFixedSize(true);
         binding.rvProducts.setLayoutManager(linearLayoutManager);
@@ -116,18 +209,34 @@ public class ShopDetailsActivity extends BaseActivity {
         binding.rvProducts.setItemSwipeCompleteListener(position -> getAndDeleteItem(position));
     }
 
-   /* private void initializeOnItemClicked() {
-        onIconCloseClicked = position -> {
-            getAndDeleteItem(position);
-            shopRecyclerViewAdapter.notifyItemRemoved(position);
-            shopRecyclerViewAdapter.notifyDataSetChanged();
-        };
-
-    }*/
-
     private void getAndDeleteItem(int position) {
         ProductModel item = shopRecyclerViewAdapter.getItem(position);
-        removeThisProductFromSharedPreferences(item, position);
+        if (isLoggedIn()) {
+            removeItemFromCartDp(item, position);
+        } else {
+            removeThisProductFromSharedPreferences(item, position);
+        }
+    }
+
+    private void removeItemFromCartDp(ProductModel item, int position) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().removeItemFromCart(item.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                        onQuantityChanged.onQuantityChange(true);
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                    onQuantityChanged.onQuantityChange(true);
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
     }
 
     private void removeThisProductFromSharedPreferences(ProductModel item, int position) {
@@ -156,20 +265,20 @@ public class ShopDetailsActivity extends BaseActivity {
 
     public void goToPayActivity(View view) {
         if (productModelList != null && !productModelList.isEmpty()) {
-            checkProducts();
+            checkIfLoggedInOrNot();
         } else {
             showSnackbarHere(getResources().getString(R.string.please_add_products));
         }
     }
 
-    private void checkProducts() {
+  /*  private void checkProducts() {
         if (ValidationUtils.isConnectingToInternet(this)) {
             SharedUtils.getInstance().showProgressDialog(this);
             shopDetailsActivityViewModelLazy.getValue().checkProducts(getCheckRequest()).observe(this, voucherResponseResponse -> {
                 SharedUtils.getInstance().cancelDialog();
                 if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
-                    checkIfLoggedInOrNot();
+
                 } else {
                     showErrors(voucherResponseResponse.errorBody());
                 }
@@ -189,14 +298,18 @@ public class ShopDetailsActivity extends BaseActivity {
         CheckRequest checkRequest = new CheckRequest();
         checkRequest.setProductsData(productData);
         return checkRequest;
-    }
+    }*/
 
     private void checkIfLoggedInOrNot() {
         if (customUtilsLazy.getValue().getSavedMemberData() != null) {
-            openNextActivity();
+            createOrder();
         } else {
             showLoginDialog();
         }
+    }
+
+    private void createOrder() {
+        //TODO: create order here (payCardActivityViewModelLazy)
     }
 
     private void showLoginDialog() {
@@ -333,4 +446,15 @@ public class ShopDetailsActivity extends BaseActivity {
         }
     }
 
+    private boolean isLoggedIn() {
+        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
+    }
 }

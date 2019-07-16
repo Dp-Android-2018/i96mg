@@ -123,7 +123,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
-                        removeAndShowMessage(id,binding);
+                        removeAndShowMessage(id, binding);
                         showSnackbar(startTripResponseResponse.body().getMessage());
                     }
                 } else {
@@ -148,7 +148,7 @@ public class ProductDetailsActivity extends BaseActivity {
         productsRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    private void addItemToWishListDp(int id,ItemProductLayoutBinding binding) {
+    private void addItemToWishListDp(int id, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
 //            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToWishList(getWishListRequest(id)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
@@ -156,7 +156,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
-                        addAndShowMessage(id,binding);
+                        addAndShowMessage(id, binding);
                         showSnackbar(startTripResponseResponse.body().getMessage());
                     }
                 } else {
@@ -182,7 +182,7 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private WishListRequest getWishListRequest(int id) {
-        WishListRequest wishListRequest=new WishListRequest();
+        WishListRequest wishListRequest = new WishListRequest();
         wishListRequest.setProductId(id);
         return wishListRequest;
     }
@@ -230,18 +230,15 @@ public class ProductDetailsActivity extends BaseActivity {
     private void getProductDetail() {
         if (ValidationUtils.isConnectingToInternet(this)) {
             SharedUtils.getInstance().showProgressDialog(this);
-            productDetailsViewModelLazy.getValue().getProductById(productId).observe(this, new Observer<Response<ProductDetailsResponse>>() {
-                @Override
-                public void onChanged(Response<ProductDetailsResponse> productDetailsResponseResponse) {
-                    SharedUtils.getInstance().cancelDialog();
-                    if (productDetailsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
-                            && ConfigurationFile.Constants.SUCCESS_CODE_TO > productDetailsResponseResponse.code()) {
-                        if (productDetailsResponseResponse.body() != null) {
-                            initializeUiWithData(productDetailsResponseResponse.body().getData());
-                        }
-                    } else {
-                        showErrors(productDetailsResponseResponse.errorBody());
+            productDetailsViewModelLazy.getValue().getProductById(productId).observe(this, productDetailsResponseResponse -> {
+                SharedUtils.getInstance().cancelDialog();
+                if (productDetailsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > productDetailsResponseResponse.code()) {
+                    if (productDetailsResponseResponse.body() != null) {
+                        initializeUiWithData(productDetailsResponseResponse.body().getData());
                     }
+                } else {
+                    showErrors(productDetailsResponseResponse.errorBody());
                 }
             });
         } else {
@@ -253,21 +250,23 @@ public class ProductDetailsActivity extends BaseActivity {
     private void initializeUiWithData(ProductModel productModel) {
 //        checkQuantityValue();
         this.productModel = productModel;
-        if (productModelList != null) {
-            for (int i = 0; i < productModelList.size(); i++) {
-                if (productModelList.get(i).getId() == productModel.getId()) {
-                    binding.tvQuantityNum.setText(String.valueOf(productModelList.get(i).getOrderedQuantity()));
-                    quantity = productModelList.get(i).getOrderedQuantity();
-                }
-            }
-            ImageView ivGalleryPhoto = binding.ivProductImage;
-            Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
-            binding.tvName.setText(productModel.getName());
-            binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
-            binding.tvDescribtion.setText(String.valueOf(productModel.getDescription()));
-            binding.ratingBar.setRating(productModel.getRating());
-            /*  if (productModel.isHasDiscount()) {
-             *//*  binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
+        ImageView ivGalleryPhoto = binding.ivProductImage;
+        Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
+        binding.tvQuantityNum.setText(String.valueOf(productModel.getOrderedQuantity()));
+        quantity = productModel.getOrderedQuantity();
+        binding.tvName.setText(productModel.getName());
+        binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
+        binding.tvDescribtion.setText(String.valueOf(productModel.getDescription()));
+        binding.ratingBar.setRating(productModel.getRating());
+        if (productModel.isInCart()) {
+            binding.quantityConstraint.setVisibility(View.GONE);
+            binding.tvAddToCart.setText(getResources().getString(R.string.remove_from_cart));
+        } else {
+            binding.quantityConstraint.setVisibility(View.VISIBLE);
+            binding.tvAddToCart.setText(getResources().getString(R.string.add_to_cart));
+        }
+        /*  if (productModel.isHasDiscount()) {
+         *//*  binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
                 binding.tvDiscountedPrice.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 binding.tvSr.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 binding.tvDiscountedPrice.setTextColor(Color.GRAY);
@@ -281,7 +280,6 @@ public class ProductDetailsActivity extends BaseActivity {
                 binding.tvDiscountRatio.setVisibility(View.VISIBLE);
                 binding.tvDiscountRatio.setText(discountValue);
             }*/
-        }
     }
 
     private void initializeAllProductsRecyclerView() {
@@ -362,16 +360,48 @@ public class ProductDetailsActivity extends BaseActivity {
 
 
     public void addProductToCart(View view) {
-        if (customUtilsLazy.getValue().getSavedMemberData() == null) {
-            addItsDataToSharedPreferences();
-            showSnackbar("product added to cart successfully");
+        if (productModel.isInCart()) {
+            removeItemFromCartDp();
+        } else {
+            addToCart();
+        }
+    }
+
+    private void removeItemFromCartDp() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().removeItemFromCart(productModel.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    if (startTripResponseResponse.body() != null) {
+                        showSnackbar(startTripResponseResponse.body().getMessage());
+                        ProductModel productModel2 = productModel;
+                        productModel2.setInCart(false);
+                        initializeUiWithData(productModel2);
+                    }
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void addToCart() {
+        if (isLoggedIn()) {
+//            addItsDataToSharedPreferences();
+            sendItemToDb();
 //            onBackPressed();
         } else {
             addItsDataToSharedPreferences();
-            sendItemToDb();
+            showSnackbar("product added to cart successfully");
+            ProductModel productModel2 = productModel;
+            productModel2.setInCart(true);
+            initializeUiWithData(productModel2);
 //            onBackPressed();
         }
-
     }
 
     private void sendItemToDb() {
@@ -383,6 +413,9 @@ public class ProductDetailsActivity extends BaseActivity {
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
                         showSnackbar(startTripResponseResponse.body().getMessage());
+                        ProductModel productModel2 = productModel;
+                        productModel2.setInCart(true);
+                        initializeUiWithData(productModel2);
                     }
 
                 } else {
@@ -395,13 +428,11 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private CartRequest getCartRequest() {
+        productModel.setOrderedQuantity(quantity);
         CartRequest cartRequest = new CartRequest();
         ArrayList<ProductData> items = new ArrayList<>();
-        for (int i = 0; i < customUtilsLazy.getValue().getSavedProductsData().size(); i++) {
-            items.add(new ProductData(customUtilsLazy.getValue().getSavedProductsData().get(i).getId()
-                    , customUtilsLazy.getValue().getSavedProductsData().get(i).getQuantity()));
-
-        }
+        items.add(new ProductData(productModel.getId()
+                , productModel.getOrderedQuantity()));
         cartRequest.setItems(items);
         return cartRequest;
     }

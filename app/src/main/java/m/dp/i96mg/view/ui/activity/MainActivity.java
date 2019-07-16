@@ -34,10 +34,8 @@ import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityMainBinding;
 import m.dp.i96mg.databinding.ItemProductLayoutBinding;
 import m.dp.i96mg.service.model.global.CategoriesResponeModel;
-import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.SocialNetworksModel;
-import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
@@ -205,20 +203,22 @@ public class MainActivity extends BaseActivity {
         if (!isLoggedIn()) {
             binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.login));
         } else {
+            binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.logout));
             ConfigurationFile.Constants.AUTHORIZATION = customUtilsLazy.getValue().getSavedMemberData().getToken();
-            binding.navigationView.navigationViewHeaderLayout.tvName.setText(customUtilsLazy.getValue().getSavedMemberData().getFirstName());
+            String name = customUtilsLazy.getValue().getSavedMemberData().getFirstName()
+                    + ConfigurationFile.Constants.SPACE + customUtilsLazy.getValue().getSavedMemberData().getLastName();
+            binding.navigationView.navigationViewHeaderLayout.tvName.setText(name);
             ImageView ivGalleryPhoto = binding.navigationView.navigationViewHeaderLayout.ivUser;
             Picasso.get().load(customUtilsLazy.getValue().getSavedMemberData().getProfilePictureUrl()).into(ivGalleryPhoto);
-            binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.logout));
-            if (customUtilsLazy.getValue().getSavedProductsData() != null) {
+            /*if (customUtilsLazy.getValue().getSavedProductsData() != null) {
                 if (!customUtilsLazy.getValue().getSavedProductsData().isEmpty()) {
                     sendItemToDb();
                 }
-            }
+            }*/
         }
     }
 
-    private void sendItemToDb() {
+/*    private void sendItemToDb() {
         if (ValidationUtils.isConnectingToInternet(this)) {
 //            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
@@ -247,7 +247,7 @@ public class MainActivity extends BaseActivity {
         }
         cartRequest.setItems(items);
         return cartRequest;
-    }
+    }*/
 
     private void setupToolbar() {
         binding.ivShopCart.setOnClickListener(v -> {

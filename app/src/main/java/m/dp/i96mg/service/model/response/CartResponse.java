@@ -4,20 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-import m.dp.i96mg.service.model.global.CartResponseModel;
+import m.dp.i96mg.service.model.global.ProductModel;
 
 public class CartResponse {
     @SerializedName("data")
-    private ArrayList<CartResponseModel> data;
+    private ArrayList<ProductModel> data;
 
     @SerializedName("total")
     private float total;
 
-    public ArrayList<CartResponseModel> getData() {
+    public ArrayList<ProductModel> getData() {
         return data;
     }
 
-    public void setData(ArrayList<CartResponseModel> data) {
+    public void setData(ArrayList<ProductModel> data) {
         this.data = data;
     }
 

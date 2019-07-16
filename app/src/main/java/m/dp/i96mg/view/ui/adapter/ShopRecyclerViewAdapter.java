@@ -14,7 +14,7 @@ import java.util.List;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ItemShopCartBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
-import m.dp.i96mg.view.ui.callback.OnIconCloseClicked;
+import m.dp.i96mg.view.ui.callback.OnOperationClicked;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
 import m.dp.i96mg.view.ui.viewholder.ShopViewHolder;
 
@@ -22,13 +22,13 @@ import m.dp.i96mg.view.ui.viewholder.ShopViewHolder;
 public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel,ShopViewHolder> {
     private List<ProductModel> pageImages;
     private OnQuantityChanged onQuantityChanged;
-    private OnIconCloseClicked onIconCloseClicked;
+    private OnOperationClicked onOperationClicked;
 
-    public ShopRecyclerViewAdapter(Context context, List<ProductModel> pageImages, OnQuantityChanged onQuantityChanged, OnIconCloseClicked onIconCloseClicked) {
+    public ShopRecyclerViewAdapter(Context context, List<ProductModel> pageImages, OnQuantityChanged onQuantityChanged, OnOperationClicked onOperationClicked) {
         super(context,pageImages);
         this.pageImages=pageImages;
         this.onQuantityChanged=onQuantityChanged;
-        this.onIconCloseClicked=onIconCloseClicked;
+        this.onOperationClicked = onOperationClicked;
     }
 
 
@@ -41,7 +41,7 @@ public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel
 
     @Override
     public void bindHolder(ShopViewHolder holder, int position) {
-        holder.bindClass(pageImages.get(position),onQuantityChanged,onIconCloseClicked);
+        holder.bindClass(pageImages.get(position),onQuantityChanged, onOperationClicked);
     }
 
     @Override

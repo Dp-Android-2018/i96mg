@@ -39,7 +39,6 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 
 public class WishListActivity extends BaseActivity {
-
     private Lazy<WishListViewModel> wishListViewModelLazy = inject(WishListViewModel.class);
     private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);

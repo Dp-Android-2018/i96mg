@@ -6,6 +6,7 @@ import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.request.LoginRequest;
 import m.dp.i96mg.service.model.request.OrderRequest;
+import m.dp.i96mg.service.model.request.ProductsOrderRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
 import m.dp.i96mg.service.model.request.SignUpRequest;
 import m.dp.i96mg.service.model.request.WishListRequest;
@@ -51,7 +52,7 @@ public interface ApiInterfaces {
 
     //Create an order
     @POST("/api/order")
-    Observable<Response<OrderResponse>> createOrder(@Body OrderRequest orderRequest);
+    Observable<Response<MessageResponse>> createOrder(@Body ProductsOrderRequest productsOrderRequest);
 
     //Get voucher data
     @GET("/api/voucher")

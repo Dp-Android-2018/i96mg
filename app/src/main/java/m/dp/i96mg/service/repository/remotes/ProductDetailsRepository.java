@@ -138,6 +138,35 @@ public class ProductDetailsRepository {
         return data;
     }
 
+    public LiveData<Response<MessageResponse>> removeItemFromCart(int productId) {
+        MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
+        endPointsLazy.getValue().removeItemFromCart(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<MessageResponse>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<MessageResponse> dataResponseResponse) {
+                        data.setValue(dataResponseResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        return data;
+    }
+
     public LiveData<Response<MessageResponse>> addItemsToWishList(WishListRequest wishListRequest) {
         MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
         endPointsLazy.getValue().addItemsToWishList(wishListRequest)

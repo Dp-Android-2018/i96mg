@@ -180,7 +180,7 @@ public class PayCardActivity extends BaseActivity {
                 && !binding.etCardHolderName.getText().toString().isEmpty()
         ) {
             setOrderRequestData();
-            makeOrderRequest();
+//            makeOrderRequest();
         } else {
             showTheirErrors();
         }
@@ -225,7 +225,7 @@ public class PayCardActivity extends BaseActivity {
 
     }
 
-    private void makeOrderRequest() {
+   /* private void makeOrderRequest() {
         if (ValidationUtils.isConnectingToInternet(this)) {
 //            SharedUtils.getInstance().showProgressDialog(this);
             payCardActivityViewModelLazy.getValue().createOrder(orderRequest);
@@ -243,7 +243,7 @@ public class PayCardActivity extends BaseActivity {
         } else {
             showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
         }
-    }
+    }*/
 
     private void makeActionOnType(OrderResponse body) {
         switch (type) {

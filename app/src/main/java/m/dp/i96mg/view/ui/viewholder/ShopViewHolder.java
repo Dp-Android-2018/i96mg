@@ -8,19 +8,32 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ItemShopCartBinding;
+import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.request.CartRequest;
+import m.dp.i96mg.service.model.response.ErrorResponse;
+import m.dp.i96mg.service.model.response.MessageResponse;
+import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
+import m.dp.i96mg.utility.utils.SharedUtils;
+import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ShopRecyclerViewAdapter;
-import m.dp.i96mg.view.ui.callback.OnIconCloseClicked;
+import m.dp.i96mg.view.ui.callback.OnOperationClicked;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
+import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
@@ -28,6 +41,7 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 public class ShopViewHolder extends RecyclerView.ViewHolder {
     ItemShopCartBinding binding;
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
+    private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private ShopRecyclerViewAdapter shopRecyclerViewAdapter;
     private ProductModel productModel;
     private List<ProductModel> productModelList;
@@ -36,17 +50,17 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
     private float totalprice;
     private OnQuantityChanged onQuantityChanged;
     private int index;
-    private OnIconCloseClicked onIconCloseClicked;
+    private OnOperationClicked onOperationClicked;
 
     public ShopViewHolder(ItemShopCartBinding itemProductLayoutBinding) {
         super(itemProductLayoutBinding.getRoot());
         this.binding = itemProductLayoutBinding;
     }
 
-    public void bindClass(ProductModel productModel, OnQuantityChanged onQuantityChanged, OnIconCloseClicked onIconCloseClicked) {
+    public void bindClass(ProductModel productModel, OnQuantityChanged onQuantityChanged, OnOperationClicked onOperationClicked) {
         this.productModel = productModel;
         this.onQuantityChanged = onQuantityChanged;
-        this.onIconCloseClicked=onIconCloseClicked;
+        this.onOperationClicked = onOperationClicked;
         productModelList = new ArrayList<>();
         ImageView ivGalleryPhoto = binding.ivProductImage;
         Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
@@ -88,7 +102,11 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
                     price = productModel.getOriginalPrice() * quantity;
                 }
                 binding.tvTotalPrice.setText(String.valueOf(price));
-                addThisProductToSharedPreferences();
+                if (isLoggedIn()) {
+                    onOperationClicked.plusIconClicked(getAdapterPosition(),productModel);
+                } else {
+                    addThisProductToSharedPreferences();
+                }
             }
         });
 
@@ -103,31 +121,44 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
                     price = productModel.getOriginalPrice() * quantity;
                 }
                 binding.tvTotalPrice.setText(String.valueOf(price));
-                addThisProductToSharedPreferences();
+                if (isLoggedIn()) {
+                    onOperationClicked.minusIconClicked(getAdapterPosition(),productModel);
+                } else {
+                    addThisProductToSharedPreferences();
+                }
             }
         });
     }
 
     private void addThisProductToSharedPreferences() {
-        for (int i = 0; i < productModelList.size(); i++) {
-            if (productModelList.get(i).getId() == productModel.getId()) {
-                productModelList.remove(i);
+
+            for (int i = 0; i < productModelList.size(); i++) {
+                if (productModelList.get(i).getId() == productModel.getId()) {
+                    productModelList.remove(i);
+                }
             }
-        }
-        productModelList.add(productModel);
-        customUtilsLazy.getValue().saveProductToPrefs(productModelList);
-        onQuantityChanged.onQuantityChange(true);
+            productModelList.add(productModel);
+            customUtilsLazy.getValue().saveProductToPrefs(productModelList);
+            onQuantityChanged.onQuantityChange(true);
     }
 
    /* private void getAndDeleteItem() {
         binding.ivRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onIconCloseClicked.itemClicked(getAdapterPosition());
+                onOperationClicked.itemClicked(getAdapterPosition());
 //                removeThisProductFromSharedPreferences(productModel, getAdapterPosition());
             }
         });
 
     }*/
+
+    private boolean isLoggedIn() {
+        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

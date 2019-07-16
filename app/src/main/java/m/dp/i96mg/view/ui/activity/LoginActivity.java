@@ -3,6 +3,7 @@ package m.dp.i96mg.view.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -21,11 +22,16 @@ import com.poovam.pinedittextfield.SquarePinField;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityLoginBinding;
 import m.dp.i96mg.service.model.global.LoginResponseModel;
+import m.dp.i96mg.service.model.global.ProductData;
+import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.LoginRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.LoginResponse;
@@ -35,6 +41,7 @@ import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.viewmodel.LoginViewModel;
+import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 
@@ -43,6 +50,7 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 public class LoginActivity extends BaseActivity {
 
     private Lazy<LoginViewModel> loginViewModelLazy = inject(LoginViewModel.class);
+    private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     ActivityLoginBinding binding;
     private String email;
@@ -140,11 +148,55 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void openNextActivity() {
+        ConfigurationFile.Constants.AUTHORIZATION = customUtilsLazy.getValue().getSavedMemberData().getToken();
+        if (customUtilsLazy.getValue().getSavedProductsData() != null) {
+            if (!customUtilsLazy.getValue().getSavedProductsData().isEmpty()) {
+                sendCartToDb();
+            }
+        }
+    }
+
+    private void sendCartToDb() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
+//                SharedUtils.getInstance().cancelDialog();
+                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
+                    List<ProductModel> productModels = customUtilsLazy.getValue().getSavedProductsData();
+                    productModels.clear();
+                    customUtilsLazy.getValue().saveProductToPrefs(productModels);
+//                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    openActivity();
+                } else {
+                    showErrors(startTripResponseResponse.errorBody());
+                    new Handler().postDelayed(() -> openActivity(), 1000);
+
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void openActivity() {
         if (customUtilsLazy.getValue().getSavedMemberData().isCompletedRegistration()) {
             gotoYourActivity();
         } else {
             goToSignUpActivity();
         }
+    }
+
+    private CartRequest getCartRequest() {
+        CartRequest cartRequest = new CartRequest();
+        ArrayList<ProductData> items = new ArrayList<>();
+        for (int i = 0; i < customUtilsLazy.getValue().getSavedProductsData().size(); i++) {
+            items.add(new ProductData(customUtilsLazy.getValue().getSavedProductsData().get(i).getId()
+                    , customUtilsLazy.getValue().getSavedProductsData().get(i).getQuantity()));
+
+        }
+        cartRequest.setItems(items);
+        return cartRequest;
     }
 
     private void gotoYourActivity() {
@@ -200,5 +252,9 @@ public class LoginActivity extends BaseActivity {
 
     public void resendCode(View view) {
 
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
     }
 }

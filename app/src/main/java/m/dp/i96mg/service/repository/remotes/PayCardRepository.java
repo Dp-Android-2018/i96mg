@@ -8,9 +8,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import kotlin.Lazy;
-import m.dp.i96mg.service.model.request.OrderRequest;
-import m.dp.i96mg.service.model.response.CartResponse;
-import m.dp.i96mg.service.model.response.OrderResponse;
+import m.dp.i96mg.service.model.request.ProductsOrderRequest;
+import m.dp.i96mg.service.model.response.MessageResponse;
 import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
@@ -19,20 +18,20 @@ public class PayCardRepository {
 
     private Lazy<ApiInterfaces> endPointsLazy = inject(ApiInterfaces.class);
 
-    public LiveData<Response<OrderResponse>> createOrder(OrderRequest orderRequest) {
-        MutableLiveData<Response<OrderResponse>> data = new MutableLiveData<>();
-        endPointsLazy.getValue().createOrder(orderRequest)
+    public LiveData<Response<MessageResponse>> createOrder(ProductsOrderRequest productsOrderRequest) {
+        MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
+        endPointsLazy.getValue().createOrder(productsOrderRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<OrderResponse>>() {
+                .subscribe(new Observer<Response<MessageResponse>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Response<OrderResponse> orderResponseResponse) {
-                        data.setValue(orderResponseResponse);
+                    public void onNext(Response<MessageResponse> messageResponseResponse) {
+                        data.setValue(messageResponseResponse);
                     }
 
                     @Override

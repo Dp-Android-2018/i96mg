@@ -53,7 +53,7 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         this.onItemClickListener = onItemClickListener;
         this.listType = listType;
         if (listType.equals(ConfigurationFile.Constants.WISHLIST_TYPE)) {
-            binding.ivFavorite.setVisibility(View.GONE);
+            binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
         }
         ImageView ivGalleryPhoto = binding.ivProductImage;
         Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);

@@ -43,6 +43,10 @@ public class ProductDetailsViewModel extends AndroidViewModel {
         return productDetailsRepositoryLazy.getValue().addItemsToCart(cartRequest);
     }
 
+    public LiveData<Response<MessageResponse>> removeItemFromCart(int productId) {
+        return productDetailsRepositoryLazy.getValue().removeItemFromCart(productId);
+    }
+
     public LiveData<Response<MessageResponse>> addItemsToWishList(WishListRequest wishListRequest) {
         return productDetailsRepositoryLazy.getValue().addItemsToWishList(wishListRequest);
     }

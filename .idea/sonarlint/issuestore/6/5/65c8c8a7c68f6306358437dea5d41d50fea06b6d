@@ -1,19 +1,16 @@
 
-isquid:CommentedOutCodeLineF"<This block of commented-out lines of code should be removed.(îñÇ8Ô›—ß¼-
-isquid:CommentedOutCodeLine†"<This block of commented-out lines of code should be removed.(«Ÿ78õôó¼¼-
-Psquid:S1602à",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8”‘ï¼¼-
-rsquid:MaximumInheritanceDepth1"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
-\squid:S1155\">Use isEmpty() to check whether the collection is empty or not.(ºž¡‰8Íµ­Öµ-
-wsquid:UselessImportCheck"LRemove this unused import 'com.gaurav.cdsrecyclerview.CdsItemTouchCallback'.(Žî¯§8‹šŽ¾¼-
-}squid:S1450:"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8û¡Êâ³-
-nsquid:CommentedOutCodeLinez"<This block of commented-out lines of code should be removed.(ó…Èøÿÿÿÿ8—ß¼-
-dsquid:UselessImportCheck"9Remove this unused import 'com.squareup.picasso.Picasso'.(£œ¿×8÷“Ö½-
-jsquid:CommentedOutCodeLineƒ"<This block of commented-out lines of code should be removed.(§À8õôó¼¼-
-Jsquid:S1172Ê"+Remove this unused method parameter "view".(ÝËîÏ8õôó¼¼-
-esquid:UselessImportCheck	"5Remove this unused import 'android.widget.ImageView'.(ú¯ëàüÿÿÿÿ8÷“Ö½-
-@squid:S1643¿"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8”‘ï¼¼-
-Gsquid:S1148»"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8õôó¼¼-
-Osquid:S1172 "+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
-@squid:S1643À"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8õôó¼¼-
-Jsquid:S1612w",Replace this lambda with a method reference.(˜Ï·ü8‹šŽ¾¼-
-Jsquid:S1172ò"+Remove this unused method parameter "view".(ÒÙÖ•8õôó¼¼-
+Psquid:S1602Ý",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8”‘ï¼¼-
+nsquid:CommentedOutCodeLinew"<This block of commented-out lines of code should be removed.(ó…Èøÿÿÿÿ8—ß¼-
+jsquid:CommentedOutCodeLine€"<This block of commented-out lines of code should be removed.(§À8õôó¼¼-
+rsquid:MaximumInheritanceDepth."=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8µ¡ºˆ´-
+}squid:S14507"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8û¡Êâ³-
+Jsquid:S1612t",Replace this lambda with a method reference.(˜Ï·ü8‹šŽ¾¼-
+@squid:S1643½"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8õôó¼¼-
+\squid:S1155Y">Use isEmpty() to check whether the collection is empty or not.(ºž¡‰8Íµ­Öµ-
+Jsquid:S1172Ç"+Remove this unused method parameter "view".(ÝËîÏ8õôó¼¼-
+@squid:S1643¼"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8”‘ï¼¼-
+isquid:CommentedOutCodeLineC"<This block of commented-out lines of code should be removed.(îñÇ8Ô›—ß¼-
+Gsquid:S1148¸"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8õôó¼¼-
+Jsquid:S1172ï"+Remove this unused method parameter "view".(ÒÙÖ•8õôó¼¼-
+Osquid:S1172"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8Íµ­Öµ-
+isquid:CommentedOutCodeLineƒ"<This block of commented-out lines of code should be removed.(«Ÿ78õôó¼¼-

@@ -7,8 +7,8 @@ import java.util.Date;
 public class ConfigurationFile {
 
     public static class UrlConstants {
-//        public static final String BASE_URL = "http://www.i96mg.com";
-        public static final String BASE_URL = "http://151.106.52.107:3030";
+        public static final String BASE_URL = "http://www.i96mg.com";
+//        public static final String BASE_URL = "http://151.106.52.107:3030";
 //        public static final String BASE_URL = "http://151.106.13.61:80";
 
     }
@@ -83,6 +83,7 @@ public class ConfigurationFile {
         public static final String BRACKET_BEFORE = "(";
         public static final String BRACKET_AFTER = ")";
         public static final String PERCENT = "%";
+        public static final String SPACE = " ";
 
         public static final String USER_DATA = "User data";
         public static final String TRIP_ID = "trip Id";

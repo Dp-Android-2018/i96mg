@@ -45,7 +45,7 @@
             <ImageView
                 android:id="@+id/iv_shop_cart"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/dp18h"
                 android:padding="@dimen/dp9h"
                 android:src="@drawable/cart"
@@ -56,7 +56,7 @@
             <ImageView
                 android:id="@+id/iv_menu"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp13w"
                 android:padding="@dimen/dp9h"
                 android:src="@drawable/ic_menu_24px"
