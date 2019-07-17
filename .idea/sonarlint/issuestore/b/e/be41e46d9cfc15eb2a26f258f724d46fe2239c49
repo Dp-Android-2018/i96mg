@@ -1,15 +1,20 @@
 
-usquid:UselessImportCheck"ERemove this unused import 'com.poovam.pinedittextfield.LinePinField'.(®Öƒ™şÿÿÿÿ8¥ç£‡½-
-msquid:MaximumInheritanceDepth+"=This class has 10 parents which is greater than 5 authorized.(şàÈí8è«¢‡½-
-psquid:UselessImportCheck
-"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8ùé‰½-
-Gsquid:S1148º"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ğ ¹½-
-@squid:S1643¾"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8¡ºÓ‡½-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8—ø¤‡½-
-|squid:UselessImportCheck"LRemove this unused import 'm.dp.i96mg.service.model.response.LoginResponse'.(ÑëŸœûÿÿÿÿ8†ÕÌ‡½-
-Zsquid:S2696¯"6Make the enclosing method "static" or remove this set.(®‡íèşÿÿÿÿ8ğ ¹½-
-¥squid:S1186É"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(„²ÎÚşÿÿÿÿ8ğ ¹½-
-]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8õşï¸½-
-@squid:S1643¿"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ğ ¹½-
+Zsquid:S2696—"6Make the enclosing method "static" or remove this set.(®‡íèşÿÿÿÿ8ØŠ‹Ğ¿-
+¥squid:S1186ı"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(„²ÎÚşÿÿÿÿ8“¿­Ğ¿-
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8ùé‰½-
+isquid:CommentedOutCodeLine£"<This block of commented-out lines of code should be removed.(«Ÿ78Ô©ûÏ¿-
+jsquid:CommentedOutCodeLine©"<This block of commented-out lines of code should be removed.(®¸ËÄ8Ô©ûÏ¿-
+Ssquid:S1066™"/Merge this if statement with the enclosing one.(°Ü—Âúÿÿÿÿ8»ßùÏ¿-
+Zsquid:S2696ã"6Make the enclosing method "static" or remove this set.(®‡íèşÿÿÿÿ8“¿­Ğ¿-
+asquid:UselessImportCheck	"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8—ø¤‡½-
+Nsquid:S1172I"+Remove this unused method parameter "view".(œ¢ïáÿÿÿÿÿ8£¯‰¹½-
+usquid:UselessImportCheck"ERemove this unused import 'com.poovam.pinedittextfield.LinePinField'.(®Öƒ™şÿÿÿÿ8¥ç£‡½-
+@squid:S1643ò"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8“¿­Ğ¿-
+]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8õşï¸½-
+|squid:UselessImportCheck%"LRemove this unused import 'm.dp.i96mg.service.model.response.LoginResponse'.(ÑëŸœûÿÿÿÿ8†ÕÌ‡½-
+Gsquid:S1148î"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8“¿­Ğ¿-
 \squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8ôş’¹½-
-Nsquid:S1172A"+Remove this unused method parameter "view".(œ¢ïáÿÿÿÿÿ8£¯‰¹½-
+msquid:MaximumInheritanceDepth2"=This class has 10 parents which is greater than 5 authorized.(şàÈí8è«¢‡½-
+@squid:S1643ó"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8“¿­Ğ¿-
+jsquid:CommentedOutCodeLine¡"<This block of commented-out lines of code should be removed.(§À8Ô©ûÏ¿-
+Ksquid:S1612­",Replace this lambda with a method reference.(¤ÖªË8“¿­Ğ¿-

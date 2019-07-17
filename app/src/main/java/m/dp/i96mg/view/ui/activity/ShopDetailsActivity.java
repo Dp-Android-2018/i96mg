@@ -70,6 +70,7 @@ public class ShopDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shop_details);
         binding.ivBack.setOnClickListener(v -> onBackPressed());
+        productModelList = new ArrayList<>();
         checkToGetandSetProducts();
         initializeOnQuantityChangedListener();
         initializeOnOperationClicked();
@@ -78,7 +79,7 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void initializeOnOperationClicked() {
-        onOperationClicked=new OnOperationClicked() {
+        onOperationClicked = new OnOperationClicked() {
             @Override
             public void plusIconClicked(int position, ProductModel productModel) {
                 sendItemToDb(productModel);
@@ -169,15 +170,15 @@ public class ShopDetailsActivity extends BaseActivity {
                     getAndSetTotalPrice();
                     initializeRecyclerView();
                 }
-//                getAndSetTotalPrice();
             }
         };
     }
 
     private void getAndSetTotalPrice() {
         totalPrice = 0;
+//        productModelList.clear();
         productModelList = customUtilsLazy.getValue().getSavedProductsData();
-        if (productModelList != null && productModelList.size() != 0) {
+        if (productModelList != null && !productModelList.isEmpty()) {
             binding.tvNoData.setVisibility(View.INVISIBLE);
             binding.tvSwipe.setVisibility(View.VISIBLE);
             for (int i = 0; i < productModelList.size(); i++) {
@@ -212,13 +213,13 @@ public class ShopDetailsActivity extends BaseActivity {
     private void getAndDeleteItem(int position) {
         ProductModel item = shopRecyclerViewAdapter.getItem(position);
         if (isLoggedIn()) {
-            removeItemFromCartDp(item, position);
+            removeItemFromCartDp(item);
         } else {
             removeThisProductFromSharedPreferences(item, position);
         }
     }
 
-    private void removeItemFromCartDp(ProductModel item, int position) {
+    private void removeItemFromCartDp(ProductModel item) {
         if (ValidationUtils.isConnectingToInternet(this)) {
 //            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().removeItemFromCart(item.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
@@ -240,16 +241,49 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void removeThisProductFromSharedPreferences(ProductModel item, int position) {
-        List<ProductModel> productModelList2 = customUtilsLazy.getValue().getSavedProductsData();
-        for (int i = 0; i < productModelList2.size(); i++) {
-            if (productModelList2.get(i).getId() == item.getId()) {
-                productModelList2.remove(i);
-                index = i;
+        List<ProductModel> productModelList = new ArrayList<>();
+        if (customUtilsLazy.getValue().getSavedProductsData() != null) {
+            productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
+        }
+        for (int i = 0; i < productModelList.size(); i++) {
+            if (productModelList.get(i).getId() == item.getId()) {
+                productModelList.remove(i);
+                //                index = i;
+                break;
             }
         }
-        customUtilsLazy.getValue().saveProductToPrefs(productModelList2);
-        onQuantityChanged.onQuantityChange(true);
-        makeSnakeBar(productModelList2, item, index, position);
+        customUtilsLazy.getValue().saveProductToPrefs(productModelList);
+        updateUiAndPrice(productModelList);
+
+//        getAndSetTotalPrice();
+//        onQuantityChanged.onQuantityChange(true);
+//        makeSnakeBar(productModelList2, item, index, position);
+    }
+
+    private void updateUiAndPrice(List<ProductModel> productModelList) {
+        if (productModelList != null && !productModelList.isEmpty()) {
+            binding.tvNoData.setVisibility(View.INVISIBLE);
+            binding.tvSwipe.setVisibility(View.VISIBLE);
+            for (int i = 0; i < productModelList.size(); i++) {
+                if (productModelList.get(i).isHasDiscount()) {
+                    totalPrice += productModelList.get(i).getDiscountedPrice() * productModelList.get(i).getOrderedQuantity();
+                } else {
+                    totalPrice += productModelList.get(i).getOriginalPrice() * productModelList.get(i).getOrderedQuantity();
+                }
+            }
+            if (totalPrice != 0.0) {
+                binding.textView5.setVisibility(View.VISIBLE);
+                binding.tvTotalPrice.setText(String.valueOf(totalPrice));
+                binding.tvCurrency.setVisibility(View.VISIBLE);
+            }
+        } else {
+            binding.tvNoData.setVisibility(View.VISIBLE);
+            binding.tvSwipe.setVisibility(View.GONE);
+            binding.textView5.setVisibility(View.GONE);
+            binding.tvTotalPrice.setVisibility(View.GONE);
+            binding.tvCurrency.setVisibility(View.GONE);
+        }
+        showSnackbar(getResources().getString(R.string.product_removed_successfully));
     }
 
     private void makeSnakeBar(List<ProductModel> productModelList2, ProductModel item, int index, int position) {
@@ -304,7 +338,8 @@ public class ShopDetailsActivity extends BaseActivity {
         if (customUtilsLazy.getValue().getSavedMemberData() != null) {
             createOrder();
         } else {
-            showLoginDialog();
+            SharedUtils.getInstance().showLoginDialog(this,ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
+//            showLoginDialog();
         }
     }
 
@@ -312,7 +347,7 @@ public class ShopDetailsActivity extends BaseActivity {
         //TODO: create order here (payCardActivityViewModelLazy)
     }
 
-    private void showLoginDialog() {
+    /*private void showLoginDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(binding.getRoot().getContext());
         LayoutInflater factory = LayoutInflater.from(binding.getRoot().getContext());
         final View view = factory.inflate(R.layout.choose_order_type, null);
@@ -338,10 +373,10 @@ public class ShopDetailsActivity extends BaseActivity {
 
     private void openLoginActivity() {
         Intent intent = new Intent(ShopDetailsActivity.this, LoginActivity.class);
-        intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
+        intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, );
         startActivity(intent);
         finish();
-    }
+    }*/
 
     private void openNextActivity() {
         Intent intent = new Intent(this, InformationActivity.class);
@@ -439,7 +474,7 @@ public class ShopDetailsActivity extends BaseActivity {
 
     public void showCodeConstraintLayout(View view) {
         if (customUtilsLazy.getValue().getSavedMemberData() == null) {
-            showLoginDialog();
+            SharedUtils.getInstance().showLoginDialog(this,ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
         } else {
             binding.btnVoucher.setVisibility(View.GONE);
             binding.constraintLayout2.setVisibility(View.VISIBLE);

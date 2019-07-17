@@ -1,25 +1,29 @@
 
-^squid:S1126b"AReplace this if-then-else statement by a single return statement.( Í¸8£¼ê«¿-
-usquid:S14503"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Â´Ê±½-
-Jsquid:S10683",Remove this unused "position" private field.(íñ8ÉŠÄ±½-
-Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¼ç‡¦¿-
-hsquid:CommentedOutCodeLinem"<This block of commented-out lines of code should be removed.(«Ÿ78£¼ê«¿-
-jsquid:CommentedOutCodeLineË"<This block of commented-out lines of code should be removed.(¤«ˆ†8¸Àª¬¿-
-@squid:S1643‘"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8¼ç‡¦¿-
-ssquid:S001160"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8´ÇÄ±½-
-jsquid:CommentedOutCodeLineà"<This block of commented-out lines of code should be removed.(ŸãÍ¤8³‘²¬¿-
-Nsquid:S1066ò"/Merge this if statement with the enclosing one.(à—åª8¼ç‡¦¿-
-Qsquid:S16591".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8´ÇÄ±½-
-Lsquid:S1185æ"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8¼ç‡¦¿-
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(§À8£¼ê«¿-
-lsquid:UnusedPrivateMethodã"?Remove this unused private "makeOnScrollOnRecyclerView" method.(‰ÿ¾×8³‘²¬¿-
-Osquid:S16591",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8´ÇÄ±½-
-isquid:CommentedOutCodeLinek"<This block of commented-out lines of code should be removed.(§À8£¼ê«¿-
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(«Ÿ78£¼ê«¿-
-@squid:S1643’"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8¼ç‡¦¿-
-jsquid:CommentedOutCodeLineÿ"<This block of commented-out lines of code should be removed.(§À8¼ç‡¦¿-
-fsquid:MaximumInheritanceDepth)"=This class has 10 parents which is greater than 5 authorized.(Ş€…¼
-¤squid:S1186["€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£»‰ˆûÿÿÿÿ8“æì¨¿-
-isquid:CommentedOutCodeLine·"<This block of commented-out lines of code should be removed.(«Ÿ78¼ç‡¦¿-
-Ssquid:S1066»"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8¼ç‡¦¿-
-jsquid:CommentedOutCodeLine™"<This block of commented-out lines of code should be removed.(§À8¼ç‡¦¿-
+jsquid:CommentedOutCodeLineÉ"<This block of commented-out lines of code should be removed.(¤«ˆ†8¸Àª¬¿-
+isquid:CommentedOutCodeLineş"<This block of commented-out lines of code should be removed.(«Ÿ78£¼ê«¿-
+Osquid:S16594",Declare "totalItemCount" on a separate line.(üÆö›ıÿÿÿÿ8´ÇÄ±½-
+qsquid:S3776»"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(¶–Ö¦8„Ú£ù¿-
+jsquid:CommentedOutCodeLineŞ"<This block of commented-out lines of code should be removed.(ŸãÍ¤8³‘²¬¿-
+jsquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(Ã¢ğø8µ‰¯û¿-
+nsquid:CommentedOutCodeLineV"<This block of commented-out lines of code should be removed.(Ù»Õ²ıÿÿÿÿ8şèı¿-
+Lsquid:S1185ä"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8¼ç‡¦¿-
+Gsquid:S1148‹"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Üıÿ¿-
+nsquid:CommentedOutCodeLineq"<This block of commented-out lines of code should be removed.(ÊÔÜøÿÿÿÿ8Ÿ¸­û¿-
+Ssquid:S1066¹"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8¼ç‡¦¿-
+@squid:S1643"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8Üıÿ¿-
+psquid:S3776ú"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(»ÆÜ`8³Ùâı¿-
+isquid:CommentedOutCodeLinei"<This block of commented-out lines of code should be removed.(«Ïš8¡Í¨û¿-
+@squid:S1643"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8Üıÿ¿-
+lsquid:UnusedPrivateMethodá"?Remove this unused private "makeOnScrollOnRecyclerView" method.(‰ÿ¾×8³‘²¬¿-
+Jsquid:S10686",Remove this unused "position" private field.(íñ8ÉŠÄ±½-
+Nsquid:S1066ğ"/Merge this if statement with the enclosing one.(à—åª8¼ç‡¦¿-
+Qsquid:S16594".Declare "visibleItemCount" on a separate line.(üÆö›ıÿÿÿÿ8´ÇÄ±½-
+¤squid:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¨Ô¸şÿÿÿÿ8˜Î‚ş¿-
+ssquid:S001163"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8´ÇÄ±½-
+msquid:MaximumInheritanceDepth-"=This class has 10 parents which is greater than 5 authorized.(Ş€…¼8š£ğı¿-
+jsquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(§À8¼ç‡¦¿-
+_squid:S1126ó"AReplace this if-then-else statement by a single return statement.( Í¸8£¼ê«¿-
+jsquid:CommentedOutCodeLineü"<This block of commented-out lines of code should be removed.(§À8£¼ê«¿-
+usquid:S14506"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Â´Ê±½-
+isquid:CommentedOutCodeLineµ"<This block of commented-out lines of code should be removed.(«Ÿ78¼ç‡¦¿-
+jsquid:CommentedOutCodeLineı"<This block of commented-out lines of code should be removed.(§À8¼ç‡¦¿-

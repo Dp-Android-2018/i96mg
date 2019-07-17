@@ -16,26 +16,6 @@ val DependencyModule = module {
     single { LoginRepository() }
     single { SignUpRepository() }
     single { WishListRepository() }
-
-    /* single { Register1Repository() }
-     single { Register2Repository() }
-     factory { RegisterRequest(Parcel.obtain()) }
-
-     single { LoginRepository() }
-     factory { LoginRequest() }
-
-     single { ActivationRepository() }
-     factory { ActivationRequest() }
-
-     single { MainRepository() }
-     factory { SearchRequestsRequest() }
-
-     single { RequestDetailsRepository() }
-     single { AccountRepository() }
-     single { OffersRepository() }
-     single { TripsRepository() }
-     single { StartTripRepository() }
-     single { FinancialRepository() }
-     single { ChatRepository() }*/
+    single { OrdersRepository() }
 
 }

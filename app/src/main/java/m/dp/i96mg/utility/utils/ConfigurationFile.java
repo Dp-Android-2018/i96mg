@@ -110,7 +110,10 @@ public class ConfigurationFile {
         public static final String LANGUAGE_TYPE = "language Type";
         public static final String PRODUCT_DETAIL = "product detail";
         public static final String PRODUCT_ID = "product id";
-        public static final String Category_ID = "product id";
+        public static final String Category_ID = "category id";
+        public static final String ORDER_ID = "order id";
+        public static final String PENDING_ORDERS_ACTIVITY = "pending orders activity";
+        public static final String ORDERS_ACTIVITY = "orders activity";
         public static final int SALE_ID = -5;
         public static final String WISHLIST_TYPE = "wish list";
         public static final String DEFAULT_TYPE = "default";

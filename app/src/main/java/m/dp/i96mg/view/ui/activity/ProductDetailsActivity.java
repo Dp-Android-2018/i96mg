@@ -1,5 +1,6 @@
 package m.dp.i96mg.view.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,7 +14,6 @@ import android.widget.RatingBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,7 +38,6 @@ import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
 import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
-import m.dp.i96mg.service.model.response.ProductDetailsResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
@@ -68,10 +67,12 @@ public class ProductDetailsActivity extends BaseActivity {
     private AlertDialog dialog;
     private OnItemClickListener onItemClickListener;
     private ProductsRecyclerViewAdapter productsRecyclerViewAdapter;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         initializeOnItemClickListener();
         initializeVariables();
         makeActionOnToolbat();
@@ -87,7 +88,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 if (isLoggedIn()) {
                     addItemToWishListDp(id, binding);
                 } else {
-                    showSnackbar(getResources().getString(R.string.please_login));
+                    SharedUtils.getInstance().showLoginDialog(context, ConfigurationFile.Constants.PRODUCT_DETAILS_ACTIVITY);
                 }
             }
 
@@ -96,13 +97,18 @@ public class ProductDetailsActivity extends BaseActivity {
                 if (isLoggedIn()) {
                     removeItemFromWishListDp(id, binding);
                 } else {
-                    showSnackbar(getResources().getString(R.string.please_login));
+                    SharedUtils.getInstance().showLoginDialog(context, ConfigurationFile.Constants.PRODUCT_DETAILS_ACTIVITY);
                 }
             }
 
             @Override
-            public void onDeleteClick(int id) {
-
+            public void addItemToCart(ProductModel productModel, ItemProductLayoutBinding binding) {
+                if (productModel.isInCart()) {
+                    showSnackbar(getResources().getString(R.string.item_added_before));
+//                    removeFromCart(productModel);
+                } else {
+                    addToCart(productModel);
+                }
             }
         };
     }
@@ -136,7 +142,7 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void removeAndShowMessage(int id, ItemProductLayoutBinding binding) {
-        binding.ivFavorite.setImageDrawable(this.binding.getRoot().getResources().getDrawable(R.drawable.heart_empty));
+        binding.ivFavorite.setImageDrawable(getResources().getDrawable(R.drawable.heart_empty));
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getId() == id) {
                 ProductModel productModel = allProducts.get(i);
@@ -169,7 +175,7 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void addAndShowMessage(int id, ItemProductLayoutBinding binding) {
-        binding.ivFavorite.setImageDrawable(this.binding.getRoot().getResources().getDrawable(R.drawable.heart_filled));
+        binding.ivFavorite.setImageDrawable(getResources().getDrawable(R.drawable.heart_filled));
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getId() == id) {
                 ProductModel productModel = allProducts.get(i);
@@ -349,25 +355,37 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
 
-    private void checkQuantityValue() {
+  /*  private void checkQuantityValue() {
         if (productModel.getQuantity() == 0) {
 //            binding.text2.setVisibility(View.INVISIBLE);
             binding.quantityConstraint.setVisibility(View.INVISIBLE);
             binding.tvAddToCart.setText(getResources().getString(R.string.product_is_not_available));
             binding.btnAddToCart.setClickable(false);
         }
-    }
+    }*/
 
 
     public void addProductToCart(View view) {
         if (productModel.isInCart()) {
-            removeItemFromCartDp();
+            removeFromCart(productModel);
         } else {
-            addToCart();
+            addToCart(productModel);
         }
     }
 
-    private void removeItemFromCartDp() {
+    private void removeFromCart(ProductModel productModel) {
+        if (isLoggedIn()) {
+            removeItemFromCartDp(productModel);
+        } else {
+            removeThisProductFromSharedPreferences(productModel);
+            showSnackbar(getResources().getString(R.string.product_removed_successfully));
+            ProductModel productModel2 = productModel;
+            productModel2.setInCart(false);
+            initializeUiWithData(productModel2);
+        }
+    }
+
+    private void removeItemFromCartDp(ProductModel productModel) {
         if (ValidationUtils.isConnectingToInternet(this)) {
 //            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().removeItemFromCart(productModel.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
@@ -389,22 +407,29 @@ public class ProductDetailsActivity extends BaseActivity {
         }
     }
 
-    private void addToCart() {
+    private void removeThisProductFromSharedPreferences(ProductModel item) {
+        List<ProductModel> productModelList2 = customUtilsLazy.getValue().getSavedProductsData();
+        for (int i = 0; i < productModelList2.size(); i++) {
+            if (productModelList2.get(i).getId() == item.getId()) {
+                productModelList2.remove(i);
+            }
+        }
+        customUtilsLazy.getValue().saveProductToPrefs(productModelList2);
+    }
+
+    private void addToCart(ProductModel productModel) {
         if (isLoggedIn()) {
-//            addItsDataToSharedPreferences();
-            sendItemToDb();
-//            onBackPressed();
+            sendItemToDb(productModel);
         } else {
-            addItsDataToSharedPreferences();
-            showSnackbar("product added to cart successfully");
+            addItsDataToSharedPreferences(productModel);
+            showSnackbar(getResources().getString(R.string.product_added_successfully));
             ProductModel productModel2 = productModel;
             productModel2.setInCart(true);
             initializeUiWithData(productModel2);
-//            onBackPressed();
         }
     }
 
-    private void sendItemToDb() {
+    private void sendItemToDb(ProductModel productModel) {
         if (ValidationUtils.isConnectingToInternet(this)) {
             SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
@@ -437,7 +462,7 @@ public class ProductDetailsActivity extends BaseActivity {
         return cartRequest;
     }
 
-    private void addItsDataToSharedPreferences() {
+    private void addItsDataToSharedPreferences(ProductModel productModel) {
         productModel.setOrderedQuantity(quantity);
         for (int i = 0; i < productModelList.size(); i++) {
             if (productModelList.get(i).getId() == productModel.getId()) {

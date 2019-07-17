@@ -10,6 +10,7 @@ import m.dp.i96mg.service.model.request.ProductsOrderRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
 import m.dp.i96mg.service.model.request.SignUpRequest;
 import m.dp.i96mg.service.model.request.WishListRequest;
+import m.dp.i96mg.service.model.response.AllOrdersResponse;
 import m.dp.i96mg.service.model.response.CartResponse;
 import m.dp.i96mg.service.model.response.CategoriesResponse;
 import m.dp.i96mg.service.model.response.LoginResponse;
@@ -94,7 +95,6 @@ public interface ApiInterfaces {
     @GET("/api/wishlist")
     Observable<Response<ProductsResponse>> getWishListItems();
 
-    //TODO : make those
     //Remove an item from the cart
     @DELETE("/api/cart/{id}")
     Observable<Response<MessageResponse>> removeItemFromCart(@Path("id") int productId);
@@ -102,6 +102,14 @@ public interface ApiInterfaces {
     //Remove an item from the wishlist
     @DELETE("/api/wishlist/{id}")
     Observable<Response<MessageResponse>> removeItemFromWishlist(@Path("id") int productId);
+
+    //Get all pending orders
+    @GET("/api/order/pending")
+    Observable<Response<AllOrdersResponse>> getPendingOrders();
+
+    //Get all orders
+    @GET("/api/order")
+    Observable<Response<AllOrdersResponse>> getOrders();
 
 
 }

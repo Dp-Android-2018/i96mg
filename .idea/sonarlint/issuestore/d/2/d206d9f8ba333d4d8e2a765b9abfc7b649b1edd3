@@ -1,19 +1,22 @@
 
-isquid:CommentedOutCodeLineé"<This block of commented-out lines of code should be removed.(«Ÿ78ï·ÂŽ½-
-@squid:S1643³"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ºð²Ž½-
-}squid:S14503"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8¸œ™¼±-
 nsquid:UnusedPrivateMethod¯"<Remove this unused private "makeOrderOnChooseCredit" method.(›òÞäÿÿÿÿÿ8ï·ÂŽ½-
-Zsquid:S2589H"7Remove this expression which always evaluates to "true"(¸ñÂ×ýÿÿÿÿ8áƒ›¼±-
+osquid:CommentedOutCodeLineä"<This block of commented-out lines of code should be removed.(Ñ¶Ï¹ýÿÿÿÿ8Å¨ÑÙ¿-
 _squid:UnusedPrivateMethod?"3Remove this unused private "setProductList" method.(Ò»Ô‘8ëØšŽ½-
-@squid:S1643´"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ï·ÂŽ½-
-X"squid:SwitchLastCaseIsDefaultCheckù""Add a default case to this switch.(ÜŸ•8ï·ÂŽ½-
-osquid:CommentedOutCodeLine¥"<This block of commented-out lines of code should be removed.(ÞÄç»ýÿÿÿÿ8ï·ÂŽ½-
-isquid:CommentedOutCodeLine¡"<This block of commented-out lines of code should be removed.(Ôß…p8™æÆŽ½-
 W"squid:SwitchLastCaseIsDefaultChecke""Add a default case to this switch.(ŽºÖ8¿îž¼±-
+X"squid:SwitchLastCaseIsDefaultCheckù""Add a default case to this switch.(ÜŸ•8ï·ÂŽ½-
+isquid:CommentedOutCodeLine¡"<This block of commented-out lines of code should be removed.(Ôß…p8™æÆŽ½-
+@squid:S1643³"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ºð²Ž½-
+@squid:S1643´"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ï·ÂŽ½-
 jsquid:S1301ù"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8ï·ÂŽ½-
-}squid:S14502"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Þ8À×ã±-
-jsquid:CommentedOutCodeLineæ"<This block of commented-out lines of code should be removed.(§À8ï·ÂŽ½-
-nsquid:CommentedOutCodeLine<"<This block of commented-out lines of code should be removed.(Ûê±­üÿÿÿÿ8ëØšŽ½-
 Gsquid:S1148¯"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ï·ÂŽ½-
-W"squid:SwitchLastCaseIsDefaultCheckP""Add a default case to this switch.(ŽºÖ8À×ã±-
+^squid:S1068/"@Remove this unused "payCardActivityViewModelLazy" private field.(¼ÿ½»8Å¨ÑÙ¿-
+nsquid:CommentedOutCodeLine<"<This block of commented-out lines of code should be removed.(Ûê±­üÿÿÿÿ8ëØšŽ½-
+bsquid:UnusedPrivateMethodø"5Remove this unused private "makeActionOnType" method.(ƒÜ¸™8Å¨ÑÙ¿-
 fsquid:MaximumInheritanceDepth+"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô
+Zsquid:S2589H"7Remove this expression which always evaluates to "true"(¸ñÂ×ýÿÿÿÿ8áƒ›¼±-
+jsquid:CommentedOutCodeLine·"<This block of commented-out lines of code should be removed.(¸›†½8¹æÑÙ¿-
+W"squid:SwitchLastCaseIsDefaultCheckP""Add a default case to this switch.(ŽºÖ8À×ã±-
+}squid:S14502"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Þ8À×ã±-
+asquid:UnusedPrivateMethod§"/Remove this unused private "showErrors" method.(ü×Î¸þÿÿÿÿ8Å¨ÑÙ¿-
+}squid:S14503"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ðøþÿÿÿÿ8¸œ™¼±-
+osquid:CommentedOutCodeLine¥"<This block of commented-out lines of code should be removed.(ÞÄç»ýÿÿÿÿ8ï·ÂŽ½-
