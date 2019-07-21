@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,9 +29,11 @@ import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityShopDetailsBinding;
 import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.global.ProductsInfoModel;
 import m.dp.i96mg.service.model.global.VoucherResponssData;
 import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.CheckRequest;
+import m.dp.i96mg.service.model.request.ProductsOrderRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
@@ -64,13 +67,23 @@ public class ShopDetailsActivity extends BaseActivity {
     private ArrayList<ProductData> productData;
     private float totalPriceDb;
     private OnOperationClicked onOperationClicked;
+    private ArrayList<ProductsInfoModel> productsInfoModels;
+    private ArrayList<ProductsInfoModel> emptyProductsInfoModels;
+    private boolean allFieldsAreOk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shop_details);
-        binding.ivBack.setOnClickListener(v -> onBackPressed());
+        binding.ivBack.setOnClickListener(v -> {
+            onBackPressed();
+            productsInfoModels.clear();
+            customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
+        });
         productModelList = new ArrayList<>();
+        productsInfoModels = new ArrayList<>();
+        emptyProductsInfoModels = new ArrayList<>();
+        customUtilsLazy.getValue().saveProductInfoToPrefs(emptyProductsInfoModels);
         checkToGetandSetProducts();
         initializeOnQuantityChangedListener();
         initializeOnOperationClicked();
@@ -82,11 +95,13 @@ public class ShopDetailsActivity extends BaseActivity {
         onOperationClicked = new OnOperationClicked() {
             @Override
             public void plusIconClicked(int position, ProductModel productModel) {
+                //TODO : add it when not logged it
                 sendItemToDb(productModel);
             }
 
             @Override
             public void minusIconClicked(int position, ProductModel productModel) {
+                //TODO : add it when not logged it
                 sendItemToDb(productModel);
             }
         };
@@ -100,7 +115,7 @@ public class ShopDetailsActivity extends BaseActivity {
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
-                        showSnackbar(startTripResponseResponse.body().getMessage());
+                        showSnackbarHere(startTripResponseResponse.body().getMessage());
                     }
 
                 } else {
@@ -108,7 +123,7 @@ public class ShopDetailsActivity extends BaseActivity {
                 }
             });
         } else {
-            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+            showSnackbarHere(getResources().getString(R.string.there_is_no_internet_connection));
         }
     }
 
@@ -200,6 +215,8 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void initializeRecyclerView() {
+//        productsInfoModels.clear();
+//        customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
         shopRecyclerViewAdapter = new ShopRecyclerViewAdapter(this, productModelList, onQuantityChanged, onOperationClicked);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rvProducts.setHasFixedSize(true);
@@ -227,7 +244,7 @@ public class ShopDetailsActivity extends BaseActivity {
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
-                        showSnackbar(startTripResponseResponse.body().getMessage());
+                        showSnackbarHere(startTripResponseResponse.body().getMessage());
                         onQuantityChanged.onQuantityChange(true);
                     }
                 } else {
@@ -236,7 +253,7 @@ public class ShopDetailsActivity extends BaseActivity {
                 }
             });
         } else {
-            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+            showSnackbarHere(getResources().getString(R.string.there_is_no_internet_connection));
         }
     }
 
@@ -283,7 +300,7 @@ public class ShopDetailsActivity extends BaseActivity {
             binding.tvTotalPrice.setVisibility(View.GONE);
             binding.tvCurrency.setVisibility(View.GONE);
         }
-        showSnackbar(getResources().getString(R.string.product_removed_successfully));
+        showSnackbarHere(getResources().getString(R.string.product_removed_successfully));
     }
 
     private void makeSnakeBar(List<ProductModel> productModelList2, ProductModel item, int index, int position) {
@@ -335,16 +352,64 @@ public class ShopDetailsActivity extends BaseActivity {
     }*/
 
     private void checkIfLoggedInOrNot() {
-        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+        if (isLoggedIn()) {
+            checkFields();
             createOrder();
+//            checkFields();
         } else {
-            SharedUtils.getInstance().showLoginDialog(this,ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
+            SharedUtils.getInstance().showLoginDialog(this, ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
 //            showLoginDialog();
         }
     }
 
+    private void checkFields() {
+        if (customUtilsLazy.getValue().getSavedProductsInfo() != null) {
+            productsInfoModels = customUtilsLazy.getValue().getSavedProductsInfo();
+        }
+        allFieldsAreOk = true;
+        /*for (int i = 0; i < productsInfoModels.size(); i++) {
+            if (productsInfoModels.get(i) != null) {
+                if (!productsInfoModels.get(i).getEmail().isEmpty()
+                        && !productsInfoModels.get(i).getPassword().isEmpty()
+                        && !productsInfoModels.get(i).getType().isEmpty()
+                        && !productsInfoModels.get(i).getWhatsapp().isEmpty()
+                ) {
+                    allFieldsAreOk = true;
+                } else {
+                    allFieldsAreOk = false;
+//                    showSnackbarHere("please fill all data !!");
+                }
+            }
+           *//* } else {
+                showSnackbarHere("productsInfoModels is null !!");
+            }*//*
+        }*/
+    }
+
     private void createOrder() {
-        //TODO: create order here (payCardActivityViewModelLazy)
+        if (allFieldsAreOk) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            shopDetailsActivityViewModelLazy.getValue().createOrder(getProductsOrderRequest()).observe(this, messageResponseResponse -> {
+                SharedUtils.getInstance().cancelDialog();
+                if (messageResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > messageResponseResponse.code()) {
+                    if (messageResponseResponse.body() != null) {
+                        showSnackbarHere(messageResponseResponse.body().getMessage());
+//                        openNextActivity();
+                    }
+                } else {
+                    showErrors(messageResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbarHere("please fill all data !!");
+        }
+    }
+
+    private ProductsOrderRequest getProductsOrderRequest() {
+        ProductsOrderRequest productsOrderRequest = new ProductsOrderRequest();
+        productsOrderRequest.setProductsInfoModels(productsInfoModels);
+        return productsOrderRequest;
     }
 
     /*private void showLoginDialog() {
@@ -379,9 +444,9 @@ public class ShopDetailsActivity extends BaseActivity {
     }*/
 
     private void openNextActivity() {
-        Intent intent = new Intent(this, InformationActivity.class);
-        intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
-        startActivity(intent);
+//        Intent intent = new Intent(this, InformationActivity.class);
+//        intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
+//        startActivity(intent);
     }
 
     public void makeVoucherRequest(View view) {
@@ -474,7 +539,7 @@ public class ShopDetailsActivity extends BaseActivity {
 
     public void showCodeConstraintLayout(View view) {
         if (customUtilsLazy.getValue().getSavedMemberData() == null) {
-            SharedUtils.getInstance().showLoginDialog(this,ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
+            SharedUtils.getInstance().showLoginDialog(this, ConfigurationFile.Constants.SHOP_DETAILS_ACTIVITY);
         } else {
             binding.btnVoucher.setVisibility(View.GONE);
             binding.constraintLayout2.setVisibility(View.VISIBLE);
@@ -489,7 +554,4 @@ public class ShopDetailsActivity extends BaseActivity {
         }
     }
 
-    private void showSnackbar(String message) {
-        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
-    }
 }

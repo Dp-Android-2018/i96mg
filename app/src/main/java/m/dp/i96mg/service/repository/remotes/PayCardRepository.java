@@ -18,33 +18,6 @@ public class PayCardRepository {
 
     private Lazy<ApiInterfaces> endPointsLazy = inject(ApiInterfaces.class);
 
-    public LiveData<Response<MessageResponse>> createOrder(ProductsOrderRequest productsOrderRequest) {
-        MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
-        endPointsLazy.getValue().createOrder(productsOrderRequest)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Response<MessageResponse>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
 
-                    }
-
-                    @Override
-                    public void onNext(Response<MessageResponse> messageResponseResponse) {
-                        data.setValue(messageResponseResponse);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-        return data;
-    }
 
 }

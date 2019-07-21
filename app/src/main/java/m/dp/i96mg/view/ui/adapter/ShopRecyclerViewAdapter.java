@@ -41,7 +41,7 @@ public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel
 
     @Override
     public void bindHolder(ShopViewHolder holder, int position) {
-        holder.bindClass(pageImages.get(position),onQuantityChanged, onOperationClicked);
+        holder.bindClass(pageImages.get(position),onQuantityChanged, onOperationClicked,pageImages,position);
     }
 
     @Override

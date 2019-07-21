@@ -29,6 +29,7 @@ import okhttp3.ResponseBody;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class PendingOrdersActivity extends AppCompatActivity {
+    //TODO : add pagination and change text for everyone
 
     ActivityPendingOrdersBinding binding;
     private Lazy<OrdersViewModel> ordersViewModelLazy = inject(OrdersViewModel.class);

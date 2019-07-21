@@ -1,31 +1,31 @@
 
-Nsquid:S1172ó"/Remove this unused method parameter "position".(â¼À8œ¸ú¿-
-osquid:CommentedOutCodeLineû"<This block of commented-out lines of code should be removed.(¬÷×±şÿÿÿÿ8œ¸ú¿-
 jsquid:CommentedOutCodeLineŞ"<This block of commented-out lines of code should be removed.(ÁÃˆ¬8àšíû¿-
-jsquid:CommentedOutCodeLineà"<This block of commented-out lines of code should be removed.(§À8œ¸ú¿-
-@squid:S1643Ğ"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8å°áú¿-
-nsquid:CommentedOutCodeLineM"<This block of commented-out lines of code should be removed.(‹Ÿ„‹ùÿÿÿÿ8˜“ĞÖ¿-
-osquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(ƒ¯Ò¤üÿÿÿÿ8È ¾ú¿-
 ^squid:S10689"@Remove this unused "payCardActivityViewModelLazy" private field.(¼ÿ½»8—ÿ×Ù¿-
-isquid:CommentedOutCodeLineâ"<This block of commented-out lines of code should be removed.(«Ÿ78œ¸ú¿-
-^squid:UnusedPrivateMethod¡"1Remove this unused private "makeSnakeBar" method.(ıôªĞ8å°áú¿-
-Ksquid:S1612Ò",Replace this lambda with a method reference.(˜Ï·ü8œ¸ú¿-
-isquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(«Ÿ78å°áú¿-
-jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(¸Ë©£8¸ñ¼ú¿-
-Hsquid:S1068?"*Remove this unused "dialog" private field.(ÿ›ÿ8àšíû¿-
+_squid:S1126å"AReplace this if-then-else statement by a single return statement.( Í¸8å°áú¿-
+@squid:S1643Ğ"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8å°áú¿-
+osquid:CommentedOutCodeLine´"<This block of commented-out lines of code should be removed.(ÎÓÉ¸ûÿÿÿÿ8å°áú¿-
+jsquid:CommentedOutCodeLineà"<This block of commented-out lines of code should be removed.(§À8œ¸ú¿-
 osquid:CommentedOutCodeLineÖ"<This block of commented-out lines of code should be removed.( Òİ‰ùÿÿÿÿ8àšíû¿-
-Vsquid:S1135Û"2Complete the task associated to this TODO comment.(„¾ÿ•ÿÿÿÿÿ8å°áú¿-
-rsquid:MaximumInheritanceDepth3"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8ÔÆäù¿-
-Rsquid:S1068@"/Remove this unused "productData" private field.(Í‰Ğøşÿÿÿÿ8Ô€âØ¿-
-ssquid:HiddenFieldCheckô"DRename "productModelList" which hides the field declared at line 54.(Òí‰¯ıÿÿÿÿ8œ¸ú¿-
-Jsquid:S1172ƒ"+Remove this unused method parameter "view".(ÒÙÖ•8å°áú¿-
-Msquid:S1068A"0Remove this unused "totalPriceDb" private field.(·Éô8õ¬ÊÑ¿-
+isquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(«Ÿ78å°áú¿-
 Jsquid:S1172Û"+Remove this unused method parameter "view".(İËîÏ8å°áú¿-
+Hsquid:S1068?"*Remove this unused "dialog" private field.(ÿ›ÿ8àšíû¿-
+Gsquid:S1068>")Remove this unused "index" private field.(ÕÖó8î§Ğù¿-
+Osquid:S1172¬"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8å°áú¿-
+^squid:UnusedPrivateMethod¡"1Remove this unused private "makeSnakeBar" method.(ıôªĞ8å°áú¿-
+Rsquid:S1068@"/Remove this unused "productData" private field.(Í‰Ğøşÿÿÿÿ8Ô€âØ¿-
+Msquid:S1068A"0Remove this unused "totalPriceDb" private field.(·Éô8õ¬ÊÑ¿-
+@squid:S1643Ñ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8å°áú¿-
+isquid:CommentedOutCodeLineâ"<This block of commented-out lines of code should be removed.(«Ÿ78œ¸ú¿-
+Nsquid:S1172ó"/Remove this unused method parameter "position".(â¼À8œ¸ú¿-
+Ksquid:S1612Ò",Replace this lambda with a method reference.(˜Ï·ü8œ¸ú¿-
+jsquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(¸Ë©£8¸ñ¼ú¿-
+Jsquid:S1172ƒ"+Remove this unused method parameter "view".(ÒÙÖ•8å°áú¿-
+nsquid:CommentedOutCodeLineM"<This block of commented-out lines of code should be removed.(‹Ÿ„‹ùÿÿÿÿ8˜“ĞÖ¿-
+rsquid:MaximumInheritanceDepth3"=This class has 10 parents which is greater than 5 authorized.(ì©‡øùÿÿÿÿ8ÔÆäù¿-
+osquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(ƒ¯Ò¤üÿÿÿÿ8È ¾ú¿-
+ssquid:HiddenFieldCheckô"DRename "productModelList" which hides the field declared at line 54.(Òí‰¯ıÿÿÿÿ8œ¸ú¿-
+Vsquid:S1135Û"2Complete the task associated to this TODO comment.(„¾ÿ•ÿÿÿÿÿ8å°áú¿-
+Gsquid:S1148Ì"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8å°áú¿-
 gsquid:UnusedPrivateMethodı"5Remove this unused private "openNextActivity" method.(¶¾Ìşÿÿÿÿ8å°áú¿-
 jsquid:CommentedOutCodeLine”"<This block of commented-out lines of code should be removed.(§À8å°áú¿-
-@squid:S1643Ñ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8å°áú¿-
-osquid:CommentedOutCodeLine´"<This block of commented-out lines of code should be removed.(ÎÓÉ¸ûÿÿÿÿ8å°áú¿-
-Gsquid:S1068>")Remove this unused "index" private field.(ÕÖó8î§Ğù¿-
-Gsquid:S1148Ì"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8å°áú¿-
-Osquid:S1172¬"+Remove this unused method parameter "view".(Ä´µ†øÿÿÿÿ8å°áú¿-
-_squid:S1126å"AReplace this if-then-else statement by a single return statement.( Í¸8å°áú¿-
+osquid:CommentedOutCodeLineû"<This block of commented-out lines of code should be removed.(¬÷×±şÿÿÿÿ8œ¸ú¿-

@@ -1,10 +1,10 @@
 
-usquid:S1450&"WRemove the "listType" field and declare it as a local variable in the relevant methods.(ö¡Ú8ùÜ±½-
-Xsquid:S1068#"5Remove this unused "savedCartProducts" private field.(€ó¶åøÿÿÿÿ8Š·Ş÷¿-
 }squid:UselessImportCheck"MRemove this unused import 'm.dp.i96mg.service.model.request.WishListRequest'.(ÄÅœŸúÿÿÿÿ8Š·Ş÷¿-
 Wsquid:S1068$"9Remove this unused "savedFavoriteProducts" private field.(æÍó‡8°ÍŞ¥¿-
+isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Íƒ¶ş8ùÜ±½-
 bsquid:S1068!"?Remove this unused "productDetailsViewModelLazy" private field.(ÓÅøÿÿÿÿ8¾Ëü¥¿-
 Jsquid:S1068&",Remove this unused "listType" private field.(ö¡Ú8†ÉÚ±½-
-isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Íƒ¶ş8ùÜ±½-
-Osquid:S1602`",Remove useless curly braces around statement(¥¹ÖÌûÿÿÿÿ8Š·Ş÷¿-
 ™squid:S13192"{The type of the "productModelList" object should be an interface such as "List" rather than the implementation "ArrayList".(Áì¨Ê8ÒŞ†º»-
+Xsquid:S1068#"5Remove this unused "savedCartProducts" private field.(€ó¶åøÿÿÿÿ8Š·Ş÷¿-
+Osquid:S1602`",Remove useless curly braces around statement(¥¹ÖÌûÿÿÿÿ8Š·Ş÷¿-
+usquid:S1450&"WRemove the "listType" field and declare it as a local variable in the relevant methods.(ö¡Ú8ùÜ±½-

@@ -12,6 +12,7 @@ import java.util.List;
 
 import m.dp.i96mg.R;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.global.ProductsInfoModel;
 
 
 public class SharedPreferenceHandler {
@@ -83,6 +84,14 @@ public class SharedPreferenceHandler {
         Gson gson = new Gson();
         String json = prefs.getString(savedObjectName, "");
         Type type = new TypeToken<List<ProductModel>>() {
+        }.getType();
+        return gson.fromJson(json, type);
+    }
+
+    public ArrayList<ProductsInfoModel> getSavedProductsInfo(String savedObjectName) {
+        Gson gson = new Gson();
+        String json = prefs.getString(savedObjectName, "");
+        Type type = new TypeToken<List<ProductsInfoModel>>() {
         }.getType();
         return gson.fromJson(json, type);
     }

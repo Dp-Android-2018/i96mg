@@ -23,9 +23,7 @@ public class PayCardActivityViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<Response<MessageResponse>> createOrder(ProductsOrderRequest productsOrderRequest) {
-        return payCardRepositoryLazy.getValue().createOrder(productsOrderRequest);
-    }
+
 
 
 }

@@ -1,13 +1,16 @@
 package m.dp.i96mg.utility.utils;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kotlin.Lazy;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.LoginResponseModel;
+import m.dp.i96mg.service.model.global.ProductsInfoModel;
 
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.FAVORITE_PRODUCTS_LIST;
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PRODUCTS_INFO;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PRODUCTS_LIST;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
@@ -36,6 +39,14 @@ public class CustomUtils {
 
     public List<ProductModel> getSavedProductsData() {
         return prefrenceUtils.getValue().getSavedProducts(PRODUCTS_LIST);
+    }
+
+    public void saveProductInfoToPrefs(ArrayList<ProductsInfoModel> productsInfoModels) {
+        prefrenceUtils.getValue().saveObjectToSharedPreferences(PRODUCTS_INFO, productsInfoModels);
+    }
+
+    public ArrayList<ProductsInfoModel> getSavedProductsInfo() {
+        return prefrenceUtils.getValue().getSavedProductsInfo(PRODUCTS_INFO);
     }
 
     public void saveFavoriteProductToPrefs(List<ProductModel> productModels) {

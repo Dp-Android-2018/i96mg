@@ -283,3 +283,7 @@ Eapp/src/main/java/m/dp/i96mg/view/ui/viewholder/OrdersViewHolder.java,0\8\0892
 Kapp/src/main/java/m/dp/i96mg/view/ui/adapter/OrdersRecyclerViewAdapter.java,e\b\ebbd697a31b1fc085b0a03914deac7703faa4115
 x
 Happ/src/main/java/m/dp/i96mg/view/ui/activity/PendingOrdersActivity.java,f\c\fc8ee7dc3dde7304019c1d4caa7f2a92723cb9d7
+c
+3app/src/main/res/layout/activity_pending_orders.xml,c\7\c7b18972cd8e91a6cd624f4a72b13b67835b7440
+^
+.app/src/main/res/layout/item_pending_order.xml,3\1\31c4baccdea14216ac51f0321fe78af5c0344256

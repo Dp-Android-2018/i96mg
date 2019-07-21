@@ -112,13 +112,10 @@ public class LoginActivity extends BaseActivity {
 
     private void makeActionOnPinText() {
         final SquarePinField sfPin = binding.sfPin;
-        sfPin.setOnTextCompleteListener(new PinField.OnTextCompleteListener() {
-            @Override
-            public boolean onTextComplete(@NotNull String enteredText) {
-                pinCode = enteredText;
-                makeLoginRequest();
-                return false; // Return true to keep the keyboard open else return false to close the keyboard
-            }
+        sfPin.setOnTextCompleteListener(enteredText -> {
+            pinCode = enteredText;
+            makeLoginRequest();
+            return false; // Return true to keep the keyboard open else return false to close the keyboard
         });
     }
 
@@ -153,20 +150,22 @@ public class LoginActivity extends BaseActivity {
             if (!customUtilsLazy.getValue().getSavedProductsData().isEmpty()) {
                 sendCartToDb();
             }
+        }else {
+            openActivity();
         }
     }
 
     private void sendCartToDb() {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     List<ProductModel> productModels = customUtilsLazy.getValue().getSavedProductsData();
                     productModels.clear();
                     customUtilsLazy.getValue().saveProductToPrefs(productModels);
-//                        showSnackbar(startTripResponseResponse.body().getMessage());
+                        showSnackbar(startTripResponseResponse.body().getMessage());
                     openActivity();
                 } else {
                     showErrors(startTripResponseResponse.errorBody());
@@ -223,6 +222,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void saveDataToSharedPreferences(LoginResponseModel loginResponseModel) {
+        String languageType = customUtils.getValue().getSavedLanguageType();
+        customUtils.getValue().clearSharedPref();
+        customUtils.getValue().saveLanguageTypeToPrefs(languageType);
         customUtilsLazy.getValue().saveMemberDataToPrefs(loginResponseModel);
         ConfigurationFile.Constants.AUTHORIZATION = customUtilsLazy.getValue().getSavedMemberData().getToken();
     }
