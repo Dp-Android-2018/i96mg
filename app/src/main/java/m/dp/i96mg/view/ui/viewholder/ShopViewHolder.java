@@ -79,29 +79,16 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
         this.onOperationClicked = onOperationClicked;
         productModelList = new ArrayList<>();
         mProductsInfoModel = new ProductsInfoModel();
-        productsInfoModels = new ArrayList<ProductsInfoModel>(pageImages.size());
+        productsInfoModels = new ArrayList<>();
         if (customUtilsLazy.getValue().getSavedProductsInfo() != null) {
             productsInfoModels = customUtilsLazy.getValue().getSavedProductsInfo();
         }
-        if (!productsInfoModels.isEmpty() && productsInfoModels.size() > position) {
-            mProductsInfoModel = productsInfoModels.get(position);
-        }
-       /* for (int i = 0; i < productsInfoModels.size(); i++) {
+        for (int i = 0; i < productsInfoModels.size(); i++) {
             if (productsInfoModels.get(i).getId() == productModel.getId()) {
                 mProductsInfoModel = productsInfoModels.get(i);
-                break;
             }
-        }*/
-        mProductsInfoModel.setId(productModel.getId());
-        /*if (!pageImages.isEmpty()){
-            productsInfoModels = new ArrayList<ProductsInfoModel>(pageImages.size());
-            for (int i = 0; i < pageImages.size(); i++) {
-                productsInfoModels.get(i).setId(pageImages.get(i).getId());
-            }
-        }else {
-            productsInfoModels=new ArrayList<>();
-        }*/
-        saveProductInfo();
+        }
+
         this.position = position;
         ImageView ivGalleryPhoto = binding.ivProductImage;
         Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
@@ -172,15 +159,14 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void addThisProductToSharedPreferences() {
-
         for (int i = 0; i < productModelList.size(); i++) {
             if (productModelList.get(i).getId() == productModel.getId()) {
                 productModelList.remove(i);
+                break;
             }
         }
         productModelList.add(productModel);
         customUtilsLazy.getValue().saveProductToPrefs(productModelList);
-        onQuantityChanged.onQuantityChange(true);
     }
 
     private void makeListenersOnItemsData() {
@@ -192,13 +178,13 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mProductsInfoModel.setEmail(charSequence.toString());
-                saveProductInfo();
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                mProductsInfoModel.setEmail(editable.toString());
+                saveProductInfo();
             }
         });
 
@@ -210,13 +196,13 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mProductsInfoModel.setPassword(charSequence.toString());
-                saveProductInfo();
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                mProductsInfoModel.setPassword(editable.toString());
+                saveProductInfo();
             }
         });
         binding.etProductType.addTextChangedListener(new TextWatcher() {
@@ -227,13 +213,13 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mProductsInfoModel.setType(charSequence.toString());
-                saveProductInfo();
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                mProductsInfoModel.setType(editable.toString());
+                saveProductInfo();
             }
         });
         binding.etWhatsapp.addTextChangedListener(new TextWatcher() {
@@ -244,76 +230,27 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mProductsInfoModel.setWhatsapp(charSequence.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                mProductsInfoModel.setWhatsapp(editable.toString());
                 saveProductInfo();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
+                onOperationClicked.dataChanged(position, mProductsInfoModel);
             }
         });
 
-//        makeListener(binding.etEmail, EMAIL_EDITTEXT);
-//        makeListener(binding.etPassword, PASSWORD_EDITTEXT);
-//        makeListener(binding.etProductType, PRODUCTTYPE_EDITTEXT);
-//        makeListener(binding.etWhatsapp, WHATSAPP_EDITTEXT);
-    }
-
-    private void makeListener(EditText editText, String type) {
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                switch (type) {
-                    case EMAIL_EDITTEXT:
-//                        productsInfoModels.get(position).setEmail(charSequence.toString());
-                        mProductsInfoModel.setEmail(charSequence.toString());
-                        saveProductInfo();
-                        break;
-
-                    case PASSWORD_EDITTEXT:
-//                        productsInfoModels.get(position).setPassword(charSequence.toString());
-                        mProductsInfoModel.setPassword(charSequence.toString());
-                        saveProductInfo();
-                        break;
-
-                    case PRODUCTTYPE_EDITTEXT:
-//                        productsInfoModels.get(position).setType(charSequence.toString());
-                        mProductsInfoModel.setType(charSequence.toString());
-                        saveProductInfo();
-                        break;
-
-                    case WHATSAPP_EDITTEXT:
-//                        productsInfoModels.get(position).setWhatsapp(charSequence.toString());
-                        mProductsInfoModel.setWhatsapp(charSequence.toString());
-                        saveProductInfo();
-                        break;
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void saveProductInfo() {
         for (int i = 0; i < productsInfoModels.size(); i++) {
             if (productsInfoModels.get(i).getId() == mProductsInfoModel.getId()) {
                 productsInfoModels.remove(i);
-                break;
             }
         }
-        productsInfoModels.add(position, mProductsInfoModel);
+        productsInfoModels.add(mProductsInfoModel);
         customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
-//        savedProductsInfo = new ArrayList<>();
-//        mProductsInfoModel=new ProductsInfoModel();
     }
 
     private boolean isLoggedIn() {

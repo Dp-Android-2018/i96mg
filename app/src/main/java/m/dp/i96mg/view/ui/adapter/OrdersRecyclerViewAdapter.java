@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ItemPendingOrderBinding;
 import m.dp.i96mg.service.model.global.OrderResponseModel;
+import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.view.ui.viewholder.OrdersViewHolder;
 
 
@@ -44,5 +45,9 @@ public class OrdersRecyclerViewAdapter extends RecyclerView.Adapter<OrdersViewHo
         } else {
             return 0;
         }
+    }
+
+    public void setPageImages(ArrayList<OrderResponseModel> orderResponseModels) {
+        this.orderResponseModels = orderResponseModels;
     }
 }

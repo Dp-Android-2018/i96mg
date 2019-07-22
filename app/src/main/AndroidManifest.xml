@@ -25,7 +25,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".view.ui.activity.PendingOrdersActivity"></activity>
+        <activity android:name=".view.ui.activity.PendingOrdersActivity"/>
         <activity android:name=".view.ui.activity.EditProfileActivity" />
         <activity android:name=".view.ui.activity.WishListActivity" />
         <activity android:name=".view.ui.activity.SignUpActivity" />

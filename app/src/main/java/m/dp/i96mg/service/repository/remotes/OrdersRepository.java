@@ -17,9 +17,9 @@ public class OrdersRepository {
 
     private Lazy<ApiInterfaces> endPointsLazy = inject(ApiInterfaces.class);
 
-    public LiveData<Response<AllOrdersResponse>> getPendingOrders() {
+    public LiveData<Response<AllOrdersResponse>> getPendingOrders(int pageNumber) {
         MutableLiveData<Response<AllOrdersResponse>> data = new MutableLiveData<>();
-        endPointsLazy.getValue().getPendingOrders()
+        endPointsLazy.getValue().getPendingOrders(pageNumber)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Response<AllOrdersResponse>>() {
@@ -46,9 +46,9 @@ public class OrdersRepository {
         return data;
     }
 
-    public LiveData<Response<AllOrdersResponse>> getOrders() {
+    public LiveData<Response<AllOrdersResponse>> getOrders(int pageNumber) {
         MutableLiveData<Response<AllOrdersResponse>> data = new MutableLiveData<>();
-        endPointsLazy.getValue().getOrders()
+        endPointsLazy.getValue().getOrders(pageNumber)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Response<AllOrdersResponse>>() {

@@ -1,25 +1,25 @@
 package m.dp.i96mg.service.repository.remotes;
 
 import io.reactivex.Observable;
-import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.request.BankRequest;
 import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.request.LoginRequest;
-import m.dp.i96mg.service.model.request.OrderRequest;
 import m.dp.i96mg.service.model.request.ProductsOrderRequest;
 import m.dp.i96mg.service.model.request.ReviewRequest;
 import m.dp.i96mg.service.model.request.SignUpRequest;
 import m.dp.i96mg.service.model.request.WishListRequest;
 import m.dp.i96mg.service.model.response.AllOrdersResponse;
+import m.dp.i96mg.service.model.response.BankAccountsResponse;
 import m.dp.i96mg.service.model.response.CartResponse;
 import m.dp.i96mg.service.model.response.CategoriesResponse;
+import m.dp.i96mg.service.model.response.DataResponse;
 import m.dp.i96mg.service.model.response.LoginResponse;
+import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.service.model.response.ProductDetailsResponse;
 import m.dp.i96mg.service.model.response.ProductReviewsResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
-import m.dp.i96mg.service.model.response.DataResponse;
-import m.dp.i96mg.service.model.response.MessageResponse;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -61,19 +61,19 @@ public interface ApiInterfaces {
 
     //Check cart products quantities
     @POST("/api/order/check")
-    Observable<Response<Void>> checkProducts(@Body CheckRequest checkRequest );
+    Observable<Response<Void>> checkProducts(@Body CheckRequest checkRequest);
 
     //Send login code
     @POST("/api/send-login-code")
-    Observable<Response<MessageResponse>> sendLoginCode(@Body LoginRequest loginRequest );
+    Observable<Response<MessageResponse>> sendLoginCode(@Body LoginRequest loginRequest);
 
     //Login
     @POST("/api/login")
-    Observable<Response<LoginResponse>> login(@Body LoginRequest loginRequest );
+    Observable<Response<LoginResponse>> login(@Body LoginRequest loginRequest);
 
     //Update account details (complete registration)
     @POST("/api/account")
-    Observable<Response<MessageResponse>> signUp(@Body SignUpRequest signUpRequest );
+    Observable<Response<MessageResponse>> signUp(@Body SignUpRequest signUpRequest);
 
     //Get settings
     @GET("/api/settings")
@@ -105,11 +105,21 @@ public interface ApiInterfaces {
 
     //Get all pending orders
     @GET("/api/order/pending")
-    Observable<Response<AllOrdersResponse>> getPendingOrders();
+    Observable<Response<AllOrdersResponse>> getPendingOrders(@Query("page") int pageNumber);
 
     //Get all orders
     @GET("/api/order")
-    Observable<Response<AllOrdersResponse>> getOrders();
+    Observable<Response<AllOrdersResponse>> getOrders(@Query("page") int pageNumber);
 
+    //Complete the payment for an order using paypal
+    @POST("/api/order/{order}/pay/paypal")
+    Observable<Response<OrderResponse>> payUsingPaybal(@Path("order") int orderId);
 
+    //Get bank accounts
+    @GET("/api/bank-accounts")
+    Observable<Response<BankAccountsResponse>> getBankAccounts();
+
+    //Complete the payment for an order using a bank transfer
+    @POST("/api/order/{order}/pay/bank-transfer")
+    Observable<Response<MessageResponse>> payUsingBankAccount(@Path("order") int orderId,@Body BankRequest bankRequest);
 }

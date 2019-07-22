@@ -424,7 +424,7 @@
                 <Spinner
                     android:id="@+id/request_type_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp33w"
+                    android:layout_height="@dimen/dp39w"
                     android:popupBackground="@drawable/edittext_border_yellow"
                     android:prompt="@string/banck_account"
                     android:spinnerMode="dropdown"

@@ -9,26 +9,39 @@ import androidx.databinding.DataBindingUtil;
 
 import com.gaurav.cdsrecyclerview.CdsRecyclerViewAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ItemShopCartBinding;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.global.ProductsInfoModel;
+import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.view.ui.callback.OnOperationClicked;
 import m.dp.i96mg.view.ui.callback.OnQuantityChanged;
 import m.dp.i96mg.view.ui.viewholder.ShopViewHolder;
 
+import static org.koin.java.standalone.KoinJavaComponent.inject;
 
-public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel,ShopViewHolder> {
+
+public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel, ShopViewHolder> {
+    private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
+    private ArrayList<ProductsInfoModel> productsInfoModels;
     private List<ProductModel> pageImages;
     private OnQuantityChanged onQuantityChanged;
     private OnOperationClicked onOperationClicked;
 
     public ShopRecyclerViewAdapter(Context context, List<ProductModel> pageImages, OnQuantityChanged onQuantityChanged, OnOperationClicked onOperationClicked) {
-        super(context,pageImages);
-        this.pageImages=pageImages;
-        this.onQuantityChanged=onQuantityChanged;
+        super(context, pageImages);
+        this.pageImages = pageImages;
+        this.onQuantityChanged = onQuantityChanged;
         this.onOperationClicked = onOperationClicked;
+        productsInfoModels = new ArrayList<>();
+        for (int i = 0; i < pageImages.size(); i++) {
+            productsInfoModels.add(new ProductsInfoModel(pageImages.get(i).getId()));
+        }
+        customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
     }
 
 
@@ -41,14 +54,14 @@ public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel
 
     @Override
     public void bindHolder(ShopViewHolder holder, int position) {
-        holder.bindClass(pageImages.get(position),onQuantityChanged, onOperationClicked,pageImages,position);
+        holder.bindClass(pageImages.get(position), onQuantityChanged, onOperationClicked, pageImages, position);
     }
 
     @Override
     public int getItemCount() {
-        if (pageImages !=null){
+        if (pageImages != null) {
             return pageImages.size();
-        }else {
+        } else {
             return 0;
         }
     }
@@ -57,7 +70,7 @@ public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel
         this.pageImages = pageImages;
     }
 
-    public ProductModel getItemAtPosition(int position){
+    public ProductModel getItemAtPosition(int position) {
         return pageImages.get(position);
     }
 }

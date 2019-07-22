@@ -350,7 +350,7 @@ public class MainActivity extends BaseActivity {
         if (customUtilsLazy.getValue().getSavedProductsData() != null) {
             productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
         }
-        productModelList = customUtilsLazy.getValue().getSavedProductsData();
+//        productModelList = customUtilsLazy.getValue().getSavedProductsData();
         for (int i = 0; i < productModelList.size(); i++) {
             if (productModelList.get(i).getId() == productModel.getId()) {
                 productModelList.remove(i);

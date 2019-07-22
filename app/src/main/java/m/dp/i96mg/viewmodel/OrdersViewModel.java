@@ -22,11 +22,11 @@ public class OrdersViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<Response<AllOrdersResponse>> getPendingOrders() {
-        return ordersRepositoryLazy.getValue().getPendingOrders();
+    public LiveData<Response<AllOrdersResponse>> getPendingOrders(int pageNumber) {
+        return ordersRepositoryLazy.getValue().getPendingOrders(pageNumber);
     }
 
-    public LiveData<Response<AllOrdersResponse>> getOrders() {
-        return ordersRepositoryLazy.getValue().getOrders();
+    public LiveData<Response<AllOrdersResponse>> getOrders(int pageNumber) {
+        return ordersRepositoryLazy.getValue().getOrders(pageNumber);
     }
 }

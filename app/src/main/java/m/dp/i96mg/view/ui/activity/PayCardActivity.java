@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RadioButton;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -22,33 +24,42 @@ import br.com.moip.validators.CreditCard;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityPayCardBinding;
+import m.dp.i96mg.service.model.global.BankAccountResponseModel;
 import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
+import m.dp.i96mg.service.model.request.BankRequest;
 import m.dp.i96mg.service.model.request.OrderRequest;
+import m.dp.i96mg.service.model.response.BankAccountsResponse;
 import m.dp.i96mg.service.model.response.ErrorResponse;
+import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
 import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
+import m.dp.i96mg.view.ui.adapter.SpinnerAdapter;
 import m.dp.i96mg.viewmodel.PayCardActivityViewModel;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.BANK_ACCOUNT_ID;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.CREDIT_CARD;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.CREDIT_ID;
-import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PAYBAL;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PAYBAL_ID;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class PayCardActivity extends BaseActivity {
 
     ActivityPayCardBinding binding;
-    private int type = CREDIT_ID;
+    private int type = BANK_ACCOUNT_ID;
     private Lazy<PayCardActivityViewModel> payCardActivityViewModelLazy = inject(PayCardActivityViewModel.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     OrderRequest orderRequest;
     private List<ProductModel> productModelList;
     private ArrayList<ProductData> productData;
+    private int orderId;
+    private SpinnerAdapter bankSpinnerAdapter;
+    private BankAccountResponseModel selectedBankAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +67,47 @@ public class PayCardActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_card);
         orderRequest = new OrderRequest(Parcel.obtain());
         orderRequest = getIntent().getParcelableExtra(ConfigurationFile.Constants.ORDER_REQUEST);
+        orderId = getIntent().getIntExtra(ConfigurationFile.Constants.ORDER_ID, 0);
         binding.ivBack.setOnClickListener(v -> onBackPressed());
-//        setProductList();
+        getBankAccounts();
     }
 
-    private void setProductList() {
-        productModelList = new ArrayList<>();
-        productModelList = customUtilsLazy.getValue().getSavedProductsData();
-        productData = new ArrayList<>();
-        if (productModelList != null) {
-            for (int i = 0; i < productModelList.size(); i++) {
-                productData.add(new ProductData(productModelList.get(i).getId(), productModelList.get(i).getOrderedQuantity()));
+    private void getBankAccounts() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            payCardActivityViewModelLazy.getValue().getBankAccounts().observe(this, new Observer<Response<BankAccountsResponse>>() {
+                @Override
+                public void onChanged(Response<BankAccountsResponse> bankAccountsResponseResponse) {
+                    SharedUtils.getInstance().cancelDialog();
+                    if (bankAccountsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                            && ConfigurationFile.Constants.SUCCESS_CODE_TO > bankAccountsResponseResponse.code()) {
+                        if (bankAccountsResponseResponse.body() != null) {
+                            initializeSpinnerAdapter(bankAccountsResponseResponse.body().getData());
+                        }
+                    } else {
+                        showErrors(bankAccountsResponseResponse.errorBody());
+                    }
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private void initializeSpinnerAdapter(ArrayList<BankAccountResponseModel> data) {
+        bankSpinnerAdapter = new SpinnerAdapter(PayCardActivity.this, data);
+        binding.requestTypeSpinner.setAdapter(bankSpinnerAdapter);
+        binding.requestTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedBankAccount = (BankAccountResponseModel) parent.getItemAtPosition(position);
             }
-        }
-        if (productData != null) {
-            orderRequest.setProductsData(productData);
-        }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                showSnackbar("please select Bank Account !!");
+            }
+        });
     }
 
     public void onRadioButtonClicked(View view) {
@@ -100,7 +136,7 @@ public class PayCardActivity extends BaseActivity {
     public void onRadioButtonConstrainLayoutClicked(View view) {
         switch (view.getId()) {
             case R.id.bank_constraint:
-                    makeActionOnBankCredit();
+                makeActionOnBankCredit();
                 break;
             case R.id.credit_onstraint:
                 makeActionOnChooseCredit();
@@ -133,7 +169,7 @@ public class PayCardActivity extends BaseActivity {
         binding.paybalRadioButton.setChecked(false);
         binding.creditConstraintlayout.setVisibility(View.GONE);
         binding.creditRadioButton.setChecked(false);
-        type = CREDIT_ID;
+        type = BANK_ACCOUNT_ID;
     }
 
     private void makeActionOnChooseCredit() {
@@ -162,14 +198,49 @@ public class PayCardActivity extends BaseActivity {
     }
 
     public void makeOrder(View view) {
-     /*   switch (type) {
-            case CREDIT_ID:
-                makeOrderOnChooseCredit();
+        switch (type) {
+            case BANK_ACCOUNT_ID:
+                makeOrderByBankAccountRequest();
                 break;
             case PAYBAL_ID:
-                makeOrderRequest();
+                makeOrderByPaybalRequest();
                 break;
-        }*/
+        }
+    }
+
+    private void makeOrderByBankAccountRequest() {
+        if (!binding.etFullName.getText().toString().isEmpty()){
+            makeBankRequest();
+        }else{
+            //TODO: handle errors
+        }
+    }
+
+    private void makeBankRequest() {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            payCardActivityViewModelLazy.getValue().payUsingBankAccount(orderId, getBankAccountRequest()).observe(this, messageResponseResponse -> {
+                SharedUtils.getInstance().cancelDialog();
+                if (messageResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > messageResponseResponse.code()) {
+                    if (messageResponseResponse.body() != null) {
+                        showSnackbar(messageResponseResponse.body().getMessage());
+                        //TODO: complete this and see how to upload images
+                    }
+                } else {
+                    showErrors(messageResponseResponse.errorBody());
+                }
+            });
+        } else {
+            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
+        }
+    }
+
+    private BankRequest getBankAccountRequest() {
+        BankRequest bankRequest=new BankRequest();
+        bankRequest.setBankAccountId(selectedBankAccount.getId());
+        bankRequest.setFullName(binding.etFullName.getText().toString());
+        return bankRequest;
     }
 
     private void makeOrderOnChooseCredit() {
@@ -225,25 +296,27 @@ public class PayCardActivity extends BaseActivity {
 
     }
 
-   /* private void makeOrderRequest() {
+    private void makeOrderByPaybalRequest() {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
-            payCardActivityViewModelLazy.getValue().createOrder(orderRequest);
-            payCardActivityViewModelLazy.getValue().getData().observe(this, orderResponseResponse -> {
-//                SharedUtils.getInstance().cancelDialog();
-                if (orderResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
-                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > orderResponseResponse.code()) {
-                    if (orderResponseResponse.body() != null) {
-                        makeActionOnType(orderResponseResponse.body());
+            SharedUtils.getInstance().showProgressDialog(this);
+            payCardActivityViewModelLazy.getValue().payUsingPaybal(orderId).observe(this, new Observer<Response<OrderResponse>>() {
+                @Override
+                public void onChanged(Response<OrderResponse> orderResponseResponse) {
+                    SharedUtils.getInstance().cancelDialog();
+                    if (orderResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                            && ConfigurationFile.Constants.SUCCESS_CODE_TO > orderResponseResponse.code()) {
+                        if (orderResponseResponse.body() != null) {
+                            redirectToPayBal(orderResponseResponse.body());
+                        }
+                    } else {
+                        showErrors(orderResponseResponse.errorBody());
                     }
-                } else {
-                    showErrors(orderResponseResponse);
                 }
             });
         } else {
             showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
         }
-    }*/
+    }
 
     private void makeActionOnType(OrderResponse body) {
         switch (type) {
@@ -292,13 +365,13 @@ public class PayCardActivity extends BaseActivity {
         }
     }
 
-    private void showErrors(Response<OrderResponse> productsResponseResponse) {
+    private void showErrors(ResponseBody productsResponseResponse) {
 
         Gson gson = new GsonBuilder().create();
         ErrorResponse errorResponse = new ErrorResponse();
 
         try {
-            errorResponse = gson.fromJson(productsResponseResponse.errorBody().string(), ErrorResponse.class);
+            errorResponse = gson.fromJson(productsResponseResponse.string(), ErrorResponse.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

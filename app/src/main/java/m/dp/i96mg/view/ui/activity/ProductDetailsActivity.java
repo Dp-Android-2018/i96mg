@@ -46,6 +46,7 @@ import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.ProductsRecyclerViewAdapter;
 import m.dp.i96mg.view.ui.adapter.ReviewsRecyclerViewAdapter;
 import m.dp.i96mg.view.ui.callback.OnItemClickListener;
+import m.dp.i96mg.viewmodel.MainActivityViewModel;
 import m.dp.i96mg.viewmodel.ProductDetailsViewModel;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -59,7 +60,10 @@ public class ProductDetailsActivity extends BaseActivity {
     private ProductModel productModel;
     private int quantity = ConfigurationFile.Constants.DEFAULT_QUANTITY;
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
+    private int pageId = ConfigurationFile.Constants.DEFAULT_PAGE_ID;
+    private String categoryId = ConfigurationFile.Constants.DEFAULT_CATEGORY_ID;
     private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
+    private Lazy<MainActivityViewModel> mainActivityViewModelLazy = inject(MainActivityViewModel.class);
     private float price;
     private List<ProductModel> productModelList;
     private ArrayList<ProductModel> allProducts;
@@ -229,7 +233,7 @@ public class ProductDetailsActivity extends BaseActivity {
             productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
         }
         getProductDetail();
-        initializeAllProductsRecyclerView();
+        getRandomProducts();
         getReviews();
     }
 
@@ -264,6 +268,14 @@ public class ProductDetailsActivity extends BaseActivity {
         binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
         binding.tvDescribtion.setText(String.valueOf(productModel.getDescription()));
         binding.ratingBar.setRating(productModel.getRating());
+        if (!isLoggedIn()) {
+            for (int i = 0; i < productModelList.size(); i++) {
+                if (productModelList.get(i).getId() == productModel.getId()) {
+                    productModel.setInCart(true);
+                    break;
+                }
+            }
+        }
         if (productModel.isInCart()) {
             binding.quantityConstraint.setVisibility(View.GONE);
             binding.tvAddToCart.setText(getResources().getString(R.string.remove_from_cart));
@@ -288,16 +300,42 @@ public class ProductDetailsActivity extends BaseActivity {
             }*/
     }
 
-    private void initializeAllProductsRecyclerView() {
-        if (allProducts != null) {
-            for (int i = 0; i < allProducts.size(); i++) {
-                if (allProducts.get(i) == productModel) {
-                    allProducts.remove(productModel);
+    private void getRandomProducts() {
+        if (ValidationUtils.isConnectingToInternet(Objects.requireNonNull(this))) {
+//            SharedUtils.getInstance().showProgressDialog(this);
+            mainActivityViewModelLazy.getValue().getProducts(categoryId, pageId);
+            observeViewmodel();
+        } else {
+            Snackbar.make(binding.getRoot(), R.string.there_is_no_internet_connection, Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    private void observeViewmodel() {
+        mainActivityViewModelLazy.getValue().getData().observe(this, productsResponseResponse -> {
+//            SharedUtils.getInstance().cancelDialog();
+            if (productsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                    && ConfigurationFile.Constants.SUCCESS_CODE_TO > productsResponseResponse.code()) {
+                if (productsResponseResponse.body() != null) {
+                    if (!productsResponseResponse.body().getData().isEmpty()) {
+                        initializeAllProductsRecyclerView(productsResponseResponse.body().getData());
+                    }
+                }
+            } else {
+                showErrors(productsResponseResponse.errorBody());
+            }
+
+        });
+    }
+
+    private void initializeAllProductsRecyclerView(ArrayList<ProductModel> data) {
+        if (data != null) {
+            for (int i = 0; i < data.size(); i++) {
+                if (data.get(i).getId() == productModel.getId()) {
+                    data.remove(i);
                     break;
                 }
             }
-
-            productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(allProducts, ConfigurationFile.Constants.DEFAULT_TYPE, onItemClickListener);
+            productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(data, ConfigurationFile.Constants.DEFAULT_TYPE, onItemClickListener);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
             binding.rvProducts.setLayoutManager(linearLayoutManager);
             binding.rvProducts.setAdapter(productsRecyclerViewAdapter);

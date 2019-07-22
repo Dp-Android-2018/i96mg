@@ -7,7 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import kotlin.Lazy;
-import m.dp.i96mg.service.model.request.ProductsOrderRequest;
+import m.dp.i96mg.service.model.request.BankRequest;
+import m.dp.i96mg.service.model.response.BankAccountsResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.service.repository.remotes.PayCardRepository;
@@ -23,7 +24,16 @@ public class PayCardActivityViewModel extends AndroidViewModel {
         super(application);
     }
 
+    public LiveData<Response<OrderResponse>> payUsingPaybal(int orderId) {
+        return payCardRepositoryLazy.getValue().payUsingPaybal(orderId);
+    }
 
+    public LiveData<Response<BankAccountsResponse>> getBankAccounts() {
+        return payCardRepositoryLazy.getValue().getBankAccounts();
+    }
 
+    public LiveData<Response<MessageResponse>> payUsingBankAccount(int orderId, BankRequest bankRequest) {
+        return payCardRepositoryLazy.getValue().payUsingBankAccount(orderId,bankRequest);
+    }
 
 }

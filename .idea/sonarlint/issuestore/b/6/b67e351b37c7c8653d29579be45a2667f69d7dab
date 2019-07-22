@@ -1,24 +1,27 @@
 
-isquid:CommentedOutCodeLine€"<This block of commented-out lines of code should be removed.(«Ÿ78–öç«¿-
-jsquid:HiddenFieldCheckµ"@Rename "productModel" which hides the field declared at line 59.(Åñ‡ù8‘Á¡®¿-
-isquid:CommentedOutCodeLine~"<This block of commented-out lines of code should be removed.(§À8–öç«¿-
-@squid:S1643Û"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ðÁŽØ¿-
-osquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(šÄ¼÷úÿÿÿÿ8û—¦¿-
-jsquid:CommentedOutCodeLine†"<This block of commented-out lines of code should be removed.(§À8ñËÎ÷¿-
-osquid:CommentedOutCodeLineæ"<This block of commented-out lines of code should be removed.(®—Õüÿÿÿÿ8Þ´ý÷¿-
-Gsquid:S1148Ö"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ðÁŽØ¿-
-jsquid:CommentedOutCodeLineŸ"<This block of commented-out lines of code should be removed.(§À8–öç«¿-
-jsquid:CommentedOutCodeLineµ"<This block of commented-out lines of code should be removed.(§À8ðÁŽØ¿-
-Osquid:S1172ð"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8ðÁŽØ¿-
-jsquid:CommentedOutCodeLine’"<This block of commented-out lines of code should be removed.(Ý‘×»8ðÁŽØ¿-
-Gsquid:S1068?")Remove this unused "price" private field.(÷ºùÆ8‘è°³¼-
-isquid:CommentedOutCodeLinel"<This block of commented-out lines of code should be removed.(«Ïš8ºü§û¿-
-msquid:MaximumInheritanceDepth7"=This class has 10 parents which is greater than 5 authorized.(•õ†8ÏÉ€±¿-
-jsquid:HiddenFieldCheck”"@Rename "productModel" which hides the field declared at line 59.(Åñ‡ù8ò†¦®¿-
-isquid:CommentedOutCodeLine·"<This block of commented-out lines of code should be removed.(«Ÿ78ðÁŽØ¿-
-^squid:S1126u"AReplace this if-then-else statement by a single return statement.( Í¸8Éçà«¿-
-isquid:CommentedOutCodeLine¡"<This block of commented-out lines of code should be removed.(«Ÿ78–öç«¿-
-Psquid:S1602û",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8ò³Û÷¿-
-isquid:CommentedOutCodeLineˆ"<This block of commented-out lines of code should be removed.(«Ÿ78ñËÎ÷¿-
-Osquid:S1172Ü"+Remove this unused method parameter "view".(žîšðÿÿÿÿÿ8ò³Û÷¿-
-@squid:S1643Ú"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8û—¦¿-
+isquid:CommentedOutCodeLine®"<This block of commented-out lines of code should be removed.(«Ÿ78¬¢©ÈÁ-
+Gsquid:S1148ü"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¬¢©ÈÁ-
+isquid:CommentedOutCodeLinep"<This block of commented-out lines of code should be removed.(«Ïš8ºü§û¿-
+osquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(šÄ¼÷úÿÿÿÿ8Ž¿ÈÁ-
+Ssquid:S1066¿"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8¬¢©ÈÁ-
+Osquid:S1172–"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8¬¢©ÈÁ-
+^squid:S1126y"AReplace this if-then-else statement by a single return statement.( Í¸8Éçà«¿-
+isquid:CommentedOutCodeLine„"<This block of commented-out lines of code should be removed.(«Ÿ78–öç«¿-
+Psquid:S1602¡",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8¬¢©ÈÁ-
+Gsquid:S1068C")Remove this unused "price" private field.(÷ºùÆ8‘è°³¼-
+@squid:S1643€"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8¬¢©ÈÁ-
+isquid:CommentedOutCodeLineÝ"<This block of commented-out lines of code should be removed.(«Ÿ78¬¢©ÈÁ-
+jsquid:CommentedOutCodeLineÛ"<This block of commented-out lines of code should be removed.(§À8¬¢©ÈÁ-
+Osquid:S1172‚"+Remove this unused method parameter "view".(žîšðÿÿÿÿÿ8¬¢©ÈÁ-
+isquid:CommentedOutCodeLine¥"<This block of commented-out lines of code should be removed.(«Ÿ78–öç«¿-
+msquid:MaximumInheritanceDepth8"=This class has 10 parents which is greater than 5 authorized.(•õ†8ÏÉ€±¿-
+@squid:S1643"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8Ž¿ÈÁ-
+isquid:CommentedOutCodeLine»"<This block of commented-out lines of code should be removed.(«Ÿ78¬¢©ÈÁ-
+jsquid:HiddenFieldCheck¹"@Rename "productModel" which hides the field declared at line 60.(Åñ‡ù8‘Á¡®¿-
+jsquid:CommentedOutCodeLine£"<This block of commented-out lines of code should be removed.(§À8–öç«¿-
+jsquid:CommentedOutCodeLine±"<This block of commented-out lines of code should be removed.(§À8¦Â¡ÈÁ-
+osquid:CommentedOutCodeLineŒ"<This block of commented-out lines of code should be removed.(®—Õüÿÿÿÿ8¬¢©ÈÁ-
+jsquid:CommentedOutCodeLine¬"<This block of commented-out lines of code should be removed.(§À8¬¢©ÈÁ-
+jsquid:HiddenFieldCheck˜"@Rename "productModel" which hides the field declared at line 60.(Åñ‡ù8ò†¦®¿-
+jsquid:CommentedOutCodeLinež"<This block of commented-out lines of code should be removed.(Ý‘×»8Ž¿ÈÁ-
+jsquid:CommentedOutCodeLine‚"<This block of commented-out lines of code should be removed.(§À8–öç«¿-

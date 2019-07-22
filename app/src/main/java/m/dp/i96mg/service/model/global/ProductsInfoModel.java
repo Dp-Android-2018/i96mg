@@ -18,6 +18,13 @@ public class ProductsInfoModel {
     @SerializedName("whatsapp")
     private String whatsapp;
 
+    public ProductsInfoModel() {
+    }
+
+    public ProductsInfoModel(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

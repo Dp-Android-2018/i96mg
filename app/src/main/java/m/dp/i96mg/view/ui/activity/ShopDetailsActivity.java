@@ -1,17 +1,12 @@
 package m.dp.i96mg.view.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +27,6 @@ import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.ProductsInfoModel;
 import m.dp.i96mg.service.model.global.VoucherResponssData;
 import m.dp.i96mg.service.model.request.CartRequest;
-import m.dp.i96mg.service.model.request.CheckRequest;
 import m.dp.i96mg.service.model.request.ProductsOrderRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
@@ -95,16 +89,40 @@ public class ShopDetailsActivity extends BaseActivity {
         onOperationClicked = new OnOperationClicked() {
             @Override
             public void plusIconClicked(int position, ProductModel productModel) {
-                //TODO : add it when not logged it
-                sendItemToDb(productModel);
+                if (isLoggedIn()) {
+                    sendItemToDb(productModel);
+                } else {
+                    addThisProductToSharedPreferences(productModel);
+                }
             }
 
             @Override
             public void minusIconClicked(int position, ProductModel productModel) {
-                //TODO : add it when not logged it
-                sendItemToDb(productModel);
+
+                if (isLoggedIn()) {
+                    sendItemToDb(productModel);
+                } else {
+                    addThisProductToSharedPreferences(productModel);
+                }
+            }
+
+            @Override
+            public void dataChanged(int position, ProductsInfoModel productsInfoModel) {
+                shopRecyclerViewAdapter.notifyDataSetChanged();
             }
         };
+    }
+
+    private void addThisProductToSharedPreferences(ProductModel productModel) {
+        for (int i = 0; i < productModelList.size(); i++) {
+            if (productModelList.get(i).getId() == productModel.getId()) {
+                productModelList.remove(i);
+                break;
+            }
+        }
+        productModelList.add(productModel);
+        customUtilsLazy.getValue().saveProductToPrefs(productModelList);
+        onQuantityChanged.onQuantityChange(true);
     }
 
     private void sendItemToDb(ProductModel productModel) {
@@ -215,8 +233,6 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void initializeRecyclerView() {
-//        productsInfoModels.clear();
-//        customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
         shopRecyclerViewAdapter = new ShopRecyclerViewAdapter(this, productModelList, onQuantityChanged, onOperationClicked);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rvProducts.setHasFixedSize(true);
@@ -395,7 +411,7 @@ public class ShopDetailsActivity extends BaseActivity {
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > messageResponseResponse.code()) {
                     if (messageResponseResponse.body() != null) {
                         showSnackbarHere(messageResponseResponse.body().getMessage());
-//                        openNextActivity();
+                        openNextActivity(messageResponseResponse.body().getOrderId());
                     }
                 } else {
                     showErrors(messageResponseResponse.errorBody());
@@ -408,6 +424,7 @@ public class ShopDetailsActivity extends BaseActivity {
 
     private ProductsOrderRequest getProductsOrderRequest() {
         ProductsOrderRequest productsOrderRequest = new ProductsOrderRequest();
+        productsOrderRequest.setVoucher(binding.etCodeNumber.getText().toString());
         productsOrderRequest.setProductsInfoModels(productsInfoModels);
         return productsOrderRequest;
     }
@@ -443,10 +460,10 @@ public class ShopDetailsActivity extends BaseActivity {
         finish();
     }*/
 
-    private void openNextActivity() {
-//        Intent intent = new Intent(this, InformationActivity.class);
-//        intent.putExtra(ConfigurationFile.Constants.VOUCHER_VALUE, binding.etCodeNumber.getText().toString());
-//        startActivity(intent);
+    private void openNextActivity(int orderId) {
+        Intent intent = new Intent(this, PayCardActivity.class);
+        intent.putExtra(ConfigurationFile.Constants.ORDER_ID, orderId);
+        startActivity(intent);
     }
 
     public void makeVoucherRequest(View view) {

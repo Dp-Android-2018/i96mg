@@ -64,7 +64,7 @@
     <string name="wish_list">Wish list</string>
     <string name="pending_payment_orders">Pending payment orders</string>
     <string name="arabic">العربية</string>
-    <string name="orders_list">Orders list</string>
+    <string name="orders_list">Order list</string>
     <string name="logout">logout</string>
     <string name="have_not_initialized">have not been installed.</string>
     <string name="login">Login</string>
