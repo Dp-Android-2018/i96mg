@@ -127,7 +127,6 @@ public class LoginActivity extends BaseActivity {
                 if (loginResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > loginResponseResponse.code()) {
                     saveDataToSharedPreferences(loginResponseResponse.body().getData());
-                    openNextActivity();
                 } else {
                     showErrors(loginResponseResponse.errorBody());
                 }
@@ -150,7 +149,7 @@ public class LoginActivity extends BaseActivity {
             if (!customUtilsLazy.getValue().getSavedProductsData().isEmpty()) {
                 sendCartToDb();
             }
-        }else {
+        } else {
             openActivity();
         }
     }
@@ -165,7 +164,7 @@ public class LoginActivity extends BaseActivity {
                     List<ProductModel> productModels = customUtilsLazy.getValue().getSavedProductsData();
                     productModels.clear();
                     customUtilsLazy.getValue().saveProductToPrefs(productModels);
-                        showSnackbar(startTripResponseResponse.body().getMessage());
+                    showSnackbar(startTripResponseResponse.body().getMessage());
                     openActivity();
                 } else {
                     showErrors(startTripResponseResponse.errorBody());
@@ -223,10 +222,13 @@ public class LoginActivity extends BaseActivity {
 
     private void saveDataToSharedPreferences(LoginResponseModel loginResponseModel) {
         String languageType = customUtils.getValue().getSavedLanguageType();
+        List<ProductModel> productModels = customUtilsLazy.getValue().getSavedProductsData();
         customUtils.getValue().clearSharedPref();
         customUtils.getValue().saveLanguageTypeToPrefs(languageType);
+        customUtilsLazy.getValue().saveProductToPrefs(productModels);
         customUtilsLazy.getValue().saveMemberDataToPrefs(loginResponseModel);
         ConfigurationFile.Constants.AUTHORIZATION = customUtilsLazy.getValue().getSavedMemberData().getToken();
+        openNextActivity();
     }
 
     private void showErrors(ResponseBody productsResponseResponse) {

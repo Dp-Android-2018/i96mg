@@ -88,11 +88,16 @@
     <string name="registration_code">Registration code</string>
     <string name="please_login">please login first !</string>
     <string name="remove_from_cart">Remove from Cart</string>
-    <string name="swipe_to_remove_items">Swipe to remove items</string>
-    <string name="product_added_successfully">product added to cart successfully</string>
-    <string name="product_removed_successfully">Product removed from cart successfully.</string>
-    <string name="item_added_before">Item added to the cart before .</string>
+    <string name="swipe_to_remove_items">Swipe to remove item</string>
+    <string name="product_added_successfully">product has been added to the cart successfully.</string>
+    <string name="product_removed_successfully">Product has been removed from the cart successfully.</string>
+    <string name="item_added_before">This item has already been added !!</string>
     <string name="order_number">Order number :</string>
     <string name="time_to_cancel_order">Time to cancel order (</string>
     <string name="bracket_close">)</string>
+    <string name="edit">edit</string>
+    <string name="please_enter_full_name">Please enter full name !</string>
+    <string name="nothing_changed">nothing changed !</string>
+    <string name="you_havenot_picked_image">You haven\'t picked Image !</string>
+    <string name="something_went_wrong">Something went wrong !</string>
 </resources>

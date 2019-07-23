@@ -38,10 +38,12 @@ public class ShopRecyclerViewAdapter extends CdsRecyclerViewAdapter<ProductModel
         this.onQuantityChanged = onQuantityChanged;
         this.onOperationClicked = onOperationClicked;
         productsInfoModels = new ArrayList<>();
-        for (int i = 0; i < pageImages.size(); i++) {
-            productsInfoModels.add(new ProductsInfoModel(pageImages.get(i).getId()));
+        if (pageImages != null) {
+            for (int i = 0; i < pageImages.size(); i++) {
+                productsInfoModels.add(new ProductsInfoModel(pageImages.get(i).getId()));
+            }
+            customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
         }
-        customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
     }
 
 

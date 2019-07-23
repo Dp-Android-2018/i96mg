@@ -1,6 +1,12 @@
 package m.dp.i96mg.service.model.request;
 
+import android.graphics.Bitmap;
+import android.media.Image;
+
 import com.google.gson.annotations.SerializedName;
+
+import okhttp3.MultipartBody;
+import retrofit2.http.Part;
 
 public class SignUpRequest {
 
@@ -13,8 +19,14 @@ public class SignUpRequest {
     @SerializedName("phone")
     private String phone;
 
+    /*@SerializedName("profile_picture")
+    private MultipartBody.Part fileImageUrl;*/
+
     @SerializedName("profile_picture")
-    private String profilePictureUrl;
+    private MultipartBody.Part imageBitmap;
+
+    /*@SerializedName("profile_picture")
+    private String profilePictureUrl;*/
 
     public String getFirstName() {
         return firstName;
@@ -32,19 +44,19 @@ public class SignUpRequest {
         this.lastName = lastName;
     }
 
-    public String getProfilePictureUrl() {
-        return profilePictureUrl;
-    }
-
-    public void setProfilePictureUrl(String profilePictureUrl) {
-        this.profilePictureUrl = profilePictureUrl;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public MultipartBody.Part getImageBitmap() {
+        return imageBitmap;
+    }
+
+    public void setImageBitmap(MultipartBody.Part imageBitmap) {
+        this.imageBitmap = imageBitmap;
     }
 }

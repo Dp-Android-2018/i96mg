@@ -1,43 +1,43 @@
 
-Nsquid:S1066Ò"/Merge this if statement with the enclosing one.(à—åª8óÞÁ€À-
-_squid:S1126È"AReplace this if-then-else statement by a single return statement.( Í¸8óÞÁ€À-
-ysquid:S1450H"[Remove the "rvCategoryId" field and declare it as a local variable in the relevant methods.(¶Ûïû8ºô”©¿-
+isquid:CommentedOutCodeLine“"<This block of commented-out lines of code should be removed.(«Ÿ78Þð«ü¿-
+jsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(µ÷ƒ‘8óÞÁ€À-
 Usquid:S2696Ù"6Make the enclosing method "static" or remove this set.(©¿Õ¾8óÞÁ€À-
-jsquid:CommentedOutCodeLineã"<This block of commented-out lines of code should be removed.(¢ÁÉÝ8Þð«ü¿-
-@squid:S1643Ó"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8Ù½ïø¿-
-Lsquid:S1185Æ"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8óÞÁ€À-
-jsquid:CommentedOutCodeLineá"<This block of commented-out lines of code should be removed.(§À8óÞÁ€À-
-isquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(«Ÿ78óÞÁ€À-
-Jsquid:S1068L",Remove this unused "position" private field.(íñ8Ù½ïø¿-
-osquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(õ€©Áþÿÿÿÿ8óÞÁ€À-
-msquid:MaximumInheritanceDepth="=This class has 10 parents which is greater than 5 authorized.(‘Ù±8Ù½ïø¿-
-ssquid:S00116I"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8Ù½ïø¿-
-jsquid:CommentedOutCodeLine‘"<This block of commented-out lines of code should be removed.(§À8Þð«ü¿-
-qsquid:S3776µ"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(¶–Ö¦8Þð«ü¿-
+@squid:S1643Ô"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8óÞÁ€À-
 Gsquid:S1148Ï"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8óÞÁ€À-
+msquid:MaximumInheritanceDepth="=This class has 10 parents which is greater than 5 authorized.(‘Ù±8Ù½ïø¿-
+nsquid:CommentedOutCodeLine~"<This block of commented-out lines of code should be removed.(•Ðµƒøÿÿÿÿ8Þð«ü¿-
+‡"squid:ClassVariableVisibilityCheckN"RMake drawer a static final constant or non-public and provide accessors if needed.(Œ÷›á8Ù½ïø¿-
+jsquid:CommentedOutCodeLine·"<This block of commented-out lines of code should be removed.(ª°Ÿì8Þð«ü¿-
+qsquid:S00117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½îÙÔ8óÞÁ€À-
+Nsquid:S1066Ò"/Merge this if statement with the enclosing one.(à—åª8óÞÁ€À-
+nsquid:CommentedOutCodeLinet"<This block of commented-out lines of code should be removed.(•Ðµƒøÿÿÿÿ8Þð«ü¿-
+ysquid:S1450H"[Remove the "rvCategoryId" field and declare it as a local variable in the relevant methods.(¶Ûïû8ºô”©¿-
+jsquid:CommentedOutCodeLineã"<This block of commented-out lines of code should be removed.(¢ÁÉÝ8Þð«ü¿-
+jsquid:CommentedOutCodeLineæ"<This block of commented-out lines of code should be removed.(§À8óÞÁ€À-
+jsquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(Ü¾æ¦8Þð«ü¿-
+osquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(õ€©Áþÿÿÿÿ8óÞÁ€À-
+Zsquid:S2696Ý"6Make the enclosing method "static" or remove this set.(®‡íèþÿÿÿÿ8Þð«ü¿-
+@squid:S1643Ó"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8Ù½ïø¿-
+‡squid:S1450O"dRemove the "actionBarDrawerToggle" field and declare it as a local variable in the relevant methods.(õ¸Ššûÿÿÿÿ8Ù½ïø¿-
+jsquid:CommentedOutCodeLine²"<This block of commented-out lines of code should be removed.(§À8Þð«ü¿-
+usquid:S1450L"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Ù½ïø¿-
+_squid:S1126È"AReplace this if-then-else statement by a single return statement.( Í¸8óÞÁ€À-
+Usquid:S2696õ"6Make the enclosing method "static" or remove this set.(Ú£Œû8Þð«ü¿-
+Ssquid:S1068ø"/Remove this unused "scaleFactor" private field.(åøØ‘ÿÿÿÿÿ8Þð«ü¿-
+jsquid:CommentedOutCodeLine†"<This block of commented-out lines of code should be removed.(«Ïš8Þð«ü¿-
+osquid:CommentedOutCodeLineƒ"<This block of commented-out lines of code should be removed.(Ñ­Ëùÿÿÿÿ8Þð«ü¿-
+jsquid:CommentedOutCodeLineá"<This block of commented-out lines of code should be removed.(§À8óÞÁ€À-
+qsquid:S3776µ"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(¶–Ö¦8Þð«ü¿-
+Ssquid:S1066›"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8óÞÁ€À-
+jsquid:CommentedOutCodeLine‘"<This block of commented-out lines of code should be removed.(§À8Þð«ü¿-
+osquid:CommentedOutCodeLineë"<This block of commented-out lines of code should be removed.(ÊžÔÜøÿÿÿÿ8Þð«ü¿-
+jsquid:CommentedOutCodeLineß"<This block of commented-out lines of code should be removed.(§À8óÞÁ€À-
+osquid:CommentedOutCodeLineá"<This block of commented-out lines of code should be removed.(ÙþÆÑüÿÿÿÿ8øÚ•ÆÁ-
+Jsquid:S1068L",Remove this unused "position" private field.(íñ8Ù½ïø¿-
+Jsquid:S1444N",Make this "public static drawer" field final(Œ÷›á8Ù½ïø¿-
+Qsquid:S1659J".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8Ù½ïø¿-
+isquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(«Ÿ78óÞÁ€À-
 Osquid:S1659J",Declare "totalItemCount" on a separate line.(üÆö›ýÿÿÿÿ8Ù½ïø¿-
 isquid:CommentedOutCodeLine´"<This block of commented-out lines of code should be removed.(«Ÿ78Þð«ü¿-
-osquid:CommentedOutCodeLineƒ"<This block of commented-out lines of code should be removed.(Ñ­Ëùÿÿÿÿ8Þð«ü¿-
-Usquid:S2696õ"6Make the enclosing method "static" or remove this set.(Ú£Œû8Þð«ü¿-
-jsquid:CommentedOutCodeLineæ"<This block of commented-out lines of code should be removed.(§À8óÞÁ€À-
-jsquid:CommentedOutCodeLineß"<This block of commented-out lines of code should be removed.(§À8óÞÁ€À-
-isquid:CommentedOutCodeLine“"<This block of commented-out lines of code should be removed.(«Ÿ78Þð«ü¿-
-osquid:CommentedOutCodeLineá"<This block of commented-out lines of code should be removed.(ÙþÆÑüÿÿÿÿ8øÚ•ÆÁ-
-jsquid:CommentedOutCodeLine†"<This block of commented-out lines of code should be removed.(«Ïš8Þð«ü¿-
-‡"squid:ClassVariableVisibilityCheckN"RMake drawer a static final constant or non-public and provide accessors if needed.(Œ÷›á8Ù½ïø¿-
-Qsquid:S1659J".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8Ù½ïø¿-
-@squid:S1643Ô"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8óÞÁ€À-
-usquid:S1450L"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Ù½ïø¿-
-nsquid:CommentedOutCodeLinet"<This block of commented-out lines of code should be removed.(•Ðµƒøÿÿÿÿ8Þð«ü¿-
-Jsquid:S1444N",Make this "public static drawer" field final(Œ÷›á8Ù½ïø¿-
-jsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(µ÷ƒ‘8óÞÁ€À-
-Ssquid:S1068ø"/Remove this unused "scaleFactor" private field.(åøØ‘ÿÿÿÿÿ8Þð«ü¿-
-jsquid:CommentedOutCodeLine·"<This block of commented-out lines of code should be removed.(ª°Ÿì8Þð«ü¿-
-jsquid:CommentedOutCodeLine²"<This block of commented-out lines of code should be removed.(§À8Þð«ü¿-
-jsquid:CommentedOutCodeLine—"<This block of commented-out lines of code should be removed.(Ü¾æ¦8Þð«ü¿-
-Zsquid:S2696Ý"6Make the enclosing method "static" or remove this set.(®‡íèþÿÿÿÿ8Þð«ü¿-
-nsquid:CommentedOutCodeLine~"<This block of commented-out lines of code should be removed.(•Ðµƒøÿÿÿÿ8Þð«ü¿-
-qsquid:S00117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½îÙÔ8óÞÁ€À-
-‡squid:S1450O"dRemove the "actionBarDrawerToggle" field and declare it as a local variable in the relevant methods.(õ¸Ššûÿÿÿÿ8Ù½ïø¿-
-Ssquid:S1066›"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8óÞÁ€À-
-osquid:CommentedOutCodeLineë"<This block of commented-out lines of code should be removed.(ÊžÔÜøÿÿÿÿ8Þð«ü¿-
+Lsquid:S1185Æ"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8óÞÁ€À-
+ssquid:S00116I"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8Ù½ïø¿-

@@ -64,7 +64,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/main_title" />
 
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/iv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,9 +73,7 @@
                 android:src="@drawable/search"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_shop_cart"
                 app:layout_constraintEnd_toStartOf="@+id/iv_shop_cart"
-                app:layout_constraintTop_toTopOf="@+id/iv_shop_cart" />
-
-
+                app:layout_constraintTop_toTopOf="@+id/iv_shop_cart" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -86,13 +86,18 @@
     <string name="password">الرقم السرى</string>
     <string name="whatsapp_number">رقم الواتس اب الخاص بك</string>
     <string name="registration_code">رمز التسجيل</string>
-    <string name="please_login">please login first !</string>
-    <string name="remove_from_cart">Remove from Cart</string>
-    <string name="swipe_to_remove_items">Swipe to remove items</string>
-    <string name="product_added_successfully">product added to cart successfully</string>
-    <string name="product_removed_successfully">Product removed from cart successfully.</string>
-    <string name="item_added_before">Item added to the cart before .</string>
-    <string name="order_number">Order number :</string>
-    <string name="time_to_cancel_order">Time to cancel order (</string>
+    <string name="please_login">يرجى تسجيل الدخول أولا!</string>
+    <string name="remove_from_cart">إزالة من السلة</string>
+    <string name="swipe_to_remove_items">اسحب لإزالة العنصر</string>
+    <string name="product_added_successfully">تم إضافة المنتج إلى العربة بنجاح.</string>
+    <string name="product_removed_successfully">تمت إزالة المنتج من العربة بنجاح.</string>
+    <string name="item_added_before">تم إضافة هذا العنصر بالفعل !!</string>
+    <string name="order_number">رقم الطلب :</string>
+    <string name="time_to_cancel_order">وقت إلغاء الطلب (</string>
     <string name="bracket_close">)</string>
+    <string name="edit">تعديل</string>
+    <string name="please_enter_full_name">الرجاء إدخال الاسم الكامل!</string>
+    <string name="nothing_changed">لم يتغير شيء!</string>
+    <string name="you_havenot_picked_image">أنت لم تختار صورة !</string>
+    <string name="something_went_wrong">حدث خطأ ما !</string>
 </resources>

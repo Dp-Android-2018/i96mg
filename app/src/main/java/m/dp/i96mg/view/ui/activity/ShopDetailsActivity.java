@@ -78,9 +78,9 @@ public class ShopDetailsActivity extends BaseActivity {
         productsInfoModels = new ArrayList<>();
         emptyProductsInfoModels = new ArrayList<>();
         customUtilsLazy.getValue().saveProductInfoToPrefs(emptyProductsInfoModels);
+        initializeOnOperationClicked();
         checkToGetandSetProducts();
         initializeOnQuantityChangedListener();
-        initializeOnOperationClicked();
 //        initializeRecyclerView();
         checkLanguage();
     }

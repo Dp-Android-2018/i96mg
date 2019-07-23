@@ -1,24 +1,23 @@
 
-jsquid:S1301ş"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8ÏÆªÍÁ-
-jsquid:CommentedOutCodeLineñ"<This block of commented-out lines of code should be removed.(±‘Ø8—‰÷ÍÁ-
-Osquid:S1172§"+Remove this unused method parameter "view".(Ò‰Øşùÿÿÿÿ8ÑŠˆÍÁ-
-Zsquid:S2589K"7Remove this expression which always evaluates to "true"(¸ñÂ×ıÿÿÿÿ8áƒ›¼±-
-}squid:S14504"ZRemove the "productData" field and declare it as a local variable in the relevant methods.(Í‰Ğøşÿÿÿÿ8¸œ™¼±-
-W"squid:SwitchLastCaseIsDefaultCheckS""Add a default case to this switch.(ºÖ8À×ã±-
-@squid:S1643¸"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8ÏÆªÍÁ-
-isquid:CommentedOutCodeLine¤"<This block of commented-out lines of code should be removed.(Ôß…p8™æÆ½-
-}squid:S14503"_Remove the "productModelList" field and declare it as a local variable in the relevant methods.(š™Ş8À×ã±-
-jsquid:CommentedOutCodeLineª"<This block of commented-out lines of code should be removed.(ÚÍ¸°8˜«ˆÍÁ-
-_squid:UnusedPrivateMethodB"3Remove this unused private "setProductList" method.(Ò»Ô‘8ëØš½-
-Gsquid:S1148´"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÏÆªÍÁ-
-nsquid:UnusedPrivateMethod²"<Remove this unused private "makeOrderOnChooseCredit" method.(›òŞäÿÿÿÿÿ8˜«ˆÍÁ-
-hsquid:UselessImportCheck"8Remove this unused import 'androidx.lifecycle.Observer'.(ÒÁˆÉşÿÿÿÿ8—‰÷ÍÁ-
-@squid:S1643¹"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ÏÆªÍÁ-
-X"squid:SwitchLastCaseIsDefaultCheckş""Add a default case to this switch.(ÜŸ•8ÏÆªÍÁ-
-jsquid:CommentedOutCodeLineº"<This block of commented-out lines of code should be removed.(¸›†½8¹æÑÙ¿-
-fsquid:MaximumInheritanceDepth,"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô
-jsquid:S1301¨"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8ÑŠˆÍÁ-
-nsquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Ûê±­üÿÿÿÿ8ëØš½-
-W"squid:SwitchLastCaseIsDefaultCheckh""Add a default case to this switch.(ºÖ8¿î¼±-
-bsquid:UnusedPrivateMethodı"5Remove this unused private "makeActionOnType" method.(ƒÜ¸™8¯ßÁÍÁ-
-X"squid:SwitchLastCaseIsDefaultCheck¨""Add a default case to this switch.(ÜŸ•8ÑŠˆÍÁ-
+jsquid:S1301Â"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8æ…­ÑÁ-
+W"squid:SwitchLastCaseIsDefaultCheckt""Add a default case to this switch.(ºÖ8¶†˜ÏÁ-
+nsquid:UnusedPrivateMethodö"<Remove this unused private "makeOrderOnChooseCredit" method.(›òŞäÿÿÿÿÿ8¼­‡ÑÁ-
+~squid:S1450="aRemove the "bankSpinnerAdapter" field and declare it as a local variable in the relevant methods.(©½¬e8€ë£ÏÁ-
+Rsquid:S1068;"/Remove this unused "productData" private field.(Í‰Ğøşÿÿÿÿ8Ú‹×ÎÁ-
+jsquid:CommentedOutCodeLineş"<This block of commented-out lines of code should be removed.(¸›†½8ê”‡ÑÁ-
+X"squid:SwitchLastCaseIsDefaultCheckÂ""Add a default case to this switch.(ÜŸ•8ê”‡ÑÁ-
+Rsquid:S1068:"4Remove this unused "productModelList" private field.(š™Ş8Ú‹×ÎÁ-
+Gsquid:S1148ø"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ê”‡ÑÁ-
+@squid:S1643ı"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ê”‡ÑÁ-
+isquid:CommentedOutCodeLineÅ"<This block of commented-out lines of code should be removed.(Ôß…p8¶†˜ÏÁ-
+Vsquid:S1135×"2Complete the task associated to this TODO comment.(æ¬²Àûÿÿÿÿ8§‰¹ÑÁ-
+Vsquid:S1135ä"2Complete the task associated to this TODO comment.(ĞêíÁıÿÿÿÿ8ú£¤ÑÁ-
+Osquid:S1172È"+Remove this unused method parameter "view".(Ò‰Øşùÿÿÿÿ8¶†˜ÏÁ-
+ysquid:UselessImportCheck""NRemove this unused import 'm.dp.i96mg.service.model.response.MessageResponse'.(”æöƒ8Ûù’ÑÁ-
+bsquid:UnusedPrivateMethodÁ"5Remove this unused private "makeActionOnType" method.(ƒÜ¸™8ê”‡ÑÁ-
+@squid:S1643ü"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8ê”‡ÑÁ-
+X"squid:SwitchLastCaseIsDefaultCheckÉ""Add a default case to this switch.(ÜŸ•8¶†˜ÏÁ-
+jsquid:S1301É"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8¶†˜ÏÁ-
+X"squid:SwitchLastCaseIsDefaultCheck‰""Add a default case to this switch.(ºÖ8¶†˜ÏÁ-
+msquid:MaximumInheritanceDepth3"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô8ô†ŠÎÁ-
+Vsquid:S10688"3Remove this unused "customUtilsLazy" private field.(ß™üİúÿÿÿÿ8Ú‹×ÎÁ-

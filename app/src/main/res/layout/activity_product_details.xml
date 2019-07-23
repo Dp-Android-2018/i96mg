@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dp29h"
                 android:src="@drawable/ic_arrow_back"
-                android:padding="6dp"
+                android:padding="@dimen/dp5h"
                 app:layout_constraintBottom_toBottomOf="@+id/main_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/main_title" />

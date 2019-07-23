@@ -1,7 +1,9 @@
 package m.dp.i96mg.view.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -408,6 +410,10 @@ public class WishListActivity extends BaseActivity {
     }
 
     private void setUpToolbar() {
-        binding.ivBack.setOnClickListener(view -> onBackPressed());
+        binding.ivBack.setOnClickListener(view -> {
+            WishListActivity.this.onBackPressed();
+            Intent intent = new Intent(WishListActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 }

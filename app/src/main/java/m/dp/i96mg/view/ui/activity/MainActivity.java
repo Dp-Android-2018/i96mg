@@ -60,6 +60,8 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class MainActivity extends BaseActivity {
 
+    //TODO: i want sobhy to made me a high social quality images.
+
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     private Lazy<MainActivityViewModel> mainActivityViewModelLazy = inject(MainActivityViewModel.class);
     private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
@@ -215,7 +217,11 @@ public class MainActivity extends BaseActivity {
 
     private void checkIfLoginOrNot() {
         if (!isLoggedIn()) {
-            binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.login));
+            binding.navigationView.navigationViewHeaderLayout.tvName.setText(getResources().getString(R.string.login));
+            binding.navigationView.tvNavItemLogout.setVisibility(View.GONE);
+            binding.navigationView.tvNavItemWishList.setVisibility(View.GONE);
+            binding.navigationView.tvNavItemOrderList.setVisibility(View.GONE);
+            binding.navigationView.tvNavItemPendingOrders.setVisibility(View.GONE);
         } else {
             binding.navigationView.tvNavItemLogout.setText(getResources().getString(R.string.logout));
             ConfigurationFile.Constants.AUTHORIZATION = customUtilsLazy.getValue().getSavedMemberData().getToken();
@@ -413,6 +419,8 @@ public class MainActivity extends BaseActivity {
         if (isLoggedIn()) {
             Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
             startActivity(intent);
+        } else {
+            login();
         }
     }
 
@@ -447,8 +455,6 @@ public class MainActivity extends BaseActivity {
     private void makeLogAction() {
         if (isLoggedIn()) {
             logout();
-        } else {
-            login();
         }
     }
 
@@ -524,10 +530,10 @@ public class MainActivity extends BaseActivity {
     }
 
     private void makeSearch() {
-        binding.ivSearch.setOnClickListener(view -> {
+       /* binding.ivSearch.setOnClickListener(view -> {
 //            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
 //            startActivity(intent);
-        });
+        });*/
     }
 
     private void observeViewmodel() {

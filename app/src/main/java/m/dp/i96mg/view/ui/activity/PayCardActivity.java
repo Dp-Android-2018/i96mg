@@ -1,14 +1,18 @@
 package m.dp.i96mg.view.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RadioButton;
 
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
@@ -16,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +44,9 @@ import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.SpinnerAdapter;
 import m.dp.i96mg.viewmodel.PayCardActivityViewModel;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 
@@ -60,11 +68,17 @@ public class PayCardActivity extends BaseActivity {
     private int orderId;
     private SpinnerAdapter bankSpinnerAdapter;
     private BankAccountResponseModel selectedBankAccount;
+    private ProgressDialog prgDialog;
+    private String imgPath, fileName;
+    private static int RESULT_LOAD_IMG = 1;
+    private MultipartBody.Part imagePart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pay_card);
+        prgDialog = new ProgressDialog(this);
+        prgDialog.setCancelable(false);
         orderRequest = new OrderRequest(Parcel.obtain());
         orderRequest = getIntent().getParcelableExtra(ConfigurationFile.Constants.ORDER_REQUEST);
         orderId = getIntent().getIntExtra(ConfigurationFile.Constants.ORDER_ID, 0);
@@ -120,12 +134,12 @@ public class PayCardActivity extends BaseActivity {
                 break;
             case R.id.credit_radioButton:
                 if (checked)
-                    makeActionOnChooseCredit();
-                break;
+//                    makeActionOnChooseCredit();
+                    break;
             case R.id.mada_radioButton:
                 if (checked)
-                    makeActionOnMadaCredit();
-                break;
+//                    makeActionOnMadaCredit();
+                    break;
             case R.id.paybal_radioButton:
                 if (checked)
                     makeActionOnChooseOnPaypal();
@@ -139,10 +153,10 @@ public class PayCardActivity extends BaseActivity {
                 makeActionOnBankCredit();
                 break;
             case R.id.credit_onstraint:
-                makeActionOnChooseCredit();
+//                makeActionOnChooseCredit();
                 break;
             case R.id.mada_constraint:
-                makeActionOnMadaCredit();
+//                makeActionOnMadaCredit();
                 break;
             case R.id.paybal_constraint:
                 makeActionOnChooseOnPaypal();
@@ -209,10 +223,10 @@ public class PayCardActivity extends BaseActivity {
     }
 
     private void makeOrderByBankAccountRequest() {
-        if (!binding.etFullName.getText().toString().isEmpty()){
+        if (!binding.etFullName.getText().toString().isEmpty()) {
             makeBankRequest();
-        }else{
-            //TODO: handle errors
+        } else {
+            showSnackbar(getResources().getString(R.string.please_enter_full_name));
         }
     }
 
@@ -237,7 +251,7 @@ public class PayCardActivity extends BaseActivity {
     }
 
     private BankRequest getBankAccountRequest() {
-        BankRequest bankRequest=new BankRequest();
+        BankRequest bankRequest = new BankRequest();
         bankRequest.setBankAccountId(selectedBankAccount.getId());
         bankRequest.setFullName(binding.etFullName.getText().toString());
         return bankRequest;
@@ -386,5 +400,48 @@ public class PayCardActivity extends BaseActivity {
 
     private void showSnackbar(String message) {
         Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    public void attachPaymentReceipt(View view) {
+        // Create intent to Open Image applications like Gallery, Google Photos
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        // Start the Intent
+        startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK
+                    && null != data) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                imgPath = cursor.getString(columnIndex);
+                cursor.close();
+                // Get the Image's file name
+                String fileNameSegments[] = imgPath.split("/");
+                fileName = fileNameSegments[fileNameSegments.length - 1];
+
+                //Create a file object using file path
+                File file = new File(imgPath);
+                // Create a request body with file and image media type
+                RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), file);
+                // Create MultipartBody.Part using file request-body,file name and part name
+                imagePart = MultipartBody.Part.createFormData("upload", file.getName(), fileReqBody);
+                //Create request body with text description and text media type
+//              RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "image-type");
+
+            } else {
+                showSnackbar(getResources().getString(R.string.you_havenot_picked_image));
+            }
+        } catch (Exception e) {
+            showSnackbar(getResources().getString(R.string.something_went_wrong));
+        }
     }
 }

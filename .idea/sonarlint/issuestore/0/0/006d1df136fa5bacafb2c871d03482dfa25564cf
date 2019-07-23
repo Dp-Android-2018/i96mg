@@ -1,8 +1,12 @@
 
-¤squid:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¸ÜÒÄøÿÿÿÿ8äá ÍÁ-
-ysquid:UselessImportCheck"NRemove this unused import 'm.dp.i96mg.service.model.response.MessageResponse'.(”æöƒ8£‡¡ÍÁ-
-usquid:UselessImportCheck"JRemove this unused import 'm.dp.i96mg.service.model.request.LoginRequest'.(–¸Þº8îé¡ÍÁ-
-‚squid:UselessImportCheck"RRemove this unused import 'm.dp.i96mg.service.model.request.ProductsOrderRequest'.(ážŒ¬úÿÿÿÿ8Á™ñœÁ-
-¤squid:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( Úæöøÿÿÿÿ8äá ÍÁ-
-Ÿsquid:S1186-"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8äá ÍÁ-
-Ÿsquid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úÑ¯¤8äá ÍÁ-
+Fsquid:S1148+"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Å×¼ÎÁ-
+Ÿsquid:S1186="€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úÑ¯¤8âÇ’ÏÁ-
+‚squid:UselessImportCheck"RRemove this unused import 'm.dp.i96mg.service.model.request.ProductsOrderRequest'.(ážŒ¬úÿÿÿÿ8Á™ñœÁ-
+Fsquid:S1148H"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Ñå“ÏÁ-
+Ÿsquid:S1186i"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8Ýë÷ÐÁ-
+Ÿsquid:S1186 "€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úÑ¯¤8äá ÍÁ-
+usquid:UselessImportCheck"JRemove this unused import 'm.dp.i96mg.service.model.request.LoginRequest'.(–¸Þº8îé¡ÍÁ-
+Fsquid:S1148e"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8˜õøÐÁ-
+Ÿsquid:S1186L"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8âÇ’ÏÁ-
+Ÿsquid:S1186/"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×ÝŠÎ8äá ÍÁ-
+Ÿsquid:S1186Z"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(úÑ¯¤8Ýë÷ÐÁ-

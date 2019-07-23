@@ -1,22 +1,22 @@
 
-Lsquid:S1185—"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8ƒë©ÇÁ-
-squid:UselessImportCheck"ORemove this unused import 'm.dp.i96mg.utility.utils.GridSpacingItemDecoration'.(ªœØÖþÿÿÿÿ8†·‚ÇÁ-
-osquid:CommentedOutCodeLine¶"<This block of commented-out lines of code should be removed.(õª óúÿÿÿÿ8êæªÇÁ-
-squid:UselessImportCheck"ORemove this unused import 'm.dp.i96mg.service.model.response.ProductsResponse'.(Ý®µøÿÿÿÿ8Ç¨øÆÁ-
-Gsquid:S1148Ê"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ƒë©ÇÁ-
-jsquid:MaximumInheritanceDepth%"<This class has 9 parents which is greater than 5 authorized.(·Øˆêÿÿÿÿÿ
-@squid:S1643Î"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ƒë©ÇÁ-
-ssquid:S00116."TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8…‚óÆÁ-
-Qsquid:S1659/".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8…‚óÆÁ-
-Osquid:S1659/",Declare "totalItemCount" on a separate line.(üÆö›ýÿÿÿÿ8…‚óÆÁ-
-Nsquid:S1066£"/Merge this if statement with the enclosing one.(à—åª8ƒë©ÇÁ-
-nsquid:CommentedOutCodeLineb"<This block of commented-out lines of code should be removed.(ð—“›ûÿÿÿÿ8¤™ùÆÁ-
-isquid:CommentedOutCodeLinen"<This block of commented-out lines of code should be removed.(Û§ ²8«à¡ÇÁ-
-osquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(õª óúÿÿÿÿ8ƒë©ÇÁ-
+Jsquid:S10680",Remove this unused "position" private field.(íñ8…‚óÆÁ-
+usquid:S14500"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8…‚óÆÁ-
+Lsquid:S1185’"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8ƒë©ÇÁ-
 {squid:UselessImportCheck"KRemove this unused import 'androidx.recyclerview.widget.GridLayoutManager'.(î¼çÿüÿÿÿÿ8†·‚ÇÁ-
-Osquid:S1135&"2Complete the task associated to this TODO comment.(ž°—k8Ä®¬¨Á-
-Jsquid:S10681",Remove this unused "position" private field.(íñ8…‚óÆÁ-
-nsquid:CommentedOutCodeLineN"<This block of commented-out lines of code should be removed.(ð—“›ûÿÿÿÿ8ò² ÇÁ-
-usquid:S14501"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8…‚óÆÁ-
-jsquid:CommentedOutCodeLine°"<This block of commented-out lines of code should be removed.(§À8ƒë©ÇÁ-
-@squid:S1643Ï"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8¦ñ€À-
+Lsquid:S1066N"/Merge this if statement with the enclosing one.(Ãø£(8ìÂ¡ÐÁ-
+usquid:S3776F"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Ò¼§ýÿÿÿÿ8ìÂ¡ÐÁ-
+Nsquid:S1066ž"/Merge this if statement with the enclosing one.(à—åª8ƒë©ÇÁ-
+@squid:S1643É"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ƒë©ÇÁ-
+osquid:CommentedOutCodeLine±"<This block of commented-out lines of code should be removed.(õª óúÿÿÿÿ8êæªÇÁ-
+squid:UselessImportCheck"ORemove this unused import 'm.dp.i96mg.service.model.response.ProductsResponse'.(Ý®µøÿÿÿÿ8Ç¨øÆÁ-
+psquid:S3776["RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Áïûö8ÃÁ ÐÁ-
+Lsquid:S1066c"/Merge this if statement with the enclosing one.(Ãø£(8ÃÁ ÐÁ-
+jsquid:MaximumInheritanceDepth%"<This class has 9 parents which is greater than 5 authorized.(·Øˆêÿÿÿÿÿ
+Qsquid:S1659.".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8…‚óÆÁ-
+Osquid:S1659.",Declare "totalItemCount" on a separate line.(üÆö›ýÿÿÿÿ8…‚óÆÁ-
+osquid:CommentedOutCodeLine€"<This block of commented-out lines of code should be removed.(õª óúÿÿÿÿ8ƒë©ÇÁ-
+jsquid:CommentedOutCodeLine«"<This block of commented-out lines of code should be removed.(§À8ƒë©ÇÁ-
+ssquid:S00116-"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8…‚óÆÁ-
+squid:UselessImportCheck"ORemove this unused import 'm.dp.i96mg.utility.utils.GridSpacingItemDecoration'.(ªœØÖþÿÿÿÿ8†·‚ÇÁ-
+@squid:S1643Ê"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8¦ñ€À-
+Gsquid:S1148Å"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ƒë©ÇÁ-

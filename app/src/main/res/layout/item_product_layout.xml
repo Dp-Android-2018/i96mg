@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp8w"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/dp7w"
             android:layout_marginBottom="@dimen/dp7w"
             android:textAlignment="center"
             android:textAllCaps="false"
@@ -88,8 +88,8 @@
 
         <ImageView
             android:id="@+id/iv_add_to_cart"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/dp36h"
+            android:layout_height="@dimen/dp36h"
             android:padding="@dimen/dp7w"
             android:src="@drawable/cart_plus"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -98,8 +98,8 @@
 
         <ImageView
             android:id="@+id/iv_favorite"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/dp36h"
+            android:layout_height="@dimen/dp36h"
             android:padding="@dimen/dp7w"
             android:src="@drawable/heart_empty"
             app:layout_constraintBottom_toBottomOf="parent"

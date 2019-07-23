@@ -169,23 +169,6 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/et_phone_num_et" />
 
-                <!-- <net.rimoto.intlphoneinput.IntlPhoneInput
-                     android:id="@+id/et_phone_num"
-                     android:layout_width="0dp"
-                     android:layout_height="@dimen/dp39h"
-                     android:layout_marginStart="@dimen/dp28h"
-                     android:layout_marginTop="@dimen/dp33w"
-                     android:layout_marginEnd="@dimen/dp28h"
-                     app:flagPaddingBottom="@dimen/dp7w"
-                     app:flagPaddingStart="@dimen/dp7w"
-                     app:flagPaddingEnd="@dimen/dp7w"
-                     app:flagPaddingTop="@dimen/dp7w"
-                     android:background="@drawable/edittext_border_yellow"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintHorizontal_bias="1.0"
-                     app:layout_constraintStart_toStartOf="parent"
-                     app:layout_constraintTop_toBottomOf="@+id/et_zip_code"/>-->
-
                 <EditText
                     android:id="@+id/et_phone_num_et"
                     android:layout_width="0dp"

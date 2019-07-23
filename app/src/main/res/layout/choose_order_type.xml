@@ -38,7 +38,7 @@
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="@dimen/dp1h"
         android:layout_marginTop="@dimen/dp14w"
         android:background="@color/gray_dark_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="0.5dp"
+        android:layout_width="@dimen/dp1h"
         android:layout_height="0dp"
         android:background="@color/gray_dark_color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +75,7 @@
             android:textAllCaps="false"
             android:textColor="@color/blue_color"
             android:textSize="17.3sp"
-            android:padding="4dp"
+            android:padding="@dimen/dp4h"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
             android:textAllCaps="false"
             android:textColor="@color/blue_color"
             android:textSize="17.3sp"
-            android:padding="4dp"
+            android:padding="@dimen/dp4h"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
