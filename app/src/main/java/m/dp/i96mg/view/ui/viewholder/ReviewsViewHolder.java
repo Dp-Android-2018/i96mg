@@ -1,6 +1,10 @@
 package m.dp.i96mg.view.ui.viewholder;
 
+import android.widget.ImageView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -32,8 +36,8 @@ public class ReviewsViewHolder extends RecyclerView.ViewHolder {
         binding.tvName.setText(productModel.getUser().getName());
         binding.tvComment.setText(productModel.getReview());
         binding.ratingBar.setRating(productModel.getRating());
-//        ImageView ivGalleryPhoto = binding.ivUser;
-//        Picasso.get().load(productModel.getUser().getProfilePictureUrl()).into(ivGalleryPhoto);
+        ImageView ivGalleryPhoto = binding.ivUser;
+        Picasso.get().load(productModel.getUser().getProfilePictureUrl()).into(ivGalleryPhoto);
 
     }
 

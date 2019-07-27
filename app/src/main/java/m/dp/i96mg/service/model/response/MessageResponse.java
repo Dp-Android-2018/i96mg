@@ -9,6 +9,9 @@ public class MessageResponse {
     @SerializedName("order_id")
     private int orderId;
 
+    @SerializedName("url")
+    private String imageUrl;
+
     public String getMessage() {
         return message;
     }
@@ -23,5 +26,13 @@ public class MessageResponse {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

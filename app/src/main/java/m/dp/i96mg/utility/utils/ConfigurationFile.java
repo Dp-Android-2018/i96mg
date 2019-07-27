@@ -143,6 +143,8 @@ public class ConfigurationFile {
         public static final String DEFAULT_CATEGORY_ID = "";
         public static final String KEY_SUCCESS = "success";
         public static final String KEY_TRUE = "true";
+        public static final String FIRST_SEND = "1";
+        public static final String SECOND_SEND = "2";
 
         public static final int SUCCESS_CODE_FROM = 200;
         public static final int SUCCESS_CODE_TO = 300;

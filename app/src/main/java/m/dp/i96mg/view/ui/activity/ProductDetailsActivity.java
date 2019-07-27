@@ -127,9 +127,9 @@ public class ProductDetailsActivity extends BaseActivity {
 
     private void removeItemFromWishListDp(int id, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().removeItemFromWishlist(id).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
@@ -160,9 +160,9 @@ public class ProductDetailsActivity extends BaseActivity {
 
     private void addItemToWishListDp(int id, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToWishList(getWishListRequest(id)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
@@ -262,8 +262,17 @@ public class ProductDetailsActivity extends BaseActivity {
         this.productModel = productModel;
         ImageView ivGalleryPhoto = binding.ivProductImage;
         Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
-        binding.tvQuantityNum.setText(String.valueOf(productModel.getOrderedQuantity()));
-        quantity = productModel.getOrderedQuantity();
+
+        ivGalleryPhoto = binding.ivUser;
+        Picasso.get().load(customUtilsLazy.getValue().getSavedMemberData().getProfilePictureUrl()).into(ivGalleryPhoto);
+        if (productModel.getOrderedQuantity() != 0) {
+            quantity = productModel.getOrderedQuantity();
+            binding.tvQuantityNum.setText(String.valueOf(quantity));
+        } else {
+            quantity = 1;
+            binding.tvQuantityNum.setText(String.valueOf(quantity));
+
+        }
         binding.tvName.setText(productModel.getName());
         binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
         binding.tvDescribtion.setText(String.valueOf(productModel.getDescription()));
@@ -312,7 +321,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
     private void observeViewmodel() {
         mainActivityViewModelLazy.getValue().getData().observe(this, productsResponseResponse -> {
-//            SharedUtils.getInstance().cancelDialog();
+            SharedUtils.getInstance().cancelDialog();
             if (productsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                     && ConfigurationFile.Constants.SUCCESS_CODE_TO > productsResponseResponse.code()) {
                 if (productsResponseResponse.body() != null) {
@@ -346,7 +355,7 @@ public class ProductDetailsActivity extends BaseActivity {
         if (ValidationUtils.isConnectingToInternet(this)) {
 //            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().getProductReviews(productId).observe(this, productReviewsResponseResponse -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (productReviewsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > productReviewsResponseResponse.code()) {
                     if (productReviewsResponseResponse.body() != null) {
@@ -425,9 +434,9 @@ public class ProductDetailsActivity extends BaseActivity {
 
     private void removeItemFromCartDp(ProductModel productModel) {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().removeItemFromCart(productModel.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
@@ -514,6 +523,7 @@ public class ProductDetailsActivity extends BaseActivity {
     public void sendReview(View view) {
         if (ValidationUtils.isConnectingToInternet(Objects.requireNonNull(this))) {
             if (customUtilsLazy.getValue().getSavedMemberData() == null) {
+                SharedUtils.getInstance().showLoginDialog(this, ConfigurationFile.Constants.PRODUCT_DETAILS_ACTIVITY);
                 showLoginDialog();
             } else {
                 rateTrip();
@@ -565,6 +575,7 @@ public class ProductDetailsActivity extends BaseActivity {
                     if (startTripResponseResponse.body() != null) {
                         showSnackbar(startTripResponseResponse.body().getMessage());
                         clearAllFields();
+                        getReviews();
                     }
 
                 } else {

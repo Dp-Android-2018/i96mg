@@ -3,6 +3,7 @@ package m.dp.i96mg.view.ui.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -71,7 +72,8 @@ public class PayCardActivity extends BaseActivity {
     private ProgressDialog prgDialog;
     private String imgPath, fileName;
     private static int RESULT_LOAD_IMG = 1;
-    private MultipartBody.Part imagePart;
+    private MultipartBody.Part imageFile;
+    private RequestBody imageRequestBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,9 @@ public class PayCardActivity extends BaseActivity {
         orderRequest = getIntent().getParcelableExtra(ConfigurationFile.Constants.ORDER_REQUEST);
         orderId = getIntent().getIntExtra(ConfigurationFile.Constants.ORDER_ID, 0);
         binding.ivBack.setOnClickListener(v -> onBackPressed());
+        //hash credit/debit card text and Mada text
+        binding.textView2.setPaintFlags(binding.textView2.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        binding.textView6.setPaintFlags(binding.textView6.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         getBankAccounts();
     }
 
@@ -223,23 +228,39 @@ public class PayCardActivity extends BaseActivity {
     }
 
     private void makeOrderByBankAccountRequest() {
-        if (!binding.etFullName.getText().toString().isEmpty()) {
+        if (!binding.etFullName.getText().toString().isEmpty()
+                && (imageFile != null)) {
             makeBankRequest();
         } else {
+            showBankErrors();
+        }
+    }
+
+    private void showBankErrors() {
+        if (binding.etFullName.getText().toString().isEmpty()) {
             showSnackbar(getResources().getString(R.string.please_enter_full_name));
+            return;
+        }
+
+        if (imageFile == null) {
+            showSnackbar(getResources().getString(R.string.please_attach_your_receipt));
         }
     }
 
     private void makeBankRequest() {
+//        RequestBody orderIdRequest = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(orderId));
+        RequestBody bankAccountId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(selectedBankAccount.getId()));
+        RequestBody fullName = RequestBody.create(MediaType.parse("text/plain"), binding.etFullName.getText().toString());
+
         if (ValidationUtils.isConnectingToInternet(this)) {
             SharedUtils.getInstance().showProgressDialog(this);
-            payCardActivityViewModelLazy.getValue().payUsingBankAccount(orderId, getBankAccountRequest()).observe(this, messageResponseResponse -> {
+            payCardActivityViewModelLazy.getValue().payUsingBankAccount(orderId, bankAccountId, fullName, imageFile).observe(this, messageResponseResponse -> {
                 SharedUtils.getInstance().cancelDialog();
                 if (messageResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > messageResponseResponse.code()) {
                     if (messageResponseResponse.body() != null) {
                         showSnackbar(messageResponseResponse.body().getMessage());
-                        //TODO: complete this and see how to upload images
+                        new Handler().postDelayed(() -> openMainActivity(), 1000);
                     }
                 } else {
                     showErrors(messageResponseResponse.errorBody());
@@ -424,18 +445,7 @@ public class PayCardActivity extends BaseActivity {
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 imgPath = cursor.getString(columnIndex);
                 cursor.close();
-                // Get the Image's file name
-                String fileNameSegments[] = imgPath.split("/");
-                fileName = fileNameSegments[fileNameSegments.length - 1];
-
-                //Create a file object using file path
-                File file = new File(imgPath);
-                // Create a request body with file and image media type
-                RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), file);
-                // Create MultipartBody.Part using file request-body,file name and part name
-                imagePart = MultipartBody.Part.createFormData("upload", file.getName(), fileReqBody);
-                //Create request body with text description and text media type
-//              RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "image-type");
+                getImageMultipartBodyFromPath(imgPath);
 
             } else {
                 showSnackbar(getResources().getString(R.string.you_havenot_picked_image));
@@ -443,5 +453,16 @@ public class PayCardActivity extends BaseActivity {
         } catch (Exception e) {
             showSnackbar(getResources().getString(R.string.something_went_wrong));
         }
+    }
+
+    private void getImageMultipartBodyFromPath(String imgPath) {
+        //Create a file object using file path
+        File file = new File(imgPath);
+        // Create a request body with file and image media type
+        RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), file);
+        // Create MultipartBody.Part using file request-body,file name and part name
+        imageFile = MultipartBody.Part.createFormData("picture", "image.png", fileReqBody);
+        //Create request body with text description and text media type
+//        imageRequestBody = RequestBody.create(MediaType.parse("text/plain"), "image-type");
     }
 }

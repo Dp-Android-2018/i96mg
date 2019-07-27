@@ -10,6 +10,8 @@ import io.reactivex.schedulers.Schedulers;
 import kotlin.Lazy;
 import m.dp.i96mg.service.model.request.SignUpRequest;
 import m.dp.i96mg.service.model.response.MessageResponse;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
@@ -18,9 +20,9 @@ public class SignUpRepository {
 
     private Lazy<ApiInterfaces> endPointsLazy = inject(ApiInterfaces.class);
 
-    public LiveData<Response<MessageResponse>> signUp(SignUpRequest signUpRequest) {
+    public LiveData<Response<MessageResponse>> signUp(RequestBody phone,RequestBody firstName,RequestBody secondName,MultipartBody.Part imageFile) {
         MutableLiveData<Response<MessageResponse>> data = new MutableLiveData<>();
-        endPointsLazy.getValue().signUp(signUpRequest)
+        endPointsLazy.getValue().signUp(phone,firstName,secondName,imageFile)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Response<MessageResponse>>() {

@@ -12,6 +12,8 @@ import m.dp.i96mg.service.model.response.BankAccountsResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.service.repository.remotes.PayCardRepository;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
@@ -32,8 +34,8 @@ public class PayCardActivityViewModel extends AndroidViewModel {
         return payCardRepositoryLazy.getValue().getBankAccounts();
     }
 
-    public LiveData<Response<MessageResponse>> payUsingBankAccount(int orderId, BankRequest bankRequest) {
-        return payCardRepositoryLazy.getValue().payUsingBankAccount(orderId,bankRequest);
+    public LiveData<Response<MessageResponse>> payUsingBankAccount(int orderId, RequestBody bankAccountId, RequestBody fullName, MultipartBody.Part imageFile) {
+        return payCardRepositoryLazy.getValue().payUsingBankAccount(orderId,bankAccountId,fullName,imageFile);
     }
 
 }

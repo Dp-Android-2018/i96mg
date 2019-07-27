@@ -20,12 +20,6 @@ public class SignUpRequest {
     private String phone;
 
     /*@SerializedName("profile_picture")
-    private MultipartBody.Part fileImageUrl;*/
-
-    @SerializedName("profile_picture")
-    private MultipartBody.Part imageBitmap;
-
-    /*@SerializedName("profile_picture")
     private String profilePictureUrl;*/
 
     public String getFirstName() {
@@ -52,11 +46,4 @@ public class SignUpRequest {
         this.phone = phone;
     }
 
-    public MultipartBody.Part getImageBitmap() {
-        return imageBitmap;
-    }
-
-    public void setImageBitmap(MultipartBody.Part imageBitmap) {
-        this.imageBitmap = imageBitmap;
-    }
 }

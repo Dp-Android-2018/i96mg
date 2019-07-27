@@ -20,11 +20,15 @@ import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.service.model.response.ProductDetailsResponse;
 import m.dp.i96mg.service.model.response.ProductReviewsResponse;
 import m.dp.i96mg.service.model.response.ProductsResponse;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -72,8 +76,11 @@ public interface ApiInterfaces {
     Observable<Response<LoginResponse>> login(@Body LoginRequest loginRequest);
 
     //Update account details (complete registration)
+    @Multipart
     @POST("/api/account")
-    Observable<Response<MessageResponse>> signUp(@Body SignUpRequest signUpRequest);
+    Observable<Response<MessageResponse>> signUp(@Part("phone") RequestBody phone
+            , @Part("first_name") RequestBody firstName, @Part("last_name") RequestBody lastName
+            , @Part MultipartBody.Part imageFile);
 
     //Get settings
     @GET("/api/settings")
@@ -120,6 +127,9 @@ public interface ApiInterfaces {
     Observable<Response<BankAccountsResponse>> getBankAccounts();
 
     //Complete the payment for an order using a bank transfer
+    @Multipart
     @POST("/api/order/{order}/pay/bank-transfer")
-    Observable<Response<MessageResponse>> payUsingBankAccount(@Path("order") int orderId,@Body BankRequest bankRequest);
+    Observable<Response<MessageResponse>> payUsingBankAccount(
+            @Path("order") int orderId,@Part("bank_account_id") RequestBody bankAccountId
+            , @Part("full_name") RequestBody fullName, @Part MultipartBody.Part imageFile);
 }

@@ -10,6 +10,8 @@ import kotlin.Lazy;
 import m.dp.i96mg.service.model.request.SignUpRequest;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.repository.remotes.SignUpRepository;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Response;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
@@ -22,8 +24,8 @@ public class SignUpViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<Response<MessageResponse>> signUp(SignUpRequest signUpRequest) {
-        return signUpRepositoryLazy.getValue().signUp(signUpRequest);
+    public LiveData<Response<MessageResponse>> signUp(RequestBody phone,RequestBody firstName,RequestBody secondName, MultipartBody.Part imageFile) {
+        return signUpRepositoryLazy.getValue().signUp(phone,firstName,secondName,imageFile);
     }
 
 }

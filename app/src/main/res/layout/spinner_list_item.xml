@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/dp1h"
         android:layout_marginTop="@dimen/dp7w"
-        android:background="@android:color/black"
+        android:background="@color/red_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

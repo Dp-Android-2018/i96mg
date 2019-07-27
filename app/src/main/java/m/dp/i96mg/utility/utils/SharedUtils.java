@@ -19,18 +19,19 @@ import m.dp.i96mg.view.ui.activity.ShopDetailsActivity;
 
 
 public class SharedUtils {
-    private Dialog dialog=null;
-    private AlertDialog loginDialog=null;
+    private Dialog dialog = null;
+    private AlertDialog loginDialog = null;
 
-    private static  SharedUtils sharedUtils=null;
-    public static SharedUtils getInstance(){
-        if(sharedUtils==null)
-            sharedUtils=new SharedUtils();
+    private static SharedUtils sharedUtils = null;
+
+    public static SharedUtils getInstance() {
+        if (sharedUtils == null)
+            sharedUtils = new SharedUtils();
 
         return sharedUtils;
     }
 
-    public void showProgressDialog(Context activity){
+    public void showProgressDialog(Context activity) {
         dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog_layout);
@@ -40,11 +41,13 @@ public class SharedUtils {
             dialog.show();
     }
 
-    public void cancelDialog(){
-        dialog.dismiss();
+    public void cancelDialog() {
+        if (dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 
-    public void showLoginDialog(Context context,String memberType) {
+    public void showLoginDialog(Context context, String memberType) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         LayoutInflater factory = LayoutInflater.from(context);
         final View view = factory.inflate(R.layout.choose_order_type, null);
@@ -53,14 +56,14 @@ public class SharedUtils {
         loginDialog = alertDialog.create();
         loginDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         loginDialog.show();
-        makeActionOnChoose(view,context,memberType);
+        makeActionOnChoose(view, context, memberType);
     }
 
     private void makeActionOnChoose(View view, Context context, String memberType) {
         ConstraintLayout loginConstraintLayout = view.findViewById(R.id.loginConstraintLayout);
         loginConstraintLayout.setOnClickListener(v -> {
             loginDialog.cancel();
-            openLoginActivity(context,memberType);
+            openLoginActivity(context, memberType);
         });
         ConstraintLayout notNowConstraintLayout = view.findViewById(R.id.notNowConstraintLayout);
         notNowConstraintLayout.setOnClickListener(v -> {
@@ -72,7 +75,7 @@ public class SharedUtils {
         Intent intent = new Intent(context, LoginActivity.class);
         intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, memberType);
         context.startActivity(intent);
-        ((Activity)context).finish();
+//        ((Activity)context).finish();
     }
 
 }

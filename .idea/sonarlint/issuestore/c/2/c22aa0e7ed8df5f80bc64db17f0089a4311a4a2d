@@ -1,38 +1,38 @@
 
-Ssquid:S1068B"5Remove this unused "savedProductsInfo" private field.(±⁄È©8ó¢íû¡-
 Ysquid:S10688";Remove this unused "shopRecyclerViewAdapter" private field.(Ö˛°π8™ä∆Ωº-
-ssquid:UselessImportCheck"HRemove this unused import 'm.dp.i96mg.service.model.global.ProductData'.(ùâä8¨∫œ÷ø-
-Zsquid:UselessImportCheck+"/Remove this unused import 'retrofit2.Response'.(æÈÁÔ8¨∫œ÷ø-
-wsquid:UselessImportCheck""GRemove this unused import 'm.dp.i96mg.utility.utils.ConfigurationFile'.(‰œôÊ˚ˇˇˇˇ8à∫»ù¡-
-`squid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(™∫ª⁄˝ˇˇˇˇ8¨∫œ÷ø-
+ysquid:UselessImportCheck!"NRemove this unused import 'm.dp.i96mg.service.model.response.MessageResponse'.(îÊˆÉ8¨∫œ÷ø-
 ~squid:S1450>"`Remove the "onQuantityChanged" field and declare it as a local variable in the relevant methods.(óä∂ó8‹„ô∆¡-
-†squid:S1186Ø"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
-\squid:UselessImportCheck"1Remove this unused import 'com.google.gson.Gson'.(çñßù8¨∫œ÷ø-
-Osquid:S1172L"1Remove this unused method parameter "pageImages".(≤Ü¬…8ëŸí ¡-
-†squid:S1186Ë"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8•∂◊ ¡-
+usquid:UselessImportCheck"JRemove this unused import 'com.google.android.material.snackbar.Snackbar'.(ÎÑÉä8¨∫œ÷ø-
+usquid:UselessImportCheck%"ERemove this unused import 'm.dp.i96mg.utility.utils.ValidationUtils'.(∫æÁØ¸ˇˇˇˇ8¨∫œ÷ø-
+Gsquid:S1068?")Remove this unused "index" private field.(’÷èÛ8™ä∆Ωº-
 Tsquid:UselessImportCheck")Remove this unused import 'm.dp.i96mg.R'.(õÕ˛Å8°§í…¡-
+_squid:S1126Å"AReplace this if-then-else statement by a single return statement.(†Õ∏8Ü†”»¡-
+†squid:S1186¡"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
+Osquid:S1172L"1Remove this unused method parameter "pageImages".(≤Ü¬…8ëŸí ¡-
+†squid:S1186¥"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8≠–‘ ¡-
+osquid:S3776y"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ôÈå/8Ü†”»¡-
+gsquid:UselessImportCheck	"7Remove this unused import 'android.widget.AbsListView'.(˚¨Ò–ˇˇˇˇˇ8⁄ﬁ∂ù¡-
+\squid:UselessImportCheck"1Remove this unused import 'com.google.gson.Gson'.(çñßù8¨∫œ÷ø-
+wsquid:UselessImportCheck""GRemove this unused import 'm.dp.i96mg.utility.utils.ConfigurationFile'.(‰œôÊ˚ˇˇˇˇ8à∫»ù¡-
+Zsquid:UselessImportCheck+"/Remove this unused import 'retrofit2.Response'.(æÈÁÔ8¨∫œ÷ø-
 qsquid:UselessImportCheck$"ARemove this unused import 'm.dp.i96mg.utility.utils.SharedUtils'.(πßÆ¸˘ˇˇˇˇ8¨∫œ÷ø-
+\squid:UselessImportCheck*"1Remove this unused import 'okhttp3.ResponseBody'.(é’´¯8¨∫œ÷ø-
+|squid:S1450="YRemove the "totalprice" field and declare it as a local variable in the relevant methods.(ï˝ä¨˘ˇˇˇˇ8Öãˇ—ø-
+`squid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(™∫ª⁄˝ˇˇˇˇ8¨∫œ÷ø-
+ssquid:UselessImportCheck"HRemove this unused import 'm.dp.i96mg.service.model.global.ProductData'.(ùâä8¨∫œ÷ø-
+gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ListAdapter'.(ÂÇ´√˙ˇˇˇˇ8⁄ﬁ∂ù¡-
+Ssquid:S1068>"5Remove this unused "onQuantityChanged" private field.(óä∂ó8‹„ô∆¡-
+†squid:S1186Ë"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8•∂◊ ¡-
+ysquid:UselessImportCheck"IRemove this unused import 'm.dp.i96mg.service.model.request.CartRequest'.(Ì◊à”¯ˇˇˇˇ8¨∫œ÷ø-
+†squid:S1186◊"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8–à◊ ¡-
+hsquid:UselessImportCheck"8Remove this unused import 'com.google.gson.GsonBuilder'.(î´‡¨ˇˇˇˇˇ8¨∫œ÷ø-
+wsquid:UselessImportCheck "LRemove this unused import 'm.dp.i96mg.service.model.response.ErrorResponse'.(ûƒ˜◊8¨∫œ÷ø-
+^squid:UselessImportCheck".Remove this unused import 'android.os.Parcel'.(ò¬ÕÛ˚ˇˇˇˇ8“Ì§û¡-
 _squid:UselessImportCheck
 "4Remove this unused import 'android.widget.EditText'.(Ü≈õ⁄8‹“ë…¡-
-|squid:S1450="YRemove the "totalprice" field and declare it as a local variable in the relevant methods.(ï˝ä¨˘ˇˇˇˇ8Öãˇ—ø-
-†squid:S1186¡"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
-gsquid:UselessImportCheck	"7Remove this unused import 'android.widget.AbsListView'.(˚¨Ò–ˇˇˇˇˇ8⁄ﬁ∂ù¡-
-ysquid:UselessImportCheck!"NRemove this unused import 'm.dp.i96mg.service.model.response.MessageResponse'.(îÊˆÉ8¨∫œ÷ø-
-†squid:S1186∆"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8≥¥÷ ¡-
-osquid:S3776y"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ôÈå/8Ü†”»¡-
-hsquid:UselessImportCheck"8Remove this unused import 'com.google.gson.GsonBuilder'.(î´‡¨ˇˇˇˇˇ8¨∫œ÷ø-
-^squid:UselessImportCheck".Remove this unused import 'android.os.Parcel'.(ò¬ÕÛ˚ˇˇˇˇ8“Ì§û¡-
-†squid:S1186¥"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8≠–‘ ¡-
-gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ListAdapter'.(ÂÇ´√˙ˇˇˇˇ8⁄ﬁ∂ù¡-
-usquid:UselessImportCheck%"ERemove this unused import 'm.dp.i96mg.utility.utils.ValidationUtils'.(∫æÁØ¸ˇˇˇˇ8¨∫œ÷ø-
-_squid:S1126Å"AReplace this if-then-else statement by a single return statement.(†Õ∏8Ü†”»¡-
-ysquid:UselessImportCheck"IRemove this unused import 'm.dp.i96mg.service.model.request.CartRequest'.(Ì◊à”¯ˇˇˇˇ8¨∫œ÷ø-
-Gsquid:S1068?")Remove this unused "index" private field.(’÷èÛ8™ä∆Ωº-
-†squid:S1186“"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
-\squid:UselessImportCheck*"1Remove this unused import 'okhttp3.ResponseBody'.(é’´¯8¨∫œ÷ø-
-usquid:UselessImportCheck"JRemove this unused import 'com.google.android.material.snackbar.Snackbar'.(ÎÑÉä8¨∫œ÷ø-
-†squid:S1186◊"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8–à◊ ¡-
-Ssquid:S1068>"5Remove this unused "onQuantityChanged" private field.(óä∂ó8‹„ô∆¡-
-†squid:S1186„"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
 bsquid:S10687"?Remove this unused "productDetailsViewModelLazy" private field.(”è≈Å¯ˇˇˇˇ8¨∫œ÷ø-
-wsquid:UselessImportCheck "LRemove this unused import 'm.dp.i96mg.service.model.response.ErrorResponse'.(ûƒ˜◊8¨∫œ÷ø-
+†squid:S1186Ø"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
+†squid:S1186“"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
+†squid:S1186„"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·¨á›8Ü†”»¡-
+Ssquid:S1068B"5Remove this unused "savedProductsInfo" private field.(±⁄È©8ó¢íû¡-
+†squid:S1186∆"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å£¬8≥¥÷ ¡-

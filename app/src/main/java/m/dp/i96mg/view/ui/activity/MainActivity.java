@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -81,6 +82,7 @@ public class MainActivity extends BaseActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     OnItemClickListener onItemClickListener;
     private Context context;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,6 @@ public class MainActivity extends BaseActivity {
         initializeRecyclerViewWithData();
         initializeSwipeRefreshLayout();
         getBrowserResponse();
-        makeSearch();
     }
 
     private void initializeWishListOnItemClicked() {
@@ -144,9 +145,9 @@ public class MainActivity extends BaseActivity {
 
     private void removeItemFromWishListDp(int id, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().removeItemFromWishlist(id).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
@@ -177,12 +178,11 @@ public class MainActivity extends BaseActivity {
 
     private void addItemToWishListDp(int id, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToWishList(getWishListRequest(id)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
-//                    productsRecyclerViewAdapter.notifyDataSetChanged();
                     if (startTripResponseResponse.body() != null) {
                         showSnackbar(startTripResponseResponse.body().getMessage());
                         addAndShowMessage(id, binding);
@@ -230,70 +230,9 @@ public class MainActivity extends BaseActivity {
             binding.navigationView.navigationViewHeaderLayout.tvName.setText(name);
             ImageView ivGalleryPhoto = binding.navigationView.navigationViewHeaderLayout.ivUser;
             Picasso.get().load(customUtilsLazy.getValue().getSavedMemberData().getProfilePictureUrl()).into(ivGalleryPhoto);
-            /*if (customUtilsLazy.getValue().getSavedProductsData() != null) {
-                if (!customUtilsLazy.getValue().getSavedProductsData().isEmpty()) {
-                    sendItemToDb();
-                }
-            }*/
         }
     }
 
-    /*private void removeFromCart(ProductModel productModel) {
-        if (isLoggedIn()) {
-            removeItemFromCartDp(productModel);
-        } else {
-            removeThisProductFromSharedPreferences(productModel);
-            showSnackbar(getResources().getString(R.string.product_removed_successfully));
-            for (int i = 0; i < loadedData.size(); i++) {
-                if (loadedData.get(i).getId() == productModel.getId()) {
-                    productModel.setInCart(false);
-                    loadedData.set(i, productModel);
-                    break;
-                }
-            }
-            productsRecyclerViewAdapter.notifyDataSetChanged();
-        }
-    }
-
-    private void removeItemFromCartDp(ProductModel productModel) {
-        if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
-            productDetailsViewModelLazy.getValue().removeItemFromCart(productModel.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
-                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
-                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
-                    if (startTripResponseResponse.body() != null) {
-                        showSnackbar(startTripResponseResponse.body().getMessage());
-                        for (int i = 0; i < loadedData.size(); i++) {
-                            if (loadedData.get(i).getId() == productModel.getId()) {
-                                productModel.setInCart(false);
-                                loadedData.set(i, productModel);
-                                break;
-                            }
-                        }
-                        productsRecyclerViewAdapter.notifyDataSetChanged();
-                    }
-                } else {
-                    showErrors(startTripResponseResponse.errorBody());
-                }
-            });
-        } else {
-            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
-        }
-    }*/
-
-    /*private void removeThisProductFromSharedPreferences(ProductModel item) {
-        List<ProductModel> productModelList = new ArrayList<>();
-        if (customUtilsLazy.getValue().getSavedProductsData() != null) {
-            productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
-        }
-        for (int i = 0; i < productModelList.size(); i++) {
-            if (productModelList.get(i).getId() == item.getId()) {
-                productModelList.remove(i);
-            }
-        }
-        customUtilsLazy.getValue().saveProductToPrefs(productModelList);
-    }*/
 
     private void addToCart(ProductModel productModel) {
         if (isLoggedIn()) {
@@ -484,7 +423,7 @@ public class MainActivity extends BaseActivity {
 
     private void initializeViewModel() {
         if (ValidationUtils.isConnectingToInternet(Objects.requireNonNull(this))) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             makeRequest();
             binding.swipeRefreshLayout.setRefreshing(false);
             observeViewmodel();
@@ -522,23 +461,16 @@ public class MainActivity extends BaseActivity {
             Uri uri = getIntent().getData();
             String status = uri.getQueryParameter(ConfigurationFile.Constants.KEY_SUCCESS);
             if (status.equals(ConfigurationFile.Constants.KEY_TRUE)) {
-                String languageType = customUtils.getValue().getSavedLanguageType();
-                customUtils.getValue().clearSharedPref();
-                customUtils.getValue().saveLanguageTypeToPrefs(languageType);
+//                String languageType = customUtils.getValue().getSavedLanguageType();
+//                customUtils.getValue().clearSharedPref();
+//                customUtils.getValue().saveLanguageTypeToPrefs(languageType);
             }
         }
     }
 
-    private void makeSearch() {
-       /* binding.ivSearch.setOnClickListener(view -> {
-//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//            startActivity(intent);
-        });*/
-    }
-
     private void observeViewmodel() {
         mainActivityViewModelLazy.getValue().getData().observe(this, productsResponseResponse -> {
-//            SharedUtils.getInstance().cancelDialog();
+            SharedUtils.getInstance().cancelDialog();
             if (productsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                     && ConfigurationFile.Constants.SUCCESS_CODE_TO > productsResponseResponse.code()) {
                 if (productsResponseResponse.body() != null) {
@@ -610,7 +542,7 @@ public class MainActivity extends BaseActivity {
         loading = false;
         position = totalItemCount;
         pageId++;
-//        SharedUtils.getInstance().showProgressDialog(this);
+        SharedUtils.getInstance().showProgressDialog(this);
         makeRequest();
         observeViewmodel();
     }
@@ -621,6 +553,7 @@ public class MainActivity extends BaseActivity {
             mainActivityViewModelLazy.getValue().getSettings().observe(this, categoriesResponseResponse -> {
                 if (categoriesResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > categoriesResponseResponse.code()) {
+
                     if (categoriesResponseResponse.body() != null) {
                         initializeCategoriesRecyclerView(categoriesResponseResponse.body().getCategories());
                         initializeLinks(categoriesResponseResponse.body().getSettings().getSocialNetworks());
@@ -736,4 +669,22 @@ public class MainActivity extends BaseActivity {
     private void showSnackbar(String message) {
         Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+            return;
+        } else if (doubleBackToExitPressedOnce) {
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Snackbar.make(binding.getRoot(), R.string.please_click_back_again_to_exit, Snackbar.LENGTH_SHORT).show();
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+    }
+
 }

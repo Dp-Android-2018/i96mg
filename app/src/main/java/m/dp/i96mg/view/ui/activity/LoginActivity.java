@@ -1,25 +1,17 @@
 package m.dp.i96mg.view.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.poovam.pinedittextfield.LinePinField;
-import com.poovam.pinedittextfield.PinField;
 import com.poovam.pinedittextfield.SquarePinField;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +26,6 @@ import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.request.CartRequest;
 import m.dp.i96mg.service.model.request.LoginRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
-import m.dp.i96mg.service.model.response.LoginResponse;
 import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
@@ -72,26 +63,34 @@ public class LoginActivity extends BaseActivity {
 
     public void sendCode(View view) {
         if (ValidationUtils.validateTexts(binding.etEmail.getText().toString(), ValidationUtils.TYPE_EMAIL)) {
-            if (ValidationUtils.isConnectingToInternet(this)) {
-                SharedUtils.getInstance().showProgressDialog(this);
-                loginViewModelLazy.getValue().sendLoginCode(getEmailRequest()).observe(this, new Observer<Response<MessageResponse>>() {
-                    @Override
-                    public void onChanged(Response<MessageResponse> messageResponseResponse) {
-                        SharedUtils.getInstance().cancelDialog();
-                        if (messageResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
-                                && ConfigurationFile.Constants.SUCCESS_CODE_TO > messageResponseResponse.code()) {
+            sendCodeToYou(ConfigurationFile.Constants.FIRST_SEND);
+        } else {
+            showSnackbarHere(getResources().getString(R.string.enter_valid_email));
+        }
+    }
+
+    private void sendCodeToYou(String type) {
+        if (ValidationUtils.isConnectingToInternet(this)) {
+            SharedUtils.getInstance().showProgressDialog(this);
+            loginViewModelLazy.getValue().sendLoginCode(getEmailRequest()).observe(this, new Observer<Response<MessageResponse>>() {
+                @Override
+                public void onChanged(Response<MessageResponse> messageResponseResponse) {
+                    SharedUtils.getInstance().cancelDialog();
+                    if (messageResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
+                            && ConfigurationFile.Constants.SUCCESS_CODE_TO > messageResponseResponse.code()) {
+                        if (type.equals(ConfigurationFile.Constants.FIRST_SEND)) {
                             showSnackbarHere(messageResponseResponse.body().getMessage());
                             showCodePinEntry();
                         } else {
-                            showErrors(messageResponseResponse.errorBody());
+                            showSnackbarHere(messageResponseResponse.body().getMessage());
                         }
+                    } else {
+                        showErrors(messageResponseResponse.errorBody());
                     }
-                });
-            } else {
-                showSnackbarHere(getResources().getString(R.string.there_is_no_internet_connection));
-            }
+                }
+            });
         } else {
-            showSnackbarHere(getResources().getString(R.string.enter_valid_email));
+            showSnackbarHere(getResources().getString(R.string.there_is_no_internet_connection));
         }
     }
 
@@ -255,7 +254,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void resendCode(View view) {
-
+        sendCodeToYou(ConfigurationFile.Constants.SECOND_SEND);
     }
 
     private void showSnackbar(String message) {

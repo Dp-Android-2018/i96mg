@@ -24,6 +24,8 @@ import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.viewmodel.SignUpViewModel;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 
@@ -58,8 +60,12 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void makeSignUpRequest() {
+        RequestBody firstName = RequestBody.create(MediaType.parse("text/plain"), binding.etFirstName.getText().toString());
+        RequestBody secondName = RequestBody.create(MediaType.parse("text/plain"), binding.etSecondName.getText().toString());
+        RequestBody phone = RequestBody.create(MediaType.parse("text/plain"), binding.etPhone.getText().toString());
+
         SharedUtils.getInstance().showProgressDialog(this);
-        signUpViewModelLazy.getValue().signUp(getSignUpRequest()).observe(this, new Observer<Response<MessageResponse>>() {
+        signUpViewModelLazy.getValue().signUp(phone,firstName,secondName,null).observe(this, new Observer<Response<MessageResponse>>() {
             @Override
             public void onChanged(Response<MessageResponse> messageResponseResponse) {
                 SharedUtils.getInstance().cancelDialog();

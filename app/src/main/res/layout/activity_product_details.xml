@@ -290,8 +290,8 @@
 
                 <com.joooonho.SelectableRoundedImageView
                     android:id="@+id/iv_user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/dp54h"
+                    android:layout_height="@dimen/dp54h"
                     android:layout_marginEnd="@dimen/dp7w"
                     android:src="@drawable/image_icon"
                     app:layout_constraintBottom_toBottomOf="@+id/et_question"
