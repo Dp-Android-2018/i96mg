@@ -60,9 +60,9 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void makeSignUpRequest() {
-        RequestBody firstName = RequestBody.create(MediaType.parse("text/plain"), binding.etFirstName.getText().toString());
-        RequestBody secondName = RequestBody.create(MediaType.parse("text/plain"), binding.etSecondName.getText().toString());
-        RequestBody phone = RequestBody.create(MediaType.parse("text/plain"), binding.etPhone.getText().toString());
+        RequestBody firstName = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), binding.etFirstName.getText().toString());
+        RequestBody secondName = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), binding.etSecondName.getText().toString());
+        RequestBody phone = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), binding.etPhone.getText().toString());
 
         SharedUtils.getInstance().showProgressDialog(this);
         signUpViewModelLazy.getValue().signUp(phone,firstName,secondName,null).observe(this, new Observer<Response<MessageResponse>>() {
@@ -106,22 +106,14 @@ public class SignUpActivity extends BaseActivity {
         finish();
     }
 
-    private SignUpRequest getSignUpRequest() {
-        SignUpRequest signUpRequest = new SignUpRequest();
-        signUpRequest.setPhone(binding.etPhone.getText().toString());
-        signUpRequest.setFirstName(binding.etFirstName.getText().toString());
-        signUpRequest.setLastName(binding.etSecondName.getText().toString());
-        return signUpRequest;
-    }
-
     private void showFieldsBugs() {
         if (binding.etFirstName.getText().toString().isEmpty()) {
-            showSnackbarHere("please enter first name !");
+            showSnackbarHere(getResources().getString(R.string.enter_first_name));
             return;
         }
 
         if (binding.etSecondName.getText().toString().isEmpty()) {
-            showSnackbarHere("please enter second name !");
+            showSnackbarHere(getResources().getString(R.string.enter_second_name));
             return;
         }
 

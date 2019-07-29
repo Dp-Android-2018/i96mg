@@ -67,7 +67,7 @@
                     android:layout_height="@dimen/dp265w"
                     android:background="@color/transparent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/product_img"
+                    tools:src="@drawable/product_img"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -294,6 +294,9 @@
                     android:layout_height="@dimen/dp54h"
                     android:layout_marginEnd="@dimen/dp7w"
                     android:src="@drawable/image_icon"
+                    android:scaleType="centerCrop"
+                    app:sriv_border_width="0dp"
+                    app:sriv_oval="true"
                     app:layout_constraintBottom_toBottomOf="@+id/et_question"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/et_question" />

@@ -24,20 +24,16 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.moip.validators.CreditCard;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityPayCardBinding;
 import m.dp.i96mg.service.model.global.BankAccountResponseModel;
-import m.dp.i96mg.service.model.global.ProductData;
-import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.request.BankRequest;
 import m.dp.i96mg.service.model.request.OrderRequest;
 import m.dp.i96mg.service.model.response.BankAccountsResponse;
 import m.dp.i96mg.service.model.response.ErrorResponse;
-import m.dp.i96mg.service.model.response.MessageResponse;
 import m.dp.i96mg.service.model.response.OrderResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
@@ -64,13 +60,11 @@ public class PayCardActivity extends BaseActivity {
     private Lazy<PayCardActivityViewModel> payCardActivityViewModelLazy = inject(PayCardActivityViewModel.class);
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     OrderRequest orderRequest;
-    private List<ProductModel> productModelList;
-    private ArrayList<ProductData> productData;
     private int orderId;
     private SpinnerAdapter bankSpinnerAdapter;
     private BankAccountResponseModel selectedBankAccount;
     private ProgressDialog prgDialog;
-    private String imgPath, fileName;
+    private String imgPath;
     private static int RESULT_LOAD_IMG = 1;
     private MultipartBody.Part imageFile;
     private RequestBody imageRequestBody;
@@ -120,11 +114,12 @@ public class PayCardActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedBankAccount = (BankAccountResponseModel) parent.getItemAtPosition(position);
+                binding.tvAccountNo.setText(selectedBankAccount.getAccountNumber());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                showSnackbar("please select Bank Account !!");
+                showSnackbar(getResources().getString(R.string.select_bank_account));
             }
         });
     }
@@ -243,14 +238,15 @@ public class PayCardActivity extends BaseActivity {
         }
 
         if (imageFile == null) {
-            showSnackbar(getResources().getString(R.string.please_attach_your_receipt));
+            showSnackbar(getResources().getString(R.string.order_added));
+            new Handler().postDelayed(() -> openMainActivity(),1000);
         }
     }
 
     private void makeBankRequest() {
 //        RequestBody orderIdRequest = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(orderId));
-        RequestBody bankAccountId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(selectedBankAccount.getId()));
-        RequestBody fullName = RequestBody.create(MediaType.parse("text/plain"), binding.etFullName.getText().toString());
+        RequestBody bankAccountId = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), String.valueOf(selectedBankAccount.getId()));
+        RequestBody fullName = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), binding.etFullName.getText().toString());
 
         if (ValidationUtils.isConnectingToInternet(this)) {
             SharedUtils.getInstance().showProgressDialog(this);

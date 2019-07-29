@@ -1,3 +1,4 @@
 
 |squid:UselessImportCheck"LRemove this unused import 'm.dp.i96mg.view.ui.activity.ShopDetailsActivity'.(÷ÇŒÿüÿÿÿÿ8•™Éû¿-
-Osquid:S1602B",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8…óÂû¿-
+isquid:CommentedOutCodeLineN"<This block of commented-out lines of code should be removed.(Ø¸¥Ð8‹áŽÃ-
+Osquid:S1602E",Remove useless curly braces around statement(ƒ²§¦øÿÿÿÿ8…óÂû¿-

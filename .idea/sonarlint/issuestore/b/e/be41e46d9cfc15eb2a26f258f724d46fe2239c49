@@ -1,18 +1,10 @@
 
-usquid:UselessImportCheck"ERemove this unused import 'com.poovam.pinedittextfield.LinePinField'.(®Öƒ™şÿÿÿÿ8¥ç£‡½-
-Zsquid:S2696æ"6Make the enclosing method "static" or remove this set.(®‡íèşÿÿÿÿ8øº¿ŸÁ-
-¥squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(„²ÎÚşÿÿÿÿ8øº¿ŸÁ-
-@squid:S1643÷"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8“¿­Ğ¿-
-asquid:UselessImportCheck	"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8—ø¤‡½-
-Zsquid:S2696“"6Make the enclosing method "static" or remove this set.(®‡íèşÿÿÿÿ8øº¿ŸÁ-
-psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8ùé‰½-
-lsquid:UselessImportCheck"ARemove this unused import 'com.poovam.pinedittextfield.PinField'.(¹Şúà8Ğ‡ŸÁ-
-Ksquid:S1612«",Replace this lambda with a method reference.(¤ÖªË8øº¿ŸÁ-
-Gsquid:S1148ò"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8øº¿ŸÁ-
-\squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8´¤ğïÁ-
-nsquid:UselessImportCheck">Remove this unused import 'org.jetbrains.annotations.NotNull'.(éš®ïøÿÿÿÿ8Ğ‡ŸÁ-
-@squid:S1643ö"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8øº¿ŸÁ-
-]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8õşï¸½-
-Nsquid:S1172I"+Remove this unused method parameter "view".(œ¢ïáÿÿÿÿÿ8£¯‰¹½-
-|squid:UselessImportCheck%"LRemove this unused import 'm.dp.i96mg.service.model.response.LoginResponse'.(ÑëŸœûÿÿÿÿ8†ÕÌ‡½-
-msquid:MaximumInheritanceDepth2"=This class has 10 parents which is greater than 5 authorized.(şàÈí8è«¢‡½-
+Zsquid:S2696å"6Make the enclosing method "static" or remove this set.(®‡íèşÿÿÿÿ8øº¿ŸÁ-
+Gsquid:S1148ñ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8øº¿ŸÁ-
+Zsquid:S2696’"6Make the enclosing method "static" or remove this set.(®‡íèşÿÿÿÿ8øº¿ŸÁ-
+@squid:S1643õ"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8øº¿ŸÁ-
+@squid:S1643ö"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8“¿­Ğ¿-
+Nsquid:S1172@"+Remove this unused method parameter "view".(œ¢ïáÿÿÿÿÿ8£¯‰¹½-
+Ksquid:S1612ª",Replace this lambda with a method reference.(¤ÖªË8øº¿ŸÁ-
+msquid:MaximumInheritanceDepth)"=This class has 10 parents which is greater than 5 authorized.(şàÈí8è«¢‡½-
+Osquid:S1172€"+Remove this unused method parameter "view".(„²ÎÚşÿÿÿÿ8úÕé›Ã-

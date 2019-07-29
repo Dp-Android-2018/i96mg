@@ -80,7 +80,7 @@
     <string name="is_there_any_questions">هل يوجد لديك سؤال؟</string>
     <string name="send">Send</string>
     <string name="sign_up">Sign up</string>
-    <string name="to_continue_to_the_cart_you_have_to_login_firts">To continue to the cart you have to login firts!</string>
+    <string name="to_continue_to_the_cart_you_have_to_login_firts">To continue to the cart you have to login firt !</string>
     <string name="not_now">Not Now</string>
     <string name="epic_or_sony">إيبك أو سونى؟</string>
     <string name="password">الرقم السرى</string>
@@ -102,4 +102,11 @@
     <string name="something_went_wrong">Something went wrong !</string>
     <string name="please_attach_your_receipt">please attach your payment receipt</string>
     <string name="please_click_back_again_to_exit">Please click BACK again to exit !</string>
+    <string name="rate_us">Rate us</string>
+    <string name="enter_first_name">please enter first name !</string>
+    <string name="enter_second_name">please enter second name !</string>
+    <string name="select_bank_account">please select Bank Account !!</string>
+    <string name="make_rate_please">Please give rate before send review !!</string>
+    <string name="order_added">Order has been added to pending payment orders</string>
+    <string name="account_number">Account Number</string>
 </resources>

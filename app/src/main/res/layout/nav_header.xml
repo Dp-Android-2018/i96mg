@@ -14,6 +14,11 @@
             android:layout_height="@dimen/dp72h"
             android:layout_marginTop="@dimen/dp64w"
             android:src="@drawable/image_icon"
+            android:scaleType="centerCrop"
+            app:sriv_border_width="0dp"
+            app:sriv_oval="true"
+            app:sriv_border_color="@android:color/white"
+            android:shadowColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

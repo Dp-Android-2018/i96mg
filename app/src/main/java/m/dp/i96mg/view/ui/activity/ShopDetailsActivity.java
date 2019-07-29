@@ -22,6 +22,7 @@ import java.util.List;
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityShopDetailsBinding;
+import m.dp.i96mg.databinding.ItemShopCartBinding;
 import m.dp.i96mg.service.model.global.ProductData;
 import m.dp.i96mg.service.model.global.ProductModel;
 import m.dp.i96mg.service.model.global.ProductsInfoModel;
@@ -107,8 +108,20 @@ public class ShopDetailsActivity extends BaseActivity {
             }
 
             @Override
-            public void dataChanged(int position, ProductsInfoModel productsInfoModel) {
-                shopRecyclerViewAdapter.notifyDataSetChanged();
+            public void dataChanged(int position, ItemShopCartBinding itemShopCartBinding, ProductsInfoModel mProductsInfoModel) {
+//                shopRecyclerViewAdapter.notifyDataSetChanged();
+//                shopRecyclerViewAdapter.notifyItemChanged(position);
+//                itemShopCartBinding.etWhatsapp.setSelection(itemShopCartBinding.etWhatsapp.getText().length());
+//                itemShopCartBinding.etWhatsapp.setFocusableInTouchMode(true);
+//                itemShopCartBinding.etWhatsapp.requestFocus();
+
+                for (int i = 0; i < productsInfoModels.size(); i++) {
+                    if (productsInfoModels.get(i).getId() == mProductsInfoModel.getId()) {
+                        productsInfoModels.remove(i);
+                    }
+                }
+                productsInfoModels.add(mProductsInfoModel);
+                customUtilsLazy.getValue().saveProductInfoToPrefs(productsInfoModels);
             }
         };
     }
@@ -254,9 +267,9 @@ public class ShopDetailsActivity extends BaseActivity {
 
     private void removeItemFromCartDp(ProductModel item) {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().removeItemFromCart(item.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
@@ -287,7 +300,6 @@ public class ShopDetailsActivity extends BaseActivity {
         }
         customUtilsLazy.getValue().saveProductToPrefs(productModelList);
         updateUiAndPrice(productModelList);
-
 //        getAndSetTotalPrice();
 //        onQuantityChanged.onQuantityChange(true);
 //        makeSnakeBar(productModelList2, item, index, position);
@@ -429,37 +441,6 @@ public class ShopDetailsActivity extends BaseActivity {
         return productsOrderRequest;
     }
 
-    /*private void showLoginDialog() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(binding.getRoot().getContext());
-        LayoutInflater factory = LayoutInflater.from(binding.getRoot().getContext());
-        final View view = factory.inflate(R.layout.choose_order_type, null);
-        alertDialog.setView(view);
-        alertDialog.setCancelable(true);
-        dialog = alertDialog.create();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-        makeActionOnChoose(view);
-    }
-
-    private void makeActionOnChoose(View view) {
-        ConstraintLayout loginConstraintLayout = view.findViewById(R.id.loginConstraintLayout);
-        loginConstraintLayout.setOnClickListener(v -> {
-            dialog.cancel();
-            openLoginActivity();
-        });
-        ConstraintLayout notNowConstraintLayout = view.findViewById(R.id.notNowConstraintLayout);
-        notNowConstraintLayout.setOnClickListener(v -> {
-            dialog.cancel();
-        });
-    }
-
-    private void openLoginActivity() {
-        Intent intent = new Intent(ShopDetailsActivity.this, LoginActivity.class);
-        intent.putExtra(ConfigurationFile.Constants.ACTIVITY_NAME, );
-        startActivity(intent);
-        finish();
-    }*/
-
     private void openNextActivity(int orderId) {
         Intent intent = new Intent(this, PayCardActivity.class);
         intent.putExtra(ConfigurationFile.Constants.ORDER_ID, orderId);
@@ -483,10 +464,10 @@ public class ShopDetailsActivity extends BaseActivity {
     }
 
     private void makeRequest() {
-//        SharedUtils.getInstance().showProgressDialog(this);
+        SharedUtils.getInstance().showProgressDialog(this);
         shopDetailsActivityViewModelLazy.getValue().getVoucherData(binding.etCodeNumber.getText().toString());
         shopDetailsActivityViewModelLazy.getValue().getData().observe(this, voucherResponseResponse -> {
-//            SharedUtils.getInstance().cancelDialog();
+            SharedUtils.getInstance().cancelDialog();
             if (voucherResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                     && ConfigurationFile.Constants.SUCCESS_CODE_TO > voucherResponseResponse.code()) {
                 if (voucherResponseResponse.body() != null) {

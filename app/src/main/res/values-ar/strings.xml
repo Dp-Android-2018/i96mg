@@ -100,6 +100,13 @@
     <string name="nothing_changed">لم يتغير شيء!</string>
     <string name="you_havenot_picked_image">أنت لم تختار صورة !</string>
     <string name="something_went_wrong">حدث خطأ ما !</string>
-    <string name="please_attach_your_receipt">please attach your payment receipt</string>
-    <string name="please_click_back_again_to_exit">Please click BACK again to exit !</string>
+    <string name="please_attach_your_receipt">يرجى إرفاق إيصال الدفع الخاص بك</string>
+    <string name="please_click_back_again_to_exit">الرجاء النقر مرة أخرى للخروج!</string>
+    <string name="rate_us">قيّمنا</string>
+    <string name="enter_first_name">يرجى إدخال الاسم الأول!</string>
+    <string name="enter_second_name">يرجى إدخال الاسم الثاني!</string>
+    <string name="select_bank_account">يرجى اختيار الحساب المصرفي !!</string>
+    <string name="make_rate_please">يرجى إعطاء معدل قبل إرسال مراجعة!</string>
+    <string name="order_added">تمت إضافة الطلب إلى قائمة قيد انتظار الدفع</string>
+    <string name="account_number">رقم الحساب</string>
 </resources>

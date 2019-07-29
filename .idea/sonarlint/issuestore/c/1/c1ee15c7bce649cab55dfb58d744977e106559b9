@@ -1,18 +1,13 @@
 
-@squid:S1643"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8İËÈöÁ-
-Hsquid:S16599"*Declare "encodeString" on a separate line.(¥›ã´8—ÏËöÁ-
-squid:S14507"aRemove the "loginResponseModel" field and declare it as a local variable in the relevant methods.(Ìñà8Š™ñÁ-
-rsquid:MaximumInheritanceDepth2"=This class has 10 parents which is greater than 5 authorized.(„°—ÿÿÿÿÿ8İËÈöÁ-
-osquid:CommentedOutCodeLineµ"<This block of commented-out lines of code should be removed.(÷ı˜¾ûÿÿÿÿ8ÖçŒøÁ-
-Jsquid:S10689",Remove this unused "fileName" private field.(¥›ã´8İËÈöÁ-
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥Ëœy8ıõÿøÁ-
-Gsquid:S1148‹"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8İËÈöÁ-
-Nsquid:S10689"0Remove this unused "encodeString" private field.(¥›ã´8—ÏËöÁ-
-@squid:S1643"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8Ş¡ÓñÁ-
-jsquid:CommentedOutCodeLine±"<This block of commented-out lines of code should be removed.(ˆƒ¡Á8ÛÚ øÁ-
-Dsquid:S16599"&Declare "fileName" on a separate line.(¥›ã´8İËÈöÁ-
-xsquid:S3008:"ZRename this field "RESULT_LOAD_IMG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìüúã8İËÈöÁ-
-osquid:CommentedOutCodeLineÀ"<This block of commented-out lines of code should be removed.(Ñ±—Íÿÿÿÿÿ8¿›˜øÁ-
-vsquid:S00117à"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç»‘™úÿÿÿÿ8ü””÷Á-
-Gsquid:S1185Ï"(Remove this method to simply inherit it.(ËĞƒ8ÈºÏöÁ-
-Isquid:S1172U"+Remove this unused method parameter "view".(‘Å÷Ù8İËÈöÁ-
+Wsquid:S10684"4Remove this unused "imageRequestBody" private field.(¥ÍÉÎÿÿÿÿÿ8Óñ”Ã-
+rsquid:MaximumInheritanceDepth*"=This class has 10 parents which is greater than 5 authorized.(„°—ÿÿÿÿÿ8İËÈöÁ-
+Jsquid:S1172•"+Remove this unused method parameter "view".(ˆ‹°ò8ğ¿“Ã-
+Isquid:S1172M"+Remove this unused method parameter "view".(‘Å÷Ù8İËÈöÁ-
+@squid:S1643‹"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8İËÈöÁ-
+vsquid:S14500"XRemove the "prgDialog" field and declare it as a local variable in the relevant methods.(¼Ãí 8Ù••Ã-
+‚squid:S14504"_Remove the "imageRequestBody" field and declare it as a local variable in the relevant methods.(¥ÍÉÎÿÿÿÿÿ8¹„”•Ã-
+squid:S1450/"aRemove the "loginResponseModel" field and declare it as a local variable in the relevant methods.(Ìñà8Š™ñÁ-
+Gsquid:S1148†"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8İËÈöÁ-
+tsquid:S14501"VRemove the "imgPath" field and declare it as a local variable in the relevant methods.(†ôáò8Ù••Ã-
+xsquid:S30082"ZRename this field "RESULT_LOAD_IMG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìüúã8İËÈöÁ-
+@squid:S1643Š"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8Ş¡ÓñÁ-

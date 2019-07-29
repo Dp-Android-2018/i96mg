@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,9 +21,7 @@ import m.dp.i96mg.databinding.ActivityPendingOrdersBinding;
 import m.dp.i96mg.service.model.global.OrderResponseModel;
 import m.dp.i96mg.service.model.response.AllOrdersResponse;
 import m.dp.i96mg.service.model.response.ErrorResponse;
-import m.dp.i96mg.service.model.response.ProductsResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
-import m.dp.i96mg.utility.utils.GridSpacingItemDecoration;
 import m.dp.i96mg.utility.utils.SharedUtils;
 import m.dp.i96mg.utility.utils.ValidationUtils;
 import m.dp.i96mg.view.ui.adapter.OrdersRecyclerViewAdapter;
@@ -34,7 +31,7 @@ import okhttp3.ResponseBody;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
-public class PendingOrdersActivity extends AppCompatActivity {
+public class PendingOrdersActivity extends BaseActivity {
 
     ActivityPendingOrdersBinding binding;
     private Lazy<OrdersViewModel> ordersViewModelLazy = inject(OrdersViewModel.class);

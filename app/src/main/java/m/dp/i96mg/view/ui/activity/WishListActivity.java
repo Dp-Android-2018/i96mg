@@ -85,16 +85,6 @@ public class WishListActivity extends BaseActivity {
             public void removeItemFromWishList(int id, ItemProductLayoutBinding binding) {
                 if (isLoggedIn()) {
                     removeItemFromWishListDp(id, binding);
-                    /*ProductModel productModel2;
-                    for (int i = 0; i < loadedData.size(); i++) {
-                        if (loadedData.get(i).getId() == id) {
-//                            productModel2 = loadedData.get(i);
-//                            productModel2.setInWishlist(false);
-                            loadedData.remove(i);
-                            break;
-                        }
-                    }
-                    productsRecyclerViewAdapter.notifyDataSetChanged();*/
                 } else {
                     SharedUtils.getInstance().showLoginDialog(context, ConfigurationFile.Constants.WISHLIST_TYPE);
                 }
@@ -104,77 +94,20 @@ public class WishListActivity extends BaseActivity {
             public void addItemToCart(ProductModel productModel, ItemProductLayoutBinding binding) {
                 if (productModel.isInCart()) {
                     showSnackbar(getResources().getString(R.string.item_added_before));
-//                    removeFromCart(productModel);
                 } else {
-                    addToCart(productModel);
+                    addToCart(productModel,binding);
                 }
             }
         };
     }
 
-    /*private void removeFromCart(ProductModel productModel) {
+    private void addToCart(ProductModel productModel, ItemProductLayoutBinding binding) {
         if (isLoggedIn()) {
-            removeItemFromCartDp(productModel);
-        } else {
-            removeThisProductFromSharedPreferences(productModel);
-            showSnackbar(getResources().getString(R.string.product_removed_successfully));
-            for (int i = 0; i < loadedData.size(); i++) {
-                if (loadedData.get(i).getId() == productModel.getId()) {
-                    productModel.setInCart(false);
-                    loadedData.set(i, productModel);
-                    break;
-                }
-            }
-            productsRecyclerViewAdapter.notifyDataSetChanged();
-        }
-    }*/
-
-   /* private void removeItemFromCartDp(ProductModel productModel) {
-        if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
-            productDetailsViewModelLazy.getValue().removeItemFromCart(productModel.getId()).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
-                if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
-                        && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
-                    if (startTripResponseResponse.body() != null) {
-                        showSnackbar(startTripResponseResponse.body().getMessage());
-                        for (int i = 0; i < loadedData.size(); i++) {
-                            if (loadedData.get(i).getId() == productModel.getId()) {
-                                productModel.setInCart(false);
-                                loadedData.set(i, productModel);
-                                break;
-                            }
-                        }
-                        productsRecyclerViewAdapter.notifyDataSetChanged();
-                    }
-                } else {
-                    showErrors(startTripResponseResponse.errorBody());
-                }
-            });
-        } else {
-            showSnackbar(getResources().getString(R.string.there_is_no_internet_connection));
-        }
-    }
-
-    private void removeThisProductFromSharedPreferences(ProductModel item) {
-        List<ProductModel> productModelList = new ArrayList<>();
-        if (customUtilsLazy.getValue().getSavedProductsData() != null) {
-            productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
-        }
-        for (int i = 0; i < productModelList.size(); i++) {
-            if (productModelList.get(i).getId() == item.getId()) {
-                productModelList.remove(i);
-            }
-        }
-        customUtilsLazy.getValue().saveProductToPrefs(productModelList);
-    }*/
-
-    private void addToCart(ProductModel productModel) {
-        if (isLoggedIn()) {
-            sendItemToDb(productModel);
+            sendItemToDb(productModel,binding);
         } else {
             addItsDataToSharedPreferences(productModel);
             showSnackbar(getResources().getString(R.string.product_added_successfully));
+            binding.ivAddToCart.setImageDrawable(getResources().getDrawable(R.drawable.in_cart_icon));
             for (int i = 0; i < loadedData.size(); i++) {
                 if (loadedData.get(i).getId() == productModel.getId()) {
                     productModel.setInCart(true);
@@ -186,7 +119,7 @@ public class WishListActivity extends BaseActivity {
         }
     }
 
-    private void sendItemToDb(ProductModel productModel) {
+    private void sendItemToDb(ProductModel productModel, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
             SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest(productModel)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
@@ -195,6 +128,7 @@ public class WishListActivity extends BaseActivity {
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
                         showSnackbar(startTripResponseResponse.body().getMessage());
+                        binding.ivAddToCart.setImageDrawable(getResources().getDrawable(R.drawable.in_cart_icon));
                         for (int i = 0; i < loadedData.size(); i++) {
                             if (loadedData.get(i).getId() == productModel.getId()) {
                                 productModel.setInCart(true);
@@ -251,9 +185,9 @@ public class WishListActivity extends BaseActivity {
 
     private void removeItemFromWishListDp(int id, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().removeItemFromWishlist(id).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
-//                SharedUtils.getInstance().cancelDialog();
+                SharedUtils.getInstance().cancelDialog();
                 if (startTripResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_empty));
@@ -278,7 +212,7 @@ public class WishListActivity extends BaseActivity {
 
     private void initializeViewModel() {
         if (ValidationUtils.isConnectingToInternet(Objects.requireNonNull(this))) {
-//            SharedUtils.getInstance().showProgressDialog(this);
+            SharedUtils.getInstance().showProgressDialog(this);
             makeRequest();
             binding.swipeRefreshLayout.setRefreshing(false);
             observeViewmodel();
@@ -308,7 +242,7 @@ public class WishListActivity extends BaseActivity {
 
     private void observeViewmodel() {
         wishListViewModelLazy.getValue().getData().observe(this, productsResponseResponse -> {
-//            SharedUtils.getInstance().cancelDialog();
+            SharedUtils.getInstance().cancelDialog();
             if (productsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                     && ConfigurationFile.Constants.SUCCESS_CODE_TO > productsResponseResponse.code()) {
                 if (productsResponseResponse.body() != null) {

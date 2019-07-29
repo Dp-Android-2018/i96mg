@@ -1,55 +1,21 @@
 package m.dp.i96mg.view.ui.activity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
 import kotlin.Lazy;
-import m.dp.i96mg.application.MyApplication;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
-import m.dp.i96mg.utility.utils.ConnectionReceiver;
 import m.dp.i96mg.utility.utils.ContextWrapper;
 import m.dp.i96mg.utility.utils.CustomUtils;
 
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
-public class BaseActivity extends AppCompatActivity implements ConnectionReceiver.ConnectionReceiverListener {
+public class BaseActivity extends AppCompatActivity {
 
     Lazy<CustomUtils> customUtils = inject(CustomUtils.class);
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        MyApplication.Companion.getInstance().setConnectionListener(this);
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MyApplication.Companion.getInstance().setConnectionListener(this);
-    }
-
-    @Override
-    public void onNetworkConnectionChanged(boolean isConnected) {
-        if (!isConnected) {
-            Intent intent = new Intent(BaseActivity.this, NoInternetConnectionActivity.class);
-            startActivity(intent);
-            finish();
-            finishAffinity();
-
-        } else {
-            Intent intent = new Intent(BaseActivity.this, SplashScreenActivity.class);
-            startActivity(intent);
-            finish();
-            finishAffinity();
-        }
-    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

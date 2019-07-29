@@ -7,9 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -22,14 +20,12 @@ import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import kotlin.Lazy;
 import m.dp.i96mg.R;
 import m.dp.i96mg.databinding.ActivityEditProfileBinding;
 import m.dp.i96mg.service.model.global.LoginResponseModel;
-import m.dp.i96mg.service.model.request.SignUpRequest;
 import m.dp.i96mg.service.model.response.ErrorResponse;
 import m.dp.i96mg.utility.utils.ConfigurationFile;
 import m.dp.i96mg.utility.utils.CustomUtils;
@@ -50,10 +46,9 @@ public class EditProfileActivity extends BaseActivity {
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     private LoginResponseModel loginResponseModel;
     private ProgressDialog prgDialog;
-    private String imgPath, fileName, encodeString;
+    private String imgPath;
     private static int RESULT_LOAD_IMG = 1;
     private MultipartBody.Part imageFile;
-    private Bitmap bitmap;
     private RequestBody imageRequestBody;
 
 
@@ -97,9 +92,9 @@ public class EditProfileActivity extends BaseActivity {
     }
 
     private void makeSignUpRequest() {
-        RequestBody firstName = RequestBody.create(MediaType.parse("text/plain"), binding.etFirstName.getText().toString());
-        RequestBody secondName = RequestBody.create(MediaType.parse("text/plain"), binding.etSecondName.getText().toString());
-        RequestBody phone = RequestBody.create(MediaType.parse("text/plain"), binding.etPhone.getText().toString());
+        RequestBody firstName = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), binding.etFirstName.getText().toString());
+        RequestBody secondName = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), binding.etSecondName.getText().toString());
+        RequestBody phone = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), binding.etPhone.getText().toString());
 
         SharedUtils.getInstance().showProgressDialog(this);
         signUpViewModelLazy.getValue().signUp(phone, firstName, secondName, imageFile).observe(this, messageResponseResponse -> {
@@ -109,7 +104,6 @@ public class EditProfileActivity extends BaseActivity {
                 showSnackbarHere(messageResponseResponse.body().getMessage());
                 addDataToCustomUtils(messageResponseResponse.body().getImageUrl());
                 imageFile = null;
-//                new Handler().postDelayed(() -> openMainActivity(), 1000);
             } else {
                 showErrors(messageResponseResponse.errorBody());
             }
@@ -189,22 +183,12 @@ public class EditProfileActivity extends BaseActivity {
 
     private void getImageMultipartBodyFromPath(String imgPath) {
         //Create a file object using file path
-        int compressionRatio = 4; //1 == originalImage, 2 = 50% compression, 4=25% compress
         File file = new File(imgPath);
-       /* try {
-            Bitmap bitmap = BitmapFactory.decodeFile (file.getPath ());
-            bitmap.compress (Bitmap.CompressFormat.JPEG, compressionRatio, new FileOutputStream(file));
-        }
-        catch (Throwable t) {
-            Log.e("ERROR", "Error compressing file." + t.toString ());
-            t.printStackTrace ();
-        }*/
-
         // Create a request body with file and image media type
         RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), file);
         // Create MultipartBody.Part using file request-body,file name and part name
         imageFile = MultipartBody.Part.createFormData("profile_picture", "image.png", fileReqBody);
         //Create request body with text description and text media type
-        imageRequestBody = RequestBody.create(MediaType.parse("text/plain"), "image-type");
+        imageRequestBody = RequestBody.create(MediaType.parse(ConfigurationFile.Constants.MEDIA_TEXT_TYPE), "image-type");
     }
 }

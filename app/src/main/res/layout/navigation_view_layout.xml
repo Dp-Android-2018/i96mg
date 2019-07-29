@@ -101,6 +101,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_order_list" />
 
                 <TextView
+                    android:id="@+id/tv_nav_item_rate_us"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp28h"
+                    android:layout_marginTop="@dimen/dp15w"
+                    android:gravity="start"
+                    android:text="@string/rate_us"
+                    android:textColor="@android:color/white"
+                    android:textSize="16.7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_language" />
+
+                <TextView
                     android:id="@+id/tv_nav_item_order_list"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -128,7 +143,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_language" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nav_item_rate_us" />
 
                 <include
                     android:id="@+id/navigation_view_footer_layout"

@@ -184,7 +184,8 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void afterTextChanged(Editable editable) {
                 mProductsInfoModel.setEmail(editable.toString());
-                saveProductInfo();
+//                saveProductInfo();
+                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
             }
         });
 
@@ -202,7 +203,8 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void afterTextChanged(Editable editable) {
                 mProductsInfoModel.setPassword(editable.toString());
-                saveProductInfo();
+//                saveProductInfo();
+                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
             }
         });
         binding.etProductType.addTextChangedListener(new TextWatcher() {
@@ -219,7 +221,8 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void afterTextChanged(Editable editable) {
                 mProductsInfoModel.setType(editable.toString());
-                saveProductInfo();
+//                saveProductInfo();
+                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
             }
         });
         binding.etWhatsapp.addTextChangedListener(new TextWatcher() {
@@ -236,8 +239,8 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void afterTextChanged(Editable editable) {
                 mProductsInfoModel.setWhatsapp(editable.toString());
-                saveProductInfo();
-                onOperationClicked.dataChanged(position, mProductsInfoModel);
+//                saveProductInfo();
+                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
             }
         });
 

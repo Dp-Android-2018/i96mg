@@ -3,6 +3,7 @@ package m.dp.i96mg.view.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -64,7 +65,6 @@ public class ProductDetailsActivity extends BaseActivity {
     private String categoryId = ConfigurationFile.Constants.DEFAULT_CATEGORY_ID;
     private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private Lazy<MainActivityViewModel> mainActivityViewModelLazy = inject(MainActivityViewModel.class);
-    private float price;
     private List<ProductModel> productModelList;
     private ArrayList<ProductModel> allProducts;
     private float ratingValue;
@@ -72,6 +72,7 @@ public class ProductDetailsActivity extends BaseActivity {
     private OnItemClickListener onItemClickListener;
     private ProductsRecyclerViewAdapter productsRecyclerViewAdapter;
     private Context context;
+    private boolean isInCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,6 +233,15 @@ public class ProductDetailsActivity extends BaseActivity {
         if (customUtilsLazy.getValue().getSavedProductsData() != null) {
             productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
         }
+
+        if (!isLoggedIn()) {
+            for (int i = 0; i < productModelList.size(); i++) {
+                if (productModelList.get(i).getId() == productModel.getId()) {
+                    isInCart = true;
+                    break;
+                }
+            }
+        }
         getProductDetail();
         getRandomProducts();
         getReviews();
@@ -245,7 +255,12 @@ public class ProductDetailsActivity extends BaseActivity {
                 if (productDetailsResponseResponse.code() >= ConfigurationFile.Constants.SUCCESS_CODE_FROM
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > productDetailsResponseResponse.code()) {
                     if (productDetailsResponseResponse.body() != null) {
-                        initializeUiWithData(productDetailsResponseResponse.body().getData());
+                        ProductModel productModel2 = productDetailsResponseResponse.body().getData();
+                        if (isInCart) {
+                            productModel2.setInCart(isInCart);
+                        }
+                        initializeUiWithData(productModel2);
+
                     }
                 } else {
                     showErrors(productDetailsResponseResponse.errorBody());
@@ -264,7 +279,6 @@ public class ProductDetailsActivity extends BaseActivity {
         Picasso.get().load(productModel.getImageUrl()).into(ivGalleryPhoto);
 
         ivGalleryPhoto = binding.ivUser;
-        Picasso.get().load(customUtilsLazy.getValue().getSavedMemberData().getProfilePictureUrl()).into(ivGalleryPhoto);
         if (productModel.getOrderedQuantity() != 0) {
             quantity = productModel.getOrderedQuantity();
             binding.tvQuantityNum.setText(String.valueOf(quantity));
@@ -277,13 +291,8 @@ public class ProductDetailsActivity extends BaseActivity {
         binding.tvPrice.setText(String.valueOf(productModel.getOriginalPrice()));
         binding.tvDescribtion.setText(String.valueOf(productModel.getDescription()));
         binding.ratingBar.setRating(productModel.getRating());
-        if (!isLoggedIn()) {
-            for (int i = 0; i < productModelList.size(); i++) {
-                if (productModelList.get(i).getId() == productModel.getId()) {
-                    productModel.setInCart(true);
-                    break;
-                }
-            }
+        if (isLoggedIn()) {
+            Picasso.get().load(customUtilsLazy.getValue().getSavedMemberData().getProfilePictureUrl()).into(ivGalleryPhoto);
         }
         if (productModel.isInCart()) {
             binding.quantityConstraint.setVisibility(View.GONE);
@@ -292,21 +301,21 @@ public class ProductDetailsActivity extends BaseActivity {
             binding.quantityConstraint.setVisibility(View.VISIBLE);
             binding.tvAddToCart.setText(getResources().getString(R.string.add_to_cart));
         }
-        /*  if (productModel.isHasDiscount()) {
-         *//*  binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
-                binding.tvDiscountedPrice.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                binding.tvSr.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                binding.tvDiscountedPrice.setTextColor(Color.GRAY);
-                binding.tvSr.setTextColor(Color.GRAY);
-                binding.tvDiscountedPrice.setTextSize(15);
-                binding.tvSr.setTextSize(15);
-                binding.tvSr.setVisibility(View.VISIBLE);*//*
-                binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
-                int discountRatio = (int) ((productModel.getOriginalPrice() - productModel.getDiscountedPrice()) * 100 / productModel.getOriginalPrice());
-                String discountValue = discountRatio + ConfigurationFile.Constants.PERCENT + binding.getRoot().getResources().getString(R.string.off_percent);
-                binding.tvDiscountRatio.setVisibility(View.VISIBLE);
-                binding.tvDiscountRatio.setText(discountValue);
-            }*/
+        if (productModel.isHasDiscount()) {
+//            binding.tvDiscountedPrice.setText(String.valueOf(productModel.getOriginalPrice()));
+//            binding.tvDiscountedPrice.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//            binding.tvSr.setPaintFlags(binding.tvDiscountedPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//            binding.tvDiscountedPrice.setTextColor(Color.GRAY);
+//            binding.tvSr.setTextColor(Color.GRAY);
+//            binding.tvDiscountedPrice.setTextSize(15);
+//            binding.tvSr.setTextSize(15);
+//            binding.tvSr.setVisibility(View.VISIBLE);
+            binding.tvPrice.setText(String.valueOf(productModel.getDiscountedPrice()));
+            int discountRatio = (int) ((productModel.getOriginalPrice() - productModel.getDiscountedPrice()) * 100 / productModel.getOriginalPrice());
+            String discountValue = discountRatio + ConfigurationFile.Constants.PERCENT + binding.getRoot().getResources().getString(R.string.off_percent);
+            binding.tvDiscountRatio.setVisibility(View.VISIBLE);
+            binding.tvDiscountRatio.setText(discountValue);
+        }
     }
 
     private void getRandomProducts() {
@@ -552,9 +561,7 @@ public class ProductDetailsActivity extends BaseActivity {
             openLoginActivity();
         });
         ConstraintLayout notNowConstraintLayout = view.findViewById(R.id.notNowConstraintLayout);
-        notNowConstraintLayout.setOnClickListener(v -> {
-            dialog.cancel();
-        });
+        notNowConstraintLayout.setOnClickListener(v -> dialog.cancel());
     }
 
     private void openLoginActivity() {
@@ -583,7 +590,7 @@ public class ProductDetailsActivity extends BaseActivity {
                 }
             });
         } else {
-            showSnackbar("Please make rate before send review !!");
+            showSnackbar(getResources().getString(R.string.make_rate_please));
         }
     }
 

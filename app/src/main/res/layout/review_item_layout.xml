@@ -22,7 +22,10 @@
         android:layout_height="@dimen/dp45h"
         android:elevation="@dimen/dp1h"
         android:padding="@dimen/dp1h"
-        android:src="@drawable/image_icon"
+        android:scaleType="centerCrop"
+        app:sriv_border_width="0dp"
+        app:sriv_oval="true"
+        tools:src="@drawable/image_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

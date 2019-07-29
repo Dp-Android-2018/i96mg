@@ -32,6 +32,8 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
     private ArrayList<ProductModel> productModelList;
+    private ArrayList<ProductModel> offlineProductModelList;
+
     private List<ProductModel> savedCartProducts;
     private List<ProductModel> savedFavoriteProducts;
     private ProductModel productModel;
@@ -43,7 +45,9 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         this.binding = itemProductLayoutBinding;
         savedCartProducts = new ArrayList<>();
         savedFavoriteProducts = new ArrayList<>();
-        savedCartProducts = customUtilsLazy.getValue().getSavedProductsData();
+        if (customUtilsLazy.getValue().getSavedProductsData() != null) {
+            savedCartProducts = customUtilsLazy.getValue().getSavedProductsData();
+        }
         savedFavoriteProducts = customUtilsLazy.getValue().getFavoriteSavedProductsData();
     }
 
@@ -79,9 +83,35 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         } else {
             binding.ivFavorite.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.heart_empty));
         }
+
+        if (!isLoggedIn()) {
+            for (int i = 0; i < savedCartProducts.size(); i++) {
+                if (savedCartProducts.get(i).getId() == productModel.getId()) {
+                    ProductModel productModel1 = productModel;
+                    productModel1.setInCart(true);
+                    productModel = productModel1;
+                    break;
+                }
+            }
+        }
+
+        if (productModel.isInCart()) {
+            binding.ivAddToCart.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.in_cart_icon));
+        } else {
+            binding.ivAddToCart.setImageDrawable(binding.getRoot().getResources().getDrawable(R.drawable.cart_plus));
+        }
+
         makeFavorite(productModel);
         makeActionOnClickOnItem();
 
+    }
+
+    private boolean isLoggedIn() {
+        if (customUtilsLazy.getValue().getSavedMemberData() != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void makeFavorite(ProductModel productModel) {

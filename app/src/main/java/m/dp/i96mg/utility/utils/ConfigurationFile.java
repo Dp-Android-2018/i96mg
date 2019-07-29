@@ -103,7 +103,7 @@ public class ConfigurationFile {
         public static final String WATSAPP_PACKAGE_NAME = "com.whatsapp";
         public static final String INSTAGRAM_PACKAGE_NAME = "com.instagram.android";
         public static final String INTENT_MAIL_TYPE = "message/rfc822";
-        public static final String INTENT_TEXT_TYPE = "text/plain";
+        public static final String MEDIA_TEXT_TYPE = "text/plain";
 
         //intents types
         public static final String ACTIVATION_TYPE = "Activation Type";

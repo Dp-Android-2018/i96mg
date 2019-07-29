@@ -61,8 +61,6 @@ import static org.koin.java.standalone.KoinJavaComponent.inject;
 
 public class MainActivity extends BaseActivity {
 
-    //TODO: i want sobhy to made me a high social quality images.
-
     private Lazy<CustomUtils> customUtilsLazy = inject(CustomUtils.class);
     private Lazy<MainActivityViewModel> mainActivityViewModelLazy = inject(MainActivityViewModel.class);
     private Lazy<ProductDetailsViewModel> productDetailsViewModelLazy = inject(ProductDetailsViewModel.class);
@@ -76,7 +74,6 @@ public class MainActivity extends BaseActivity {
     private String next_page = ConfigurationFile.Constants.DEFAULT_STRING_VALUE;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
     private boolean loading = true;
-    private int position = 0;
     private GridLayoutManager gridLayoutManager;
     public static DrawerLayout drawer;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -116,7 +113,6 @@ public class MainActivity extends BaseActivity {
                     addItemToWishListDp(id, binding);
                 } else {
                     SharedUtils.getInstance().showLoginDialog(context, ConfigurationFile.Constants.MAIN_ACTIVITY);
-//                    showSnackbar(getResources().getString(R.string.please_login));
                 }
             }
 
@@ -126,7 +122,6 @@ public class MainActivity extends BaseActivity {
                     removeItemFromWishListDp(id, binding);
                 } else {
                     SharedUtils.getInstance().showLoginDialog(context, ConfigurationFile.Constants.MAIN_ACTIVITY);
-//                    showSnackbar(getResources().getString(R.string.please_login));
                 }
             }
 
@@ -134,9 +129,8 @@ public class MainActivity extends BaseActivity {
             public void addItemToCart(ProductModel productModel, ItemProductLayoutBinding binding) {
                 if (productModel.isInCart()) {
                     showSnackbar(getResources().getString(R.string.item_added_before));
-//                    removeFromCart(productModel);
                 } else {
-                    addToCart(productModel);
+                    addToCart(productModel,binding);
                 }
             }
         };
@@ -218,6 +212,7 @@ public class MainActivity extends BaseActivity {
     private void checkIfLoginOrNot() {
         if (!isLoggedIn()) {
             binding.navigationView.navigationViewHeaderLayout.tvName.setText(getResources().getString(R.string.login));
+            binding.navigationView.navigationViewHeaderLayout.ivUser.setImageDrawable(getResources().getDrawable(R.drawable.app_icon));
             binding.navigationView.tvNavItemLogout.setVisibility(View.GONE);
             binding.navigationView.tvNavItemWishList.setVisibility(View.GONE);
             binding.navigationView.tvNavItemOrderList.setVisibility(View.GONE);
@@ -234,12 +229,13 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private void addToCart(ProductModel productModel) {
+    private void addToCart(ProductModel productModel, ItemProductLayoutBinding binding) {
         if (isLoggedIn()) {
-            sendItemToDb(productModel);
+            sendItemToDb(productModel,binding);
         } else {
             addItsDataToSharedPreferences(productModel);
             showSnackbar(getResources().getString(R.string.product_added_successfully));
+            binding.ivAddToCart.setImageDrawable(getResources().getDrawable(R.drawable.in_cart_icon));
             for (int i = 0; i < loadedData.size(); i++) {
                 if (loadedData.get(i).getId() == productModel.getId()) {
                     productModel.setInCart(true);
@@ -251,7 +247,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void sendItemToDb(ProductModel productModel) {
+    private void sendItemToDb(ProductModel productModel, ItemProductLayoutBinding binding) {
         if (ValidationUtils.isConnectingToInternet(this)) {
             SharedUtils.getInstance().showProgressDialog(this);
             productDetailsViewModelLazy.getValue().addItemsToCart(getCartRequest(productModel)).observe(this, (Response<MessageResponse> startTripResponseResponse) -> {
@@ -260,6 +256,7 @@ public class MainActivity extends BaseActivity {
                         && ConfigurationFile.Constants.SUCCESS_CODE_TO > startTripResponseResponse.code()) {
                     if (startTripResponseResponse.body() != null) {
                         showSnackbar(startTripResponseResponse.body().getMessage());
+                        binding.ivAddToCart.setImageDrawable(getResources().getDrawable(R.drawable.in_cart_icon));
                         for (int i = 0; i < loadedData.size(); i++) {
                             if (loadedData.get(i).getId() == productModel.getId()) {
                                 productModel.setInCart(true);
@@ -295,7 +292,6 @@ public class MainActivity extends BaseActivity {
         if (customUtilsLazy.getValue().getSavedProductsData() != null) {
             productModelList.addAll(customUtilsLazy.getValue().getSavedProductsData());
         }
-//        productModelList = customUtilsLazy.getValue().getSavedProductsData();
         for (int i = 0; i < productModelList.size(); i++) {
             if (productModelList.get(i).getId() == productModel.getId()) {
                 productModelList.remove(i);
@@ -345,6 +341,7 @@ public class MainActivity extends BaseActivity {
         binding.navigationView.tvNavItemPendingOrders.setOnClickListener(view -> openActivityWithMemberType(PendingOrdersActivity.class, ConfigurationFile.Constants.PENDING_ORDERS_ACTIVITY));
         binding.navigationView.tvNavItemOrderList.setOnClickListener(view -> openActivityWithMemberType(PendingOrdersActivity.class, ConfigurationFile.Constants.ORDERS_ACTIVITY));
         binding.navigationView.tvNavItemLanguage.setOnClickListener(view -> changeLanguage());
+        binding.navigationView.tvNavItemRateUs.setOnClickListener(view -> openPlayStoreToRateApp());
         binding.navigationView.tvNavItemLogout.setOnClickListener(view -> makeLogAction());
     }
 
@@ -540,7 +537,6 @@ public class MainActivity extends BaseActivity {
 
     private void loadMoreData() {
         loading = false;
-        position = totalItemCount;
         pageId++;
         SharedUtils.getInstance().showProgressDialog(this);
         makeRequest();
@@ -635,6 +631,22 @@ public class MainActivity extends BaseActivity {
             }
         } catch (PackageManager.NameNotFoundException e) {
             return facebook_url; //normal web url
+        }
+    }
+
+    private void openPlayStoreToRateApp() {
+        Uri uri = Uri.parse(ConfigurationFile.Constants.MARKET_URL + this.getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(ConfigurationFile.Constants.PLAYSTORE_URL + this.getPackageName())));
         }
     }
 

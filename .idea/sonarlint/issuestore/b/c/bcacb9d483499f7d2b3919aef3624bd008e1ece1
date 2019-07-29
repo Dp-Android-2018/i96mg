@@ -1,4 +1,6 @@
 
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(À§¨æ8þÍ×öÁ-
-^squid:UselessImportCheck"4Remove this unused import 'android.graphics.Bitmap'.(¾ì8²«€øÁ-
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(óÂÞ8©¬ŽöÁ-
+^squid:UselessImportCheck"4Remove this unused import 'android.graphics.Bitmap'.(¾ì8ÒŒê“Ã-
+]squid:UselessImportCheck"2Remove this unused import 'okhttp3.MultipartBody'.(ÕœˆŒ8ÒŒê“Ã-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(óÂÞ8©¬ŽöÁ-
+`squid:UselessImportCheck	"0Remove this unused import 'retrofit2.http.Part'.(Ì—’Áÿÿÿÿÿ8ÒŒê“Ã-
+[squid:UselessImportCheck"0Remove this unused import 'android.media.Image'.(ëïøÂ8ÒŒê“Ã-
