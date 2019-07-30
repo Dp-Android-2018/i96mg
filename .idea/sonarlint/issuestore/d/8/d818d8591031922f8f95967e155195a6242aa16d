@@ -1,21 +1,21 @@
 
-jsquid:CommentedOutCodeLineœ"<This block of commented-out lines of code should be removed.(ŸãÍ¤8³‘²¬¿-
-@squid:S1643Í"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ÜŽýÿ¿-
-Gsquid:S1148É"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÜŽýÿ¿-
-Nsquid:S1066®"/Merge this if statement with the enclosing one.(à—åª8¼ç‡¦¿-
-psquid:S3776y"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(¶–Ö¦8„Ú£ù¿-
-Qsquid:S16596".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8´ÇÄ±½-
-Jsquid:S10688",Remove this unused "position" private field.(íñ8ÉŠÄ±½-
-jsquid:CommentedOutCodeLine‡"<This block of commented-out lines of code should be removed.(¤«ˆ†8¸Àª¬¿-
-jsquid:CommentedOutCodeLine»"<This block of commented-out lines of code should be removed.(§À8¦ÐõçÃ-
-lsquid:UnusedPrivateMethodŸ"?Remove this unused private "makeOnScrollOnRecyclerView" method.(‰ÿ¾×8³‘²¬¿-
-_squid:S1126±"AReplace this if-then-else statement by a single return statement.( Í¸8£¼ê«¿-
-psquid:S3776¸"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(»ÆÜ`8³Ùâý¿-
-Ssquid:S1066÷"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8¼ç‡¦¿-
-usquid:S14508"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Â´Ê±½-
-@squid:S1643Î"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ÜŽýÿ¿-
+jsquid:CommentedOutCodeLine‰"<This block of commented-out lines of code should be removed.(¤«ˆ†8¸Àª¬¿-
 Osquid:S16596",Declare "totalItemCount" on a separate line.(üÆö›ýÿÿÿÿ8´ÇÄ±½-
-¤squid:S1186P"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¨Ô¸þÿÿÿÿ8˜Î‚þ¿-
-Lsquid:S1185¢"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8¼ç‡¦¿-
-ssquid:S001165"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8´ÇÄ±½-
+Lsquid:S1185¤"(Remove this method to simply inherit it.(öûöºÿÿÿÿÿ8¼ç‡¦¿-
 msquid:MaximumInheritanceDepth/"=This class has 10 parents which is greater than 5 authorized.(Þ€…¼8š£ðý¿-
+jsquid:CommentedOutCodeLinež"<This block of commented-out lines of code should be removed.(ŸãÍ¤8³‘²¬¿-
+@squid:S1643Ï"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ÜŽýÿ¿-
+jsquid:CommentedOutCodeLine½"<This block of commented-out lines of code should be removed.(§À8¦ÐõçÃ-
+¤squid:S1186P"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¨Ô¸þÿÿÿÿ8˜Î‚þ¿-
+Ssquid:S1066ù"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8¼ç‡¦¿-
+Jsquid:S10688",Remove this unused "position" private field.(íñ8ÉŠÄ±½-
+ssquid:S001165"TRename this field "next_page" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì€Ÿæ8´ÇÄ±½-
+Qsquid:S16596".Declare "visibleItemCount" on a separate line.(üÆö›ýÿÿÿÿ8´ÇÄ±½-
+psquid:S3776z"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(äÃŒ8„Ú£ù¿-
+usquid:S14508"WRemove the "position" field and declare it as a local variable in the relevant methods.(íñ8Â´Ê±½-
+psquid:S3776º"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(»ÆÜ`8³Ùâý¿-
+Gsquid:S1148Ë"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÜŽýÿ¿-
+Nsquid:S1066°"/Merge this if statement with the enclosing one.(à—åª8¼ç‡¦¿-
+_squid:S1126³"AReplace this if-then-else statement by a single return statement.( Í¸8£¼ê«¿-
+@squid:S1643Ð"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ÜŽýÿ¿-
+lsquid:UnusedPrivateMethod¡"?Remove this unused private "makeOnScrollOnRecyclerView" method.(‰ÿ¾×8³‘²¬¿-

@@ -503,6 +503,7 @@ public class MainActivity extends BaseActivity {
         productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(loadedData, ConfigurationFile.Constants.DEFAULT_TYPE, onItemClickListener);
         int spanCount = 2;
         int spacing = 32;
+//        int spacing = 0;
         binding.rvProducts.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, false));
         gridLayoutManager = new GridLayoutManager(this, 2);
         binding.rvProducts.setLayoutManager(gridLayoutManager);

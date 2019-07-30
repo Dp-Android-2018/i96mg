@@ -417,7 +417,8 @@
             <LinearLayout
                 android:id="@+id/types_constraint"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dp39w"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginStart="@dimen/dp28h"
                 android:layout_marginTop="@dimen/dp33h"
                 android:layout_marginEnd="@dimen/dp28h"
@@ -430,12 +431,22 @@
                 <Spinner
                     android:id="@+id/request_type_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp39w"
+                    android:layout_height="@dimen/dp20h"
                     android:popupBackground="@drawable/edittext_border_yellow"
                     android:prompt="@string/banck_account"
                     android:spinnerMode="dropdown"
                     android:textColor="@color/background_black"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_account_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="21sp"
+                    android:layout_marginBottom="@dimen/dp7w"
+                    tools:text="12545454548548" />
             </LinearLayout>
 
             <TextView
@@ -472,7 +483,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp39w"
                 android:layout_marginStart="@dimen/dp28h"
-                android:layout_marginTop="@dimen/dp32w"
+                android:layout_marginTop="@dimen/dp27w"
                 android:layout_marginEnd="@dimen/dp28h"
                 android:background="@color/red_color"
                 android:drawableStart="@drawable/ic_attach_file_48px"
@@ -499,21 +510,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_attach_receipt" />-->
-
-            <TextView
-                android:id="@+id/tv_account_no"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp21w"
-                android:layout_marginBottom="@dimen/dp7w"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="21sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_attach_receipt"
-                tools:text="12545454548548" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

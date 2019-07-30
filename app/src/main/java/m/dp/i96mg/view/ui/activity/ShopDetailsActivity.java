@@ -109,15 +109,11 @@ public class ShopDetailsActivity extends BaseActivity {
 
             @Override
             public void dataChanged(int position, ItemShopCartBinding itemShopCartBinding, ProductsInfoModel mProductsInfoModel) {
-//                shopRecyclerViewAdapter.notifyDataSetChanged();
-//                shopRecyclerViewAdapter.notifyItemChanged(position);
-//                itemShopCartBinding.etWhatsapp.setSelection(itemShopCartBinding.etWhatsapp.getText().length());
-//                itemShopCartBinding.etWhatsapp.setFocusableInTouchMode(true);
-//                itemShopCartBinding.etWhatsapp.requestFocus();
-
+//                System.out.println("data changed here ::::::::::"+mProductsInfoModel.getEmail());
                 for (int i = 0; i < productsInfoModels.size(); i++) {
                     if (productsInfoModels.get(i).getId() == mProductsInfoModel.getId()) {
                         productsInfoModels.remove(i);
+                        break;
                     }
                 }
                 productsInfoModels.add(mProductsInfoModel);

@@ -1,10 +1,12 @@
 
-Osquid:S1602`",Remove useless curly braces around statement(¥¹ÖÌûÿÿÿÿ8Š·Ş÷¿-
-isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Íƒ¶ş8ùÜ±½-
-Jsquid:S1068&",Remove this unused "listType" private field.(ö¡Ú8†ÉÚ±½-
-Wsquid:S1068$"9Remove this unused "savedFavoriteProducts" private field.(æÍó‡8°ÍŞ¥¿-
-usquid:S1450&"WRemove the "listType" field and declare it as a local variable in the relevant methods.(ö¡Ú8ùÜ±½-
-Xsquid:S1068#"5Remove this unused "savedCartProducts" private field.(€ó¶åøÿÿÿÿ8Š·Ş÷¿-
 }squid:UselessImportCheck"MRemove this unused import 'm.dp.i96mg.service.model.request.WishListRequest'.(ÄÅœŸúÿÿÿÿ8Š·Ş÷¿-
-™squid:S13192"{The type of the "productModelList" object should be an interface such as "List" rather than the implementation "ArrayList".(Áì¨Ê8ÒŞ†º»-
+^squid:S1126n"AReplace this if-then-else statement by a single return statement.( Í¸8ÚãöîÃ-
+Jsquid:S1068(",Remove this unused "listType" private field.(ö¡Ú8†ÉÚ±½-
+Osquid:S1602~",Remove useless curly braces around statement(¥¹ÖÌûÿÿÿÿ8ÚãöîÃ-
+Wsquid:S1068&"9Remove this unused "savedFavoriteProducts" private field.(æÍó‡8Ö§éîÃ-
+squid:S4165\"jRemove this useless assignment; "productModel" already holds the assigned value along all execution paths.(¯•†£ıÿÿÿÿ8ÚãöîÃ-
+^squid:S1068#";Remove this unused "offlineProductModelList" private field.(£µ¯ôüÿÿÿÿ8›”æîÃ-
 bsquid:S1068!"?Remove this unused "productDetailsViewModelLazy" private field.(ÓÅøÿÿÿÿ8¾Ëü¥¿-
+usquid:S1450("WRemove the "listType" field and declare it as a local variable in the relevant methods.(ö¡Ú8ùÜ±½-
+™squid:S13196"{The type of the "productModelList" object should be an interface such as "List" rather than the implementation "ArrayList".(Áì¨Ê8ÒŞ†º»-
+isquid:CommentedOutCodeLineC"<This block of commented-out lines of code should be removed.(Íƒ¶ş8ùÜ±½-

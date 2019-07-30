@@ -1,13 +1,13 @@
 
-Wsquid:S10684"4Remove this unused "imageRequestBody" private field.(¥ÍÉÎÿÿÿÿÿ8Óñ”Ã-
-rsquid:MaximumInheritanceDepth*"=This class has 10 parents which is greater than 5 authorized.(„°—ÿÿÿÿÿ8İËÈöÁ-
-Jsquid:S1172•"+Remove this unused method parameter "view".(ˆ‹°ò8ğ¿“Ã-
-Isquid:S1172M"+Remove this unused method parameter "view".(‘Å÷Ù8İËÈöÁ-
-@squid:S1643‹"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8İËÈöÁ-
-vsquid:S14500"XRemove the "prgDialog" field and declare it as a local variable in the relevant methods.(¼Ãí 8Ù••Ã-
-‚squid:S14504"_Remove the "imageRequestBody" field and declare it as a local variable in the relevant methods.(¥ÍÉÎÿÿÿÿÿ8¹„”•Ã-
-squid:S1450/"aRemove the "loginResponseModel" field and declare it as a local variable in the relevant methods.(Ìñà8Š™ñÁ-
-Gsquid:S1148†"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8İËÈöÁ-
+@squid:S1643Š"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8Ş¡ÓñÁ-
 tsquid:S14501"VRemove the "imgPath" field and declare it as a local variable in the relevant methods.(†ôáò8Ù••Ã-
 xsquid:S30082"ZRename this field "RESULT_LOAD_IMG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìüúã8İËÈöÁ-
-@squid:S1643Š"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8Ş¡ÓñÁ-
+Isquid:S1172M"+Remove this unused method parameter "view".(‘Å÷Ù8İËÈöÁ-
+squid:S1450/"aRemove the "loginResponseModel" field and declare it as a local variable in the relevant methods.(Ìñà8Š™ñÁ-
+‚squid:S14504"_Remove the "imageRequestBody" field and declare it as a local variable in the relevant methods.(¥ÍÉÎÿÿÿÿÿ8¹„”•Ã-
+@squid:S1643‹"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8İËÈöÁ-
+Gsquid:S1148†"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8İËÈöÁ-
+vsquid:S14500"XRemove the "prgDialog" field and declare it as a local variable in the relevant methods.(¼Ãí 8Ù••Ã-
+Jsquid:S1172•"+Remove this unused method parameter "view".(ˆ‹°ò8ğ¿“Ã-
+rsquid:MaximumInheritanceDepth*"=This class has 10 parents which is greater than 5 authorized.(„°—ÿÿÿÿÿ8İËÈöÁ-
+Wsquid:S10684"4Remove this unused "imageRequestBody" private field.(¥ÍÉÎÿÿÿÿÿ8Óñ”Ã-

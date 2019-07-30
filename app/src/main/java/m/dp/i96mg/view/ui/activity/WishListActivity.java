@@ -95,7 +95,7 @@ public class WishListActivity extends BaseActivity {
                 if (productModel.isInCart()) {
                     showSnackbar(getResources().getString(R.string.item_added_before));
                 } else {
-                    addToCart(productModel,binding);
+                    addToCart(productModel, binding);
                 }
             }
         };
@@ -103,7 +103,7 @@ public class WishListActivity extends BaseActivity {
 
     private void addToCart(ProductModel productModel, ItemProductLayoutBinding binding) {
         if (isLoggedIn()) {
-            sendItemToDb(productModel,binding);
+            sendItemToDb(productModel, binding);
         } else {
             addItsDataToSharedPreferences(productModel);
             showSnackbar(getResources().getString(R.string.product_added_successfully));

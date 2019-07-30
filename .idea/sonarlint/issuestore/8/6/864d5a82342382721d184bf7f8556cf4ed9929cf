@@ -1,8 +1,8 @@
 
-@squid:S1643Š"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8ÖıèŒ½-
-@squid:S1643‹"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8™ÿÙ¹½-
 Hsquid:S1172/"+Remove this unused method parameter "view".(—¿ë8…ºçŒ½-
-ksquid:MaximumInheritanceDepth""=This class has 10 parents which is greater than 5 authorized.(Ä×­†şÿÿÿÿ
+@squid:S1643‹"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8™ÿÙ¹½-
+@squid:S1643Š"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8ÖıèŒ½-
 squid:S1450&"aRemove the "loginResponseModel" field and declare it as a local variable in the relevant methods.(Ìñà8€šÙ¹½-
-vsquid:UselessImportCheck"KRemove this unused import 'm.dp.i96mg.service.model.request.SignUpRequest'.(Î¬­8¾‡çÃ-
+ksquid:MaximumInheritanceDepth""=This class has 10 parents which is greater than 5 authorized.(Ä×­†şÿÿÿÿ
 Gsquid:S1148†"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8™ÿÙ¹½-
+vsquid:UselessImportCheck"KRemove this unused import 'm.dp.i96mg.service.model.request.SignUpRequest'.(Î¬­8¾‡çÃ-

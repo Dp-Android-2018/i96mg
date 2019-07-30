@@ -299,3 +299,5 @@ p
 -app/src/main/res/layout/spinner_list_item.xml,5\c\5c68bd008c3b9452d07c53e38a68f4f29ab20e84
 d
 4app/src/main/res/drawable/half_circle_background.xml,e\8\e8ee93b8db1a9fa9909729f8fbc3a56dfce8ae50
+b
+2app/src/main/res/layout/activity_splash_screen.xml,f\7\f7df685f78aceccfe92840b30dd70c70674d7944
