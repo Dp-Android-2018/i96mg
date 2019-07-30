@@ -25,6 +25,10 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+
+    configurations{
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
 }
 
 dependencies {
@@ -85,6 +89,12 @@ dependencies {
     //pin entry text library for digits code
     implementation 'com.poovam:pin-edittext-field:1.2.1'
 
+    //Awesome validation for edittext
+//    implementation 'com.basgeekball:awesome-validation:1.3'
+    implementation ('com.basgeekball:awesome-validation:4.2'){
+        exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
+    implementation 'com.basgeekball:awesome-validation:4.2'
 }
 repositories {
     mavenCentral()

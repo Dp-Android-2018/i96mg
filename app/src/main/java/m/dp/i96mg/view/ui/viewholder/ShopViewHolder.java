@@ -1,10 +1,12 @@
 package m.dp.i96mg.view.ui.viewholder;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Parcel;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EditText;
@@ -13,6 +15,8 @@ import android.widget.ListAdapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -66,11 +70,19 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
     private ArrayList<ProductsInfoModel> savedProductsInfo;
     private ProductsInfoModel mProductsInfoModel;
     private int position;
+//    private AwesomeValidation awesomeValidation;
 
 
     public ShopViewHolder(ItemShopCartBinding itemProductLayoutBinding) {
         super(itemProductLayoutBinding.getRoot());
         this.binding = itemProductLayoutBinding;
+        /*
+         * The library provides 3 types of validation
+         * BASIC
+         * COLORATION
+         * UNDERLABEL
+         * */
+//        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
     }
 
     public void bindClass(ProductModel productModel, OnQuantityChanged onQuantityChanged, OnOperationClicked onOperationClicked, List<ProductModel> pageImages, int position) {
@@ -170,6 +182,13 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void makeListenersOnItemsData() {
+
+//        awesomeValidation.addValidation(this, R.id.editTextName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+//        awesomeValidation.addValidation(((Activity)binding.getRoot().getContext()),binding.etEmail.getId(), Patterns.EMAIL_ADDRESS, R.string.enter_valid_email);
+//        awesomeValidation.addValidation(this, R.id.editTextMobile, "^[2-9]{2}[0-9]{8}$", R.string.nameerror);
+//        awesomeValidation.addValidation(this, R.id.editTextDob, "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$", R.string.nameerror);
+//        awesomeValidation.addValidation(this, R.id.editTextAge, Range.closed(13, 60), R.string.ageerror);
+//
         binding.etEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

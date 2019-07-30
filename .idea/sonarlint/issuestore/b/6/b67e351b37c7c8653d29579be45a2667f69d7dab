@@ -1,18 +1,18 @@
 
-osquid:CommentedOutCodeLinež"<This block of commented-out lines of code should be removed.(®—Õüÿÿÿÿ8ú‹ÊîÃ-
-^squid:S1126z"AReplace this if-then-else statement by a single return statement.( Í¸8Éçà«¿-
-Osquid:S1172”"+Remove this unused method parameter "view".(žîšðÿÿÿÿÿ8ú‹ÊîÃ-
-@squid:S1643“"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ú‹ÊîÃ-
-Osquid:S1172¨"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8ú‹ÊîÃ-
-osquid:CommentedOutCodeLine”"<This block of commented-out lines of code should be removed.(šÄ¼÷úÿÿÿÿ8ú‹ÊîÃ-
-@squid:S1643’"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ú‹ÊîÃ-
-isquid:CommentedOutCodeLineq"<This block of commented-out lines of code should be removed.(«Ïš8ºü§û¿-
-vsquid:S3776ú"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Š™–Èøÿÿÿÿ8Ü¯ÌîÃ-
-jsquid:CommentedOutCodeLineí"<This block of commented-out lines of code should be removed.(§À8ú‹ÊîÃ-
-Ssquid:S1066Ñ"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8ú‹ÊîÃ-
-jsquid:CommentedOutCodeLineÃ"<This block of commented-out lines of code should be removed.(§À8ú‹ÊîÃ-
 jsquid:HiddenFieldCheckº"@Rename "productModel" which hides the field declared at line 61.(Åñ‡ù8‘Á¡®¿-
-jsquid:HiddenFieldCheck™"@Rename "productModel" which hides the field declared at line 61.(Åñ‡ù8ò†¦®¿-
-msquid:MaximumInheritanceDepth9"=This class has 10 parents which is greater than 5 authorized.(•õ†8ŸöÉîÃ-
+Osquid:S1172¨"+Remove this unused method parameter "view".(åñ„šùÿÿÿÿ8ú‹ÊîÃ-
+jsquid:CommentedOutCodeLineí"<This block of commented-out lines of code should be removed.(§À8ú‹ÊîÃ-
+osquid:CommentedOutCodeLinež"<This block of commented-out lines of code should be removed.(®—Õüÿÿÿÿ8ú‹ÊîÃ-
+@squid:S1643’"Use a StringBuilder instead.(Íòàðüÿÿÿÿ8ú‹ÊîÃ-
+jsquid:CommentedOutCodeLineÃ"<This block of commented-out lines of code should be removed.(§À8ú‹ÊîÃ-
 osquid:CommentedOutCodeLine±"<This block of commented-out lines of code should be removed.(õôŽûÿÿÿÿ8ú‹ÊîÃ-
 Gsquid:S1148Ž"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ú‹ÊîÃ-
+Osquid:S1172”"+Remove this unused method parameter "view".(žîšðÿÿÿÿÿ8ú‹ÊîÃ-
+Ssquid:S1066Ñ"/Merge this if statement with the enclosing one.(Ò¹×üøÿÿÿÿ8ú‹ÊîÃ-
+osquid:CommentedOutCodeLine”"<This block of commented-out lines of code should be removed.(šÄ¼÷úÿÿÿÿ8ú‹ÊîÃ-
+msquid:MaximumInheritanceDepth9"=This class has 10 parents which is greater than 5 authorized.(•õ†8ŸöÉîÃ-
+@squid:S1643“"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8ú‹ÊîÃ-
+isquid:CommentedOutCodeLineq"<This block of commented-out lines of code should be removed.(«Ïš8ºü§û¿-
+jsquid:HiddenFieldCheck™"@Rename "productModel" which hides the field declared at line 61.(Åñ‡ù8ò†¦®¿-
+vsquid:S3776ú"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Š™–Èøÿÿÿÿ8Ü¯ÌîÃ-
+^squid:S1126z"AReplace this if-then-else statement by a single return statement.( Í¸8Éçà«¿-

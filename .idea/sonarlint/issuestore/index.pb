@@ -301,3 +301,5 @@ d
 4app/src/main/res/drawable/half_circle_background.xml,e\8\e8ee93b8db1a9fa9909729f8fbc3a56dfce8ae50
 b
 2app/src/main/res/layout/activity_splash_screen.xml,f\7\f7df685f78aceccfe92840b30dd70c70674d7944
+c
+3app/src/main/res/layout/item_product_new_layout.xml,2\b\2b04563232459da0e37e8bba0db74755433b9354
