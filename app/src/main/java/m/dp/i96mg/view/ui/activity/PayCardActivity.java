@@ -50,6 +50,7 @@ import retrofit2.Response;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.BANK_ACCOUNT_ID;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.CREDIT_CARD;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.CREDIT_ID;
+import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.MADA_ID;
 import static m.dp.i96mg.utility.utils.ConfigurationFile.Constants.PAYBAL_ID;
 import static org.koin.java.standalone.KoinJavaComponent.inject;
 
@@ -80,9 +81,9 @@ public class PayCardActivity extends BaseActivity {
         orderId = getIntent().getIntExtra(ConfigurationFile.Constants.ORDER_ID, 0);
         binding.ivBack.setOnClickListener(v -> onBackPressed());
         //hash credit/debit card text and Mada text
-        binding.textView2.setPaintFlags(binding.textView2.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        binding.textView6.setPaintFlags(binding.textView6.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        getBankAccounts();
+//        binding.textView2.setPaintFlags(binding.textView2.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//        binding.textView6.setPaintFlags(binding.textView6.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//        getBankAccounts();
     }
 
     private void getBankAccounts() {
@@ -130,16 +131,16 @@ public class PayCardActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.bank_radioButton:
                 if (checked)
-                    makeActionOnBankCredit();
-                break;
+//                    makeActionOnBankCredit();
+                    break;
             case R.id.credit_radioButton:
                 if (checked)
-//                    makeActionOnChooseCredit();
-                    break;
+                    makeActionOnChooseCredit();
+                break;
             case R.id.mada_radioButton:
                 if (checked)
-//                    makeActionOnMadaCredit();
-                    break;
+                    makeActionOnMadaCredit();
+                break;
             case R.id.paybal_radioButton:
                 if (checked)
                     makeActionOnChooseOnPaypal();
@@ -150,13 +151,13 @@ public class PayCardActivity extends BaseActivity {
     public void onRadioButtonConstrainLayoutClicked(View view) {
         switch (view.getId()) {
             case R.id.bank_constraint:
-                makeActionOnBankCredit();
+//                makeActionOnBankCredit();
                 break;
             case R.id.credit_onstraint:
-//                makeActionOnChooseCredit();
+                makeActionOnChooseCredit();
                 break;
             case R.id.mada_constraint:
-//                makeActionOnMadaCredit();
+                makeActionOnMadaCredit();
                 break;
             case R.id.paybal_constraint:
                 makeActionOnChooseOnPaypal();
@@ -172,7 +173,7 @@ public class PayCardActivity extends BaseActivity {
         binding.tvPaybal.setVisibility(View.INVISIBLE);
         binding.paybalRadioButton.setChecked(false);
         binding.creditRadioButton.setChecked(false);
-        type = CREDIT_ID;
+        type = MADA_ID;
     }
 
     private void makeActionOnBankCredit() {
@@ -214,8 +215,17 @@ public class PayCardActivity extends BaseActivity {
     public void makeOrder(View view) {
         switch (type) {
             case BANK_ACCOUNT_ID:
-                makeOrderByBankAccountRequest();
+                makeOrderOnChooseCredit();
                 break;
+
+            case CREDIT_ID:
+//                makeOrderByBankAccountRequest();
+                break;
+
+            case MADA_ID:
+//                makeOrderByBankAccountRequest();
+                break;
+
             case PAYBAL_ID:
                 makeOrderByPaybalRequest();
                 break;
@@ -239,7 +249,7 @@ public class PayCardActivity extends BaseActivity {
 
         if (imageFile == null) {
             showSnackbar(getResources().getString(R.string.order_added));
-            new Handler().postDelayed(() -> openMainActivity(),1000);
+            new Handler().postDelayed(() -> openMainActivity(), 1000);
         }
     }
 

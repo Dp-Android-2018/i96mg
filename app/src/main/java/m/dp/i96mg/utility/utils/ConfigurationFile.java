@@ -136,6 +136,7 @@ public class ConfigurationFile {
         public static final int DEFAULT_PAGE_ID = 1;
         public static final int DEFAULT_QUANTITY = 1;
         public static final int CREDIT_ID = 3;
+        public static final int MADA_ID = 7;
         public static final int BANK_ACCOUNT_ID = 6;
         public static final String CREDIT_CARD = "CREDIT_CARD";
         public static final int PAYBAL_ID = 5;

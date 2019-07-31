@@ -110,7 +110,6 @@ public class ProductDetailsActivity extends BaseActivity {
             public void addItemToCart(ProductModel productModel, ItemProductLayoutBinding binding) {
                 if (productModel.isInCart()) {
                     showSnackbar(getResources().getString(R.string.item_added_before));
-//                    removeFromCart(productModel);
                 } else {
                     addToCart(productModel);
                 }
@@ -150,9 +149,9 @@ public class ProductDetailsActivity extends BaseActivity {
         binding.ivFavorite.setImageDrawable(getResources().getDrawable(R.drawable.heart_empty));
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getId() == id) {
-                ProductModel productModel = allProducts.get(i);
-                productModel.setInWishlist(false);
-                allProducts.set(i, productModel);
+                ProductModel productModel2 = allProducts.get(i);
+                productModel2.setInWishlist(false);
+                allProducts.set(i, productModel2);
                 break;
             }
         }
@@ -183,9 +182,9 @@ public class ProductDetailsActivity extends BaseActivity {
         binding.ivFavorite.setImageDrawable(getResources().getDrawable(R.drawable.heart_filled));
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getId() == id) {
-                ProductModel productModel = allProducts.get(i);
-                productModel.setInWishlist(true);
-                allProducts.set(i, productModel);
+                ProductModel productModel2 = allProducts.get(i);
+                productModel2.setInWishlist(true);
+                allProducts.set(i, productModel2);
                 break;
             }
         }
@@ -204,7 +203,13 @@ public class ProductDetailsActivity extends BaseActivity {
     }
 
     private void makeActionOnToolbat() {
-        binding.ivBack.setOnClickListener(v -> onBackPressed());
+        binding.ivBack.setOnClickListener(v -> openMainActivity());
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(ProductDetailsActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void makeActionOnClickOnQuantityIcons() {
@@ -335,7 +340,8 @@ public class ProductDetailsActivity extends BaseActivity {
                     && ConfigurationFile.Constants.SUCCESS_CODE_TO > productsResponseResponse.code()) {
                 if (productsResponseResponse.body() != null) {
                     if (!productsResponseResponse.body().getData().isEmpty()) {
-                        initializeAllProductsRecyclerView(productsResponseResponse.body().getData());
+                        allProducts=productsResponseResponse.body().getData();
+                        initializeAllProductsRecyclerView();
                     }
                 }
             } else {
@@ -345,15 +351,15 @@ public class ProductDetailsActivity extends BaseActivity {
         });
     }
 
-    private void initializeAllProductsRecyclerView(ArrayList<ProductModel> data) {
-        if (data != null) {
-            for (int i = 0; i < data.size(); i++) {
-                if (data.get(i).getId() == productModel.getId()) {
-                    data.remove(i);
+    private void initializeAllProductsRecyclerView() {
+        if (allProducts != null) {
+            for (int i = 0; i < allProducts.size(); i++) {
+                if (allProducts.get(i).getId() == productId) {
+                    allProducts.remove(i);
                     break;
                 }
             }
-            productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(data, ConfigurationFile.Constants.DEFAULT_TYPE, onItemClickListener);
+            productsRecyclerViewAdapter = new ProductsRecyclerViewAdapter(allProducts, ConfigurationFile.Constants.DEFAULT_TYPE, onItemClickListener);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
             binding.rvProducts.setLayoutManager(linearLayoutManager);
             binding.rvProducts.setAdapter(productsRecyclerViewAdapter);

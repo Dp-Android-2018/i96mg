@@ -184,7 +184,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
     private void makeListenersOnItemsData() {
 
 //        awesomeValidation.addValidation(this, R.id.editTextName, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-//        awesomeValidation.addValidation(((Activity)binding.getRoot().getContext()),binding.etEmail.getId(), Patterns.EMAIL_ADDRESS, R.string.enter_valid_email);
+//        awesomeValidation.addValidation(((Activity) binding.getRoot().getContext()), binding.etEmail.getId(), Patterns.EMAIL_ADDRESS, R.string.enter_valid_email);
 //        awesomeValidation.addValidation(this, R.id.editTextMobile, "^[2-9]{2}[0-9]{8}$", R.string.nameerror);
 //        awesomeValidation.addValidation(this, R.id.editTextDob, "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$", R.string.nameerror);
 //        awesomeValidation.addValidation(this, R.id.editTextAge, Range.closed(13, 60), R.string.ageerror);
@@ -202,9 +202,8 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mProductsInfoModel.setEmail(editable.toString());
-//                saveProductInfo();
-                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
+                    mProductsInfoModel.setEmail(editable.toString());
+                    onOperationClicked.dataChanged(position, binding, mProductsInfoModel);
             }
         });
 
@@ -222,8 +221,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void afterTextChanged(Editable editable) {
                 mProductsInfoModel.setPassword(editable.toString());
-//                saveProductInfo();
-                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
+                onOperationClicked.dataChanged(position, binding, mProductsInfoModel);
             }
         });
         binding.etProductType.addTextChangedListener(new TextWatcher() {
@@ -240,8 +238,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void afterTextChanged(Editable editable) {
                 mProductsInfoModel.setType(editable.toString());
-//                saveProductInfo();
-                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
+                onOperationClicked.dataChanged(position, binding, mProductsInfoModel);
             }
         });
         binding.etWhatsapp.addTextChangedListener(new TextWatcher() {
@@ -258,8 +255,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void afterTextChanged(Editable editable) {
                 mProductsInfoModel.setWhatsapp(editable.toString());
-//                saveProductInfo();
-                onOperationClicked.dataChanged(position,binding, mProductsInfoModel);
+                onOperationClicked.dataChanged(position, binding, mProductsInfoModel);
             }
         });
 
