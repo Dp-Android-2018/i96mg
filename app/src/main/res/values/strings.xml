@@ -109,4 +109,6 @@
     <string name="make_rate_please">Please give rate before send review !!</string>
     <string name="order_added">Order has been added to pending payment orders</string>
     <string name="account_number">Account Number</string>
+    <string name="app_maker_name">App Developer</string>
+    <string name="view_linkein_profile">View linkedin profile</string>
 </resources>

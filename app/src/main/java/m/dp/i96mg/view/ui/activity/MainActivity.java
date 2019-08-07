@@ -80,6 +80,7 @@ public class MainActivity extends BaseActivity {
     OnItemClickListener onItemClickListener;
     private Context context;
     private boolean doubleBackToExitPressedOnce = false;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -343,6 +344,7 @@ public class MainActivity extends BaseActivity {
         binding.navigationView.tvNavItemLanguage.setOnClickListener(view -> changeLanguage());
         binding.navigationView.tvNavItemRateUs.setOnClickListener(view -> openPlayStoreToRateApp());
         binding.navigationView.tvNavItemLogout.setOnClickListener(view -> makeLogAction());
+        binding.tvMainTitle.setOnClickListener(view -> openAppMakerDialog());
     }
 
     private void openActivityWithMemberType(Class activityClass, String memberType) {
@@ -648,6 +650,20 @@ public class MainActivity extends BaseActivity {
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
                     Uri.parse(ConfigurationFile.Constants.PLAYSTORE_URL + this.getPackageName())));
+        }
+    }
+
+    private void openAppMakerDialog() {
+        count++;
+        if (count == 10) {
+            Snackbar.make(binding.getRoot(), getResources().getString(R.string.app_maker_name), Snackbar.LENGTH_LONG)
+                    .setAction(getResources().getString(R.string.view_linkein_profile), view -> {
+                        Intent browserIntent = new
+                                Intent(Intent.ACTION_VIEW,
+                                Uri.parse(ConfigurationFile.Constants.MY_LINKEDIN_LINK));
+                        startActivity(browserIntent);
+                    }).show();
+            count = 0;
         }
     }
 

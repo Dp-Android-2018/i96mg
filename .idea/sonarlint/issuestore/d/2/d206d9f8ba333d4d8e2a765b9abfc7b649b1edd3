@@ -1,38 +1,36 @@
 
-osquid:CommentedOutCodeLineÎ"<This block of commented-out lines of code should be removed.(æï£´ıÿÿÿÿ8›ğà•Ã-
-Osquid:S1172¦"+Remove this unused method parameter "view".(ŸÒ¼ûÿÿÿÿ8›ğà•Ã-
-Osquid:S1172Ö"+Remove this unused method parameter "view".(Ò‰Øşùÿÿÿÿ8¶†˜ÏÁ-
-Wsquid:S1068F"4Remove this unused "imageRequestBody" private field.(¥ÍÉÎÿÿÿÿÿ8ìÁÔ•Ã-
-jsquid:CommentedOutCodeLine÷"<This block of commented-out lines of code should be removed.(şãö×8¢­ö•Ã-
-jsquid:CommentedOutCodeLine‰"<This block of commented-out lines of code should be removed.(ºåÀ´8Ø“–ïÁ-
-msquid:UnusedPrivateMethod§";Remove this unused private "makeActionOnMadaCredit" method.(ºâõÅùÿÿÿÿ8«»–ïÁ-
-Vsquid:S1068="3Remove this unused "customUtilsLazy" private field.(ß™üİúÿÿÿÿ8Ú‹×ÎÁ-
-Ksquid:S1612ò",Replace this lambda with a method reference.(®‰âß8úÀÊïÃ-
-xsquid:S3008D"ZRename this field "RESULT_LOAD_IMG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìüúã8ş·¥õÁ-
-@squid:S1643›"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8›ğà•Ã-
-jsquid:CommentedOutCodeLineœ"<This block of commented-out lines of code should be removed.(ºåÀ´8¦–ïÁ-
-osquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(şôğøşÿÿÿÿ8Ø“–ïÁ-
-@squid:S1643œ"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8›ğà•Ã-
-tsquid:S1450C"VRemove the "imgPath" field and declare it as a local variable in the relevant methods.(†ôáò8ìÊ°õÁ-
-msquid:MaximumInheritanceDepth8"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô8ô†ŠÎÁ-
-~squid:S1450@"aRemove the "bankSpinnerAdapter" field and declare it as a local variable in the relevant methods.(©½¬e8€ë£ÏÁ-
+gsquid:UnusedPrivateMethod˜":Remove this unused private "getBankAccountRequest" method.(áí–µ8ëˆŒ»Ä-
+nsquid:CommentedOutCodeLineT"<This block of commented-out lines of code should be removed.(ÃÑ±áùÿÿÿÿ8ÀÏ²»Ä-
+xsquid:S3008E"ZRename this field "RESULT_LOAD_IMG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìüúã8ş·¥õÁ-
+esquid:UnusedPrivateMethodY"4Remove this unused private "getBankAccounts" method.(¬ÖÈ°úÿÿÿÿ8®ÀòºÄ-
+Osquid:S1172×"+Remove this unused method parameter "view".(Ò‰Øşùÿÿÿÿ8¶†˜ÏÁ-
+tsquid:S1450D"VRemove the "imgPath" field and declare it as a local variable in the relevant methods.(†ôáò8ìÊ°õÁ-
+hsquid:UnusedPrivateMethod³";Remove this unused private "makeActionOnBankCredit" method.(Œ†ÕÆ8ÿ…ùºÄ-
+jsquid:CommentedOutCodeLine§"<This block of commented-out lines of code should be removed.(¸›†½8´¶“»Ä-
+bsquid:UnusedPrivateMethodê"5Remove this unused private "makeActionOnType" method.(ƒÜ¸™8ëˆŒ»Ä-
+osquid:CommentedOutCodeLineŞ"<This block of commented-out lines of code should be removed.(È¬Ò´üÿÿÿÿ8‰ñ˜»Ä-
+Ksquid:S1612ü",Replace this lambda with a method reference.(®‰âß8ëˆŒ»Ä-
+X"squid:SwitchLastCaseIsDefaultCheckØ""Add a default case to this switch.(ÜŸ•8¶†˜ÏÁ-
+Vsquid:S1068>"3Remove this unused "customUtilsLazy" private field.(ß™üİúÿÿÿÿ8Ú‹×ÎÁ-
+X"squid:SwitchLastCaseIsDefaultCheckƒ""Add a default case to this switch.(ºÖ8¶†˜ÏÁ-
+X"squid:SwitchLastCaseIsDefaultCheckë""Add a default case to this switch.(ÜŸ•8ëˆŒ»Ä-
+Gsquid:S1148¡"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ëˆŒ»Ä-
+jsquid:CommentedOutCodeLineš"<This block of commented-out lines of code should be removed.(¿ş÷ø8ÿ…ùºÄ-
+osquid:UnusedPrivateMethodë"BRemove this unused private "makeOrderByBankAccountRequest" method.(•öåğ8‰ñ˜»Ä-
+jsquid:CommentedOutCodeLine†"<This block of commented-out lines of code should be removed.(¿ş÷ø8ïÄñºÄ-
+Ksquid:S1612",Replace this lambda with a method reference.(®‰âß8ëˆŒ»Ä-
+~squid:S1450A"aRemove the "bankSpinnerAdapter" field and declare it as a local variable in the relevant methods.(©½¬e8€ë£ÏÁ-
+jsquid:S1301ë"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8ëˆŒ»Ä-
+@squid:S1643¦"Use a StringBuilder instead.(äìüÆùÿÿÿÿ8›ğà•Ã-
+osquid:CommentedOutCodeLineâ"<This block of commented-out lines of code should be removed.(È¬Ò´üÿÿÿÿ8¿»Ä-
+@squid:S1643¥"Use a StringBuilder instead.(Íòàğüÿÿÿÿ8ëˆŒ»Ä-
+vsquid:S1450C"XRemove the "prgDialog" field and declare it as a local variable in the relevant methods.(¼Ãí 8Ğ§õÁ-
 o
-squid:S128‹"LEnd this switch case with an unconditional break, return or throw statement.(ŸÁ¶Ûÿÿÿÿÿ8Ø“–ïÁ-
-o
-squid:S128‡"LEnd this switch case with an unconditional break, return or throw statement.(Èó÷Õúÿÿÿÿ8Ø“–ïÁ-
-nsquid:UnusedPrivateMethod•"<Remove this unused private "makeOrderOnChooseCredit" method.(›òŞäÿÿÿÿÿ8›ğà•Ã-
-isquid:CommentedOutCodeLineÓ"<This block of commented-out lines of code should be removed.(Ôß…p8¶†˜ÏÁ-
-X"squid:SwitchLastCaseIsDefaultChecká""Add a default case to this switch.(ÜŸ•8›ğà•Ã-
-jsquid:UnusedPrivateMethod½"=Remove this unused private "makeActionOnChooseCredit" method.(ÃÊïº8¦–ïÁ-
-jsquid:S1301á"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8›ğà•Ã-
-osquid:CommentedOutCodeLineŸ"<This block of commented-out lines of code should be removed.(şôğøşÿÿÿÿ8«»–ïÁ-
-Gsquid:S1148—"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8›ğà•Ã-
-bsquid:UnusedPrivateMethodà"5Remove this unused private "makeActionOnType" method.(ƒÜ¸™8›ğà•Ã-
-X"squid:SwitchLastCaseIsDefaultCheck×""Add a default case to this switch.(ÜŸ•8¶†˜ÏÁ-
-jsquid:S1301×"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•8¶†˜ÏÁ-
-vsquid:S1450B"XRemove the "prgDialog" field and declare it as a local variable in the relevant methods.(¼Ãí 8Ğ§õÁ-
-jsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¸›†½8›ğà•Ã-
-gsquid:UnusedPrivateMethod":Remove this unused private "getBankAccountRequest" method.(áí–µ8›ğà•Ã-
-X"squid:SwitchLastCaseIsDefaultCheck‚""Add a default case to this switch.(ºÖ8¶†˜ÏÁ-
-X"squid:SwitchLastCaseIsDefaultCheck—""Add a default case to this switch.(ºÖ8¶†˜ÏÁ-
-Ksquid:S1612ƒ",Replace this lambda with a method reference.(®‰âß8¢––Ã-
+squid:S128„"LEnd this switch case with an unconditional break, return or throw statement.(âš´©ûÿÿÿÿ8ïÄñºÄ-
+Osquid:S1172°"+Remove this unused method parameter "view".(ŸÒ¼ûÿÿÿÿ8ëˆŒ»Ä-
+X"squid:SwitchLastCaseIsDefaultCheck˜""Add a default case to this switch.(ºÖ8¶†˜ÏÁ-
+isquid:CommentedOutCodeLineÔ"<This block of commented-out lines of code should be removed.(Ôß…p8¶†˜ÏÁ-
+msquid:MaximumInheritanceDepth9"=This class has 10 parents which is greater than 5 authorized.(­â¥Ô8ô†ŠÎÁ-
+jsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(şãö×8ëˆŒ»Ä-
+osquid:CommentedOutCodeLineØ"<This block of commented-out lines of code should be removed.(æï£´ıÿÿÿÿ8ëˆŒ»Ä-
+Wsquid:S1068G"4Remove this unused "imageRequestBody" private field.(¥ÍÉÎÿÿÿÿÿ8ìÁÔ•Ã-

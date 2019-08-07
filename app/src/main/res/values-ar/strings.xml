@@ -109,4 +109,7 @@
     <string name="make_rate_please">يرجى إعطاء معدل قبل إرسال مراجعة!</string>
     <string name="order_added">تمت إضافة الطلب إلى قائمة قيد انتظار الدفع</string>
     <string name="account_number">رقم الحساب</string>
+
+    <string name="app_maker_name">مطور التطبيق</string>
+    <string name="view_linkein_profile">عرض الملف الشخصي بلنكدين</string>
 </resources>

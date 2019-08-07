@@ -15,8 +15,6 @@ import android.widget.ListAdapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

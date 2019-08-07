@@ -165,6 +165,17 @@ public class PayCardActivity extends BaseActivity {
         }
     }
 
+ /*   private void makeActionOnBankCredit() {
+        binding.bankConstraintlayout.setVisibility(View.VISIBLE);
+        binding.bankRadioButton.setChecked(true);
+        binding.madaRadioButton.setChecked(false);
+        binding.tvPaybal.setVisibility(View.GONE);
+        binding.paybalRadioButton.setChecked(false);
+        binding.creditConstraintlayout.setVisibility(View.GONE);
+        binding.creditRadioButton.setChecked(false);
+        type = BANK_ACCOUNT_ID;
+    }*/
+
     private void makeActionOnMadaCredit() {
         binding.creditConstraintlayout.setVisibility(View.VISIBLE);
         binding.madaRadioButton.setChecked(true);
@@ -174,17 +185,6 @@ public class PayCardActivity extends BaseActivity {
         binding.paybalRadioButton.setChecked(false);
         binding.creditRadioButton.setChecked(false);
         type = MADA_ID;
-    }
-
-    private void makeActionOnBankCredit() {
-        binding.bankConstraintlayout.setVisibility(View.VISIBLE);
-        binding.bankRadioButton.setChecked(true);
-        binding.madaRadioButton.setChecked(false);
-        binding.tvPaybal.setVisibility(View.GONE);
-        binding.paybalRadioButton.setChecked(false);
-        binding.creditConstraintlayout.setVisibility(View.GONE);
-        binding.creditRadioButton.setChecked(false);
-        type = BANK_ACCOUNT_ID;
     }
 
     private void makeActionOnChooseCredit() {
@@ -215,15 +215,15 @@ public class PayCardActivity extends BaseActivity {
     public void makeOrder(View view) {
         switch (type) {
             case BANK_ACCOUNT_ID:
-                makeOrderOnChooseCredit();
+//                makeOrderOnChooseCredit();
                 break;
 
             case CREDIT_ID:
-//                makeOrderByBankAccountRequest();
+                makeOrderOnChooseCredit();
                 break;
 
             case MADA_ID:
-//                makeOrderByBankAccountRequest();
+                makeOrderOnChooseCredit();
                 break;
 
             case PAYBAL_ID:
@@ -232,7 +232,7 @@ public class PayCardActivity extends BaseActivity {
         }
     }
 
-    private void makeOrderByBankAccountRequest() {
+/*    private void makeOrderByBankAccountRequest() {
         if (!binding.etFullName.getText().toString().isEmpty()
                 && (imageFile != null)) {
             makeBankRequest();
@@ -282,7 +282,7 @@ public class PayCardActivity extends BaseActivity {
         bankRequest.setBankAccountId(selectedBankAccount.getId());
         bankRequest.setFullName(binding.etFullName.getText().toString());
         return bankRequest;
-    }
+    }*/
 
     private void makeOrderOnChooseCredit() {
         if (!binding.etCardNumber.getText().toString().isEmpty()
@@ -292,10 +292,22 @@ public class PayCardActivity extends BaseActivity {
                 && !binding.etCardHolderName.getText().toString().isEmpty()
         ) {
             setOrderRequestData();
-//            makeOrderRequest();
+            if (type == CREDIT_ID) {
+                makeRequestOfCreditCard();
+            } else if (type == MADA_ID) {
+                makeRequestOfMada();
+            }
         } else {
             showTheirErrors();
         }
+    }
+
+    private void makeRequestOfCreditCard() {
+
+    }
+
+    private void makeRequestOfMada() {
+
     }
 
     private boolean isCardNumberValid() {

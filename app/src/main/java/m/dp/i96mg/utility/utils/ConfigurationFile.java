@@ -104,6 +104,7 @@ public class ConfigurationFile {
         public static final String INSTAGRAM_PACKAGE_NAME = "com.instagram.android";
         public static final String INTENT_MAIL_TYPE = "message/rfc822";
         public static final String MEDIA_TEXT_TYPE = "text/plain";
+        public static final String MY_LINKEDIN_LINK = "https://www.linkedin.com/in/mohamedsaidabdelaty";
 
         //intents types
         public static final String ACTIVATION_TYPE = "Activation Type";
